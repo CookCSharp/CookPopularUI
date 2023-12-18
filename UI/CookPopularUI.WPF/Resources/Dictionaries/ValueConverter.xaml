@@ -1,0 +1,66 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:CookPopularUI.WPF"
+                    xmlns:pt="https://Chance.CookPopularCSharpToolkit/2021/xaml">
+
+    <!--<common:ArcStartPointConverter x:Key="ArcStartPointConverter" />
+    <common:ArcEndPointConverter x:Key="ArcEndPointConverter" />
+    <common:ArcCircularSizeConverter x:Key="ArcCircularSizeConverter" />
+    <common:ArcEllipseSizeConverter x:Key="ArcEllipseSizeConverter" />
+    <common:BorderClipConverter x:Key="BorderClipConverter" />
+    <common:ProgressBarValueToTranslateTransformY x:Key="ProgressBarValueToTranslateTransformY" />
+    <common:ShowDefaultCloseButtonConverter x:Key="ShowDefaultCloseButtonConverter" />
+    <common:SliderValueLeftPositionXConverter x:Key="SliderValueLeftPositionXConverter" />
+    <common:SliderValueLeftPositionYConverter x:Key="SliderValueLeftPositionYConverter" />
+    <common:StringToPlaySpeedConverter x:Key="StringToPlaySpeedConverter" />
+    <common:TabControlHeaderSizeConverter x:Key="TabControlHeaderSizeConverter" />
+    <common:TextFieldClearButtonVisibilityConverter x:Key="TextFieldClearButtonVisibilityConverter" />
+    <common:TreeViewItemMarginConverter x:Key="TreeViewItemMarginConverter" />-->
+
+
+    <!--  ToBoolean  -->
+    <!--<pt:BooleanToReBooleanConverter x:Key="BooleanToReBooleanConverter" />
+    <pt:EmptyOrNullToBooleanConverter x:Key="EmptyOrNullToBooleanConverter" />
+    <pt:EnumToBooleanConverter x:Key="EnumToBooleanConverter" />
+    <pt:ValueBetween0And100ToBooleanConverter x:Key="ValueBetween0And100ToBooleanConverter" />
+    <pt:EqualityToBooleanConverter x:Key="EqualityToBooleanConverter" />
+    <pt:ValueLessThanTargetValueToBooleanConverter x:Key="ValueLessThanTargetValueToBooleanConverter" />
+    <pt:ValueMoreThanTargetValueToBooleanConverter x:Key="ValueMoreThanTargetValueToBooleanConverter" />-->
+    <!--  ToBrushOrColor  -->
+    <!--<pt:BrushToColorConverter x:Key="BrushToColorConverter" />-->
+    <!--  ToCornerRadius  -->
+    <!--<pt:DoubleToCornerRadiusConverter x:Key="DoubleToCornerRadiusConverter" />
+    <pt:CornerRadiusToCornerRadiusConverter x:Key="CornerRadiusToCornerRadiusConverter" />
+    <pt:BorderCircularToCornerRadiusConverter x:Key="BorderCircularToCornerRadiusConverter" />-->
+    <!--  ToDouble  -->
+    <!--<pt:ValueTranslateToDoubleConverter x:Key="ValueTranslateToDoubleConverter" />
+    <pt:TranslateToCenterDoubleConverter x:Key="TranslateToCenterDoubleConverter" />
+    <pt:HalfOfDifferenceTranslateToDoubleConverter x:Key="HalfOfDifferenceTranslateToDoubleConverter" />-->
+    <!--  ToGeometry  -->
+    <!--<pt:BorderClipToGeometryConverter x:Key="BorderClipToGeometryConverter" />
+    <pt:BorderCircularClipToGeometryConverter x:Key="BorderCircularClipToGeometryConverter" />
+    <pt:ClipCircularToGeometryConverter x:Key="ClipCircularToGeometryConverter" />-->
+    <!--  ToInt  -->
+    <!--<pt:EnumToIntConverter x:Key="EnumToIntConverter" />-->
+    <!--  ToOrientation  -->
+    <!--<pt:BooleanToHorizontalOrientationConverter x:Key="BooleanToHorizontalOrientationConverter" />
+    <pt:BooleanToVerticalOrientationConverter x:Key="BooleanToVerticalOrientationConverter" />-->
+    <!--  ToString  -->
+    <!--<pt:DoubleToStringConverter x:Key="DoubleToStringConverter" />-->
+    <!--  ToThickness  -->
+    <!--<pt:DoubleToThicknessConverter x:Key="DoubleToThicknessConverter" />
+    <pt:DoubleToLeftRightThicknessConverter x:Key="DoubleToLeftRightThicknessConverter" />
+    <pt:DoubleToTopBottomThicknessConverter x:Key="DoubleToTopBottomThicknessConverter" />
+    <pt:ThicknessToThicknessConverter x:Key="ThicknessToThicknessConverter" />-->
+    <!--  ToTimeSpan  -->
+    <!--<pt:DoubleToTimeSpanConverter x:Key="DoubleToTimeSpanConverter" />-->
+    <!--  ToVisibility  -->
+    <!--<pt:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    <pt:BooleanToVisibilityReConverter x:Key="BooleanToVisibilityReConverter" />
+    <pt:BooleanNullToVisibilityConverter x:Key="BooleanNullToVisibilityConverter" />
+    <pt:VisibilityToVisibilityReConverter x:Key="VisibilityToVisibilityReConverter" />
+    <pt:EqualityToVisibilityConverter x:Key="EqualityToVisibilityConverter" />
+    <pt:BooleanAllToVisibilityConverter x:Key="BooleanAllToVisibilityConverter" />
+    <pt:NullOrEmptyToVisibilityConverter x:Key="NullOrEmptyToVisibilityConverter" />-->
+
+</ResourceDictionary>

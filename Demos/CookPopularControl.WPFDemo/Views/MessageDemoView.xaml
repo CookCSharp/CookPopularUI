@@ -1,0 +1,65 @@
+﻿<UserControl x:Class="CookPopularUI.WPFDemo.Views.MessageDemoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:CookPopularUI.WPFDemo.Views"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:ui="https://github.cookpopularui/2021/xaml"
+             xmlns:vm="clr-namespace:CookPopularUI.WPFDemo.ViewModels"
+             mc:Ignorable="d"
+             d:DataContext="{Binding Source={d:DesignInstance Type={x:Type vm:MessageDemoViewModel}}}"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             prism:ViewModelLocator.AutoWireViewModel="True">
+
+    <Grid>
+        <StackPanel Width="{StaticResource DemoViewWidth}" VerticalAlignment="Center">
+            <ui:UniformSpacePanel Width="700" Height="150"
+                                  Background="{x:Static SystemColors.ControlDarkBrush}"
+                                  ItemHVSpace="0,10" ItemWidth="150" ItemWrapping="Wrap">
+                <Button Content="ToastMessage.Success" Command="{Binding ShowToastMessageCommand}" CommandParameter="Success" />
+                <Button Content="ToastMessage.Info" Command="{Binding ShowToastMessageCommand}" CommandParameter="Info" />
+                <Button Content="ToastMessage.Warning" Command="{Binding ShowToastMessageCommand}" CommandParameter="Warning" />
+                <Button Content="ToastMessage.Error" Command="{Binding ShowToastMessageCommand}" CommandParameter="Error" />
+                <Button Content="ToastMessage.Fatal" Command="{Binding ShowToastMessageCommand}" CommandParameter="Fatal" />
+                <Button Content="ToastMessage.Question" Command="{Binding ShowToastMessageCommand}" CommandParameter="Question" />
+                <Button Content="ToastMessage.Custom" Command="{Binding ShowToastMessageCommand}" CommandParameter="Custom" />
+            </ui:UniformSpacePanel>
+
+            <ui:UniformSpacePanel Width="700" Height="150"
+                                  Background="{x:Static SystemColors.ControlDarkBrush}"
+                                  Margin="0,20"
+                                  ItemHVSpace="0,10" ItemWidth="150" ItemWrapping="Wrap">
+                <Button Content="BubbleMessage.Success" Command="{Binding ShowBubbleMessageCommand}" CommandParameter="Success" />
+                <Button Content="BubbleMessage.Info" Command="{Binding ShowBubbleMessageCommand}" CommandParameter="Info" />
+                <Button Content="BubbleMessage.Warning" Command="{Binding ShowBubbleMessageCommand}" CommandParameter="Warning" />
+                <Button Content="BubbleMessage.Error" Command="{Binding ShowBubbleMessageCommand}" CommandParameter="Error" />
+                <Button Content="BubbleMessage.Fatal" Command="{Binding ShowBubbleMessageCommand}" CommandParameter="Fatal" />
+                <Button Content="BubbleMessage.Question" Command="{Binding ShowBubbleMessageCommand}" CommandParameter="Question" />
+                <Button Content="BubbleMessage.Custom" Command="{Binding ShowBubbleMessageCommand}" CommandParameter="Custom" />
+            </ui:UniformSpacePanel>
+
+            <ui:UniformSpacePanel Width="700" Height="200"
+                                  Background="{x:Static SystemColors.ControlDarkBrush}"
+                                  ItemHVSpace="0,10" ItemWidth="240" ItemWrapping="Wrap">
+                <Button x:Name="OpenPopupMessageNone" Command="{Binding ShowPopupMessageCommand}" CommandParameter="OpenPopupMessageNone" Content="OpenPopupMessageNone" />
+                <Button x:Name="OpenPopupMessageFade" Command="{Binding ShowPopupMessageCommand}" CommandParameter="OpenPopupMessageFade" Content="OpenPopupMessageFade" />
+                <Button x:Name="OpenPopupMessageLeftHorizontalSlide" Command="{Binding ShowPopupMessageCommand}" CommandParameter="OpenPopupMessageLeftHorizontalSlide" Content="OpenPopupMessageLeftHorizontalSlide" />
+                <Button x:Name="OpenPopupMessageRightHorizontalSlide" Command="{Binding ShowPopupMessageCommand}" CommandParameter="OpenPopupMessageRightHorizontalSlide" Content="OpenPopupMessageRightHorizontalSlide" />
+                <Button x:Name="OpenPopupMessageTopVerticalSlide" Command="{Binding ShowPopupMessageCommand}" CommandParameter="OpenPopupMessageTopVerticalSlide" Content="OpenPopupMessageTopVerticalSlide" />
+                <Button x:Name="OpenPopupMessageBottomVerticalSlide" Command="{Binding ShowPopupMessageCommand}" CommandParameter="OpenPopupMessageBottomVerticalSlide" Content="OpenPopupMessageBottomVerticalSlide" />
+                <Button x:Name="OpenPopupMessageHVSlide" Command="{Binding ShowPopupMessageCommand}" CommandParameter="OpenPopupMessageHVSlide" Content="OpenPopupMessageHVSlide" />
+                <Button x:Name="OpenPopupMessageScroll" Command="{Binding ShowPopupMessageCommand}" CommandParameter="OpenPopupMessageScroll" Content="OpenPopupMessageScroll" />
+            </ui:UniformSpacePanel>
+        </StackPanel>
+
+        <!--  接收BubbleMessage的容器  -->
+        <ScrollViewer Grid.RowSpan="2"
+                      HorizontalAlignment="Right" VerticalAlignment="Top"
+                      VerticalScrollBarVisibility="Hidden">
+            <StackPanel HorizontalAlignment="Right" ui:NotifyMessageBase.IsParentElement="True" />
+        </ScrollViewer>
+    </Grid>
+
+</UserControl>

@@ -1,0 +1,35 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:ui="clr-namespace:CookPopularUI.WPF.Controls">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/BaseStyles/StepBarBaseStyle.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="DefaultStepBarStyle" TargetType="{x:Type ui:StepBar}" BasedOn="{StaticResource FixedControlBaseStyle}">
+        <Setter Property="StepKind" Value="Number" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="ItemContainerStyle" Value="{StaticResource StepBarItemHorizontalTopStyle}" />
+        <Setter Property="ItemsPanel" Value="{StaticResource UniformHorizontalItemsPanelTemplate}" />
+        <Setter Property="Template" Value="{StaticResource StepBarHorizontalTopControlTemplate}" />
+        <Style.Triggers>
+            <Trigger Property="Dock" Value="Bottom">
+                <Setter Property="ItemContainerStyle" Value="{StaticResource StepBarItemHorizontalBottomStyle}" />
+                <Setter Property="ItemsPanel" Value="{StaticResource UniformHorizontalItemsPanelTemplate}" />
+                <Setter Property="Template" Value="{StaticResource StepBarHorizontalBottomControlTemplate}" />
+            </Trigger>
+            <Trigger Property="Dock" Value="Left">
+                <Setter Property="ItemContainerStyle" Value="{StaticResource StepBarItemVerticalStyle}" />
+                <Setter Property="ItemsPanel" Value="{StaticResource UniformVerticalItemsPanelTemplate}" />
+                <Setter Property="Template" Value="{StaticResource StepBarVerticalControlTemplate}" />
+            </Trigger>
+            <Trigger Property="Dock" Value="Right">
+                <Setter Property="FlowDirection" Value="RightToLeft" />
+                <Setter Property="ItemContainerStyle" Value="{StaticResource StepBarItemVerticalStyle}" />
+                <Setter Property="ItemsPanel" Value="{StaticResource UniformVerticalItemsPanelTemplate}" />
+                <Setter Property="Template" Value="{StaticResource StepBarVerticalControlTemplate}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+</ResourceDictionary>

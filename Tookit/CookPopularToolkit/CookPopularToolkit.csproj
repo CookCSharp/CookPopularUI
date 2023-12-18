@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!--netstandard2.0 .NET和.NET Core   2.0、2.1、2.2、3.0、3.1、5.0、6.0、7.0-->
+    <!--netstandard2.0 .NETFramework     4.6.1 2、4.6.2、4.7、4.7.1、4.7.2、4.8、4.8.1-->
+    <!--netstandard2.1 .NET和.NET Core	 3.0、3.1、5.0、6.0、7.0-->
+    <!--netstandard2.1 .NETFramework     N/A-->
+    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
+    <DefineConstants>SYSTEM_PRIVATE_CORELIB;</DefineConstants>
+
+    <Description>跨平台工具包</Description>
+    <PackageIcon></PackageIcon>
+    <PackageTags>csharp,library,toolkit,toolbox,multi-platform</PackageTags>
+    <PackageReadmeFile></PackageReadmeFile>
+    <PackageReleaseNotes>发布的预览版，其它功能敬请期待</PackageReleaseNotes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="4.7.0" />
+    <PackageReference Include="Microsoft.Extensions.Options.DataAnnotations" Version="7.0.0" />
+    <!--<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />-->
+    <PackageReference Include="System.CodeDom" Version="7.0.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="7.0.0" />
+    <PackageReference Include="System.Diagnostics.PerformanceCounter" Version="7.0.0" />
+    <PackageReference Include="System.Drawing.Common" Version="8.0.0" />
+    <PackageReference Include="System.Reflection.Emit" Version="4.7.0" />
+    <PackageReference Include="System.Reflection.Emit.Lightweight" Version="4.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\Attributes\" />
+    <Folder Include="Data\Converters\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Net.Http" Condition="$(TargetFramework.StartsWith(net4))" />
+  </ItemGroup>
+
+</Project>

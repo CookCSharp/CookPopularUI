@@ -1,0 +1,21 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:CookPopularUI.WPF"
+                    xmlns:ui="clr-namespace:CookPopularUI.WPF.Controls">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/BaseStyles/TimePickerBaseStyle.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="DefaultClockStyle" TargetType="{x:Type ui:Clock}" BasedOn="{StaticResource ClockBaseStyle}">
+        <Setter Property="local:FrameworkElementBaseAttached.CornerRadius" Value="2" />
+    </Style>
+
+    <Style x:Key="DefaultTimePickerStyle" TargetType="{x:Type ui:TimePicker}" BasedOn="{StaticResource TimePickerBaseStyle}">
+        <Setter Property="local:FrameworkElementBaseAttached.IconWidth" Value="15" />
+        <Setter Property="local:FrameworkElementBaseAttached.IconHeight" Value="15" />
+        <Setter Property="local:FrameworkElementBaseAttached.CornerRadius" Value="2" />
+        <Setter Property="local:TextElementAttached.PlaceHolder" Value="请选择时间" />
+    </Style>
+
+</ResourceDictionary>

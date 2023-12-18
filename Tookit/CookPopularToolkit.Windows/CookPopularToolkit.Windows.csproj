@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net462;net48;netcoreapp3.1;net6.0-windows</TargetFrameworks>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <DefineConstants>DESKTOP</DefineConstants>
+
+    <Description>Windows平台工具包</Description>
+    <PackageTags>csharp,library,toolkit,toolbox,windows</PackageTags>
+    <PackageReleaseNotes>兼容.NETFramework4.6.2+、.NETCore、.NET6.0+的Windows平台工具包，目前处于发布的预览版，其它功能敬请期待</PackageReleaseNotes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\CookPopularToolkit\Rules\RegularPatterns.cs" Link="Rules\RegularPatterns.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Net.Http" Condition="$(TargetFramework.StartsWith(net4))" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CookPopularToolkit\CookPopularToolkit.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,29 @@
+<Project>
+  <PropertyGroup>
+    <OutputPath Condition="$(MSBuildProjectName.Contains('Toolkit'))">$(MSBuildThisFileDirectory)Output\bin\$(Configuration)\Toolkits\$(MSBuildProjectName)</OutputPath>
+    <OutputPath Condition="$(MSBuildProjectName.Contains('UI'))">$(MSBuildThisFileDirectory)Output\bin\$(Configuration)\UIs\$(MSBuildProjectName)</OutputPath>
+    <OutputPath Condition="$(MSBuildProjectName.Contains('UnitTest'))">$(MSBuildThisFileDirectory)Output\bin\$(Configuration)\UnitTests\$(MSBuildProjectName)</OutputPath>
+    <OutputPath Condition="$(MSBuildProjectName.Contains('Demo'))">$(MSBuildThisFileDirectory)Output\bin\$(Configuration)\Demos\$(MSBuildProjectName)</OutputPath>
+    <BaseIntermediateOutputPath>$(MSBuildThisFileDirectory)Output\obj\$(Configuration)\$(MSBuildProjectName)</BaseIntermediateOutputPath>
+    <!--<IntermediateOutputPath>$(SolutionDir)Output\obj\$(Configuration)\$(MSBuildProjectName)</IntermediateOutputPath>-->
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+
+  <Target Name="RemoveWpfTempFolder" AfterTargets="Build">
+    <ItemGroup>
+      <WpfTempDirectories Include="$([System.IO.Directory]::GetDirectories(&quot;$(MSBuildThisFileDirectory)Output\bin\$(Configuration)\Toolkits&quot;,&quot;$(MSBuildProjectName)_*_wpftmp&quot;))" />
+      <WpfTempDirectories Include="$([System.IO.Directory]::GetDirectories(&quot;$(MSBuildThisFileDirectory)Output\bin\$(Configuration)\UIs&quot;,&quot;$(MSBuildProjectName)_*_wpftmp&quot;))" />
+      <WpfTempDirectories Include="$([System.IO.Directory]::GetDirectories(&quot;$(MSBuildThisFileDirectory)Output\bin\$(Configuration)\UnitTests&quot;,&quot;$(MSBuildProjectName)_*_wpftmp&quot;))" />
+      <WpfTempDirectories Include="$([System.IO.Directory]::GetDirectories(&quot;$(MSBuildThisFileDirectory)Output\bin\$(Configuration)\Demos&quot;,&quot;$(MSBuildProjectName)_*_wpftmp&quot;))" />
+    </ItemGroup>
+    <RemoveDir Directories="@(WpfTempDirectories)" />
+  </Target>
+
+  <!--<Target Name="RemoveWpfTempFolder" AfterTargets="PostBuildEvent">
+    <Exec Command="FOR /D %%G in (&quot;$(MSBuildThisFileDirectory)Output\bin\$(Configuration)\*_*_wpftmp&quot;) DO RMDIR /S /Q &quot;%%~G&quot;" />
+  </Target>-->
+</Project>

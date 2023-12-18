@@ -1,0 +1,104 @@
+﻿<UserControl x:Class="CookPopularUI.WPFDemo.Views.SideBarDemoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:CookPopularUI.WPFDemo.Views"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:ui="https://github.cookpopularui/2021/xaml"
+             xmlns:vm="clr-namespace:CookPopularUI.WPFDemo.ViewModels"
+             mc:Ignorable="d"
+             d:DataContext="{Binding Source={d:DesignInstance Type={x:Type vm:SideBarDemoViewModel}}}"
+             d:DesignHeight="450"
+             d:DesignWidth="1200"
+             prism:ViewModelLocator.AutoWireViewModel="True">
+
+    <Grid Width="{StaticResource DemoViewWidth}" Margin="0,20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <StackPanel VerticalAlignment="Center">
+            <Button Content="Show" Command="{Binding ShowOrCloseCommmand}" CommandParameter="{x:Static sys:Boolean.TrueString}" />
+            <Button Content="Close"
+                    Command="{Binding ShowOrCloseCommmand}"
+                    CommandParameter="{x:Static sys:Boolean.FalseString}"
+                    Margin="0,20,0,0" />
+        </StackPanel>
+
+        <UniformGrid Grid.Column="2" Columns="2" Rows="2">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="我是内容ONE" FontSize="20" FontWeight="ExtraBold" />
+                <Button Content="ButtonONE" />
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="我是内容Two" FontSize="20" FontWeight="ExtraBold" />
+                <Button Content="ButtonTwo" />
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="我是内容Three" FontSize="20" FontWeight="ExtraBold" />
+                <Button Content="ButtonThree" />
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="我是内容Four" FontSize="20" FontWeight="ExtraBold" />
+                <Button Content="ButtonFour" />
+            </StackPanel>
+        </UniformGrid>
+
+        <UniformGrid Grid.Column="2" Columns="2" Rows="2">
+            <ui:SideBar BorderThickness="1" Dock="Left" IsShow="{Binding IsShowSideBar, Mode=TwoWay}">
+                <ui:SideBar.Content>
+                    <ListBox Width="150">
+                        <ListBoxItem>111</ListBoxItem>
+                        <ListBoxItem>222</ListBoxItem>
+                        <ListBoxItem>333</ListBoxItem>
+                        <ListBoxItem>444</ListBoxItem>
+                    </ListBox>
+                </ui:SideBar.Content>
+            </ui:SideBar>
+            <ui:SideBar BorderThickness="1"
+                        Margin="10,0,0,0"
+                        Dock="Right"
+                        IsShow="{Binding IsShowSideBar, Mode=TwoWay}">
+                <ui:SideBar.Content>
+                    <ListBox Width="150">
+                        <ListBoxItem>111</ListBoxItem>
+                        <ListBoxItem>222</ListBoxItem>
+                        <ListBoxItem>333</ListBoxItem>
+                        <ListBoxItem>444</ListBoxItem>
+                    </ListBox>
+                </ui:SideBar.Content>
+            </ui:SideBar>
+            <ui:SideBar BorderThickness="1"
+                        Margin="0,10,0,0"
+                        Dock="Top"
+                        IsShow="{Binding IsShowSideBar, Mode=TwoWay}">
+                <ui:SideBar.Content>
+                    <ListBox Width="440">
+                        <ListBoxItem>111</ListBoxItem>
+                        <ListBoxItem>222</ListBoxItem>
+                        <ListBoxItem>333</ListBoxItem>
+                        <ListBoxItem>444</ListBoxItem>
+                    </ListBox>
+                </ui:SideBar.Content>
+            </ui:SideBar>
+            <ui:SideBar BorderThickness="1"
+                        Margin="10,10,0,0"
+                        Dock="Bottom"
+                        IsShow="{Binding IsShowSideBar, Mode=TwoWay}">
+                <ui:SideBar.Content>
+                    <ListBox Width="430">
+                        <ListBoxItem>111</ListBoxItem>
+                        <ListBoxItem>222</ListBoxItem>
+                        <ListBoxItem>333</ListBoxItem>
+                        <ListBoxItem>444</ListBoxItem>
+                    </ListBox>
+                </ui:SideBar.Content>
+            </ui:SideBar>
+        </UniformGrid>
+    </Grid>
+
+
+</UserControl>

@@ -1,0 +1,165 @@
+﻿/*
+ *Description: LanguageExtension
+ *Author: Chance.zheng
+ *Creat Time: 2023/9/25 13:51:58
+ *.Net Version: 4.6
+ *CLR Version: 4.0.30319.42000
+ *Copyright © CookCSharp 2023 All Rights Reserved.
+ */
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Data;
+using System.Windows.Markup;
+using System.Windows;
+using System.Windows.Input;
+
+namespace CookPopularUI.WPF.Tools
+{
+    public class LanguageExtension : MarkupExtension
+    {
+        private readonly DependencyObject _proxy;
+
+        public LanguageExtension()
+        {
+            _proxy = new DependencyObject();
+        }
+
+        public LanguageExtension(string key) : this()
+        {
+            Key = key;
+        }
+
+        public object Key
+        {
+            get => _proxy.GetValue(KeyProperty);
+            set => _proxy.SetValue(KeyProperty, value);
+        }
+        public static readonly DependencyProperty KeyProperty =
+            DependencyProperty.RegisterAttached(nameof(Key), typeof(object), typeof(LanguageExtension), new PropertyMetadata(default));
+
+
+        private static void SetTargetProperty(DependencyObject element, DependencyProperty? value)
+            => element.SetValue(TargetPropertyProperty, value);
+        private static DependencyProperty GetTargetProperty(DependencyObject element)
+            => (DependencyProperty)element.GetValue(TargetPropertyProperty);
+        private static readonly DependencyProperty TargetPropertyProperty =
+            DependencyProperty.RegisterAttached("TargetProperty", typeof(DependencyProperty), typeof(LanguageExtension), new PropertyMetadata(default(DependencyProperty)));
+
+
+        public BindingMode Mode { get; set; }
+
+        public IValueConverter Converter { get; set; }
+
+        public object ConverterParameter { get; set; }
+
+        public object Source { get; set; }
+
+        public override object? ProvideValue(IServiceProvider serviceProvider)
+        {
+            if (!(serviceProvider.GetService(typeof(IProvideValueTarget)) is IProvideValueTarget provideValueTarget)) return this;
+            if (provideValueTarget.TargetObject.GetType().FullName == "System.Windows.SharedDp") return this;
+            if (!(provideValueTarget.TargetObject is DependencyObject targetObject)) return this;
+            if (!(provideValueTarget.TargetProperty is DependencyProperty targetProperty)) return this;
+
+            switch (Key)
+            {
+                case string key:
+                    {
+                        //var binding = CreateLangBinding(key);
+                        //BindingOperations.SetBinding(targetObject, targetProperty, binding);
+                        //return binding.ProvideValue(serviceProvider);
+                        return key;
+                    }
+                case Binding keyBinding when targetObject is FrameworkElement element:
+                    {
+                        if (element.DataContext != null)
+                        {
+                            var binding = SetLangBinding(element, targetProperty, keyBinding.Path, element.DataContext);
+                            return binding?.ProvideValue(serviceProvider);
+                        }
+
+                        SetTargetProperty(element, targetProperty);
+                        element.DataContextChanged += LangExtension_DataContextChanged;
+
+                        break;
+                    }
+                case Binding keyBinding when targetObject is FrameworkContentElement element:
+                    {
+                        if (element.DataContext != null)
+                        {
+                            var binding = SetLangBinding(element, targetProperty, keyBinding.Path, element.DataContext);
+                            return binding?.ProvideValue(serviceProvider);
+                        }
+
+                        SetTargetProperty(element, targetProperty);
+                        element.DataContextChanged += LangExtension_DataContextChanged;
+
+                        break;
+                    }
+            }
+
+            return string.Empty;
+        }
+
+        private void LangExtension_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            switch (sender)
+            {
+                case FrameworkElement element:
+                    {
+                        element.DataContextChanged -= LangExtension_DataContextChanged;
+                        if (!(Key is Binding keyBinding)) return;
+
+                        var targetProperty = GetTargetProperty(element);
+                        SetTargetProperty(element, null);
+                        SetLangBinding(element, targetProperty, keyBinding.Path, element.DataContext);
+                        break;
+                    }
+                case FrameworkContentElement element:
+                    {
+                        element.DataContextChanged -= LangExtension_DataContextChanged;
+                        if (!(Key is Binding keyBinding)) return;
+
+                        var targetProperty = GetTargetProperty(element);
+                        SetTargetProperty(element, null);
+                        SetLangBinding(element, targetProperty, keyBinding.Path, element.DataContext);
+                        break;
+                    }
+            }
+        }
+
+        private BindingBase? SetLangBinding(DependencyObject targetObject, DependencyProperty targetProperty, PropertyPath path, object dataContext)
+        {
+            if (targetProperty == null) return null;
+
+            BindingOperations.SetBinding(targetObject, targetProperty, new Binding
+            {
+                Path = path,
+                Source = dataContext,
+                Mode = BindingMode.OneWay
+            });
+
+            var key = targetObject.GetValue(targetProperty) as string;
+            if (string.IsNullOrEmpty(key)) return null;
+
+            var binding = CreateLangBinding(key);
+            BindingOperations.SetBinding(targetObject, targetProperty, binding);
+            return binding;
+        }
+
+        private BindingBase CreateLangBinding(string? key) => new Binding(key)
+        {
+            Converter = Converter,
+            ConverterParameter = ConverterParameter,
+            UpdateSourceTrigger = UpdateSourceTrigger.Explicit,
+            Source = Source,
+            Mode = BindingMode.OneWay
+        };
+    }
+}

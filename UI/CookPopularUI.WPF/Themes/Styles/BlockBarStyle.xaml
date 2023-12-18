@@ -1,0 +1,15 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:ui="clr-namespace:CookPopularUI.WPF.Controls">
+
+    <Style x:Key="DefaultBlockBarBaseStyle" TargetType="{x:Type ui:BlockBarBase}">
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryThemeBrush}" />
+    </Style>
+
+    <Style x:Key="DefaultBlockBarCircleStyle" TargetType="{x:Type ui:BlockBarCircle}" BasedOn="{StaticResource DefaultBlockBarBaseStyle}" />
+
+    <Style x:Key="DefaultBlockBarImageStyle" TargetType="{x:Type ui:BlockBarImage}" BasedOn="{StaticResource DefaultBlockBarBaseStyle}" />
+
+    <Style x:Key="DefaultBlockBarRectStyle" TargetType="{x:Type ui:BlockBarRect}" BasedOn="{StaticResource DefaultBlockBarBaseStyle}" />
+
+</ResourceDictionary>

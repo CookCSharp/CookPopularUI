@@ -1,0 +1,16 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:ui="clr-namespace:CookPopularUI.WPF.Controls">
+
+    <Style x:Key="DefaultAnimationPathStyle" TargetType="{x:Type ui:AnimationPath}">
+        <Setter Property="Stroke" Value="{DynamicResource PrimaryThemeBrush}" />
+        <Setter Property="StrokeThickness" Value="{DynamicResource Double20Value}" />
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="IsPlay" Value="False" />
+                <Setter Property="Stroke" Value="{DynamicResource UnEnabledBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+</ResourceDictionary>

@@ -1,0 +1,111 @@
+﻿<UserControl x:Class="CookPopularUI.WPFDemo.Views.LabelDemoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:behavior="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:CookPopularUI.WPFDemo.Views"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:ui="https://github.cookpopularui/2021/xaml"
+             xmlns:vm="clr-namespace:CookPopularUI.WPFDemo.ViewModels"
+             mc:Ignorable="d"
+             d:DataContext="{Binding Source={d:DesignInstance Type={x:Type vm:LabelDemoViewModel}}}"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             prism:ViewModelLocator.AutoWireViewModel="True">
+
+    <UserControl.Resources>
+        <DataTemplate x:Key="HeaderTemplate" DataType="{x:Type Label}">
+            <Image Source="{Binding RelativeSource={RelativeSource AncestorType=Label}, Path=(ui:LabelAssistant.Header)}" Stretch="Uniform" />
+        </DataTemplate>
+        <DataTemplate x:Key="HeaderImageTemplate" DataType="{x:Type Label}">
+            <Image Source="{Binding RelativeSource={RelativeSource AncestorType=Label}, Path=Content.Header}" Stretch="Uniform" />
+        </DataTemplate>
+        <DataTemplate x:Key="HeaderIconTemplate" DataType="{x:Type Label}">
+            <Path Width="20" Height="20"
+                  Data="{Binding RelativeSource={RelativeSource AncestorType=Label}, Path=Content.Header}"
+                  Fill="{StaticResource PrimaryForegroundBrush}"
+                  Stretch="Uniform" />
+        </DataTemplate>
+        <Image x:Key="HeaderImage" Source="../Assets/Media/tomcat.png" />
+    </UserControl.Resources>
+
+    <ScrollViewer>
+        <Grid Margin="10,0" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="10" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="10" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="10" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="10" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Row="0" Grid.Column="0"
+                       Text="NormalLabel:"
+                       FontSize="20" FontWeight="DemiBold"
+                       HorizontalAlignment="Right" VerticalAlignment="Center" />
+            <WrapPanel Grid.Row="0" Grid.Column="2">
+                <Label Content="写代码的厨子" ui:FrameworkElementBaseAttached.CornerRadius="5" />
+                <Label Content="写代码的厨子" Margin="10,0" ui:LabelAssistant.Header="C" />
+                <Label Content="写代码的厨子" ui:LabelAssistant.Header="{StaticResource HeaderImage}" />
+                <Label Content="写代码的厨子"
+                       Margin="10,0"
+                       ui:LabelAssistant.Header="pack://application:,,,/CookPopularUI.WPFDemo;component/Assets/Media/tomcat.png"
+                       ui:LabelAssistant.HeaderTemplate="{StaticResource HeaderTemplate}" />
+                <Label Content="写代码的厨子">
+                    <ui:LabelAssistant.Header>
+                        <Path Width="20" Height="20"
+                              Data="{StaticResource StarGeometry}"
+                              Fill="{StaticResource PrimaryForegroundBrush}"
+                              Stretch="Uniform" />
+                    </ui:LabelAssistant.Header>
+                </Label>
+            </WrapPanel>
+
+            <TextBlock Grid.Row="2" Grid.Column="0"
+                       Text="GroupLabel:"
+                       FontSize="20" FontWeight="DemiBold"
+                       HorizontalAlignment="Right" VerticalAlignment="Center" />
+            <ui:GroupLabel Grid.Row="2" Grid.Column="2"
+                           ItemsSource="{Binding GroupLists}"
+                           ui:FrameworkElementBaseAttached.CornerRadius="2">
+                <behavior:Interaction.Triggers>
+                    <behavior:EventTrigger EventName="ItemClosed">
+                        <behavior:CallMethodAction MethodName="ItemClosedAction" TargetObject="{Binding}" />
+                    </behavior:EventTrigger>
+                </behavior:Interaction.Triggers>
+            </ui:GroupLabel>
+
+            <TextBlock Grid.Row="4" Grid.Column="0"
+                       Text="GroupHeaderLabel:"
+                       FontSize="20" FontWeight="DemiBold"
+                       HorizontalAlignment="Right" VerticalAlignment="Center" />
+            <ui:GroupLabel Grid.Row="4" Grid.Column="2" ItemsSource="{Binding GroupHeaderLists}" />
+
+            <TextBlock Grid.Row="6" Grid.Column="0"
+                       Text="GroupImageLabel:"
+                       FontSize="20" FontWeight="DemiBold"
+                       HorizontalAlignment="Right" VerticalAlignment="Center" />
+            <ui:GroupLabel Grid.Row="6" Grid.Column="2"
+                           ItemTemplate="{StaticResource HeaderImageTemplate}"
+                           ItemsSource="{Binding GroupImageLists}" />
+
+            <TextBlock Grid.Row="8" Grid.Column="0"
+                       Text="GroupIconLabel:"
+                       FontSize="20" FontWeight="DemiBold"
+                       HorizontalAlignment="Right" VerticalAlignment="Center" />
+            <ui:GroupLabel Grid.Row="8" Grid.Column="2"
+                           ItemTemplate="{StaticResource HeaderIconTemplate}"
+                           ItemsSource="{Binding GroupIconLists}" />
+        </Grid>
+    </ScrollViewer>
+
+</UserControl>

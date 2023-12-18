@@ -1,0 +1,22 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:ui="clr-namespace:CookPopularUI.WPF.Controls">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/BaseStyles/DataGridBaseStyle.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="DefaultDataGridStyle" TargetType="{x:Type DataGrid}" BasedOn="{StaticResource DataGridBaseStyle}">
+        <Setter Property="ui:DataGridAssistant.IsEnableEditWithoutFocused" Value="True" />
+        <Setter Property="ui:DataGridAssistant.IsApplyDefaultStyle" Value="True" />
+        <Setter Property="ui:DataGridAssistant.TextColumnStyle" Value="{StaticResource DataGridTextColumnStyle}" />
+        <Setter Property="ui:DataGridAssistant.TextColumnEditingStyle" Value="{StaticResource DataGridTextColumnEditingStyle}" />
+        <Setter Property="ui:DataGridAssistant.ComboBoxColumnStyle" Value="{StaticResource DataGridComboBoxColumnStyle}" />
+        <Setter Property="ui:DataGridAssistant.ComboBoxColumnEditingStyle" Value="{StaticResource DataGridComboBoxColumnEditingStyle}" />
+        <Setter Property="ui:DataGridAssistant.CheckBoxColumnStyle" Value="{StaticResource DataGridCheckBoxColumnStyle}" />
+        <Setter Property="ui:DataGridAssistant.CheckBoxColumnEditingStyle" Value="{StaticResource DataGridCheckBoxColumnStyle}" />
+        <Setter Property="ui:DataGridAssistant.IsShowSerialNumber" Value="True" />
+        <Setter Property="ui:DataGridAssistant.IsRegisterSelectAll" Value="True" />
+    </Style>
+
+</ResourceDictionary>

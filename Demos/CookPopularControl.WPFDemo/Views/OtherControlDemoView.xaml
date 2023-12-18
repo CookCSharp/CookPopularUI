@@ -1,0 +1,92 @@
+﻿<UserControl x:Class="CookPopularUI.WPFDemo.Views.OtherControlDemoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:CookPopularUI.WPFDemo.Views"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:ui="https://github.cookpopularui/2021/xaml"
+             xmlns:vm="clr-namespace:CookPopularUI.WPFDemo.ViewModels"
+             mc:Ignorable="d"
+             d:DataContext="{Binding Source={d:DesignInstance Type={x:Type vm:OtherControlDemoViewModel}}}"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             prism:ViewModelLocator.AutoWireViewModel="True">
+
+    <Grid Width="{StaticResource DemoViewWidth}" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="80" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <ui:Tag Header="标题:" HorizontalAlignment="Center">
+            <ui:Tag.Content>
+                <ComboBox Width="100">
+                    <ComboBoxItem>111</ComboBoxItem>
+                    <ComboBoxItem>222</ComboBoxItem>
+                    <ComboBoxItem>333</ComboBoxItem>
+                </ComboBox>
+            </ui:Tag.Content>
+        </ui:Tag>
+        <StackPanel Grid.Row="1">
+            <ui:Alertor x:Name="alertor" CurrentState="{Binding CurrentState}" StartAlarm="{Binding StartAlarm, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <WrapPanel Margin="0,20,0,0" HorizontalAlignment="Center">
+                <Button Width="100" Content="切换状态" Command="{Binding StateExchangeCommand}" />
+                <ToggleButton Width="100"
+                              Content="{Binding Content}"
+                              Command="{Binding StartOrStopCommand}"
+                              IsChecked="{Binding StartAlarm, Mode=TwoWay}"
+                              Margin="10,0" />
+            </WrapPanel>
+        </StackPanel>
+        <ui:Badge Grid.Row="2"
+                  HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                  Direction="RightTop">
+            <ui:Badge.Element>
+                <Image Width="30" Height="30" Source="../Assets/Media/tomcat.png" />
+            </ui:Badge.Element>
+            <Button Width="200" Content="Badge" />
+        </ui:Badge>
+        <StackPanel Grid.RowSpan="5" Grid.Column="1" Orientation="Horizontal">
+            <StackPanel Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <ui:Star Orientation="Horizontal" StarCount="5"
+                         StarIcon="{StaticResource StarGeometry}"
+                         StarValue="3" />
+                <ui:Star Margin="0,10"
+                         Orientation="Horizontal" StarCount="5"
+                         StarIcon="{StaticResource LovingGeometry}"
+                         StarValue="1" />
+                <ui:Star IsAllowHalf="False" Orientation="Horizontal" StarCount="5"
+                         StarIcon="{StaticResource PraiseGeometry}"
+                         StarValue="3.333" />
+                <ui:Star Margin="0,10"
+                         IsShowScore="False" Orientation="Horizontal" StarCount="5"
+                         StarIcon="{StaticResource EyeGeometry}"
+                         StarValue="1.5" />
+            </StackPanel>
+            <WrapPanel Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <ui:Star Orientation="Vertical" StarCount="5"
+                         StarIcon="{StaticResource StarGeometry}"
+                         StarValue="0" />
+                <ui:Star Margin="10,0"
+                         Orientation="Vertical" StarCount="5"
+                         StarIcon="{StaticResource LovingGeometry}"
+                         StarValue="1" />
+                <ui:Star IsAllowHalf="False" Orientation="Vertical" StarCount="5"
+                         StarIcon="{StaticResource PraiseGeometry}"
+                         StarValue="3" />
+                <ui:Star Margin="10,0"
+                         IsShowScore="False" Orientation="Vertical" StarCount="5"
+                         StarIcon="{StaticResource EyeGeometry}"
+                         StarValue="4.5" />
+            </WrapPanel>
+        </StackPanel>
+    </Grid>
+
+</UserControl>

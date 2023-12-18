@@ -1,0 +1,51 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:CookPopularUI.WPF"
+                    xmlns:ui="clr-namespace:CookPopularUI.WPF.Controls">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/BaseStyles/ProgressBarBaseStyle.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="DefaultProgressBarStyle" TargetType="{x:Type ProgressBar}" BasedOn="{StaticResource LinearProgressBarBaseStyle}">
+        <Setter Property="local:FrameworkElementBaseAttached.CornerRadius" Value="2" />
+        <Setter Property="local:FrameworkElementBaseAttached.ShadowEffect" Value="{x:Null}" />
+        <Setter Property="ui:LinearProgressBarAssistant.IsShowIcon" Value="False" />
+        <Setter Property="ui:LinearProgressBarAssistant.IconSize" Value="20" />
+        <Setter Property="ui:LinearProgressBarAssistant.IsShowPercent" Value="True" />
+        <Setter Property="ui:LinearProgressBarAssistant.TextColor" Value="{DynamicResource ControlForegroundBrush}" />
+    </Style>
+    <Style x:Key="AirFanLinearProgressBarStyle" TargetType="{x:Type ProgressBar}" BasedOn="{StaticResource DefaultProgressBarStyle}">
+        <Setter Property="ui:LinearProgressBarAssistant.IsShowIcon" Value="True" />
+    </Style>
+
+    <Style x:Key="ProgressBarStripeStyle" TargetType="{x:Type ProgressBar}" BasedOn="{StaticResource ProgressBarStripeBaseStyle}">
+        <Setter Property="local:FrameworkElementBaseAttached.CornerRadius" Value="2" />
+    </Style>
+
+    <Style x:Key="CircularProgressBarStyle" TargetType="{x:Type ProgressBar}" BasedOn="{StaticResource CircularProgressBarBaseStyle}">
+        <Setter Property="ui:CircularProgressAssistant.ArcThickness" Value="15" />
+        <Setter Property="ui:LinearProgressBarAssistant.IsShowPercent" Value="True" />
+        <Setter Property="ui:LinearProgressBarAssistant.TextColor" Value="{DynamicResource PrimaryForegroundBrush}" />
+    </Style>
+    <Style x:Key="IndeterminateCircularProgressBarStyle" TargetType="{x:Type ProgressBar}" BasedOn="{StaticResource CircularProgressBarStyle}">
+        <Setter Property="IsIndeterminate" Value="True" />
+    </Style>
+    <Style x:Key="LoadingCircularProgressBarStyle" TargetType="{x:Type ProgressBar}" BasedOn="{StaticResource IndeterminateCircularProgressBarStyle}">
+        <Setter Property="ui:LinearProgressBarAssistant.IsShowPercent" Value="False" />
+        <Setter Property="Value" Value="0" />
+    </Style>
+
+    <Style x:Key="WaveProgressBarStyle" TargetType="{x:Type ProgressBar}" BasedOn="{StaticResource WaveProgressBarBaseStyle}">
+        <Setter Property="ui:WaveProgressBarAssistant.IsStartWave" Value="True" />
+        <Setter Property="ui:WaveProgressBarAssistant.WaveHeight" Value="20" />
+        <Setter Property="ui:WaveProgressBarAssistant.WaveStroke" Value="{DynamicResource BorderBrush}" />
+        <Setter Property="ui:WaveProgressBarAssistant.WaveStrokeThickness" Value="2" />
+        <Setter Property="ui:LinearProgressBarAssistant.IsShowPercent" Value="True" />
+        <Setter Property="ui:LinearProgressBarAssistant.TextColor" Value="{DynamicResource ControlForegroundBrush}" />
+    </Style>
+    <Style x:Key="WaveProgressBarHidePercentStyle" TargetType="{x:Type ProgressBar}" BasedOn="{StaticResource WaveProgressBarStyle}">
+        <Setter Property="ui:LinearProgressBarAssistant.IsShowPercent" Value="False" />
+    </Style>
+
+</ResourceDictionary>

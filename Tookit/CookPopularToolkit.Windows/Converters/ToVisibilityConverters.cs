@@ -1,0 +1,250 @@
+﻿/*
+ * Copyright (c) 2021 All Rights Reserved.
+ * Description：ToVisibilityConverters
+ * Author： Chance_写代码的厨子
+ * Create Time：2021-11-05 22:31:13
+ */
+
+using System;
+using System.Globalization;
+using System.Linq;
+using System.Windows;
+using System.Windows.Data;
+using System.Windows.Markup;
+
+namespace CookPopularToolkit.Windows
+{
+    /// <summary>
+    /// True to Visibility.Visible
+    /// </summary>
+    [MarkupExtensionReturnType(typeof(Visibility))]
+    [Localizability(LocalizationCategory.NeverLocalize)]
+    public class BooleanToVisibilityConverter : MarkupExtensionBase, IValueConverter
+    {
+        /// <summary>
+        /// Convert bool or Nullable&lt;bool&gt; to Visibility
+        /// </summary>
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            bool bValue = false;
+            if (value is bool)
+            {
+                bValue = (bool)value;
+            }
+            else if (value is Nullable<bool>)
+            {
+                Nullable<bool> tmp = (Nullable<bool>)value;
+                bValue = tmp.HasValue ? tmp.Value : false;
+            }
+            return (bValue) ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        /// <summary>
+        /// Convert Visibility to boolean
+        /// </summary>
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is Visibility)
+            {
+                return (Visibility)value == Visibility.Visible;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+
+    /// <summary>
+    /// False to Visibility.Visible
+    /// </summary>
+    [MarkupExtensionReturnType(typeof(Visibility))]
+    [Localizability(LocalizationCategory.NeverLocalize)]
+    public class BooleanToVisibilityReConverter : MarkupExtensionBase, IValueConverter
+    {
+        /// <summary>
+        /// Convert bool or Nullable&lt;bool&gt; to Visibility
+        /// </summary>
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            bool bValue = false;
+            if (value is bool)
+            {
+                bValue = (bool)value;
+            }
+            else if (value is bool?)
+            {
+                bool? tmp = (bool?)value;
+                bValue = tmp.HasValue ? tmp.Value : false;
+            }
+            return (bValue) ? Visibility.Collapsed : Visibility.Visible;
+        }
+
+        /// <summary>
+        /// Convert Visibility to boolean
+        /// </summary>
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is Visibility)
+            {
+                return (Visibility)value == Visibility.Collapsed;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Null to Visibility.Hidden;
+    /// False to Visibility.Collapsed;
+    /// True to Visibility.Visible;
+    /// </summary>
+    [MarkupExtensionReturnType(typeof(Visibility))]
+    [Localizability(LocalizationCategory.NeverLocalize)]
+    public class BooleanNullToVisibilityConverter : MarkupExtensionBase, IValueConverter
+    {
+        /// <summary>
+        /// Convert bool or Nullable&lt;bool&gt; to Visibility
+        /// </summary>
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is bool?)
+            {
+                bool? tmp = (bool?)value;
+                if (!tmp.HasValue)
+                    return Visibility.Hidden;
+                else
+                    return tmp.Value ? Visibility.Visible : Visibility.Collapsed;
+            }
+
+            return Visibility.Collapsed;
+        }
+
+        /// <summary>
+        /// Convert Visibility to boolean
+        /// </summary>
+        public object? ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is Visibility)
+            {
+                if ((Visibility)value == Visibility.Hidden)
+                    return null;
+                else if ((Visibility)value == Visibility.Visible)
+                    return true;
+                else
+                    return false;
+            }
+
+            return false;
+        }
+    }
+
+    [MarkupExtensionReturnType(typeof(Visibility))]
+    [Localizability(LocalizationCategory.NeverLocalize)]
+    public class EqualityToVisibilityConverter : MarkupExtensionBase, IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return Equals(value, parameter) ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return DependencyProperty.UnsetValue;
+        }
+    }
+
+    [MarkupExtensionReturnType(typeof(Visibility))]
+    [Localizability(LocalizationCategory.NeverLocalize)]
+    public class BooleanAllToVisibilityConverter : MarkupExtensionBase, IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (values == null)
+                return Visibility.Collapsed;
+
+            return values.Select(GetBool).All(b => b) ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        public object[]? ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            return null;
+        }
+
+        private bool GetBool(object value)
+        {
+            if (value is bool)
+            {
+                return (bool)value;
+            }
+
+            return false;
+        }
+    }
+
+    [MarkupExtensionReturnType(typeof(Visibility))]
+    [Localizability(LocalizationCategory.NeverLocalize)]
+    public class NullOrEmptyToVisibilityConverter : MarkupExtensionBase, IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return string.IsNullOrEmpty(value?.ToString()) ? Visibility.Collapsed : Visibility.Visible;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return DependencyProperty.UnsetValue;
+        }
+    }
+
+    /// <summary>
+    /// Visibility to Re Visibility
+    /// </summary>
+    [MarkupExtensionReturnType(typeof(Visibility))]
+    [Localizability(LocalizationCategory.NeverLocalize)]
+    public class VisibilityToVisibilityReConverter : MarkupExtensionBase, IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return (Visibility)value == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return (Visibility)value == Visibility.Collapsed ? Visibility.Visible : Visibility.Collapsed;
+        }
+    }
+
+
+    [MarkupExtensionReturnType(typeof(Visibility))]
+    [Localizability(LocalizationCategory.NeverLocalize)]
+    [ValueConversion(typeof(Enum), typeof(Visibility))]
+    public class EnumToVisibilityConverter : MarkupExtensionBase, IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (parameter == null)
+                return DependencyProperty.UnsetValue;
+
+            if (Enum.IsDefined(value.GetType(), value) == false)
+                return DependencyProperty.UnsetValue;
+
+            string parameterString = parameter.ToString();
+            object parameterValue = Enum.Parse(value.GetType(), parameterString);
+
+            return parameterValue.Equals(value) ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (parameter == null)
+                return DependencyProperty.UnsetValue;
+
+            string parameterString = parameter.ToString();
+
+            return Enum.Parse(targetType, parameterString);
+        }
+    }
+}

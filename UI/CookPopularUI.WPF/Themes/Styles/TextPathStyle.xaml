@@ -1,0 +1,51 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:CookPopularUI.WPF"
+                    xmlns:ui="clr-namespace:CookPopularUI.WPF.Controls">
+
+    <Style x:Key="DefaultTextPathStyle" TargetType="{x:Type ui:TextPath}">
+        <Setter Property="Stroke" Value="{DynamicResource BorderBrush}" />
+        <Setter Property="StrokeThickness" Value="1" />
+        <Setter Property="Fill" Value="{DynamicResource PrimaryThemeBrush}" />
+        <Setter Property="Stretch" Value="Uniform" />
+    </Style>
+
+    <Style x:Key="TextPathFillImageStyle" TargetType="{x:Type ui:TextPath}" BasedOn="{StaticResource DefaultTextPathStyle}">
+        <Setter Property="Fill">
+            <Setter.Value>
+                <DrawingBrush Stretch="None"
+                              TileMode="Tile"
+                              Viewport="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ui:TextPath}}, Path=DrawingRec}"
+                              ViewportUnits="Absolute">
+                    <DrawingBrush.Drawing>
+                        <DrawingGroup>
+                            <ImageDrawing ImageSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ui:TextPath}}, Path=FillImageSource}" Rect="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ui:TextPath}}, Path=DrawingRec}" />
+                        </DrawingGroup>
+                    </DrawingBrush.Drawing>
+                </DrawingBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="TextPathFillIconStyle" TargetType="{x:Type ui:TextPath}" BasedOn="{StaticResource DefaultTextPathStyle}">
+        <Setter Property="ui:TextPath.DrawingBrush" Value="{DynamicResource AssistantThemeBrush}" />
+        <Setter Property="local:FrameworkElementBaseAttached.IconGeometry" Value="{x:Null}" />
+        <Setter Property="Fill">
+            <Setter.Value>
+                <DrawingBrush Stretch="Fill"
+                              TileMode="Tile"
+                              Viewport="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ui:TextPath}}, Path=DrawingRec}"
+                              ViewportUnits="Absolute">
+                    <DrawingBrush.Drawing>
+                        <GeometryDrawing Brush="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ui:TextPath}}, Path=DrawingBrush}" Geometry="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ui:TextPath}}, Path=(local:FrameworkElementBaseAttached.IconGeometry)}">
+                            <GeometryDrawing.Pen>
+                                <Pen Brush="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ui:TextPath}}, Path=Stroke}" Thickness="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ui:TextPath}}, Path=StrokeThickness}" />
+                            </GeometryDrawing.Pen>
+                        </GeometryDrawing>
+                    </DrawingBrush.Drawing>
+                </DrawingBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

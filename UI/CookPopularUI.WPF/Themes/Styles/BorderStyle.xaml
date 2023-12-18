@@ -1,0 +1,47 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:pt="https://github.cookpopulartoolkit/2021/xaml"
+                    xmlns:ui="clr-namespace:CookPopularUI.WPF.Controls">
+
+    <Style x:Key="BorderCircularStyle" TargetType="{x:Type Border}">
+        <Setter Property="ui:BorderAssistant.IsCircular" Value="True" />
+    </Style>
+
+    <Style x:Key="BorderClipStyle" TargetType="{x:Type Border}">
+        <Setter Property="Clip">
+            <Setter.Value>
+                <MultiBinding Converter="{pt:BorderClipToGeometryConverter}">
+                    <Binding Path="ActualWidth" RelativeSource="{RelativeSource Self}" />
+                    <Binding Path="ActualHeight" RelativeSource="{RelativeSource Self}" />
+                    <Binding Path="CornerRadius" RelativeSource="{RelativeSource Self}" />
+                </MultiBinding>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="BorderCircularClipStyle" TargetType="{x:Type Border}" BasedOn="{StaticResource BorderCircularStyle}">
+        <Setter Property="Clip">
+            <Setter.Value>
+                <MultiBinding Converter="{pt:BorderCircularClipToGeometryConverter}">
+                    <Binding Path="ActualWidth" RelativeSource="{RelativeSource Self}" />
+                    <Binding Path="ActualHeight" RelativeSource="{RelativeSource Self}" />
+                    <Binding Path="CornerRadius" RelativeSource="{RelativeSource Self}" />
+                </MultiBinding>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="DefaultMultiBorderStyle" TargetType="{x:Type ui:MultiBorder}">
+        <Setter Property="LeftBrush" Value="{DynamicResource BorderBrush}" />
+        <Setter Property="LeftThickness" Value="1" />
+        <Setter Property="TopBrush" Value="{DynamicResource BorderBrush}" />
+        <Setter Property="TopThickness" Value="1" />
+        <Setter Property="RightBrush" Value="{DynamicResource BorderBrush}" />
+        <Setter Property="RightThickness" Value="1" />
+        <Setter Property="BottomBrush" Value="{DynamicResource BorderBrush}" />
+        <Setter Property="BottomThickness" Value="1" />
+        <Setter Property="Background" Value="{DynamicResource PrimaryThemeBrush}" />
+        <Setter Property="Padding" Value="0" />
+    </Style>
+
+</ResourceDictionary>

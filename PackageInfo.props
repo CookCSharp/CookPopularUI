@@ -1,0 +1,22 @@
+<Project>
+  <PropertyGroup>
+    <Version>1.0.0.1-preview1</Version>
+    <!--<Version>1.0.0.1-alpha1</Version>-->
+    <Product>$(MSBuildProjectName)</Product>
+    <Company>CookCSharp</Company>
+    <Authors>Chance;写代码的厨子</Authors>
+    <Copyright>Copyright © CookCSharp 2023 All rights reserved.</Copyright>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="$(Configuration) == 'Release' And !$(MSBuildProjectName.Contains('Demo'))">
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <PackageId>$(MSBuildProjectName)</PackageId>
+    <!--<PackageVersion>1.0.2.1</PackageVersion>-->
+    <Title>$(MSBuildProjectName)</Title>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageOutputPath>$(SolutionDir)Output\bin\$(Configuration)</PackageOutputPath>
+    <!--<RepositoryUrl>https://gitee.com/cook-csharp/$(MSBuildProjectName)</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/chancezheng/CookPopularControl</PackageProjectUrl>-->
+  </PropertyGroup>
+</Project>

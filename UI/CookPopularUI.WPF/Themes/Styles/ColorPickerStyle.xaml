@@ -1,0 +1,295 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:CookPopularUI.WPF"
+                    xmlns:pt="https://github.cookpopulartoolkit/2021/xaml"
+                    xmlns:ui="clr-namespace:CookPopularUI.WPF.Controls">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/ToggleButtonStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/NumericUpDownStyle.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="ColorPickerSliderRepeatButtonStyle" TargetType="{x:Type RepeatButton}">
+        <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Focusable" Value="false" />
+        <Setter Property="IsTabStop" Value="false" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RepeatButton">
+                    <Rectangle Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Fill="{TemplateBinding Background}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <ControlTemplate x:Key="ColorPickerSliderHorizontalTemplate" TargetType="{x:Type Slider}">
+        <ControlTemplate.Resources>
+            <ControlTemplate x:Key="ColorPickerSliderThumbHorizontalTemplate" TargetType="{x:Type Thumb}">
+                <Border Width="15" Height="15"
+                        Background="#FFFFFF" CornerRadius="8" />
+            </ControlTemplate>
+        </ControlTemplate.Resources>
+        <ui:SimpleGrid>
+            <Border MaxHeight="10" Background="{TemplateBinding Background}" CornerRadius="5" />
+            <Border MaxHeight="10" Background="{TemplateBinding Foreground}" CornerRadius="5">
+                <Border.OpacityMask>
+                    <LinearGradientBrush StartPoint="1,0" EndPoint="0,0">
+                        <GradientStop Offset="1" Color="Transparent" />
+                        <GradientStop Offset="0" Color="White" />
+                    </LinearGradientBrush>
+                </Border.OpacityMask>
+            </Border>
+            <Track x:Name="PART_Track">
+                <Track.DecreaseRepeatButton>
+                    <RepeatButton Command="{x:Static Slider.DecreaseLarge}" Style="{StaticResource ColorPickerSliderRepeatButtonStyle}" />
+                </Track.DecreaseRepeatButton>
+                <Track.IncreaseRepeatButton>
+                    <RepeatButton Command="{x:Static Slider.IncreaseLarge}" Style="{StaticResource ColorPickerSliderRepeatButtonStyle}" />
+                </Track.IncreaseRepeatButton>
+                <Track.Thumb>
+                    <Thumb x:Name="Thumb" Focusable="False" Template="{StaticResource ColorPickerSliderThumbHorizontalTemplate}">
+                        <Thumb.Effect>
+                            <DropShadowEffect Opacity="0.5" ShadowDepth="1" />
+                        </Thumb.Effect>
+                    </Thumb>
+                </Track.Thumb>
+            </Track>
+        </ui:SimpleGrid>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="ColorPickerSliderVerticalTemplate" TargetType="{x:Type Slider}">
+        <ControlTemplate.Resources>
+            <ControlTemplate x:Key="ColorPickerSliderThumbVerticalTemplate" TargetType="{x:Type Thumb}">
+                <Border Width="18" Height="18"
+                        Background="#FFFFFF" CornerRadius="9" />
+            </ControlTemplate>
+        </ControlTemplate.Resources>
+        <ui:SimpleGrid>
+            <Border MaxWidth="18" Background="{TemplateBinding Background}" />
+            <Border MaxWidth="18" Background="{TemplateBinding Foreground}">
+                <Border.OpacityMask>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Offset="1" Color="Transparent" />
+                        <GradientStop Offset="0" Color="White" />
+                    </LinearGradientBrush>
+                </Border.OpacityMask>
+            </Border>
+            <Track x:Name="PART_Track">
+                <Track.DecreaseRepeatButton>
+                    <RepeatButton Command="{x:Static Slider.DecreaseLarge}" Style="{StaticResource ColorPickerSliderRepeatButtonStyle}" />
+                </Track.DecreaseRepeatButton>
+                <Track.IncreaseRepeatButton>
+                    <RepeatButton Command="{x:Static Slider.IncreaseLarge}" Style="{StaticResource ColorPickerSliderRepeatButtonStyle}" />
+                </Track.IncreaseRepeatButton>
+                <Track.Thumb>
+                    <Thumb x:Name="Thumb"
+                           Focusable="False"
+                           OverridesDefaultStyle="True"
+                           Template="{StaticResource ColorPickerSliderThumbVerticalTemplate}">
+                        <Thumb.Effect>
+                            <DropShadowEffect Opacity="0.5" ShadowDepth="1" />
+                        </Thumb.Effect>
+                    </Thumb>
+                </Track.Thumb>
+            </Track>
+        </ui:SimpleGrid>
+    </ControlTemplate>
+
+    <Style x:Key="ColorPickerSliderStyle" TargetType="{x:Type Slider}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="Foreground" Value="Transparent" />
+        <Setter Property="Orientation" Value="Horizontal" />
+        <Setter Property="Stylus.IsPressAndHoldEnabled" Value="False" />
+        <Setter Property="Template" Value="{StaticResource ColorPickerSliderHorizontalTemplate}" />
+        <Style.Triggers>
+            <Trigger Property="Orientation" Value="Vertical">
+                <Setter Property="Template" Value="{StaticResource ColorPickerSliderVerticalTemplate}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <LinearGradientBrush x:Key="ColorPickerHorizontalLinearGradientBrush" StartPoint="0,0" EndPoint="1,0">
+        <GradientStop Offset="0" Color="#FF0000" />
+        <GradientStop Offset="0.167" Color="#FFFF00" />
+        <GradientStop Offset="0.334" Color="#00FF00" />
+        <GradientStop Offset="0.501" Color="#00FFFF" />
+        <GradientStop Offset="0.668" Color="#0000FF" />
+        <GradientStop Offset="0.835" Color="#FF00FF" />
+        <GradientStop Offset="1" Color="#FF0000" />
+    </LinearGradientBrush>
+
+    <Style x:Key="DefaultColorPickerStyle" TargetType="{x:Type ui:ColorPicker}" BasedOn="{StaticResource FixedControlBaseStyle}">
+        <Setter Property="Width" Value="300" />
+        <Setter Property="Height" Value="400" />
+        <Setter Property="Effect" Value="{DynamicResource ShadowEffectDepth0}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ui:ColorPicker}">
+                    <ControlTemplate.Resources>
+                        <Style x:Key="ColorPickerNumericUpDownStyle" TargetType="{x:Type ui:NumericUpDown}" BasedOn="{StaticResource DefaultNumericUpDownStyle}">
+                            <Setter Property="Width" Value="40" />
+                            <Setter Property="Height" Value="26" />
+                            <Setter Property="Padding" Value="0" />
+                            <Setter Property="Minimum" Value="0" />
+                            <Setter Property="Maximum" Value="255" />
+                            <Setter Property="IsShowUpDownButton" Value="False" />
+                            <Setter Property="local:FrameworkElementBaseAttached.CornerRadius" Value="2" />
+                            <Setter Property="local:TextElementAttached.PlaceHolder" Value="{x:Null}" />
+                        </Style>
+                        <DrawingBrush x:Key="ColorPickerOpacityBrush"
+                                      Stretch="None"
+                                      TileMode="Tile" Viewport="0,0,10,10" ViewportUnits="Absolute">
+                            <DrawingBrush.Drawing>
+                                <DrawingGroup>
+                                    <GeometryDrawing Brush="#DDDDDD">
+                                        <GeometryDrawing.Geometry>
+                                            <GeometryGroup>
+                                                <RectangleGeometry Rect="0,0,5,5" />
+                                                <RectangleGeometry Rect="5,5,5,5" />
+                                            </GeometryGroup>
+                                        </GeometryDrawing.Geometry>
+                                    </GeometryDrawing>
+                                    <GeometryDrawing Brush="#FAFAFA">
+                                        <GeometryDrawing.Geometry>
+                                            <RectangleGeometry Rect="0,5,10,0" />
+                                        </GeometryDrawing.Geometry>
+                                    </GeometryDrawing>
+                                </DrawingGroup>
+                            </DrawingBrush.Drawing>
+                        </DrawingBrush>
+                    </ControlTemplate.Resources>
+                    <Border BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            SnapsToDevicePixels="True"
+                            Effect="{TemplateBinding Effect}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="150" />
+                                <RowDefinition Height="60" />
+                                <RowDefinition Height="120" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <ui:SimpleGrid>
+                                <Border Background="{TemplateBinding ColorPanelBackground}" />
+                                <Border>
+                                    <Border.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                            <GradientStop Offset="0" Color="#FFFFFFFF" />
+                                            <GradientStop Offset="1" Color="#00FFFFFF" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                </Border>
+                                <Border>
+                                    <Border.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                            <GradientStop Offset="0" Color="#00000000" />
+                                            <GradientStop Offset="1" Color="#FF000000" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                </Border>
+                            </ui:SimpleGrid>
+                            <Border x:Name="PART_ColorPanel" ClipToBounds="True">
+                                <Canvas Margin="-6">
+                                    <Border Name="PART_BorderPicker"
+                                            Width="12" Height="12"
+                                            BorderBrush="#F8F9FA" BorderThickness="1"
+                                            Background="Transparent" CornerRadius="6">
+                                        <Border.Effect>
+                                            <DropShadowEffect Opacity="0.4" ShadowDepth="0" />
+                                        </Border.Effect>
+                                    </Border>
+                                </Canvas>
+                            </Border>
+                            <Border x:Name="PART_BorderDrag" Background="Transparent" />
+                            <Grid Grid.Row="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="25" />
+                                    <RowDefinition Height="25" />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="10" />
+                                    <ColumnDefinition Width="250" />
+                                    <ColumnDefinition Width="5" />
+                                    <ColumnDefinition Width="30" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Slider x:Name="PART_SliderColor" Grid.Column="1"
+                                        Background="{StaticResource ColorPickerHorizontalLinearGradientBrush}"
+                                        Minimum="0" Maximum="360"
+                                        IsMoveToPointEnabled="True" IsSnapToTickEnabled="True" Orientation="Horizontal"
+                                        TickFrequency="0.001"
+                                        Style="{StaticResource ColorPickerSliderStyle}" />
+                                <Slider x:Name="PART_SliderOpacity" Grid.Row="1" Grid.Column="1"
+                                        Foreground="{TemplateBinding SelectedBrushWithoutOpacity}"
+                                        Background="{StaticResource ColorPickerOpacityBrush}"
+                                        Value="{Binding ChannelA, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                        Minimum="0" Maximum="255"
+                                        IsMoveToPointEnabled="True" IsSnapToTickEnabled="True" SmallChange="1"
+                                        Style="{StaticResource ColorPickerSliderStyle}" />
+                                <ToggleButton x:Name="PART_ButtonPickup" Grid.Column="3"
+                                              Grid.RowSpan="2"
+                                              local:FrameworkElementBaseAttached.IconGeometry="{DynamicResource ColorPickerGeometry}"
+                                              local:FrameworkElementBaseAttached.IconHeight="18" local:FrameworkElementBaseAttached.IconWidth="18"
+                                              Style="{StaticResource ToggleButtonTransparentIconStyle}" />
+                            </Grid>
+                            <StackPanel Grid.Row="2" HorizontalAlignment="Center" Orientation="Horizontal">
+                                <StackPanel>
+                                    <Rectangle Width="88" Height="88"
+                                               Fill="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=SelectedBrush}"
+                                               HorizontalAlignment="Left" VerticalAlignment="Top" />
+                                    <TextBox Height="26" MaxWidth="88"
+                                             Text="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=HexColor, Mode=TwoWay}"
+                                             Margin="0,5" Padding="0"
+                                             HorizontalContentAlignment="Center"
+                                             InputMethod.IsInputMethodEnabled="False" MaxLength="9"
+                                             local:FrameworkElementBaseAttached.CornerRadius="0"
+                                             local:TextElementAttached.PlaceHolder="{x:Null}"
+                                             pt:HexadecimalColorBehavior.RegularExpression="{x:Static pt:RegularPatterns.HexColorPatter}" />
+                                </StackPanel>
+                                <StackPanel Margin="30,0">
+                                    <ui:Tag Header="A:" HeaderWidth="30">
+                                        <ui:Tag.Content>
+                                            <ui:NumericUpDown Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=ChannelA, Mode=TwoWay}" Style="{StaticResource ColorPickerNumericUpDownStyle}" />
+                                        </ui:Tag.Content>
+                                    </ui:Tag>
+                                    <ui:Tag Header="R:" Margin="0,5" HeaderWidth="30">
+                                        <ui:Tag.Content>
+                                            <ui:NumericUpDown Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=ChannelR, Mode=TwoWay}" Style="{StaticResource ColorPickerNumericUpDownStyle}" />
+                                        </ui:Tag.Content>
+                                    </ui:Tag>
+                                    <ui:Tag Header="G:" HeaderWidth="30">
+                                        <ui:Tag.Content>
+                                            <ui:NumericUpDown Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=ChannelG, Mode=TwoWay}" Style="{StaticResource ColorPickerNumericUpDownStyle}" />
+                                        </ui:Tag.Content>
+                                    </ui:Tag>
+                                    <ui:Tag Header="B:" Margin="0,5" HeaderWidth="30">
+                                        <ui:Tag.Content>
+                                            <ui:NumericUpDown Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=ChannelB, Mode=TwoWay}" Style="{StaticResource ColorPickerNumericUpDownStyle}" />
+                                        </ui:Tag.Content>
+                                    </ui:Tag>
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Grid.Row="3" HorizontalAlignment="Center" Orientation="Horizontal">
+                                <Button Width="80" Content="Cancel" Command="{x:Static local:ControlCommands.CancelCommand}" />
+                                <Button Width="80"
+                                        Content="Confirm"
+                                        Command="{x:Static local:ControlCommands.ConfirmCommand}"
+                                        Margin="15,0,0,0" />
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True" SourceName="PART_ButtonPickup">
+                            <Setter Property="Foreground" Value="DodgerBlue" TargetName="PART_ButtonPickup" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

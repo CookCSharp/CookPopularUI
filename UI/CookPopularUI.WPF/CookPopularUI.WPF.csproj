@@ -1,0 +1,59 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <TargetFrameworks>net462;net48;netcoreapp3.1;net6.0-windows</TargetFrameworks>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>false</UseWindowsForms>
+    <!--<DefineConstants>USE_ORIGIN_WPF_XMLNAMESPACE</DefineConstants>-->
+
+    <Copyright>Copyright © CookCSharp 2021 All rights reserved.</Copyright>
+    <Description>WPF自定义控件库</Description>
+    <PackageTags>xaml,wpf,ui,controls,windows,desktop,cookpopularui,library</PackageTags>
+    <PackageReleaseNotes>兼容.NETFramework4.6.2+、.NETCore、.NET6.0+的WPF控件库，目前处于发布的预览版，其它功能敬请期待</PackageReleaseNotes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Common\Effects\DirectionalBlurEffect.ps" />
+    <None Remove="Common\Effects\DropShadowExEffect.ps" />
+    <None Remove="Resources\Dropper.cur" />
+    <None Remove="Resources\Images\CookPopularUI.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Tookit\CookPopularToolkit.Windows\CookPopularToolkit.Windows.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Language.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Language.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Language.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Language.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Page Update="Properties\DesignTimeResources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <ContainsDesignTimeResources>true</ContainsDesignTimeResources>  
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controls\ControlBar\ProcessBar\" />
+    <Folder Include="Controls\ControlGroup\" />
+    <Folder Include="Controls\Dragable\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Common\Effects\DirectionalBlurEffect.ps" />
+    <Resource Include="Common\Effects\DropShadowExEffect.ps" />
+    <Resource Include="Resources\Dropper.cur" />
+    <Resource Include="Resources\Images\CookPopularUI.ico" />
+  </ItemGroup>
+
+</Project>

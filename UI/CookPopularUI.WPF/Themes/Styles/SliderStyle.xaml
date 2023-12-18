@@ -1,0 +1,24 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:CookPopularUI.WPF"
+                    xmlns:ui="clr-namespace:CookPopularUI.WPF.Controls">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/BaseStyles/SliderBaseStyle.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="DefaultSliderStyle" TargetType="{x:Type Slider}" BasedOn="{StaticResource SliderBaseStyle}">
+        <Setter Property="local:ThumbAttached.ThumbWidth" Value="30" />
+        <Setter Property="local:ThumbAttached.ThumbHeight" Value="30" />
+        <Setter Property="local:ThumbAttached.ThumbGeometryData" Value="{StaticResource CircleGeometry}" />
+        <Setter Property="local:FrameworkElementBaseAttached.CornerRadius" Value="5" />
+        <Setter Property="local:TextElementAttached.StringFormat" Value="#0.00" />
+        <Setter Property="ui:SliderAssistant.TextColor" Value="{DynamicResource ControlForegroundBrush}" />
+        <Setter Property="ui:SliderAssistant.SliderSelectionRangeFill" Value="{DynamicResource AssistantThemeBrush}" />
+    </Style>
+
+    <Style x:Key="ShowValueSliderStyle" TargetType="{x:Type Slider}" BasedOn="{StaticResource DefaultSliderStyle}">
+        <Setter Property="ui:SliderAssistant.IsShowValue" Value="True" />
+    </Style>
+
+</ResourceDictionary>

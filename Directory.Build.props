@@ -1,0 +1,43 @@
+<Project>
+  <ImportGroup>
+    <Import Project="Common.Build.props"/>
+    <Import Project="PackageInfo.props" />
+  </ImportGroup>
+  <PropertyGroup>
+    <TargetLatestRuntimePath>true</TargetLatestRuntimePath>
+    <UseHostCompilerIfAvailable>false</UseHostCompilerIfAvailable>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+    <!--启用中央包管理器-->
+    <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
+    <!--是否将引用的nuget包复制到输出目录-->
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <!--是否生成.config文件-->
+    <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
+    <!--是否将Framework运行时输出-->
+    <AppendTargetFrameworkToOutputPath>true</AppendTargetFrameworkToOutputPath>
+    <!--<RuntimeIdentifier>win-x64</RuntimeIdentifier>-->
+    <!--<AppendRuntimeIdentifierToOutputPath>true</AppendRuntimeIdentifierToOutputPath>-->
+    <!--设定语言-->
+    <SatelliteResourceLanguages>zh-Hans</SatelliteResourceLanguages>
+    <!--不生成ReferenceAssembly，即ref文件夹-->
+    <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
+    <Platforms>AnyCPU;x64;x86</Platforms>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>latest</LangVersion>
+    <!--指示编译器是否应为相同的输入产生相同的程序集-->
+    <Deterministic>true</Deterministic>
+    <WarningLevel>4</WarningLevel>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+</Project>
+
+<!--$(DirectoryBuildPropsPath)：表示props完整路径-->
+<!--$(MSBuildToolsPath)-->
+<!--$(MSBuildProjectFullPath) 项目文件的绝对路径，例如: C:\Users\GitHub\Demo\test.DemoProject.csproj-->
+<!--$(MSBuildProjectDirectory) 项目所在的文件夹，例如: C:\Users\GitHub\Demo-->
+<!--$(MSBuildProjectFile) 项目文件的完整名称，例如: test.DemoProject.csproj-->
+<!--$(MSBuildProjectName) 项目文件的名称，不含扩展名，例如 test.DemoProject-->
+<!--$(MSBuildProjectExtension) 项目文件的扩展名，例如: .csproj-->
+<!--$(MSBuildProjectDirectoryNoRoot) 项目文件去除驱动器的路径，包含反斜杠-->

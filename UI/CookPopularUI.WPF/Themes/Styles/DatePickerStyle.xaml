@@ -1,0 +1,16 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:CookPopularUI.WPF">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/BaseStyles/DatePickerBaseStyle.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="DefaultDatePickerStyle" TargetType="{x:Type DatePicker}" BasedOn="{StaticResource DatePickerBaseStyle}">
+        <Setter Property="local:FrameworkElementBaseAttached.IconWidth" Value="15" />
+        <Setter Property="local:FrameworkElementBaseAttached.IconHeight" Value="15" />
+        <Setter Property="local:FrameworkElementBaseAttached.CornerRadius" Value="2" />
+        <Setter Property="local:TextElementAttached.PlaceHolder" Value="请选择日期" />
+    </Style>
+
+</ResourceDictionary>

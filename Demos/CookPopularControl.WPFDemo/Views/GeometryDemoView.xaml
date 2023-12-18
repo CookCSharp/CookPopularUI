@@ -1,0 +1,76 @@
+﻿<UserControl x:Class="CookPopularUI.WPFDemo.Views.GeometryDemoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:behavior="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:CookPopularUI.WPFDemo.Views"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:ui="https://github.cookpopularui/2021/xaml"
+             xmlns:vm="clr-namespace:CookPopularUI.WPFDemo.ViewModels"
+             mc:Ignorable="d"
+             d:DataContext="{Binding Source={d:DesignInstance Type={x:Type vm:GeometryDemoViewModel}}}"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             prism:ViewModelLocator.AutoWireViewModel="True">
+
+    <UserControl.Resources>
+        <ui:BindingProxy x:Key="SourceVm" Data="{Binding}" />
+    </UserControl.Resources>
+
+    <Grid Width="{StaticResource DemoViewWidth}" Margin="0,0,0,20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <DockPanel>
+            <DockPanel DockPanel.Dock="Right" Margin="10,0,0,0">
+                <TextBox DockPanel.Dock="Right"
+                         Width="200"
+                         Text="{Binding SearchData, UpdateSourceTrigger=PropertyChanged}"
+                         Margin="10,0,0,0"
+                         InputMethod.IsInputMethodEnabled="False">
+                    <behavior:Interaction.Triggers>
+                        <behavior:EventTrigger EventName="TextChanged">
+                            <behavior:CallMethodAction MethodName="UpdateGeometries" TargetObject="{Binding}" />
+                        </behavior:EventTrigger>
+                    </behavior:Interaction.Triggers>
+                </TextBox>
+                <Border Width="60" Height="30"
+                        Background="{DynamicResource PrimaryThemeBrush}"
+                        HorizontalAlignment="Right">
+                    <TextBlock Text="{Binding Geometries.Count}"
+                               Foreground="{DynamicResource ControlForegroundBrush}"
+                               FontSize="16"
+                               VerticalAlignment="Center"
+                               TextAlignment="Center" />
+                </Border>
+            </DockPanel>
+            <ui:TitleBar Title="Cook Popular Icons" Logo="{StaticResource FlagGeometry}" />
+        </DockPanel>
+        <ScrollViewer Grid.Row="1" Background="{DynamicResource PrimaryThemeBrush}" HorizontalScrollBarVisibility="Disabled">
+            <ItemsControl ItemsSource="{Binding Geometries}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button x:Name="IconButton"
+                                Width="40" Height="40"
+                                Command="{Binding Data.CopyCommand, Source={StaticResource SourceVm}}"
+                                CommandParameter="{Binding Data}"
+                                Margin="10"
+                                ToolTip="{Binding Tooltip}">
+                            <Button.Content>
+                                <ui:IconPattern Data="{Binding Data}" Fill="{DynamicResource ControlForegroundBrush}" />
+                            </Button.Content>
+                        </Button>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+
+</UserControl>

@@ -1,0 +1,241 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:CookPopularUI.WPF"
+                    xmlns:pt="https://github.cookpopulartoolkit/2021/xaml"
+                    xmlns:ui="clr-namespace:CookPopularUI.WPF.Controls">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/ProgressBarStyle.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="StepBarItemBaseStyle" TargetType="{x:Type ui:StepBarItem}" BasedOn="{StaticResource FixedControlBaseStyle}">
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type ui:StepBar}}, Path=Foreground}" />
+        <Setter Property="Kind" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type ui:StepBar}}, Path=StepKind}" />
+        <Setter Property="Index" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type ui:StepBar}}, Path=StepIndex}" />
+        <Setter Property="IconPattern" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type ui:StepBar}}, Path=StepIconPattern}" />
+        <Setter Property="CustomIcon" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type ui:StepBar}}, Path=StepCustomIcon}" />
+        <Setter Property="ImageSource" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type ui:StepBar}}, Path=StepImageSource}" />
+        <Style.Triggers>
+            <Trigger Property="Status" Value="Waiting">
+                <Setter Property="Foreground" Value="{DynamicResource BlockBrush}" />
+            </Trigger>
+            <!--<Trigger Property="Status" Value="Running">
+                <Setter Property="Foreground" Value="{DynamicResource PrimaryForegroundBrush}" />
+            </Trigger>
+            <Trigger Property="Status" Value="Finish">
+                <Setter Property="Foreground" Value="{DynamicResource PrimaryForegroundBrush}" />
+            </Trigger>-->
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="StepBarItemHorizontalTopStyle" TargetType="{x:Type ui:StepBarItem}" BasedOn="{StaticResource StepBarItemBaseStyle}">
+        <Setter Property="ControlSize" Value="24" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ui:StepBarItem}">
+                    <StackPanel>
+                        <Border x:Name="RootBorder"
+                                Width="{TemplateBinding ControlSize}"
+                                Height="{TemplateBinding ControlSize}"
+                                BorderBrush="{TemplateBinding Foreground}"
+                                BorderThickness="2"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="{TemplateBinding ControlSize, Converter={pt:DoubleToCornerRadiusConverter}, ConverterParameter=0.5}">
+                            <ui:SimpleGrid>
+                                <TextBlock Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Index}"
+                                           Foreground="{TemplateBinding Foreground}"
+                                           HorizontalAlignment="Center" VerticalAlignment="Center"
+                                           Visibility="{TemplateBinding Kind, Converter={pt:EnumToVisibilityConverter}, ConverterParameter={x:Static ui:StepControlKind.Number}}" />
+                                <ui:IconPattern Fill="{TemplateBinding Foreground}" Kind="{TemplateBinding IconPattern}" Visibility="{TemplateBinding Kind, Converter={pt:EnumToVisibilityConverter}, ConverterParameter={x:Static ui:StepControlKind.IconPattern}}" />
+                                <Path Data="{TemplateBinding CustomIcon}"
+                                      Fill="{TemplateBinding Foreground}"
+                                      Stretch="Uniform"
+                                      Visibility="{TemplateBinding Kind, Converter={pt:EnumToVisibilityConverter}, ConverterParameter={x:Static ui:StepControlKind.CustomIcon}}" />
+                            </ui:SimpleGrid>
+                        </Border>
+                        <ContentPresenter ContentTemplate="{Binding ItemTemplate, RelativeSource={RelativeSource AncestorType={x:Type ui:StepBar}}}"
+                                          Margin="0,6,0,0"
+                                          HorizontalAlignment="Center" VerticalAlignment="Center"
+                                          TextElement.Foreground="{TemplateBinding Foreground}" />
+                    </StackPanel>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Kind" Value="IconPattern">
+                            <Setter Property="BorderThickness" Value="0" TargetName="RootBorder" />
+                            <Setter Property="CornerRadius" Value="0" TargetName="RootBorder" />
+                        </Trigger>
+                        <Trigger Property="Kind" Value="CustomIcon">
+                            <Setter Property="BorderThickness" Value="0" TargetName="RootBorder" />
+                            <Setter Property="CornerRadius" Value="0" TargetName="RootBorder" />
+                        </Trigger>
+                        <Trigger Property="Kind" Value="Image">
+                            <Setter Property="BorderThickness" Value="0" TargetName="RootBorder" />
+                            <Setter Property="Background" TargetName="RootBorder">
+                                <Setter.Value>
+                                    <ImageBrush Stretch="Uniform" ImageSource="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=ImageSource}" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="StepBarItemHorizontalBottomStyle" TargetType="{x:Type ui:StepBarItem}" BasedOn="{StaticResource StepBarItemBaseStyle}">
+        <Setter Property="ControlSize" Value="25" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ui:StepBarItem}">
+                    <StackPanel>
+                        <ContentPresenter ContentTemplate="{Binding ItemTemplate, RelativeSource={RelativeSource AncestorType={x:Type ui:StepBar}}}" HorizontalAlignment="Center" TextElement.Foreground="{TemplateBinding Foreground}" />
+                        <Border x:Name="RootBorder"
+                                Height="{TemplateBinding ControlSize}"
+                                MinWidth="{TemplateBinding ControlSize}"
+                                BorderBrush="{TemplateBinding Foreground}"
+                                BorderThickness="2"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="{TemplateBinding ControlSize, Converter={pt:DoubleToCornerRadiusConverter}, ConverterParameter=0.5}"
+                                Margin="0,6,0,0"
+                                HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <ui:SimpleGrid>
+                                <TextBlock Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Index}"
+                                           Foreground="{TemplateBinding Foreground}"
+                                           HorizontalAlignment="Center" VerticalAlignment="Center"
+                                           Visibility="{TemplateBinding Kind, Converter={pt:EnumToVisibilityConverter}, ConverterParameter={x:Static ui:StepControlKind.Number}}" />
+                                <ui:IconPattern Fill="{TemplateBinding Foreground}" Kind="{TemplateBinding IconPattern}" Visibility="{TemplateBinding Kind, Converter={pt:EnumToVisibilityConverter}, ConverterParameter={x:Static ui:StepControlKind.IconPattern}}" />
+                                <Path Data="{TemplateBinding CustomIcon}"
+                                      Fill="{TemplateBinding Foreground}"
+                                      Stretch="Uniform"
+                                      HorizontalAlignment="Center" VerticalAlignment="Center"
+                                      Visibility="{TemplateBinding Kind, Converter={pt:EnumToVisibilityConverter}, ConverterParameter={x:Static ui:StepControlKind.CustomIcon}}" />
+                            </ui:SimpleGrid>
+                        </Border>
+                    </StackPanel>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Kind" Value="IconPattern">
+                            <Setter Property="BorderThickness" Value="0" TargetName="RootBorder" />
+                            <Setter Property="CornerRadius" Value="0" TargetName="RootBorder" />
+                        </Trigger>
+                        <Trigger Property="Kind" Value="CustomIcon">
+                            <Setter Property="BorderThickness" Value="0" TargetName="RootBorder" />
+                            <Setter Property="CornerRadius" Value="0" TargetName="RootBorder" />
+                        </Trigger>
+                        <Trigger Property="Kind" Value="Image">
+                            <Setter Property="BorderThickness" Value="0" TargetName="RootBorder" />
+                            <Setter Property="Background" TargetName="RootBorder">
+                                <Setter.Value>
+                                    <ImageBrush Stretch="Uniform" ImageSource="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=ImageSource}" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="StepBarItemVerticalStyle" TargetType="{x:Type ui:StepBarItem}" BasedOn="{StaticResource StepBarItemBaseStyle}">
+        <Setter Property="ControlSize" Value="25" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ui:StepBarItem}">
+                    <StackPanel Orientation="Horizontal">
+                        <Border x:Name="RootBorder"
+                                Height="{TemplateBinding ControlSize}"
+                                MinWidth="{TemplateBinding ControlSize}"
+                                BorderBrush="{TemplateBinding Foreground}"
+                                BorderThickness="2"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="{TemplateBinding ControlSize, Converter={pt:DoubleToCornerRadiusConverter}, ConverterParameter=0.5}"
+                                HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <ui:SimpleGrid>
+                                <TextBlock Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Index}"
+                                           Foreground="{TemplateBinding Foreground}"
+                                           HorizontalAlignment="Center" VerticalAlignment="Center"
+                                           Visibility="{TemplateBinding Kind, Converter={pt:EnumToVisibilityConverter}, ConverterParameter={x:Static ui:StepControlKind.Number}}" />
+                                <ui:IconPattern Fill="{TemplateBinding Foreground}" Kind="{TemplateBinding IconPattern}" Visibility="{TemplateBinding Kind, Converter={pt:EnumToVisibilityConverter}, ConverterParameter={x:Static ui:StepControlKind.IconPattern}}" />
+                                <Path Data="{TemplateBinding CustomIcon}"
+                                      Fill="{TemplateBinding Foreground}"
+                                      Stretch="Uniform"
+                                      HorizontalAlignment="Center" VerticalAlignment="Center"
+                                      Visibility="{TemplateBinding Kind, Converter={pt:EnumToVisibilityConverter}, ConverterParameter={x:Static ui:StepControlKind.CustomIcon}}" />
+                            </ui:SimpleGrid>
+                        </Border>
+                        <ContentPresenter ContentTemplate="{Binding ItemTemplate, RelativeSource={RelativeSource AncestorType={x:Type ui:StepBar}}}"
+                                          Margin="6,0,0,0"
+                                          HorizontalAlignment="Left" VerticalAlignment="Center"
+                                          TextElement.Foreground="{TemplateBinding Foreground}" />
+                    </StackPanel>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Kind" Value="IconPattern">
+                            <Setter Property="BorderThickness" Value="0" TargetName="RootBorder" />
+                            <Setter Property="CornerRadius" Value="0" TargetName="RootBorder" />
+                        </Trigger>
+                        <Trigger Property="Kind" Value="CustomIcon">
+                            <Setter Property="BorderThickness" Value="0" TargetName="RootBorder" />
+                            <Setter Property="CornerRadius" Value="0" TargetName="RootBorder" />
+                        </Trigger>
+                        <Trigger Property="Kind" Value="Image">
+                            <Setter Property="BorderThickness" Value="0" TargetName="RootBorder" />
+                            <Setter Property="Background" TargetName="RootBorder">
+                                <Setter.Value>
+                                    <ImageBrush Stretch="Uniform" ImageSource="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=ImageSource}" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <ItemsPanelTemplate x:Key="UniformHorizontalItemsPanelTemplate">
+        <UniformGrid Rows="1" />
+    </ItemsPanelTemplate>
+
+    <ItemsPanelTemplate x:Key="UniformVerticalItemsPanelTemplate">
+        <UniformGrid Columns="1" />
+    </ItemsPanelTemplate>
+
+    <ControlTemplate x:Key="StepBarHorizontalTopControlTemplate" TargetType="{x:Type ui:StepBar}">
+        <ui:SimpleGrid>
+            <ProgressBar Name="PART_ProgressBar"
+                         Height="5"
+                         Foreground="{TemplateBinding Foreground}"
+                         HorizontalAlignment="Stretch" VerticalAlignment="Top"
+                         Style="{StaticResource DefaultProgressBarStyle}" />
+            <ItemsPresenter />
+        </ui:SimpleGrid>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="StepBarHorizontalBottomControlTemplate" TargetType="{x:Type ui:StepBar}">
+        <ui:SimpleGrid>
+            <ProgressBar Name="PART_ProgressBar"
+                         Height="5"
+                         Foreground="{TemplateBinding Foreground}"
+                         HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
+                         Style="{StaticResource DefaultProgressBarStyle}" />
+            <ItemsPresenter VerticalAlignment="Bottom" />
+        </ui:SimpleGrid>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="StepBarVerticalControlTemplate" TargetType="{x:Type ui:StepBar}">
+        <ui:SimpleGrid>
+            <ProgressBar Name="PART_ProgressBar"
+                         Width="5"
+                         Foreground="{TemplateBinding Foreground}"
+                         HorizontalAlignment="Left" VerticalAlignment="Stretch"
+                         Orientation="Vertical" RenderTransformOrigin="0.5,0.5"
+                         Style="{StaticResource DefaultProgressBarStyle}">
+                <ProgressBar.RenderTransform>
+                    <TransformGroup>
+                        <RotateTransform Angle="180" />
+                    </TransformGroup>
+                </ProgressBar.RenderTransform>
+            </ProgressBar>
+            <ItemsPresenter />
+        </ui:SimpleGrid>
+    </ControlTemplate>
+
+</ResourceDictionary>

@@ -1,0 +1,77 @@
+﻿<ui:NormalWindow x:Class="CookPopularUI.WPFDemo.Views.MainWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:behavior="http://schemas.microsoft.com/xaml/behaviors"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:local="clr-namespace:CookPopularUI.WPFDemo.Views"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:prism="http://prismlibrary.com/"
+                 xmlns:pt="https://github.cookpopulartoolkit/2021/xaml"
+                 xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                 xmlns:ui="https://github.cookpopularui/2021/xaml"
+                 xmlns:vm="clr-namespace:CookPopularUI.WPFDemo.ViewModels"
+                 mc:Ignorable="d"
+                 d:DataContext="{Binding Source={d:DesignInstance Type={x:Type vm:MainWindowViewModel}}}"
+                 Title="CookPopularUI.WPFDemo"
+                 Width="1200"
+                 Height="750"
+                 ResizeMode="CanResizeWithGrip"
+                 WindowStartupLocation="CenterScreen"
+                 prism:ViewModelLocator.AutoWireViewModel="True">
+
+    <Window.Resources>
+        <ui:BindingProxy x:Key="BindingProxy" Data="{Binding}" />
+        <TextBox x:Key="DemoText" Text="{x:Static ui:RegularPatterns.DigitalAndLetterPattern}" />
+    </Window.Resources>
+
+    <ui:NormalWindow.ClientTitleBarAdditionalContent>
+        <DockPanel WindowChrome.IsHitTestVisibleInChrome="True">
+            <StackPanel DockPanel.Dock="Right" HorizontalAlignment="Right" Orientation="Horizontal">
+                <Button Command="{Binding LanguageSwitchCommand}"
+                        ToolTip="语言"
+                        ui:FrameworkElementBaseAttached.IconGeometry="{StaticResource LanguageGeometry}"
+                        ui:FrameworkElementBaseAttached.IconHeight="16" ui:FrameworkElementBaseAttached.IconWidth="16"
+                        Style="{StaticResource WindowIconButtonStyle}" />
+                <Button Command="{Binding ThemeSwitchCommand}"
+                        ToolTip="主题"
+                        ui:FrameworkElementBaseAttached.IconGeometry="{StaticResource ThemeGeometry}"
+                        ui:FrameworkElementBaseAttached.IconHeight="16" ui:FrameworkElementBaseAttached.IconWidth="16"
+                        Style="{StaticResource WindowIconButtonStyle}" />
+            </StackPanel>
+        </DockPanel>
+    </ui:NormalWindow.ClientTitleBarAdditionalContent>
+
+    <behavior:Interaction.Triggers>
+        <behavior:EventTrigger EventName="Loaded">
+            <behavior:InvokeCommandAction Command="{Binding LoadedCommand}" />
+        </behavior:EventTrigger>
+    </behavior:Interaction.Triggers>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Border Background="{x:Static SystemColors.ControlLightBrush}">
+            <StackPanel Margin="20,0" Orientation="Horizontal">
+                <ToggleButton x:Name="ShowSideBarButton"
+                              Width="50" Height="50"
+                              IsChecked="{Binding IsShowSideBar, Mode=TwoWay}"
+                              HorizontalAlignment="Left"
+                              ui:FrameworkElementBaseAttached.IconGeometry="{StaticResource CatalogGeometry}"
+                              ui:FrameworkElementBaseAttached.IconHeight="16" ui:FrameworkElementBaseAttached.IconWidth="16"
+                              Style="{StaticResource ToggleButtonTransparentIconStyle}" />
+                <Button ui:FrameworkElementBaseAttached.IconGeometry="{StaticResource HomePageGeometry}" Style="{StaticResource ButtonTransparentIconStyle}" />
+                <TextBlock Text="{Binding CenterTitle}"
+                           FontSize="20" FontWeight="ExtraBold"
+                           Margin="320,0,0,0"
+                           VerticalAlignment="Center" />
+            </StackPanel>
+        </Border>
+        <ContentControl x:Name="MainContentRegion" Grid.Row="1" prism:RegionManager.RegionName="MainWindowContent" />
+        <ui:SideBar Grid.RowSpan="2" IsShow="{Binding ElementName=ShowSideBarButton, Path=IsChecked, Mode=TwoWay}">
+            <ListBox Width="200" ItemsSource="{Binding DemoViewNames}" SelectedIndex="{Binding SelectedViewIndex}" />
+        </ui:SideBar>
+    </Grid>
+
+</ui:NormalWindow>

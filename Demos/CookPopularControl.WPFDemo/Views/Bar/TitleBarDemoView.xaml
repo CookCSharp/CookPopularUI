@@ -1,0 +1,57 @@
+﻿<UserControl x:Class="CookPopularUI.WPFDemo.Views.TitleBarDemoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:CookPopularUI.WPFDemo.Views"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:ui="https://github.cookpopularui/2021/xaml"
+             xmlns:vm="clr-namespace:CookPopularUI.WPFDemo.ViewModels"
+             mc:Ignorable="d"
+             d:DataContext="{Binding Source={d:DesignInstance Type={x:Type vm:TitleBarDemoViewModel}}}"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             prism:ViewModelLocator.AutoWireViewModel="True">
+
+    <StackPanel Width="{StaticResource DemoViewWidth}" VerticalAlignment="Center">
+        <ui:TitleBar Title="写代码的厨子" />
+        <ui:TitleBar Title="写代码的厨子" Margin="0,20" Logo="{StaticResource FlagGeometry}" />
+        <ui:TitleBar Title="写代码的厨子"
+                     Logo="{StaticResource SmileGeometry}"
+                     ui:FrameworkElementBaseAttached.IconHeight="15" ui:FrameworkElementBaseAttached.IconWidth="15" />
+        <ui:TitleBar Title="写代码的厨子"
+                     Foreground="{DynamicResource PrimaryForegroundBrush}"
+                     Background="Transparent"
+                     Margin="0,20"
+                     Logo="{StaticResource RectangleGeometry}"
+                     ui:FrameworkElementBaseAttached.Brush="{DynamicResource PrimaryThemeBrush}"
+                     ui:FrameworkElementBaseAttached.IconHeight="30" ui:FrameworkElementBaseAttached.IconMargin="0"
+                     ui:FrameworkElementBaseAttached.IconWidth="10" />
+        <ui:TitleBar Title="写代码的厨子"
+                     Foreground="{DynamicResource PrimaryForegroundBrush}"
+                     Background="Transparent"
+                     Margin="0,20"
+                     Logo="{StaticResource FlagGeometry}"
+                     ui:FrameworkElementBaseAttached.Brush="Red" ui:FrameworkElementBaseAttached.IconHeight="30"
+                     ui:FrameworkElementBaseAttached.IconMargin="-2 0 0 0" ui:FrameworkElementBaseAttached.IconWidth="30" />
+
+        <ui:TitleBar Title="写代码的厨子"
+                     Margin="0,40"
+                     ui:FrameworkElementBaseAttached.IconWidth="30"
+                     Style="{StaticResource TitleBarSimpleStyle}" />
+
+        <ui:TitleBarEx Content="写代码的厨子"
+                       LeftCommand="{Binding LeftClickCommand}"
+                       LeftLogo="{StaticResource LeftTriangleGeometry}"
+                       RightCommand="{Binding RightClickCommand}"
+                       RightLogo="{StaticResource RightTriangleGeometry}" />
+        <ui:TitleBarEx Content="写代码的厨子"
+                       IsEnabled="False"
+                       Margin="0,20"
+                       LeftCommand="{Binding LeftClickCommand}"
+                       LeftLogo="{StaticResource LeftTriangleGeometry}"
+                       RightCommand="{Binding RightClickCommand}"
+                       RightLogo="{StaticResource RightTriangleGeometry}" />
+    </StackPanel>
+
+</UserControl>

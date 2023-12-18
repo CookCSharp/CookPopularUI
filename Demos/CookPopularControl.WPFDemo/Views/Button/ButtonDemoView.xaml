@@ -1,0 +1,279 @@
+﻿<UserControl x:Class="CookPopularUI.WPFDemo.Views.ButtonDemoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:behavior="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:CookPopularUI.WPFDemo.Views"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:pt="https://github.cookpopulartoolkit/2021/xaml"
+             xmlns:ui="https://github.cookpopularui/2021/xaml"
+             xmlns:vm="clr-namespace:CookPopularUI.WPFDemo.ViewModels"
+             mc:Ignorable="d"
+             d:DataContext="{Binding Source={d:DesignInstance Type={x:Type vm:ButtonDemoViewModel}}}"
+             d:DesignHeight="500"
+             d:DesignWidth="1000"
+             prism:ViewModelLocator.AutoWireViewModel="True">
+
+    <UserControl.Resources>
+        <Style x:Key="Demo.ButtonIconStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource ButtonWithIconStyle}">
+            <Setter Property="Content" Value="ButtonWithIcon" />
+            <Setter Property="ui:FrameworkElementBaseAttached.IconGeometry" Value="{StaticResource SuccessGeometry}" />
+        </Style>
+        <Style x:Key="Demo.CircularProgressBarStyle" TargetType="{x:Type ProgressBar}" BasedOn="{StaticResource CircularProgressBarStyle}">
+            <Setter Property="ui:CircularProgressAssistant.ArcThickness" Value="15" />
+            <Setter Property="ui:LinearProgressBarAssistant.TextColor" Value="Purple" />
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Width="{StaticResource DemoViewWidth}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <ui:UniformSpacePanel>
+            <Button Width="100"
+                    Content="DefaultButton"
+                    ToolTip="DefaultButton"
+                    Style="{StaticResource DefaultButtonStyle}" />
+            <Button Width="100"
+                    Content="OutlineButton"
+                    BorderThickness="1"
+                    ToolTip="OutlineButton"
+                    Style="{StaticResource ButtonOutlineStyle}" />
+            <Button Width="200"
+                    Content="NoMouseOverTransparentButton"
+                    ToolTip="NoMouseOverTransparentButton"
+                    Style="{StaticResource ButtonNoMouseOverTransparentStyle}" />
+            <Button Width="120"
+                    Content="TransparentButton"
+                    ToolTip="TransparentButton"
+                    Style="{StaticResource ButtonTransparentStyle}" />
+        </ui:UniformSpacePanel>
+        <ui:UniformSpacePanel Grid.Row="1">
+            <Button Width="160"
+                    Content="ThicknessAnimationButton"
+                    ToolTip="ThicknessAnimationButton"
+                    Style="{StaticResource DefaultButtonStyle}">
+                <behavior:Interaction.Behaviors>
+                    <ui:ControlBorderBehavior BorderBrush="Purple" BorderThickness="1" AnimationType="Thickness" />
+                </behavior:Interaction.Behaviors>
+            </Button>
+            <Button Width="200"
+                    Content="OrderThicknessAnimationButton"
+                    Margin="10,0" ToolTip="OrderThicknessAnimationButton"
+                    Style="{StaticResource DefaultButtonStyle}">
+                <behavior:Interaction.Behaviors>
+                    <ui:ControlBorderBehavior BorderBrush="Purple" BorderThickness="1"
+                                              Duration="0:0:2"
+                                              AnimationType="OrderThickness" IsRetainBehavior="True" />
+                </behavior:Interaction.Behaviors>
+            </Button>
+            <Button Width="200"
+                    Content="PathAnimationButton"
+                    BorderBrush="Purple" BorderThickness="1"
+                    ToolTip="PathAnimationButton"
+                    ui:FrameworkElementBaseAttached.CornerRadius="2"
+                    Style="{StaticResource DefaultButtonStyle}">
+                <behavior:Interaction.Behaviors>
+                    <ui:ControlBorderBehavior BorderThickness="2" AnimationType="Path" IsRetainBehavior="True" />
+                </behavior:Interaction.Behaviors>
+            </Button>
+        </ui:UniformSpacePanel>
+        <ui:UniformSpacePanel Grid.Row="2"
+                              ItemHVSpace="0,10" ItemWidth="150" ItemWrapping="Wrap">
+            <Button ToolTip="ButtonWithIconLeft"
+                    ui:FrameworkElementBaseAttached.IconDirection="Left"
+                    ui:FrameworkElementBaseAttached.IconMargin="8,0,0,0"
+                    Style="{StaticResource Demo.ButtonIconStyle}" />
+            <Button ToolTip="ButtonWithIconRight" Style="{StaticResource Demo.ButtonIconStyle}" />
+            <Button Height="50"
+                    ToolTip="ButtonWithIconTop"
+                    ui:FrameworkElementBaseAttached.IconDirection="Top"
+                    ui:FrameworkElementBaseAttached.IconMargin="0,4,0,0"
+                    Style="{StaticResource Demo.ButtonIconStyle}" />
+            <Button Height="50"
+                    ToolTip="ButtonWithIconBottom"
+                    ui:FrameworkElementBaseAttached.IconDirection="Bottom"
+                    ui:FrameworkElementBaseAttached.IconMargin="0,0,0,4"
+                    Style="{StaticResource Demo.ButtonIconStyle}" />
+            <Button IsEnabled="False"
+                    ToolTip="ButtonWithIconUnEnabled"
+                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                    ui:FrameworkElementBaseAttached.CornerRadius="5"
+                    Style="{StaticResource Demo.ButtonIconStyle}" />
+            <Button Height="40"
+                    ToolTip="IconButton"
+                    ui:FrameworkElementBaseAttached.IconGeometry="{StaticResource CloseCircleGeometry}"
+                    Style="{StaticResource ButtonIconStyle}" />
+            <Button Height="40"
+                    ToolTip="NoMouseOverIconTransparentButton"
+                    ui:FrameworkElementBaseAttached.IconGeometry="{StaticResource LeafGeometry}"
+                    Style="{StaticResource ButtonNoMouseOverTransparentIconStyle}" />
+            <Button Height="40"
+                    ToolTip="IconTransparentButton"
+                    ui:FrameworkElementBaseAttached.IconGeometry="{StaticResource SuccessGeometry}"
+                    Style="{StaticResource ButtonTransparentIconStyle}" />
+        </ui:UniformSpacePanel>
+        <ui:UniformSpacePanel Grid.Row="3">
+            <Button Width="150" Height="50"
+                    Content="ButtonWithImage"
+                    ToolTip="ButtonWithImage"
+                    ui:ButtonBaseAttached.ImageSource="/Assets/Media/tomcat.png"
+                    Style="{StaticResource ButtonWithImageStyle}" />
+            <Button Width="50" Height="50"
+                    ToolTip="ImageButton"
+                    ui:ButtonBaseAttached.ImageHeight="40" ui:ButtonBaseAttached.ImageSource="/Assets/Media/c.png"
+                    ui:ButtonBaseAttached.ImageWidth="40"
+                    Style="{StaticResource ButtonImageStyle}" />
+            <Button Width="50" Height="50"
+                    ToolTip="ImageTransparentButton"
+                    ui:ButtonBaseAttached.ImageHeight="50" ui:ButtonBaseAttached.ImageSource="/Assets/Media/timg.png"
+                    ui:ButtonBaseAttached.ImageWidth="50" ui:FrameworkElementBaseAttached.CornerRadius="8"
+                    Style="{StaticResource ButtonTransparentImageStyle}" />
+            <Button Width="50" Height="50"
+                    ToolTip="ImageTransparentButton"
+                    ui:ButtonBaseAttached.ImageHeight="40" ui:ButtonBaseAttached.ImageSource="/Assets/Media/tomcat.png"
+                    ui:ButtonBaseAttached.ImageWidth="40" ui:ButtonBaseAttached.IsAutoStart="True"
+                    Style="{StaticResource ButtonNoMouseOverTransparentImageStyle}" />
+            <Button Width="100" Height="100"
+                    HorizontalContentAlignment="Center"
+                    ui:ButtonBaseAttached.ImageHeight="100" ui:ButtonBaseAttached.ImageSource="/Assets/Media/tomcat.png"
+                    ui:ButtonBaseAttached.ImageWidth="100" ui:FrameworkElementBaseAttached.CornerRadius="10"
+                    ui:RippleAssist.Feedback="White">
+                <behavior:Interaction.Behaviors>
+                    <ui:ControlBorderBehavior BorderThickness="4" AnimationType="Path" IsRetainBehavior="True" />
+                </behavior:Interaction.Behaviors>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <ui:SimpleGrid>
+                                        <Border x:Name="RootBorder"
+                                                Width="{TemplateBinding ui:ButtonBaseAttached.ImageWidth}"
+                                                Height="{TemplateBinding ui:ButtonBaseAttached.ImageHeight}"
+                                                BorderBrush="Red" BorderThickness="2"
+                                                CornerRadius="{TemplateBinding ui:FrameworkElementBaseAttached.CornerRadius}">
+                                            <Border.Background>
+                                                <VisualBrush>
+                                                    <VisualBrush.Visual>
+                                                        <Image Source="{TemplateBinding ui:ButtonBaseAttached.ImageSource}" Stretch="Uniform" />
+                                                    </VisualBrush.Visual>
+                                                </VisualBrush>
+                                            </Border.Background>
+                                        </Border>
+                                        <ui:Ripple ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                   ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                                   ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                                   Padding="{TemplateBinding Padding}"
+                                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                   Focusable="False"
+                                                   HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                   VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                   Visibility="{TemplateBinding ui:ButtonBaseAttached.IsShowRipple, Converter={pt:BooleanToVisibilityConverter}}">
+                                            <ui:Ripple.Clip>
+                                                <MultiBinding Converter="{ui:BorderClipConverter}">
+                                                    <Binding ElementName="RootBorder" Path="ActualWidth" />
+                                                    <Binding ElementName="RootBorder" Path="ActualHeight" />
+                                                    <Binding ElementName="RootBorder" Path="CornerRadius" />
+                                                    <Binding ElementName="RootBorder" Path="BorderThickness" />
+                                                </MultiBinding>
+                                            </ui:Ripple.Clip>
+                                        </ui:Ripple>
+                                    </ui:SimpleGrid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </ui:UniformSpacePanel>
+        <ui:UniformSpacePanel Grid.Row="4">
+            <Button Width="150" Height="50"
+                    Content="ButtonWithGif"
+                    ToolTip="ButtonWithGif"
+                    ui:ButtonBaseAttached.GifHeight="50"
+                    ui:ButtonBaseAttached.GifSource="pack://application:,,,/CookPopularUI.WPFDemo;component/Assets/Media/programmer.gif"
+                    ui:ButtonBaseAttached.GifWidth="50" ui:ButtonBaseAttached.IsAutoStart="True"
+                    Style="{StaticResource ButtonWithGifStyle}" />
+            <Button Width="50" Height="50"
+                    ToolTip="GifButton"
+                    ui:ButtonBaseAttached.GifHeight="50"
+                    ui:ButtonBaseAttached.GifSource="pack://application:,,,/CookPopularUI.WPFDemo;component/Assets/Media/programmer.gif"
+                    ui:ButtonBaseAttached.GifWidth="50" ui:ButtonBaseAttached.IsAutoStart="True"
+                    Style="{StaticResource ButtonGifStyle}" />
+            <Button Width="50" Height="50"
+                    ToolTip="GifTransparentButton"
+                    ui:ButtonBaseAttached.GifHeight="50"
+                    ui:ButtonBaseAttached.GifSource="pack://application:,,,/CookPopularUI.WPFDemo;component/Assets/Media/cook.gif"
+                    ui:ButtonBaseAttached.GifWidth="50" ui:ButtonBaseAttached.IsAutoStart="True"
+                    ui:FrameworkElementBaseAttached.CornerRadius="8"
+                    Style="{StaticResource ButtonTransparentGifStyle}" />
+            <Button Width="50" Height="50"
+                    ToolTip="GifTransparentButton"
+                    ui:ButtonBaseAttached.GifHeight="50"
+                    ui:ButtonBaseAttached.GifSource="pack://application:,,,/CookPopularUI.WPFDemo;component/Assets/Media/programmer.gif"
+                    ui:ButtonBaseAttached.GifWidth="50" ui:ButtonBaseAttached.IsAutoStart="True"
+                    ui:FrameworkElementBaseAttached.CornerRadius="8"
+                    Style="{StaticResource ButtonNoMouseOverTransparentGifStyle}" />
+            <Button Width="300" Height="100"
+                    HorizontalContentAlignment="Center"
+                    ui:ButtonBaseAttached.GifHeight="100"
+                    ui:ButtonBaseAttached.GifSource="pack://application:,,,/CookPopularUI.WPFDemo;component/Assets/Media/programmer.gif"
+                    ui:ButtonBaseAttached.GifWidth="300" ui:FrameworkElementBaseAttached.CornerRadius="5"
+                    ui:RippleAssist.Feedback="White">
+                <behavior:Interaction.Behaviors>
+                    <ui:ControlBorderBehavior BorderThickness="4" AnimationType="Path" IsRetainBehavior="True" />
+                </behavior:Interaction.Behaviors>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <ui:SimpleGrid>
+                                        <Border x:Name="RootBorder"
+                                                Width="{TemplateBinding ui:ButtonBaseAttached.GifWidth}"
+                                                Height="{TemplateBinding ui:ButtonBaseAttached.GifHeight}"
+                                                BorderBrush="Red" BorderThickness="2"
+                                                CornerRadius="{TemplateBinding ui:FrameworkElementBaseAttached.CornerRadius}">
+                                            <Border.Background>
+                                                <VisualBrush>
+                                                    <VisualBrush.Visual>
+                                                        <ui:Gif GifSource="{TemplateBinding ui:ButtonBaseAttached.GifSource}" IsAutoStart="True" />
+                                                    </VisualBrush.Visual>
+                                                </VisualBrush>
+                                            </Border.Background>
+                                        </Border>
+                                        <ui:Ripple ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                   ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                                   ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                                   Padding="{TemplateBinding Padding}"
+                                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                   Focusable="False"
+                                                   HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                   VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                   Visibility="{TemplateBinding ui:ButtonBaseAttached.IsShowRipple, Converter={pt:BooleanToVisibilityConverter}}">
+                                            <ui:Ripple.Clip>
+                                                <MultiBinding Converter="{ui:BorderClipConverter}">
+                                                    <Binding ElementName="RootBorder" Path="ActualWidth" />
+                                                    <Binding ElementName="RootBorder" Path="ActualHeight" />
+                                                    <Binding ElementName="RootBorder" Path="CornerRadius" />
+                                                    <Binding ElementName="RootBorder" Path="BorderThickness" />
+                                                </MultiBinding>
+                                            </ui:Ripple.Clip>
+                                        </ui:Ripple>
+                                    </ui:SimpleGrid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </ui:UniformSpacePanel>
+    </Grid>
+
+</UserControl>

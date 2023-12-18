@@ -1,0 +1,111 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:CookPopularUI.WPF"
+                    xmlns:pt="https://github.cookpopulartoolkit/2021/xaml"
+                    xmlns:ui="clr-namespace:CookPopularUI.WPF.Controls">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/ToggleButtonStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/CalendarStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/TimePickerStyle.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="DefaultDateTimePickerStyle" TargetType="{x:Type ui:DateTimePicker}" BasedOn="{StaticResource InputControlBaseStyle}">
+        <Setter Property="Now" Value="{x:Null}" />
+        <Setter Property="ui:ClockAssistant.IsAddConfirmButton" Value="True" />
+        <Setter Property="local:FrameworkElementBaseAttached.IconWidth" Value="15" />
+        <Setter Property="local:FrameworkElementBaseAttached.IconHeight" Value="15" />
+        <Setter Property="local:FrameworkElementBaseAttached.CornerRadius" Value="2" />
+        <Setter Property="local:TextElementAttached.PlaceHolder" Value="请选择日期和时间" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ui:DateTimePicker}">
+                    <ControlTemplate.Resources>
+                        <Style x:Key="InteralCalendarStyle" TargetType="{x:Type Calendar}" BasedOn="{StaticResource DefaultCalendarStyle}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Calendar}">
+                                        <AdornerDecorator ClipToBounds="True">
+                                            <StackPanel x:Name="PART_Root" Width="236" Height="300">
+                                                <CalendarItem x:Name="PART_CalendarItem" local:FrameworkElementBaseAttached.CornerRadius="0" Style="{TemplateBinding CalendarItemStyle}" />
+                                            </StackPanel>
+                                        </AdornerDecorator>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                        <Style x:Key="InteralClockStyle" TargetType="{x:Type ui:Clock}" BasedOn="{StaticResource DefaultClockStyle}">
+                            <Setter Property="BorderThickness" Value="0" />
+                            <Setter Property="local:FrameworkElementBaseAttached.CornerRadius" Value="0" />
+                        </Style>
+                    </ControlTemplate.Resources>
+                    <Border x:Name="RootBorder"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="Transparent"
+                            CornerRadius="{TemplateBinding local:FrameworkElementBaseAttached.CornerRadius}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="30" />
+                            </Grid.ColumnDefinitions>
+                            <TextBox x:Name="PART_TextBox" Grid.Column="0"
+                                     Text="{TemplateBinding Now}"
+                                     BorderThickness="0"
+                                     Foreground="{TemplateBinding Foreground}"
+                                     Background="Transparent"
+                                     Padding="{TemplateBinding Padding}"
+                                     HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                     VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                     local:FrameworkElementBaseAttached.CornerRadius="{TemplateBinding local:FrameworkElementBaseAttached.CornerRadius}"
+                                     local:TextElementAttached.PlaceHolder="{TemplateBinding local:TextElementAttached.PlaceHolder}"
+                                     ui:TextBoxBaseAssistant.IsTrimming="False" />
+                            <ToggleButton x:Name="PART_Button" Grid.Column="1"
+                                          Foreground="{TemplateBinding Foreground}"
+                                          local:FrameworkElementBaseAttached.IconGeometry="{StaticResource DateClockGeometry}"
+                                          local:FrameworkElementBaseAttached.IconHeight="{TemplateBinding local:FrameworkElementBaseAttached.IconHeight}"
+                                          local:FrameworkElementBaseAttached.IconWidth="{TemplateBinding local:FrameworkElementBaseAttached.IconWidth}"
+                                          Style="{StaticResource ToggleButtonTransparentIconStyle}" />
+                            <Popup x:Name="PART_Popup"
+                                   AllowDrop="True" AllowsTransparency="True"
+                                   IsOpen="{Binding ElementName=PART_Button, Path=IsChecked, Mode=TwoWay}"
+                                   Placement="Bottom"
+                                   PlacementTarget="{Binding ElementName=RootBorder}"
+                                   PopupAnimation="Slide" StaysOpen="False">
+                                <Border Margin="5">
+                                    <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                            Background="{DynamicResource PrimaryThemeBrush}"
+                                            CornerRadius="{TemplateBinding local:FrameworkElementBaseAttached.CornerRadius}"
+                                            Margin="0,3"
+                                            Effect="{StaticResource ShadowEffectDepth0}">
+                                        <StackPanel Width="436" Height="340">
+                                            <StackPanel Orientation="Horizontal">
+                                                <Calendar x:Name="PART_Calendar" Style="{StaticResource InteralCalendarStyle}" />
+                                                <ui:Clock x:Name="PART_Clock" Style="{StaticResource InteralClockStyle}" />
+                                            </StackPanel>
+                                            <Button Width="80" Content="确定" Command="{x:Static local:ControlCommands.ConfirmCommand}" />
+                                        </StackPanel>
+                                    </Border>
+                                </Border>
+                            </Popup>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="{DynamicResource ControlMouseOverBrush}" TargetName="RootBorder" />
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="true">
+                            <Setter Property="BorderBrush" Value="{DynamicResource ControlPressBrush}" TargetName="RootBorder" />
+                        </Trigger>
+                        <Trigger Property="Validation.HasError" Value="True">
+                            <Setter Property="BorderBrush" Value="{DynamicResource FieldValidationErrorBrush}" TargetName="RootBorder" />
+                            <Setter Property="BorderThickness" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=BorderThickness, Converter={pt:ThicknessToTimesThicknessConverter}, ConverterParameter=1.2}" TargetName="RootBorder" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

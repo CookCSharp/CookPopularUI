@@ -1,0 +1,47 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:CookPopularUI.WPF"
+                    xmlns:ui="clr-namespace:CookPopularUI.WPF.Controls">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/BaseStyles/ListBoxBaseStyle.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="DefaultListBoxStyle" TargetType="{x:Type ListBox}" BasedOn="{StaticResource ListBoxBaseStyle}">
+        <Setter Property="local:FrameworkElementBaseAttached.CornerRadius" Value="0" />
+        <Setter Property="local:ItemsControlAttached.ItemControlType" Value="Text" />
+        <Setter Property="local:ItemsControlAttached.ItemControlWidth" Value="15" />
+        <Setter Property="local:ItemsControlAttached.ItemControlHeight" Value="15" />
+        <Setter Property="local:ItemsControlAttached.ItemWidth" Value="{Binding RelativeSource={RelativeSource Self}, Path=Width}" />
+        <Setter Property="local:ItemsControlAttached.ItemHeight" Value="{StaticResource DefaultControlHeight}" />
+        <Setter Property="local:ItemsControlAttached.ItemsListBrush" Value="{DynamicResource PrimaryThemeBrush}" />
+        <Setter Property="local:ItemsControlAttached.ItemMouseOverBrush" Value="{DynamicResource ControlMouseOverBrush}" />
+        <Setter Property="local:ItemsControlAttached.ItemSelectedBrush" Value="{DynamicResource ControlPressBrush}" />
+    </Style>
+
+    <Style x:Key="MultiListBoxBaseStyle" TargetType="{x:Type ListBox}" BasedOn="{StaticResource DefaultListBoxStyle}">
+        <Setter Property="ItemContainerStyle" Value="{StaticResource MultiListBoxItemStyle}" />
+    </Style>
+
+    <Style x:Key="ListBoxCheckBoxStyle" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MultiListBoxBaseStyle}">
+        <Setter Property="local:ItemsControlAttached.ItemControlType" Value="CheckBox" />
+        <Setter Property="local:ItemsControlAttached.CheckBoxContent" Value="{x:Null}" />
+        <Setter Property="ui:CheckBoxAssistant.FillBrush" Value="{DynamicResource ControlForegroundBrush}" />
+    </Style>
+
+    <Style x:Key="ListBoxButtonStyle" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MultiListBoxBaseStyle}">
+        <Setter Property="local:ItemsControlAttached.ItemControlType" Value="Button" />
+        <Setter Property="local:ItemsControlAttached.ButtonContent" Value="✕" />
+        <Setter Property="local:ItemsControlAttached.IsButtonDeleteItem" Value="True" />
+    </Style>
+
+    <Style x:Key="ListBoxIconStyle" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MultiListBoxBaseStyle}">
+        <Setter Property="local:ItemsControlAttached.ItemControlType" Value="Icon" />
+        <Setter Property="local:ItemsControlAttached.IconFill" Value="{DynamicResource PrimaryForegroundBrush}" />
+    </Style>
+
+    <Style x:Key="ListBoxImageGifStyle" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MultiListBoxBaseStyle}">
+        <Setter Property="local:ItemsControlAttached.ItemControlType" Value="ImageGif" />
+    </Style>
+
+</ResourceDictionary>

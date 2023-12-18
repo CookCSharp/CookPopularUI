@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="CookPopularUI.WPFDemo.Views.RadioButtonDemoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:CookPopularUI.WPFDemo.Views"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ui="https://github.cookpopularui/2021/xaml"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800">
+
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <RadioButton Content="Default" IsChecked="True" />
+        <RadioButton Content="写代码的厨子" Margin="0,20" Style="{StaticResource RadioButtonFillFullyStyle}" />
+        <RadioButton Content="写代码的厨子" ui:RadioButtonAssistant.CircleDiameter="30" />
+        <RadioButton Content="写代码的厨子"
+                     Margin="0,20"
+                     ui:RadioButtonAssistant.CircleDiameter="30"
+                     Style="{StaticResource RadioButtonFillFullyStyle}" />
+        <RadioButton Content="写代码的厨子"
+                     ui:RadioButtonAssistant.CircleDiameter="30"
+                     ui:RadioButtonAssistant.Header="{ui:IconPattern Kind=AirFan,
+                                                                     Fill={StaticResource ToggleButtonCheckedBrush}}"
+                     Style="{StaticResource RadioButtonCustomStyle}" />
+        <RadioButton Content="UnEnabled" IsEnabled="False" Margin="0,20" />
+        <StackPanel Orientation="Horizontal">
+            <RadioButton Content="Default"
+                         IsChecked="True"
+                         ui:FrameworkElementBaseAttached.IconGeometry="{StaticResource EyeGeometry}"
+                         Style="{StaticResource RadioButtonCustomIconStyle}" />
+            <RadioButton Content="Chance" Margin="20,0" Style="{StaticResource RadioButtonCustomIconStyle}" />
+            <RadioButton Content="Lori" ui:FrameworkElementBaseAttached.IconGeometry="{StaticResource LeafGeometry}" Style="{StaticResource RadioButtonCustomIconStyle}" />
+        </StackPanel>
+    </StackPanel>
+
+</UserControl>

@@ -1,0 +1,380 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:CookPopularUI.WPF"
+                    xmlns:pt="https://github.cookpopulartoolkit/2021/xaml"
+                    xmlns:ui="clr-namespace:CookPopularUI.WPF.Controls">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/BaseStyles/ButtonBaseStyle.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="DefaultToggleButtonStyle" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource ButtonBaseStyle}">
+        <Setter Property="local:FrameworkElementBaseAttached.CornerRadius" Value="2" />
+        <Setter Property="local:FrameworkElementBaseAttached.ShadowEffect" Value="{x:Null}" />
+        <Setter Property="local:FrameworkElementBaseAttached.IconWidth" Value="0" />
+        <Setter Property="local:FrameworkElementBaseAttached.IconHeight" Value="0" />
+        <Setter Property="local:FrameworkElementBaseAttached.IconGeometry" Value="{x:Null}" />
+        <Setter Property="local:FrameworkElementBaseAttached.IconDirection" Value="Right" />
+        <Setter Property="local:FrameworkElementBaseAttached.IconMargin" Value="0" />
+        <Setter Property="local:ButtonBaseAttached.IsShowRipple" Value="True" />
+        <Setter Property="local:FrameworkElementBaseAttached.ControlMouseOverBrush" Value="{DynamicResource ControlMouseOverBrush}" />
+        <Setter Property="local:FrameworkElementBaseAttached.ControlPressBrush" Value="{DynamicResource ControlPressBrush}" />
+        <Setter Property="local:ButtonBaseAttached.ImageSource" Value="{x:Null}" />
+        <Setter Property="local:ButtonBaseAttached.ImageWidth" Value="0" />
+        <Setter Property="local:ButtonBaseAttached.ImageHeight" Value="0" />
+        <Setter Property="local:ButtonBaseAttached.IsAutoStart" Value="False" />
+        <Setter Property="local:ButtonBaseAttached.GifStream" Value="{x:Null}" />
+        <Setter Property="local:ButtonBaseAttached.GifSource" Value="{x:Null}" />
+    </Style>
+    <Style x:Key="ToggleButtonOutlineStyle" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource DefaultToggleButtonStyle}">
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryForegroundBrush}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="local:FrameworkElementBaseAttached.ControlMouseOverBrush" Value="{DynamicResource ControlMouseOverBrush}" />
+        <Setter Property="local:FrameworkElementBaseAttached.ControlPressBrush" Value="{DynamicResource ControlPressBrush}" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource ControlForegroundBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="ToggleButtonNoMouseOverTransparentStyle" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource DefaultToggleButtonStyle}">
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryForegroundBrush}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource ControlForegroundBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="ToggleButtonTransparentStyle" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource ToggleButtonNoMouseOverTransparentStyle}">
+        <Setter Property="local:FrameworkElementBaseAttached.ControlMouseOverBrush" Value="Transparent" />
+        <Setter Property="local:FrameworkElementBaseAttached.ControlPressBrush" Value="Transparent" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource PrimaryForegroundBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+
+    <Style x:Key="ToggleButtonWithIconStyle" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource DefaultToggleButtonStyle}">
+        <Setter Property="local:FrameworkElementBaseAttached.IconMargin" Value="0,0,8,0" />
+        <Setter Property="local:FrameworkElementBaseAttached.IconWidth" Value="{StaticResource Double20Value}" />
+        <Setter Property="local:FrameworkElementBaseAttached.IconHeight" Value="{StaticResource Double20Value}" />
+    </Style>
+    <Style x:Key="ToggleButtonIconStyle" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource DefaultToggleButtonStyle}">
+        <Setter Property="local:FrameworkElementBaseAttached.IconWidth" Value="{StaticResource Double20Value}" />
+        <Setter Property="local:FrameworkElementBaseAttached.IconHeight" Value="{StaticResource Double20Value}" />
+    </Style>
+    <Style x:Key="ToggleButtonNoMouseOverTransparentIconStyle" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource ToggleButtonIconStyle}">
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryForegroundBrush}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource ControlForegroundBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="ToggleButtonTransparentIconStyle" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource ToggleButtonNoMouseOverTransparentIconStyle}">
+        <Setter Property="local:FrameworkElementBaseAttached.ControlMouseOverBrush" Value="Transparent" />
+        <Setter Property="local:FrameworkElementBaseAttached.ControlPressBrush" Value="Transparent" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource PrimaryForegroundBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+
+    <Style x:Key="ToggleButtonContentWithDoubbleIconStyle" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource ToggleButtonIconStyle}">
+        <Setter Property="local:FrameworkElementBaseAttached.IconMargin" Value="4,0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <ControlTemplate.Resources>
+                        <SineEase x:Key="EasingFunction" EasingMode="EaseInOut" />
+                        <Storyboard x:Key="CheckedStoryboard">
+                            <DoubleAnimation Storyboard.TargetName="RotateAngle" Storyboard.TargetProperty="Angle"
+                                             From="180" To="0" Duration="0:0:0.3"
+                                             EasingFunction="{StaticResource EasingFunction}" />
+                        </Storyboard>
+                        <Storyboard x:Key="UnCheckedStoryboard">
+                            <DoubleAnimation Storyboard.TargetName="RotateAngle" Storyboard.TargetProperty="Angle"
+                                             From="0" To="180" Duration="0:0:0.3"
+                                             EasingFunction="{StaticResource EasingFunction}" />
+                        </Storyboard>
+                    </ControlTemplate.Resources>
+                    <ui:SimpleGrid>
+                        <AdornerDecorator CacheMode="{StaticResource DefaultBitmapCache}">
+                            <Border x:Name="RootBorder"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    Background="{TemplateBinding Background}"
+                                    CornerRadius="{TemplateBinding local:FrameworkElementBaseAttached.CornerRadius}"
+                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                    Effect="{TemplateBinding local:FrameworkElementBaseAttached.ShadowEffect}">
+                                <DockPanel Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                                    <Path x:Name="PART_Icon"
+                                          DockPanel.Dock="{TemplateBinding local:FrameworkElementBaseAttached.IconDirection}"
+                                          Width="{TemplateBinding local:FrameworkElementBaseAttached.IconWidth}"
+                                          Height="{TemplateBinding local:FrameworkElementBaseAttached.IconHeight}"
+                                          Data="{TemplateBinding ui:ToggleButtonAssistant.UnCheckedGeometry}"
+                                          Fill="{TemplateBinding Foreground}"
+                                          Stretch="Uniform"
+                                          Margin="{TemplateBinding local:FrameworkElementBaseAttached.IconMargin}"
+                                          SnapsToDevicePixels="True"
+                                          RenderTransformOrigin="0.5,0.5">
+                                        <Path.RenderTransform>
+                                            <RotateTransform x:Name="RotateAngle" Angle="0" />
+                                        </Path.RenderTransform>
+                                    </Path>
+                                    <ContentPresenter x:Name="PART_Content"
+                                                      RecognizesAccessKey="True"
+                                                      Margin="{TemplateBinding local:FrameworkElementBaseAttached.IconMargin}"
+                                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                </DockPanel>
+                            </Border>
+                        </AdornerDecorator>
+                        <ui:Ripple ContentTemplate="{TemplateBinding ContentTemplate}"
+                                   ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                   Padding="{TemplateBinding Padding}"
+                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                   Focusable="False"
+                                   HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                   VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                   Visibility="{TemplateBinding local:ButtonBaseAttached.IsShowRipple, Converter={pt:BooleanToVisibilityConverter}}">
+                            <ui:Ripple.Clip>
+                                <MultiBinding Converter="{local:BorderClipConverter}">
+                                    <Binding ElementName="RootBorder" Path="ActualWidth" />
+                                    <Binding ElementName="RootBorder" Path="ActualHeight" />
+                                    <Binding ElementName="RootBorder" Path="CornerRadius" />
+                                    <Binding ElementName="RootBorder" Path="BorderThickness" />
+                                </MultiBinding>
+                            </ui:Ripple.Clip>
+                        </ui:Ripple>
+                    </ui:SimpleGrid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Data" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=(ui:ToggleButtonAssistant.OnCheckedGeometry)}" TargetName="PART_Icon" />
+                            <Setter Property="Content" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=(ui:ToggleButtonAssistant.OnCheckedElement)}" TargetName="PART_Content" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="{x:Null}">
+                            <Setter Property="ui:ToggleButtonAssistant.UnCheckedGeometry" Value="{x:Null}" />
+                            <Setter Property="ui:ToggleButtonAssistant.OnCheckedElement" Value="{x:Null}" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsChecked" Value="True" />
+                                <Condition Property="ui:ToggleButtonAssistant.OnCheckedElement" Value="{x:Null}" />
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Data" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=(ui:ToggleButtonAssistant.OnCheckedGeometry)}" TargetName="PART_Icon" />
+                            <Setter Property="Content" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Content}" TargetName="PART_Content" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsChecked" Value="True" />
+                                <Condition Property="ui:ToggleButtonAssistant.IsAddCheckedAnimation" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource CheckedStoryboard}" />
+                            </MultiTrigger.EnterActions>
+                            <MultiTrigger.ExitActions>
+                                <BeginStoryboard Storyboard="{StaticResource UnCheckedStoryboard}" />
+                            </MultiTrigger.ExitActions>
+                        </MultiTrigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ButtonBase}, Path=(local:FrameworkElementBaseAttached.ControlMouseOverBrush)}" TargetName="RootBorder" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ButtonBase}, Path=(local:FrameworkElementBaseAttached.ControlPressBrush)}" TargetName="RootBorder" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="{DynamicResource UnEnabledBrush}" TargetName="RootBorder" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="ToggleButtonDoubbleIconStyle" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource ToggleButtonContentWithDoubbleIconStyle}">
+        <Setter Property="local:FrameworkElementBaseAttached.IconMargin" Value="0" />
+        <Setter Property="local:FrameworkElementBaseAttached.IconWidth" Value="{StaticResource Double20Value}" />
+        <Setter Property="local:FrameworkElementBaseAttached.IconHeight" Value="{StaticResource Double20Value}" />
+    </Style>
+    <Style x:Key="ToggleButtonNoMouseOverTransparentDoubbleIconStyle" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource ToggleButtonDoubbleIconStyle}">
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryForegroundBrush}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource ControlForegroundBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="ToggleButtonTransparentDoubbleIconStyle" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource ToggleButtonNoMouseOverTransparentDoubbleIconStyle}">
+        <Setter Property="local:FrameworkElementBaseAttached.ControlMouseOverBrush" Value="Transparent" />
+        <Setter Property="local:FrameworkElementBaseAttached.ControlPressBrush" Value="Transparent" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource PrimaryForegroundBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+
+    <Style x:Key="ToggleButtonFlipStyle" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource DefaultToggleButtonStyle}">
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Height" Value="30" />
+        <Setter Property="Width" Value="30" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="StoryboardChecked">
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="CheckedElement" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.2">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <PowerEase EasingMode="EaseOut" />
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="UnCheckedElement" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+                                <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.2">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <PowerEase EasingMode="EaseOut" />
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="CheckedElement" Storyboard.TargetProperty="Opacity">
+                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.1">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <PowerEase EasingMode="EaseOut" />
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="UnCheckedElement" Storyboard.TargetProperty="Opacity">
+                                <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.1">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <PowerEase EasingMode="EaseOut" />
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                        <Storyboard x:Key="StoryboardUnChecked">
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="CheckedElement" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+                                <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.2">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <PowerEase EasingMode="EaseOut" />
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="UnCheckedElement" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.2">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <PowerEase EasingMode="EaseOut" />
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="CheckedElement" Storyboard.TargetProperty="Opacity">
+                                <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.1">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <PowerEase EasingMode="EaseOut" />
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="UnCheckedElement" Storyboard.TargetProperty="Opacity">
+                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.1">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <PowerEase EasingMode="EaseOut" />
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </ControlTemplate.Resources>
+                    <Viewbox>
+                        <ui:SimpleGrid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
+                            <Border Name="UnCheckedElement"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    Background="{TemplateBinding Background}"
+                                    CornerRadius="{TemplateBinding local:FrameworkElementBaseAttached.CornerRadius}"
+                                    SnapsToDevicePixels="true"
+                                    RenderTransformOrigin="0.5,0.5">
+                                <Border.Clip>
+                                    <MultiBinding Converter="{pt:ClipCircularToGeometryConverter}">
+                                        <Binding ElementName="UnCheckedElement" Path="ActualWidth" />
+                                        <Binding ElementName="UnCheckedElement" Path="ActualHeight" />
+                                        <Binding ElementName="UnCheckedElement" Path="CornerRadius" />
+                                        <Binding ElementName="UnCheckedElement" Path="BorderThickness" />
+                                    </MultiBinding>
+                                </Border.Clip>
+                                <Border.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="1" />
+                                    </TransformGroup>
+                                </Border.RenderTransform>
+                                <ContentPresenter RecognizesAccessKey="True"
+                                                  Margin="{TemplateBinding Padding}"
+                                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                            </Border>
+                            <Border Name="CheckedElement"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    Background="{TemplateBinding Background}"
+                                    CornerRadius="{TemplateBinding local:FrameworkElementBaseAttached.CornerRadius}"
+                                    SnapsToDevicePixels="true"
+                                    RenderTransformOrigin="0.5,0.5">
+                                <Border.Clip>
+                                    <MultiBinding Converter="{pt:ClipCircularToGeometryConverter}">
+                                        <Binding ElementName="CheckedElement" Path="ActualWidth" />
+                                        <Binding ElementName="CheckedElement" Path="ActualHeight" />
+                                        <Binding ElementName="CheckedElement" Path="CornerRadius" />
+                                        <Binding ElementName="CheckedElement" Path="BorderThickness" />
+                                    </MultiBinding>
+                                </Border.Clip>
+                                <Border.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="0" />
+                                    </TransformGroup>
+                                </Border.RenderTransform>
+                                <ContentPresenter Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(ui:ToggleButtonAssistant.OnCheckedElement)}"
+                                                  RecognizesAccessKey="True"
+                                                  Margin="{TemplateBinding Padding}"
+                                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                            </Border>
+                        </ui:SimpleGrid>
+                    </Viewbox>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource ControlMouseOverBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource ControlPressBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="true">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource StoryboardChecked}" />
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard Storyboard="{StaticResource StoryboardUnChecked}" />
+                            </Trigger.ExitActions>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="{DynamicResource UnEnabledBrush}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

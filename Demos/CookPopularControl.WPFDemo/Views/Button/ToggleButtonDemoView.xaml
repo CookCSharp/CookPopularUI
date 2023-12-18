@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="CookPopularUI.WPFDemo.Views.ToggleButtonDemoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:CookPopularUI.WPFDemo.Views"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ui="https://github.cookpopularui/2021/xaml"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800">
+
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <ToggleButton Content="DefaultToggleButton" />
+
+        <ToggleButton Content="ToggleButtonContentWithIcon"
+                      Margin="0,20"
+                      ui:FrameworkElementBaseAttached.IconGeometry="{StaticResource LeafGeometry}"
+                      Style="{StaticResource ToggleButtonWithIconStyle}" />
+        <ToggleButton ui:FrameworkElementBaseAttached.IconGeometry="{StaticResource SuccessGeometry}" Style="{StaticResource ToggleButtonTransparentIconStyle}" />
+        <ToggleButton Margin="0,20" ui:FrameworkElementBaseAttached.IconGeometry="{StaticResource LeafGeometry}" Style="{StaticResource ToggleButtonNoMouseOverTransparentIconStyle}" />
+
+        <ToggleButton Content="ToggleButtonContentWithDoubbleIcon"
+                      ui:ToggleButtonAssistant.OnCheckedGeometry="{StaticResource AirFanGeometry}"
+                      ui:ToggleButtonAssistant.UnCheckedGeometry="{StaticResource LeafGeometry}"
+                      Style="{StaticResource ToggleButtonContentWithDoubbleIconStyle}">
+            <ui:ToggleButtonAssistant.OnCheckedElement>
+                <TextBlock Text="Chance" />
+            </ui:ToggleButtonAssistant.OnCheckedElement>
+        </ToggleButton>
+        <ToggleButton Margin="0,30" ToolTip="ToggleButtonDoubbleIcon"
+                      ui:ToggleButtonAssistant.OnCheckedGeometry="{StaticResource AirFanGeometry}"
+                      ui:ToggleButtonAssistant.UnCheckedGeometry="{StaticResource LeafGeometry}"
+                      Style="{StaticResource ToggleButtonDoubbleIconStyle}" />
+        <ToggleButton ToolTip="ToggleButtonDoubbleTransparentIcon"
+                      ui:FrameworkElementBaseAttached.IconMargin="0,0,10,0"
+                      ui:ToggleButtonAssistant.OnCheckedGeometry="{StaticResource AirFanGeometry}"
+                      ui:ToggleButtonAssistant.UnCheckedGeometry="{StaticResource LeafGeometry}"
+                      Style="{StaticResource ToggleButtonTransparentDoubbleIconStyle}" />
+        <ToggleButton Margin="0,30" ToolTip="ToggleButtonNoMouseOverTransparentDoubbleIcon"
+                      ui:FrameworkElementBaseAttached.IconMargin="0,0,10,0"
+                      ui:ToggleButtonAssistant.OnCheckedGeometry="{StaticResource AirFanGeometry}"
+                      ui:ToggleButtonAssistant.UnCheckedGeometry="{StaticResource LeafGeometry}"
+                      Style="{StaticResource ToggleButtonNoMouseOverTransparentDoubbleIconStyle}" />
+
+        <ToggleButton Width="100" Height="100"
+                      Content="Flip"
+                      Style="{StaticResource ToggleButtonFlipStyle}">
+            <ui:ToggleButtonAssistant.OnCheckedElement>
+                <TextBlock Text="Chance" />
+            </ui:ToggleButtonAssistant.OnCheckedElement>
+        </ToggleButton>
+    </StackPanel>
+
+</UserControl>

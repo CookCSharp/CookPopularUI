@@ -1,0 +1,68 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <!--<TargetFramework>net462</TargetFramework>-->
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>disable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>Assets\cookcsharp.ico</ApplicationIcon>
+    <PublishAot>false</PublishAot>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\CarouselImages\1.jpg" />
+    <None Remove="Assets\CarouselImages\2.jpg" />
+    <None Remove="Assets\CarouselImages\3.jpg" />
+    <None Remove="Assets\CarouselImages\4.jpg" />
+    <None Remove="Assets\CarouselImages\5.jpg" />
+    <None Remove="Assets\CarouselImages\6.jpg" />
+    <None Remove="Assets\CarouselImages\7.jpg" />
+    <None Remove="Assets\CarouselImages\8.jpg" />
+    <None Remove="Assets\CarouselImages\9.jpg" />
+    <None Remove="Assets\Media\c.png" />
+    <None Remove="Assets\Media\cook.gif" />
+    <None Remove="Assets\Media\cookcsharp.ico" />
+    <None Remove="Assets\Media\programmer.gif" />
+    <None Remove="Assets\Media\timg.png" />
+    <None Remove="Assets\Media\tomcat.gif" />
+    <None Remove="Assets\Media\tomcat.png" />
+    <None Remove="FodyWeavers.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\CarouselImages\1.jpg" />
+    <Resource Include="Assets\CarouselImages\2.jpg" />
+    <Resource Include="Assets\CarouselImages\3.jpg" />
+    <Resource Include="Assets\CarouselImages\4.jpg" />
+    <Resource Include="Assets\CarouselImages\5.jpg" />
+    <Resource Include="Assets\CarouselImages\6.jpg" />
+    <Resource Include="Assets\CarouselImages\7.jpg" />
+    <Resource Include="Assets\CarouselImages\8.jpg" />
+    <Resource Include="Assets\CarouselImages\9.jpg" />
+    <Resource Include="Assets\Media\c.png" />
+    <Resource Include="Assets\Media\cook.gif" />
+    <Resource Include="Assets\Media\cookcsharp.ico" />
+    <Resource Include="Assets\Media\programmer.gif" />
+    <Resource Include="Assets\Media\timg.png" />
+    <Resource Include="Assets\Media\tomcat.gif" />
+    <Resource Include="Assets\Media\tomcat.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Prism.DryIoc" Version="8.1.97" />
+    <PackageReference Include="PropertyChanged.Fody" Version="4.1.0" />
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\UI\CookPopularUI.WPF\CookPopularUI.WPF.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\Bar\SideBarExDemoView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,83 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:CookPopularUI.WPF"
+                    xmlns:ui="clr-namespace:CookPopularUI.WPF.Controls">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/ButtonStyle.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="DefaultBubbleMessageStyle" TargetType="{x:Type ui:BubbleMessage}">
+        <Setter Property="MinWidth" Value="200" />
+        <Setter Property="MinHeight" Value="60" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryForegroundBrush}" />
+        <Setter Property="Background" Value="{DynamicResource SystemBackgroundBrush}" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="8" />
+        <Setter Property="Effect" Value="{StaticResource ShadowEffectDepth1}" />
+        <Setter Property="local:FrameworkElementBaseAttached.CornerRadius" Value="5" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ui:BubbleMessage}">
+                    <Grid Margin="{TemplateBinding Padding}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition x:Name="columnClose" Width="50" />
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.RowSpan="2" Grid.ColumnSpan="3"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="{TemplateBinding local:FrameworkElementBaseAttached.CornerRadius}"
+                                Effect="{TemplateBinding Effect}" />
+                        <Path Grid.Column="0"
+                              Grid.RowSpan="2"
+                              Width="24" Height="24"
+                              Data="{TemplateBinding ui:BubbleMessage.BubbleMessageIcon}"
+                              Fill="{TemplateBinding ui:BubbleMessage.BubbleMessageIconBrush}"
+                              Stretch="Uniform" />
+                        <ContentPresenter Grid.Column="1"
+                                          Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                          ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        <Button x:Name="CloseButton" Grid.Column="2"
+                                Foreground="{TemplateBinding Foreground}"
+                                Command="{x:Static ui:NotifyMessageBase.CloseNotifyMessageCommand}"
+                                local:FrameworkElementBaseAttached.IconGeometry="{StaticResource CloseGeometry}"
+                                local:FrameworkElementBaseAttached.IconHeight="14" local:FrameworkElementBaseAttached.IconWidth="14"
+                                Style="{StaticResource ButtonTransparentIconStyle}" />
+                        <UniformGrid x:Name="PART_ButtonGroup" Grid.Row="1" Grid.Column="1"
+                                     Grid.ColumnSpan="2" Columns="2"
+                                     Visibility="Collapsed">
+                            <Button Height="26"
+                                    Content="取消"
+                                    Command="{x:Static ui:BubbleMessage.CancelNotifyMessageCommand}"
+                                    HorizontalAlignment="Stretch"
+                                    Style="{StaticResource ButtonTransparentStyle}" />
+                            <Button Height="26"
+                                    Content="确定"
+                                    Command="{x:Static ui:BubbleMessage.ConfirmNotifyMessageCommand}"
+                                    HorizontalAlignment="Stretch"
+                                    Style="{StaticResource ButtonTransparentStyle}" />
+                        </UniformGrid>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=(ui:NotifyMessageBase.IsShowCloseButton)}" Value="False">
+                            <Setter Property="Width" Value="0" TargetName="columnClose" />
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

@@ -1,0 +1,77 @@
+﻿<UserControl x:Class="CookPopularUI.WPFDemo.Views.SliderDemoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:CookPopularUI.WPFDemo.Views"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ui="https://github.cookpopularui/2021/xaml"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800">
+
+    <ui:UniformSpacePanel Width="{StaticResource DemoViewWidth}" Orientation="Horizontal">
+        <StackPanel>
+            <Slider Width="300" Height="80"
+                    Minimum="0" Maximum="100"
+                    Orientation="Horizontal" ui:TextElementAttached.StringFormat="#0.00" />
+            <Slider Width="300" Height="80"
+                    Value="73"
+                    Minimum="0" Maximum="100"
+                    Margin="0,20"
+                    IsDirectionReversed="True" Orientation="Horizontal"
+                    Style="{StaticResource ShowValueSliderStyle}" />
+            <Slider Width="300" Height="80"
+                    Value="25"
+                    Minimum="0" Maximum="100"
+                    VerticalContentAlignment="Center"
+                    IsSelectionRangeEnabled="True" IsSnapToTickEnabled="True" Orientation="Horizontal"
+                    SelectionEnd="60" SelectionStart="40" TickFrequency="10"
+                    TickPlacement="Both"
+                    Style="{StaticResource ShowValueSliderStyle}" />
+            <Slider Width="300" Height="80"
+                    IsEnabled="False"
+                    Value="45"
+                    Minimum="0" Maximum="100"
+                    Margin="0,20"
+                    Orientation="Horizontal" />
+            <Slider Width="300" Height="80"
+                    Value="45"
+                    Minimum="0" Maximum="100"
+                    IsSnapToTickEnabled="False" Orientation="Horizontal"
+                    Style="{StaticResource ShowValueSliderStyle}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Slider Width="80" Height="300"
+                    Value="73"
+                    Minimum="0" Maximum="100"
+                    Orientation="Vertical" />
+            <Slider Width="80" Height="300"
+                    Value="73"
+                    Minimum="0" Maximum="100"
+                    Margin="20,0"
+                    VerticalContentAlignment="Top"
+                    IsDirectionReversed="True" Orientation="Vertical"
+                    Style="{StaticResource ShowValueSliderStyle}" />
+            <Slider Width="80" Height="300"
+                    Value="25"
+                    Minimum="0" Maximum="100"
+                    Margin="20,0"
+                    VerticalContentAlignment="Center"
+                    IsSelectionRangeEnabled="True" IsSnapToTickEnabled="True" Orientation="Vertical"
+                    SelectionEnd="60" SelectionStart="40" TickFrequency="10"
+                    TickPlacement="Both"
+                    Style="{StaticResource ShowValueSliderStyle}" />
+            <Slider Width="80" Height="300"
+                    IsEnabled="False"
+                    Value="45"
+                    Minimum="0" Maximum="100"
+                    Orientation="Vertical" />
+            <Slider Width="80" Height="300"
+                    Value="45"
+                    Minimum="0" Maximum="100"
+                    Orientation="Vertical" TickFrequency="0.0001" ui:TextElementAttached.StringFormat="#0.000"
+                    Style="{StaticResource ShowValueSliderStyle}" />
+        </StackPanel>
+    </ui:UniformSpacePanel>
+
+</UserControl>

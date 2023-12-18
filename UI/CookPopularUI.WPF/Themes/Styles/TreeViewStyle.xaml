@@ -1,0 +1,28 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:CookPopularUI.WPF"
+                    xmlns:ui="clr-namespace:CookPopularUI.WPF.Controls">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/BaseStyles/TreeViewBaseStyle.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="DefaultTreeViewStyle" TargetType="{x:Type TreeView}" BasedOn="{StaticResource TreeViewBaseStyle}">
+        <Setter Property="local:FrameworkElementBaseAttached.CornerRadius" Value="2" />
+        <Setter Property="local:FrameworkElementBaseAttached.ControlMouseOverBrush" Value="{DynamicResource ControlMouseOverBrush}" />
+        <Setter Property="local:FrameworkElementBaseAttached.ControlPressBrush" Value="{DynamicResource ControlPressBrush}" />
+        <Setter Property="ui:TreeViewAssistant.ExpandButtonSize" Value="12" />
+        <Setter Property="ui:TreeViewAssistant.ExpandButtonFill" Value="{DynamicResource PrimaryForegroundBrush}" />
+        <Setter Property="ui:TreeViewAssistant.HeaderIconHasItems" Value="{StaticResource FolderGeometry}" />
+        <Setter Property="ui:TreeViewAssistant.HeaderIconNoItems" Value="{StaticResource FileGeometry}" />
+        <Setter Property="ui:TreeViewAssistant.HeaderIconFill" Value="{DynamicResource PrimaryForegroundBrush}" />
+        <Setter Property="ui:TreeViewAssistant.IsShowHeaderIcon" Value="False" />
+        <Setter Property="ui:TreeViewAssistant.IsShowSelectedIcon" Value="False" />
+        <Setter Property="ui:TreeViewAssistant.SelectedIcon" Value="{DynamicResource SuccessGeometry}" />
+    </Style>
+
+    <Style x:Key="TreeViewShowHeaderIconStyle" TargetType="{x:Type TreeView}" BasedOn="{StaticResource DefaultTreeViewStyle}">
+        <Setter Property="ui:TreeViewAssistant.IsShowHeaderIcon" Value="True" />
+    </Style>
+
+</ResourceDictionary>

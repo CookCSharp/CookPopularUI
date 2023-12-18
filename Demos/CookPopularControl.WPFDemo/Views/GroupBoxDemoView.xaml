@@ -1,0 +1,65 @@
+﻿<UserControl x:Class="CookPopularUI.WPFDemo.Views.GroupBoxDemoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:CookPopularUI.WPFDemo.Views"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ui="https://github.cookpopularui/2021/xaml"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800">
+
+    <UniformGrid Columns="3" Rows="2"
+                 Width="{StaticResource DemoViewWidth}"
+                 HorizontalAlignment="Center" VerticalAlignment="Center">
+        <GroupBox Width="220" Height="280"
+                  Header="写代码的厨子"
+                  Padding="0">
+            <Border>
+                <Button Width="120" Content="DefaultGroupBox" />
+            </Border>
+        </GroupBox>
+        <GroupBox Width="220" Height="280"
+                  Header="写代码的厨子"
+                  ui:GroupBoxAssistant.HeaderHorizontalAlignment="Center">
+            <Border>
+                <Button Width="120" Content="DefaultGroupBox" />
+            </Border>
+        </GroupBox>
+        <GroupBox Width="220" Height="280" ui:GroupBoxAssistant.HeaderHorizontalAlignment="Right">
+            <GroupBox.Header>
+                <Button Width="120" Content="写代码的厨子" />
+            </GroupBox.Header>
+            <Border>
+                <Button Width="120" Content="DefaultGroupBox" />
+            </Border>
+        </GroupBox>
+
+        <GroupBox Width="220" Height="280"
+                  Header="写代码的厨子"
+                  Margin="0,10,0,0"
+                  ui:FrameworkElementBaseAttached.IconGeometry="{StaticResource EyeGeometry}"
+                  Style="{StaticResource GroupBoxCustomHeaderStyle}">
+            <Button Width="160" Content="CustomHeaderGroupBox" />
+        </GroupBox>
+        <GroupBox Width="220" Height="280"
+                  Header="写代码的厨子"
+                  Margin="0,10,0,0"
+                  ui:FrameworkElementBaseAttached.IconGeometry="{StaticResource EyeGeometry}"
+                  ui:GroupBoxAssistant.HeaderHorizontalAlignment="Center"
+                  Style="{StaticResource GroupBoxCustomHeaderStyle}">
+            <Button Width="160" Content="CustomHeaderGroupBox" />
+        </GroupBox>
+        <GroupBox Width="220" Height="280"
+                  Header="写代码的厨子"
+                  Margin="0,10,0,0"
+                  ui:FrameworkElementBaseAttached.IconGeometry="{StaticResource EyeGeometry}"
+                  ui:GroupBoxAssistant.HeaderHorizontalAlignment="Right"
+                  Style="{StaticResource GroupBoxCustomHeaderStyle}">
+            <Grid>
+                <Image Source="../Assets/Media/tomcat.png" />
+            </Grid>
+        </GroupBox>
+    </UniformGrid>
+
+</UserControl>

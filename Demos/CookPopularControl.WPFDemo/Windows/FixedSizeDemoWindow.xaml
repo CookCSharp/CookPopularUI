@@ -1,0 +1,17 @@
+﻿<ui:FixedSizeWindow x:Class="CookPopularUI.WPFDemo.Windows.FixedSizeDemoWindow"
+                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:local="clr-namespace:CookPopularUI.WPFDemo.Windows"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:ui="https://github.cookpopularui/2021/xaml"
+                    mc:Ignorable="d"
+                    Title="FixedSizeDemoWindow"
+                    Width="800"
+                    Height="450">
+    <Grid>
+        <TextBlock Text="Chance,写代码的厨子"
+                   FontSize="22" FontWeight="Bold"
+                   HorizontalAlignment="Center" VerticalAlignment="Center" />
+    </Grid>
+</ui:FixedSizeWindow>

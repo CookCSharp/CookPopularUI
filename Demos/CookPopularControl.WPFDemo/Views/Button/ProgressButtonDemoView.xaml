@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="CookPopularUI.WPFDemo.Views.ProgressButtonDemoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:CookPopularUI.WPFDemo.Views"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:ui="https://github.cookpopularui/2021/xaml"
+             xmlns:vm="clr-namespace:CookPopularUI.WPFDemo.ViewModels"
+             mc:Ignorable="d"
+             d:DataContext="{Binding Source={d:DesignInstance Type={x:Type vm:ProgressButtonDemoViewModel}}}"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             prism:ViewModelLocator.AutoWireViewModel="True">
+
+    <Grid>
+        <ui:UniformSpacePanel>
+            <ui:ProgressButton Width="300" Height="60"
+                               Command="{Binding StartCommand}"
+                               FontSize="20"
+                               Value="{Binding Value, Mode=TwoWay}"
+                               ToolTip="LinearProgressButton" />
+            <ui:ProgressButton Width="100" Height="100"
+                               Command="{Binding StartCommand}"
+                               FontSize="20"
+                               Value="{Binding Value, Mode=TwoWay}"
+                               Margin="20,0" ToolTip="CircularProgressButton"
+                               Style="{StaticResource CircularProgressButtonStyle}" />
+            <ui:ProgressButton Width="100" Height="100"
+                               Command="{Binding StartCommand}"
+                               FontSize="20"
+                               Value="{Binding Value, Mode=TwoWay}"
+                               ToolTip="WaveProgressButton"
+                               Style="{StaticResource WaveProgressButtonStyle}" />
+        </ui:UniformSpacePanel>
+    </Grid>
+
+</UserControl>

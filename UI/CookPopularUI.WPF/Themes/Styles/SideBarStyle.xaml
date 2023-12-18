@@ -1,0 +1,180 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:CookPopularUI.WPF"
+                    xmlns:pt="https://github.cookpopulartoolkit/2021/xaml"
+                    xmlns:ui="clr-namespace:CookPopularUI.WPF.Controls">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/BaseStyles/ControlBaseStyle.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="DefaultSideBarStyle" TargetType="{x:Type ui:SideBar}" BasedOn="{StaticResource FixedControlBaseStyle}">
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="local:FrameworkElementBaseAttached.CornerRadius" Value="0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ui:SideBar}">
+                    <ControlTemplate.Resources>
+                        <PowerEase x:Key="PowerEase" EasingMode="EaseInOut" />
+                        <Storyboard x:Key="HorizontalContentShowStoryboard">
+                            <DoubleAnimation Storyboard.TargetName="ScaleTransform" Storyboard.TargetProperty="ScaleX"
+                                             To="1" Duration="0:0:0.3"
+                                             EasingFunction="{StaticResource PowerEase}" />
+                        </Storyboard>
+                        <Storyboard x:Key="HorizontalContentCloseStoryboard">
+                            <DoubleAnimation Storyboard.TargetName="ScaleTransform" Storyboard.TargetProperty="ScaleX"
+                                             To="0" Duration="0:0:0.3"
+                                             EasingFunction="{StaticResource PowerEase}" />
+                        </Storyboard>
+                        <Storyboard x:Key="VerticalContentShowStoryboard">
+                            <DoubleAnimation Storyboard.TargetName="ScaleTransform" Storyboard.TargetProperty="ScaleX"
+                                             To="1" Duration="0" />
+                            <DoubleAnimation Storyboard.TargetName="ScaleTransform" Storyboard.TargetProperty="ScaleY"
+                                             To="0" Duration="0" />
+                            <DoubleAnimation Storyboard.TargetName="ScaleTransform" Storyboard.TargetProperty="ScaleY"
+                                             To="1" Duration="0:0:0.3"
+                                             EasingFunction="{StaticResource PowerEase}" />
+                        </Storyboard>
+                        <Storyboard x:Key="VerticalContentCloseStoryboard">
+                            <DoubleAnimation Storyboard.TargetName="ScaleTransform" Storyboard.TargetProperty="ScaleX"
+                                             To="1" Duration="0" />
+                            <DoubleAnimation Storyboard.TargetName="ScaleTransform" Storyboard.TargetProperty="ScaleY"
+                                             To="0" Duration="0:0:0.3"
+                                             EasingFunction="{StaticResource PowerEase}" />
+                        </Storyboard>
+                    </ControlTemplate.Resources>
+                    <ui:SimpleGrid>
+                        <Border x:Name="ContentCoverBorder"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="{TemplateBinding local:FrameworkElementBaseAttached.CornerRadius}"
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        <ContentPresenter x:Name="PART_Content"
+                                          Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                          ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                          RecognizesAccessKey="True"
+                                          HorizontalAlignment="Left" VerticalAlignment="Stretch"
+                                          RenderTransformOrigin="0,0">
+                            <ContentPresenter.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform x:Name="ScaleTransform" ScaleX="0" ScaleY="1" />
+                                </TransformGroup>
+                            </ContentPresenter.RenderTransform>
+                        </ContentPresenter>
+                    </ui:SimpleGrid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsShow" Value="True">
+                            <Setter Property="Background" Value="{StaticResource ShadowEffectBrush}" TargetName="ContentCoverBorder" />
+                            <Setter Property="Opacity" Value="0.45" TargetName="ContentCoverBorder" />
+                        </Trigger>
+                        <Trigger Property="Dock" Value="Right">
+                            <Setter Property="RenderTransformOrigin" Value="1,0" TargetName="PART_Content" />
+                            <Setter Property="HorizontalAlignment" Value="Right" TargetName="PART_Content" />
+                            <Setter Property="VerticalAlignment" Value="Stretch" TargetName="PART_Content" />
+                        </Trigger>
+                        <Trigger Property="Dock" Value="Top">
+                            <Setter Property="RenderTransformOrigin" Value="0,0" TargetName="PART_Content" />
+                            <Setter Property="HorizontalAlignment" Value="Stretch" TargetName="PART_Content" />
+                            <Setter Property="VerticalAlignment" Value="Top" TargetName="PART_Content" />
+                        </Trigger>
+                        <Trigger Property="Dock" Value="Bottom">
+                            <Setter Property="RenderTransformOrigin" Value="0,1" TargetName="PART_Content" />
+                            <Setter Property="HorizontalAlignment" Value="Stretch" TargetName="PART_Content" />
+                            <Setter Property="VerticalAlignment" Value="Bottom" TargetName="PART_Content" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Dock" Value="Left" />
+                                <Condition Property="IsShow" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.EnterActions>
+                                <StopStoryboard BeginStoryboardName="LeftContentCloseStoryboard" />
+                                <BeginStoryboard x:Name="LeftContentShowStoryboard" Storyboard="{StaticResource HorizontalContentShowStoryboard}" />
+                            </MultiTrigger.EnterActions>
+                            <MultiTrigger.ExitActions>
+                                <StopStoryboard BeginStoryboardName="LeftContentShowStoryboard" />
+                                <BeginStoryboard x:Name="LeftContentCloseStoryboard" Storyboard="{StaticResource HorizontalContentCloseStoryboard}" />
+                            </MultiTrigger.ExitActions>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Dock" Value="Right" />
+                                <Condition Property="IsShow" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.EnterActions>
+                                <StopStoryboard BeginStoryboardName="RightContentCloseStoryboard" />
+                                <BeginStoryboard x:Name="RightContentShowStoryboard" Storyboard="{StaticResource HorizontalContentShowStoryboard}" />
+                            </MultiTrigger.EnterActions>
+                            <MultiTrigger.ExitActions>
+                                <StopStoryboard BeginStoryboardName="RightContentShowStoryboard" />
+                                <BeginStoryboard x:Name="RightContentCloseStoryboard" Storyboard="{StaticResource HorizontalContentCloseStoryboard}" />
+                            </MultiTrigger.ExitActions>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Dock" Value="Top" />
+                                <Condition Property="IsShow" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.EnterActions>
+                                <StopStoryboard BeginStoryboardName="TopContentCloseStoryboard" />
+                                <BeginStoryboard x:Name="TopContentShowStoryboard" Storyboard="{StaticResource VerticalContentShowStoryboard}" />
+                            </MultiTrigger.EnterActions>
+                            <MultiTrigger.ExitActions>
+                                <StopStoryboard BeginStoryboardName="TopContentShowStoryboard" />
+                                <BeginStoryboard x:Name="TopContentCloseStoryboard" Storyboard="{StaticResource VerticalContentCloseStoryboard}" />
+                            </MultiTrigger.ExitActions>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Dock" Value="Bottom" />
+                                <Condition Property="IsShow" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.EnterActions>
+                                <StopStoryboard BeginStoryboardName="BottomContentCloseStoryboard" />
+                                <BeginStoryboard x:Name="BottomContentShowStoryboard" Storyboard="{StaticResource VerticalContentShowStoryboard}" />
+                            </MultiTrigger.EnterActions>
+                            <MultiTrigger.ExitActions>
+                                <StopStoryboard BeginStoryboardName="BottomContentShowStoryboard" />
+                                <BeginStoryboard x:Name="BottomContentCloseStoryboard" Storyboard="{StaticResource VerticalContentCloseStoryboard}" />
+                            </MultiTrigger.ExitActions>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="DefaultSideBarExStyle" TargetType="{x:Type ui:SideBarEx}" BasedOn="{StaticResource DefaultSideBarStyle}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ui:SideBarEx}">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding local:FrameworkElementBaseAttached.CornerRadius}"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                            ClipToBounds="True">
+                        <DockPanel LastChildFill="True">
+                            <ContentPresenter x:Name="PART_SideContent"
+                                              DockPanel.Dock="{TemplateBinding Dock}"
+                                              Content="{TemplateBinding SideContent}"
+                                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                                              ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                              ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                              RecognizesAccessKey="True"
+                                              Visibility="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=IsShow, Mode=TwoWay, Converter={pt:BooleanToVisibilityConverter}}" />
+                            <ContentPresenter x:Name="PART_Content"
+                                              Content="{TemplateBinding Content}"
+                                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                                              ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                              ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                              RecognizesAccessKey="True" />
+                        </DockPanel>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

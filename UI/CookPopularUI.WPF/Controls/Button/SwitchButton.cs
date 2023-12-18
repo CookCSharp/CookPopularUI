@@ -1,0 +1,111 @@
+﻿/*
+ * Copyright (c) 2021 All Rights Reserved.
+ * Description：SwitchButton
+ * Author： Chance_写代码的厨子
+ * Create Time：2021-03-17 17:51:01
+ */
+
+
+using CookPopularToolkit.Windows;
+using System;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
+using System.Windows.Media;
+using System.Windows.Media.Animation;
+
+namespace CookPopularUI.WPF.Controls
+{
+    /// <summary>
+    /// 表示开关控件
+    /// </summary>
+    [TemplatePart(Name = "PART_CheckFlag", Type = typeof(Border))]
+    public class SwitchButton : ToggleButton
+    {
+        private double _sliderw; //滑动距离
+        private Border _borderCheckFlag; //滑动的控件
+        private TranslateTransform _translate; //位移变换
+
+        static SwitchButton()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(SwitchButton), new FrameworkPropertyMetadata(typeof(SwitchButton), FrameworkPropertyMetadataOptions.None, new PropertyChangedCallback(OnValueChanged)));
+        }
+
+        private static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            Console.WriteLine("写代码的厨子。。。");
+        }
+
+        public SwitchButton()
+        {
+            _translate = new TranslateTransform();
+        }
+
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+
+            _borderCheckFlag = (Border)GetTemplateChild("PART_CheckFlag");
+            _borderCheckFlag.RenderTransform = _translate;
+            _sliderw = this.Width - this.Height * 0.8 - 3 * 2;
+            FrameworkElementBaseAttached.SetCornerRadius(this, new CornerRadius(this.Height / 2));
+
+            if (this.IsChecked == true)
+            {
+                OnChecked(new RoutedEventArgs());
+            }
+        }
+
+        /// <summary>
+        /// 文本
+        /// </summary>
+        internal string SwitchContent
+        {
+            get { return (string)GetValue(SwitchContentProperty); }
+            set { SetValue(SwitchContentProperty, value); }
+        }
+        internal static readonly DependencyProperty SwitchContentProperty =
+            DependencyProperty.Register("SwitchContent", typeof(string), typeof(SwitchButton), new PropertyMetadata());
+
+        /// <summary>
+        /// 打开的背景颜色
+        /// </summary>
+        public Brush SwitchOpenBackground
+        {
+            get { return (Brush)GetValue(SwitchOpenBackgroundProperty); }
+            set { SetValue(SwitchOpenBackgroundProperty, value); }
+        }
+        public static readonly DependencyProperty SwitchOpenBackgroundProperty =
+            DependencyProperty.Register("SwitchOpenBackground", typeof(Brush), typeof(SwitchButton), new PropertyMetadata());
+
+        /// <summary>
+        /// 关闭的背景颜色
+        /// </summary>
+        public Brush SwicthCloseBackground
+        {
+            get { return (Brush)GetValue(SwicthCloseBackgroundProperty); }
+            set { SetValue(SwicthCloseBackgroundProperty, value); }
+        }
+        public static readonly DependencyProperty SwicthCloseBackgroundProperty =
+            DependencyProperty.Register("SwicthCloseBackground", typeof(Brush), typeof(SwitchButton), new PropertyMetadata());
+
+
+        protected override void OnChecked(RoutedEventArgs e)
+        {
+            if (_translate == null) return;
+            if (double.IsNaN(_sliderw)) return;
+
+            DoubleAnimation doubleAnimation = AnimationHelper.CreateDoubleAnimation(_sliderw, 100);
+            _translate.BeginAnimation(TranslateTransform.XProperty, doubleAnimation);
+        }
+
+        protected override void OnUnchecked(RoutedEventArgs e)
+        {
+            if (_translate == null) return;
+            if (double.IsNaN(_sliderw)) return;
+
+            DoubleAnimation doubleAnimation = AnimationHelper.CreateDoubleAnimation(0, 200);
+            _translate.BeginAnimation(TranslateTransform.XProperty, doubleAnimation);
+        }
+    }
+}

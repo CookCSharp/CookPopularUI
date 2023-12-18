@@ -1,0 +1,69 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:CookPopularUI.WPF"
+                    xmlns:pt="https://github.cookpopulartoolkit/2021/xaml"
+                    xmlns:ui="clr-namespace:CookPopularUI.WPF.Controls">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/BaseStyles/ControlBaseStyle.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="SwitchButtonBaseStyle" TargetType="{x:Type ui:SwitchButton}" BasedOn="{StaticResource SingleControlBaseStyle}">
+        <Setter Property="Width" Value="60" />
+        <Setter Property="Height" Value="26" />
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryForegroundBrush}" />
+        <Setter Property="Background" Value="{DynamicResource SystemBackgroundBrush}" />
+        <Setter Property="FontSize" Value="10" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="SwitchContent" Value="OFF" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ui:SwitchButton}">
+                    <BulletDecorator Background="Transparent" SnapsToDevicePixels="True">
+                        <BulletDecorator.Bullet>
+                            <Border x:Name="ForegroundPanel"
+                                    Width="{TemplateBinding Width}"
+                                    Height="{TemplateBinding Height}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    Background="{TemplateBinding SwicthCloseBackground}"
+                                    CornerRadius="{TemplateBinding local:FrameworkElementBaseAttached.CornerRadius}">
+                                <ui:SimpleGrid Background="Transparent" Margin="3,0" HorizontalAlignment="Left">
+                                    <Border x:Name="PART_CheckFlag"
+                                            Width="{TemplateBinding Height, Converter={pt:ValueTranslateToDoubleConverter}, ConverterParameter=0.8}"
+                                            Height="{TemplateBinding Height, Converter={pt:ValueTranslateToDoubleConverter}, ConverterParameter=0.8}"
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                            Background="{TemplateBinding Background}"
+                                            CornerRadius="{TemplateBinding local:FrameworkElementBaseAttached.CornerRadius}"
+                                            Effect="{TemplateBinding local:FrameworkElementBaseAttached.ShadowEffect}">
+                                        <TextBlock Text="{TemplateBinding SwitchContent}"
+                                                   Foreground="{TemplateBinding Foreground}"
+                                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                    </Border>
+                                </ui:SimpleGrid>
+                            </Border>
+                        </BulletDecorator.Bullet>
+                    </BulletDecorator>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="HasContent" Value="true">
+                            <Setter Property="FocusVisualStyle" Value="{StaticResource OptionMarkFocusVisual}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="{DynamicResource UnEnabledBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=SwitchOpenBackground}" TargetName="ForegroundPanel" />
+                            <Setter Property="SwitchContent" Value="ON" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

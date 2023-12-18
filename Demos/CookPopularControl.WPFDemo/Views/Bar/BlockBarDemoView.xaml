@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="CookPopularUI.WPFDemo.Views.BlockBarDemoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:CookPopularUI.WPFDemo.Views"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ui="https://github.cookpopularui/2021/xaml"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800">
+
+    <Grid Width="{StaticResource DemoViewWidth}">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <ui:BlockBarRect Grid.Row="0"
+                         Height="50"
+                         Value="{Binding ElementName=SliderValue, Path=Value}"
+                         BlockCount="{Binding ElementName=SliderBlockCount, Path=Value}"
+                         BlockDistance="{Binding ElementName=SliderBlockDistance, Path=Value}" />
+
+        <ui:BlockBarCircle Grid.Row="1"
+                           Height="60"
+                           Value="{Binding ElementName=SliderValue, Path=Value}"
+                           BlockCount="{Binding ElementName=SliderBlockCount, Path=Value}"
+                           BlockDistance="{Binding ElementName=SliderBlockDistance, Path=Value}" />
+
+        <ui:BlockBarImage Grid.Row="2"
+                          Height="100"
+                          ImageSource="../../Assets/Media/tomcat.png"
+                          Value="{Binding ElementName=SliderValue, Path=Value}"
+                          BlockCount="{Binding ElementName=SliderBlockCount, Path=Value}"
+                          BlockDistance="{Binding ElementName=SliderBlockDistance, Path=Value}" />
+
+        <DockPanel Grid.Row="3" VerticalAlignment="Center">
+            <TextBlock Width="100" Text="{Binding ElementName=SliderValue, Path=Value, StringFormat=Value:{0:F0}}" />
+            <Slider x:Name="SliderValue" Grid.Row="3" Grid.Column="1"
+                    Minimum="0"
+                    Maximum="{Binding ElementName=SliderBlockCount, Path=Value}" />
+        </DockPanel>
+        <DockPanel Grid.Row="4" VerticalAlignment="Center">
+            <TextBlock Width="100" Text="{Binding ElementName=SliderBlockCount, Path=Value, StringFormat=BlockCount:{0:F0}}" />
+            <Slider x:Name="SliderBlockCount"
+                    Value="5"
+                    Minimum="1" Maximum="20" />
+        </DockPanel>
+        <DockPanel Grid.Row="5" VerticalAlignment="Center">
+            <TextBlock Width="100" Text="{Binding ElementName=SliderBlockDistance, Path=Value, StringFormat=BlockDistance:{0:F0}}" />
+            <Slider Name="SliderBlockDistance"
+                    Value="1"
+                    Minimum="0" Maximum="20" />
+        </DockPanel>
+    </Grid>
+
+</UserControl>

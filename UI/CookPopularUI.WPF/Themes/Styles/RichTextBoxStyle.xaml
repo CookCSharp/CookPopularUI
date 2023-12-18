@@ -1,0 +1,48 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:CookPopularUI.WPF">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/BaseStyles/TextBoxBaseBaseStyle.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="DefaultRichTextBoxStyle" TargetType="{x:Type RichTextBox}" BasedOn="{StaticResource TextBoxBaseBaseStyle}">
+        <Setter Property="MinWidth" Value="22" />
+        <Setter Property="Height" Value="Auto" />
+        <Setter Property="Padding" Value="2,7" />
+        <Setter Property="VerticalContentAlignment" Value="Top" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+        <Setter Property="local:FrameworkElementBaseAttached.CornerRadius" Value="2" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBoxBase">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="{TemplateBinding local:FrameworkElementBaseAttached.CornerRadius}"
+                            SnapsToDevicePixels="True">
+                        <ScrollViewer x:Name="PART_ContentHost"
+                                      Padding="{TemplateBinding Padding}"
+                                      Focusable="False"
+                                      HorizontalScrollBarVisibility="{Binding Path=(ScrollViewer.HorizontalScrollBarVisibility), RelativeSource={RelativeSource TemplatedParent}}"
+                                      VerticalScrollBarVisibility="{Binding Path=(ScrollViewer.VerticalScrollBarVisibility), RelativeSource={RelativeSource TemplatedParent}}" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="{DynamicResource ControlMouseOverBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="true">
+                            <Setter Property="BorderBrush" Value="{DynamicResource ControlPressBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="{DynamicResource UnEnabledBrush}" />
+                            <Setter Property="local:TextElementAttached.PlaceHolder" Value="{x:Null}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

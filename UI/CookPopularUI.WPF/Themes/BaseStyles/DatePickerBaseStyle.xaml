@@ -1,0 +1,107 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:CookPopularUI.WPF"
+                    xmlns:pt="https://github.cookpopulartoolkit/2021/xaml"
+                    xmlns:ui="clr-namespace:CookPopularUI.WPF.Controls">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/CalendarStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/TextBoxStyle.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="DatePickerBaseStyle" TargetType="{x:Type DatePicker}" BasedOn="{StaticResource InputControlBaseStyle}">
+        <Setter Property="IsTodayHighlighted" Value="True" />
+        <Setter Property="SelectedDateFormat" Value="Short" />
+        <Setter Property="CalendarStyle" Value="{StaticResource DefaultCalendarStyle}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type DatePicker}">
+                    <ControlTemplate.Resources>
+                        <ControlTemplate x:Key="DatePickerButtonTemplate" TargetType="{x:Type Button}">
+                            <Border Background="Transparent">
+                                <Path Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type DatePicker}}, Path=(local:FrameworkElementBaseAttached.IconWidth)}"
+                                      Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type DatePicker}}, Path=(local:FrameworkElementBaseAttached.IconHeight)}"
+                                      Data="{StaticResource DateGeometry}"
+                                      Fill="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type DatePicker}}, Path=Foreground}"
+                                      Stretch="Fill" />
+                            </Border>
+                        </ControlTemplate>
+                    </ControlTemplate.Resources>
+                    <Border x:Name="RootBorder"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="{TemplateBinding local:FrameworkElementBaseAttached.CornerRadius}">
+                        <Grid x:Name="PART_Root">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <DatePickerTextBox x:Name="PART_TextBox" Grid.Column="0"
+                                               BorderThickness="0"
+                                               Foreground="{TemplateBinding Foreground}"
+                                               Background="Transparent"
+                                               Padding="{TemplateBinding Padding}"
+                                               Focusable="{TemplateBinding Focusable}"
+                                               HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                               VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                               local:TextElementAttached.PlaceHolder="{TemplateBinding local:TextElementAttached.PlaceHolder}"
+                                               ui:TextBoxBaseAssistant.IsTrimming="False"
+                                               Style="{StaticResource DefaultTextBoxStyle}" />
+                            <Button x:Name="PART_Button" Grid.Column="1"
+                                    Margin="6,-2"
+                                    Cursor="Arrow"
+                                    Template="{StaticResource DatePickerButtonTemplate}" />
+                            <Grid x:Name="PART_DisabledVisual" Grid.Column="0"
+                                  Grid.ColumnSpan="2"
+                                  Opacity="0"
+                                  IsHitTestVisible="False">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Rectangle Grid.Column="0"
+                                           Fill="#A5FFFFFF"
+                                           RadiusX="1" RadiusY="1" />
+                                <Rectangle Grid.Column="1"
+                                           Width="20" Height="20"
+                                           Fill="#A5FFFFFF"
+                                           Margin="5,0"
+                                           RadiusX="1" RadiusY="1" />
+                                <Popup x:Name="PART_Popup"
+                                       AllowsTransparency="True" Placement="Bottom"
+                                       PlacementTarget="{Binding ElementName=RootBorder}"
+                                       PopupAnimation="{StaticResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}"
+                                       StaysOpen="False" />
+                            </Grid>
+                        </Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="PART_DisabledVisual" Storyboard.TargetProperty="Opacity"
+                                                         To="1" Duration="0" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="{DynamicResource ControlMouseOverBrush}" TargetName="RootBorder" />
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="true">
+                            <Setter Property="BorderBrush" Value="{DynamicResource ControlPressBrush}" TargetName="RootBorder" />
+                        </Trigger>
+                        <Trigger Property="Validation.HasError" Value="True">
+                            <Setter Property="BorderBrush" Value="{DynamicResource FieldValidationErrorBrush}" TargetName="RootBorder" />
+                            <Setter Property="BorderThickness" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=BorderThickness, Converter={pt:ThicknessToTimesThicknessConverter}, ConverterParameter=1.2}" TargetName="RootBorder" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

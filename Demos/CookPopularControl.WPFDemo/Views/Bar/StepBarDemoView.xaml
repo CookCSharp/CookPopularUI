@@ -1,0 +1,197 @@
+﻿<UserControl x:Class="CookPopularUI.WPFDemo.Views.StepBarDemoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:CookPopularUI.WPFDemo.Views"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:ui="https://github.cookpopularui/2021/xaml"
+             xmlns:vm="clr-namespace:CookPopularUI.WPFDemo.ViewModels"
+             mc:Ignorable="d"
+             d:DataContext="{Binding Source={d:DesignInstance Type={x:Type vm:StepBarDemoViewModel}}}"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             prism:ViewModelLocator.AutoWireViewModel="True">
+
+    <Grid x:Name="RootGrid" Width="{StaticResource DemoViewWidth}" Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.ColumnSpan="3" HorizontalAlignment="Center" Orientation="Horizontal">
+            <Button Width="180"
+                    Content="Previous"
+                    Command="{Binding PreviousCommand}"
+                    CommandParameter="{Binding ElementName=RootGrid}" />
+            <Button Width="180"
+                    Content="Next"
+                    Command="{Binding NextCommand}"
+                    CommandParameter="{Binding ElementName=RootGrid}"
+                    Margin="20,0,0,0" />
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="10" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="10" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="10" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="10" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="10" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="10" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="10" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <ui:StepBar Grid.Row="0" StepKind="Number">
+                <ui:StepBarItem Content="Step1" />
+                <ui:StepBarItem Content="Step2" />
+                <ui:StepBarItem Content="Step3" />
+                <ui:StepBarItem Content="Step4" />
+                <ui:StepBarItem Content="Step5" />
+            </ui:StepBar>
+            <ui:StepBar Grid.Row="2" StepIconPattern="Date" StepKind="IconPattern">
+                <ui:StepBarItem Content="Step1" />
+                <ui:StepBarItem Content="Step2" />
+                <ui:StepBarItem Content="Step3" />
+                <ui:StepBarItem Content="Step4" />
+                <ui:StepBarItem Content="Step5" />
+            </ui:StepBar>
+            <ui:StepBar Grid.Row="4" StepCustomIcon="{StaticResource SmileGeometry}" StepKind="CustomIcon">
+                <ui:StepBarItem Content="Step1" />
+                <ui:StepBarItem Content="Step2" />
+                <ui:StepBarItem Content="Step3" />
+                <ui:StepBarItem Content="Step4" />
+                <ui:StepBarItem Content="Step5" />
+            </ui:StepBar>
+            <ui:StepBar Grid.Row="6" StepImageSource="..\..\Assets\Media\tomcat.png" StepKind="Image">
+                <ui:StepBarItem Content="Step1" />
+                <ui:StepBarItem Content="Step2" />
+                <ui:StepBarItem Content="Step3" />
+                <ui:StepBarItem Content="Step4" />
+                <ui:StepBarItem Content="Step5" />
+            </ui:StepBar>
+
+            <ui:StepBar Grid.Row="8" Dock="Bottom" StepKind="Number">
+                <ui:StepBarItem Content="Step1" />
+                <ui:StepBarItem Content="Step2" />
+                <ui:StepBarItem Content="Step3" />
+                <ui:StepBarItem Content="Step4" />
+                <ui:StepBarItem Content="Step5" />
+            </ui:StepBar>
+            <ui:StepBar Grid.Row="10"
+                        Dock="Bottom" StepIconPattern="Date" StepKind="IconPattern">
+                <ui:StepBarItem Content="Step1" />
+                <ui:StepBarItem Content="Step2" />
+                <ui:StepBarItem Content="Step3" />
+                <ui:StepBarItem Content="Step4" />
+                <ui:StepBarItem Content="Step5" />
+            </ui:StepBar>
+            <ui:StepBar Grid.Row="12"
+                        Dock="Bottom"
+                        StepCustomIcon="{StaticResource SmileGeometry}"
+                        StepKind="CustomIcon">
+                <ui:StepBarItem Content="Step1" />
+                <ui:StepBarItem Content="Step2" />
+                <ui:StepBarItem Content="Step3" />
+                <ui:StepBarItem Content="Step4" />
+                <ui:StepBarItem Content="Step5" />
+            </ui:StepBar>
+            <ui:StepBar Grid.Row="14"
+                        Dock="Bottom" StepImageSource="..\..\Assets\Media\tomcat.png" StepKind="Image">
+                <ui:StepBarItem Content="Step1" />
+                <ui:StepBarItem Content="Step2" />
+                <ui:StepBarItem Content="Step3" />
+                <ui:StepBarItem Content="Step4" />
+                <ui:StepBarItem Content="Step5" />
+            </ui:StepBar>
+
+            <ui:StepBar Grid.Row="18"
+                        Dock="Bottom" IsClickSelectable="True"
+                        ItemsSource="{Binding DataList}">
+                <ui:StepBar.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Index, StringFormat={}步骤{0}, RelativeSource={RelativeSource AncestorType={x:Type ui:StepBarItem}}}" FontSize="16" FontWeight="Bold" />
+                            <TextBlock Text="{Binding Content}" Margin="0,4,0,0" HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ui:StepBar.ItemTemplate>
+            </ui:StepBar>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <ui:StepBar Grid.Column="0" Dock="Left">
+                <ui:StepBarItem Content="Step1" />
+                <ui:StepBarItem Content="Step2" />
+                <ui:StepBarItem Content="Step3" />
+                <ui:StepBarItem Content="Step4" />
+                <ui:StepBarItem Content="Step5" />
+            </ui:StepBar>
+            <ui:StepBar Grid.Column="2"
+                        Dock="Left" StepIconPattern="Date" StepKind="IconPattern">
+                <ui:StepBarItem Content="Step1" />
+                <ui:StepBarItem Content="Step2" />
+                <ui:StepBarItem Content="Step3" />
+                <ui:StepBarItem Content="Step4" />
+                <ui:StepBarItem Content="Step5" />
+            </ui:StepBar>
+            <ui:StepBar Grid.Column="4"
+                        Dock="Left"
+                        StepCustomIcon="{StaticResource SmileGeometry}"
+                        StepKind="CustomIcon">
+                <ui:StepBarItem Content="Step1" />
+                <ui:StepBarItem Content="Step2" />
+                <ui:StepBarItem Content="Step3" />
+                <ui:StepBarItem Content="Step4" />
+                <ui:StepBarItem Content="Step5" />
+            </ui:StepBar>
+            <ui:StepBar Grid.Column="6"
+                        Dock="Right" StepImageSource="..\..\Assets\Media\tomcat.png" StepKind="Image">
+                <ui:StepBarItem Content="Step1" />
+                <ui:StepBarItem Content="Step2" />
+                <ui:StepBarItem Content="Step3" />
+                <ui:StepBarItem Content="Step4" />
+                <ui:StepBarItem Content="Step5" />
+            </ui:StepBar>
+            <ui:StepBar Grid.Column="8"
+                        Dock="Right" IsClickSelectable="True"
+                        ItemsSource="{Binding DataList}">
+                <ui:StepBar.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Index, StringFormat={}步骤{0}, RelativeSource={RelativeSource AncestorType={x:Type ui:StepBarItem}}}" FontSize="16" FontWeight="Bold" />
+                            <TextBlock Text="{Binding Content}" Margin="0,4,0,0" HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ui:StepBar.ItemTemplate>
+            </ui:StepBar>
+        </Grid>
+    </Grid>
+
+</UserControl>

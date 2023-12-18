@@ -1,0 +1,20 @@
+﻿<prism:PrismApplication x:Class="CookPopularUI.WPFDemo.App"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:prism="http://prismlibrary.com/"
+                        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                        xmlns:ui="https://github.cookpopularui/2021/xaml">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/DefaultPopularColor.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/DefaultPopularControl.xaml" />
+                <!--<ui:PopularTheme Language="English" Theme="Dark" />-->
+            </ResourceDictionary.MergedDictionaries>
+
+            <sys:Double x:Key="DemoViewWidth">1000</sys:Double>
+        </ResourceDictionary>
+    </Application.Resources>
+
+</prism:PrismApplication>

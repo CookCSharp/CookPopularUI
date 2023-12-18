@@ -1,0 +1,81 @@
+﻿<UserControl x:Class="CookPopularUI.WPFDemo.Views.ListBoxDemoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:behavior="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:CookPopularUI.WPFDemo.Views"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:ui="https://github.cookpopularui/2021/xaml"
+             xmlns:vm="clr-namespace:CookPopularUI.WPFDemo.ViewModels"
+             mc:Ignorable="d"
+             d:DataContext="{Binding Source={d:DesignInstance Type={x:Type vm:ListBoxDemoViewModel}}}"
+             d:DesignHeight="450"
+             d:DesignWidth="1200"
+             prism:ViewModelLocator.AutoWireViewModel="True">
+
+    <UserControl.Resources>
+        <ui:BindingProxy x:Key="BindingProxy" Data="{Binding}" />
+    </UserControl.Resources>
+
+    <ScrollViewer>
+        <Grid Width="{StaticResource DemoViewWidth}" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="150" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="150" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <ListBox Grid.Row="0" Grid.Column="0"
+                     SelectedIndex="0" SelectionMode="Single"
+                     Style="{StaticResource DefaultListBoxStyle}">
+                <ListBoxItem Content="Chance" />
+                <ListBoxItem Content="Lori" />
+                <ListBoxItem Content="写代码的厨子" />
+            </ListBox>
+            <ListBox Grid.Row="0" Grid.Column="2"
+                     SelectedIndex="0" SelectionMode="Extended"
+                     Style="{StaticResource ListBoxCheckBoxStyle}">
+                <ListBoxItem Content="Chance" />
+                <ListBoxItem Content="Lori" />
+                <ListBoxItem Content="写代码的厨子" />
+                <behavior:Interaction.Triggers>
+                    <behavior:EventTrigger EventName="Loaded">
+                        <behavior:InvokeCommandAction Command="{Binding LoadedCommand}" EventArgsParameterPath="OriginalSource" />
+                    </behavior:EventTrigger>
+                </behavior:Interaction.Triggers>
+            </ListBox>
+
+            <ListBox Grid.Row="2" Grid.Column="0"
+                     ItemsSource="{Binding Lists}"
+                     SelectedIndex="0" SelectionMode="Single"
+                     Style="{StaticResource ListBoxButtonStyle}">
+                <behavior:Interaction.Triggers>
+                    <behavior:EventTrigger EventName="Loaded">
+                        <behavior:InvokeCommandAction Command="{Binding LoadedCommand}" EventArgsParameterPath="OriginalSource" />
+                    </behavior:EventTrigger>
+                </behavior:Interaction.Triggers>
+            </ListBox>
+            <ListBox Grid.Row="2" Grid.Column="2"
+                     ItemsSource="{Binding IconLists}"
+                     SelectedIndex="0" SelectionMode="Single"
+                     Style="{StaticResource ListBoxIconStyle}" />
+            <ListBox Grid.Row="4" Grid.Column="0"
+                     ItemsSource="{Binding ImageLists}"
+                     SelectedIndex="0" SelectionMode="Single" ui:ItemsControlAttached.IsPreviewImageGif="True"
+                     Style="{StaticResource ListBoxImageGifStyle}" />
+            <ListBox Grid.Row="4" Grid.Column="2"
+                     ItemsSource="{Binding GifLists}"
+                     SelectedIndex="0" SelectionMode="Single" ui:ItemsControlAttached.IsPreviewImageGif="True"
+                     Style="{StaticResource ListBoxImageGifStyle}" />
+        </Grid>
+    </ScrollViewer>
+
+</UserControl>

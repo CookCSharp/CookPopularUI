@@ -1,0 +1,155 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:ui="clr-namespace:CookPopularUI.WPF.Controls"
+                    xmlns:win="clr-namespace:CookPopularUI.WPF.Windows">
+
+    <ResourceDictionary.MergedDictionaries>
+        <!--  Template  -->
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Templates/ValidationErrorBaseTemplate.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Templates/OtherControlTemplate.xaml" />
+
+        <!--  WPF Original Control  -->
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/BorderStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/ButtonStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/CheckBoxStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/CalendarStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/ComboBoxStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/DataGridStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/DatePickerStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/ExpanderStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/GroupBoxStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/LabelStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/ListBoxStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/ListViewStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/MenuStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/PasswordBoxStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/ProgressBarStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/RadioButtonStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/RepeatButtonStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/RichTextBoxStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/ScrollBarStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/ScrollViewerStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/SliderStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/TabControlStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/TextBlockStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/TextBoxStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/ToggleButtonStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/ToolBarStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/ToolTipStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/TreeViewStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/WindowStyle.xaml" />
+
+        <!--  Extension Control  -->
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/AlertorStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/AnimationPathStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/AutoGroupingTextStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/BadgeStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/BlockBarStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/BubbleMessageStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/CarouselStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/ColorPickerStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/DateTimePickerStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/DialogBoxStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/DivideLineStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/IconPatternStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/ImageBrowserStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/MessageDialogStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/NumericUpDownStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/ProgressButtonStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/PropertyGridStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/PopupMessageStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/RippleStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/SearchBarStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/SideBarStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/SplitButtonStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/StarStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/StepBarStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/SwiperStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/SwitchButtonStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/TagStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/TextPathStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/TimePickerStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/TitleBarStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/ToastMessageStyle.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+
+    <Style x:Key="{x:Type Button}" TargetType="{x:Type Button}" BasedOn="{StaticResource DefaultButtonStyle}" />
+    <Style x:Key="{x:Type CheckBox}" TargetType="{x:Type CheckBox}" BasedOn="{StaticResource DefaultCheckBoxStyle}" />
+    <Style x:Key="{x:Type Calendar}" TargetType="{x:Type Calendar}" BasedOn="{StaticResource DefaultCalendarStyle}" />
+    <Style x:Key="{x:Type ComboBox}" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource DefaultComboBoxStyle}" />
+    <Style x:Key="{x:Type ContextMenu}" TargetType="{x:Type ContextMenu}" BasedOn="{StaticResource DefaultContextMenuStyle}" />
+    <Style x:Key="{x:Type DataGrid}" TargetType="{x:Type DataGrid}" BasedOn="{StaticResource DefaultDataGridStyle}" />
+    <Style x:Key="{x:Type DatePicker}" TargetType="{x:Type DatePicker}" BasedOn="{StaticResource DefaultDatePickerStyle}" />
+    <Style x:Key="{x:Type Expander}" TargetType="{x:Type Expander}" BasedOn="{StaticResource DefaultExpanderStyle}" />
+    <Style x:Key="{x:Type GroupBox}" TargetType="{x:Type GroupBox}" BasedOn="{StaticResource DefaultGroupBoxStyle}" />
+    <Style x:Key="{x:Type Label}" TargetType="{x:Type Label}" BasedOn="{StaticResource DefaultLabelStyle}" />
+    <Style x:Key="{x:Type ListBox}" TargetType="{x:Type ListBox}" BasedOn="{StaticResource DefaultListBoxStyle}" />
+    <Style x:Key="{x:Type ListView}" TargetType="{x:Type ListView}" BasedOn="{StaticResource DefaultListViewStyle}" />
+    <Style x:Key="{x:Type Menu}" TargetType="{x:Type Menu}" BasedOn="{StaticResource DefaultMenuStyle}" />
+    <Style x:Key="{x:Type MenuItem}" TargetType="{x:Type MenuItem}" BasedOn="{StaticResource DefaultMenuItemStyle}" />
+    <Style x:Key="{x:Type PasswordBox}" TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource DefaultPasswordBoxStyle}" />
+    <Style x:Key="{x:Type ProgressBar}" TargetType="{x:Type ProgressBar}" BasedOn="{StaticResource DefaultProgressBarStyle}" />
+    <Style x:Key="{x:Type RadioButton}" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource DefaultRadioButtonStyle}" />
+    <Style x:Key="{x:Type RepeatButton}" TargetType="{x:Type RepeatButton}" BasedOn="{StaticResource DefaultRepeatButtonStyle}" />
+    <Style x:Key="{x:Type RichTextBox}" TargetType="{x:Type RichTextBox}" BasedOn="{StaticResource DefaultRichTextBoxStyle}" />
+    <Style x:Key="{x:Type ScrollBar}" TargetType="{x:Type ScrollBar}" BasedOn="{StaticResource DefaultScrollBarStyle}" />
+    <Style x:Key="{x:Type ScrollViewer}" TargetType="{x:Type ScrollViewer}" BasedOn="{StaticResource DefaultScrollViewerStyle}" />
+    <Style x:Key="{x:Type Slider}" TargetType="{x:Type Slider}" BasedOn="{StaticResource DefaultSliderStyle}" />
+    <Style x:Key="{x:Type Separator}" TargetType="{x:Type Separator}" BasedOn="{StaticResource {x:Static MenuItem.SeparatorStyleKey}}" />
+    <Style x:Key="{x:Type TabControl}" TargetType="{x:Type TabControl}" BasedOn="{StaticResource DefaultTabControlStyle}" />
+    <Style x:Key="{x:Type TextBox}" TargetType="{x:Type TextBox}" BasedOn="{StaticResource DefaultTextBoxStyle}" />
+    <Style x:Key="{x:Type ToggleButton}" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource DefaultToggleButtonStyle}" />
+    <Style x:Key="{x:Type ToolBar}" TargetType="{x:Type ToolBar}" BasedOn="{StaticResource DefaultToolBarStyle}" />
+    <Style x:Key="{x:Type ToolBarTray}" TargetType="{x:Type ToolBarTray}" BasedOn="{StaticResource DefaultToolBarTrayStyle}" />
+    <Style x:Key="{x:Type ToolTip}" TargetType="{x:Type ToolTip}" BasedOn="{StaticResource DefaultToolTipStyle}" />
+    <Style x:Key="{x:Type TreeView}" TargetType="{x:Type TreeView}" BasedOn="{StaticResource DefaultTreeViewStyle}" />
+
+
+    <Style x:Key="{x:Type win:DialogWindow}" TargetType="{x:Type win:DialogWindow}" BasedOn="{StaticResource DialogWindowStyle}" />
+    <Style x:Key="{x:Type win:FixedSizeWindow}" TargetType="{x:Type win:FixedSizeWindow}" BasedOn="{StaticResource FixedSizeWindowStyle}" />
+    <Style x:Key="{x:Type win:MessageDialog}" TargetType="{x:Type win:MessageDialog}" BasedOn="{StaticResource MessageDialogStyle}" />
+    <Style x:Key="{x:Type win:NoneTitleBarWindow}" TargetType="{x:Type win:NoneTitleBarWindow}" BasedOn="{StaticResource NoneTitleBarWindowStyle}" />
+    <Style x:Key="{x:Type win:NormalWindow}" TargetType="{x:Type win:NormalWindow}" BasedOn="{StaticResource NormalWindowStyle}" />
+
+
+    <Style x:Key="{x:Type ui:Alertor}" TargetType="{x:Type ui:Alertor}" BasedOn="{StaticResource DefaultAlertorStyle}" />
+    <Style x:Key="{x:Type ui:AnimationPath}" TargetType="{x:Type ui:AnimationPath}" BasedOn="{StaticResource DefaultAnimationPathStyle}" />
+    <Style x:Key="{x:Type ui:AutoGroupingText}" TargetType="{x:Type ui:AutoGroupingText}" BasedOn="{StaticResource DefaultAutoGroupingTextStyle}" />
+    <Style x:Key="{x:Type ui:Badge}" TargetType="{x:Type ui:Badge}" BasedOn="{StaticResource DefaultBadgeStyle}" />
+    <Style x:Key="{x:Type ui:BlockBarCircle}" TargetType="{x:Type ui:BlockBarCircle}" BasedOn="{StaticResource DefaultBlockBarCircleStyle}" />
+    <Style x:Key="{x:Type ui:BlockBarImage}" TargetType="{x:Type ui:BlockBarImage}" BasedOn="{StaticResource DefaultBlockBarImageStyle}" />
+    <Style x:Key="{x:Type ui:BlockBarRect}" TargetType="{x:Type ui:BlockBarRect}" BasedOn="{StaticResource DefaultBlockBarRectStyle}" />
+    <Style x:Key="{x:Type ui:BubbleMessage}" TargetType="{x:Type ui:BubbleMessage}" BasedOn="{StaticResource DefaultBubbleMessageStyle}" />
+    <Style x:Key="{x:Type ui:CarouselItem}" TargetType="{x:Type ui:CarouselItem}" BasedOn="{StaticResource DefaultCarouselItemStyle}" />
+    <Style x:Key="{x:Type ui:Carousel}" TargetType="{x:Type ui:Carousel}" BasedOn="{StaticResource DefaultCarouselStyle}" />
+    <Style x:Key="{x:Type ui:ColorPicker}" TargetType="{x:Type ui:ColorPicker}" BasedOn="{StaticResource DefaultColorPickerStyle}" />
+    <Style x:Key="{x:Type ui:Clock}" TargetType="{x:Type ui:Clock}" BasedOn="{StaticResource DefaultClockStyle}" />
+    <Style x:Key="{x:Type ui:DateTimePicker}" TargetType="{x:Type ui:DateTimePicker}" BasedOn="{StaticResource DefaultDateTimePickerStyle}" />
+    <Style x:Key="{x:Type ui:DialogBox}" TargetType="{x:Type ui:DialogBox}" BasedOn="{StaticResource DefaultDialogBoxStyle}" />
+    <Style x:Key="{x:Type ui:DivideLine}" TargetType="{x:Type ui:DivideLine}" BasedOn="{StaticResource DefaultDivideLineStyle}" />
+    <Style x:Key="{x:Type ui:GroupLabel}" TargetType="{x:Type ui:GroupLabel}" BasedOn="{StaticResource DefaultGroupLabelStyle}" />
+    <Style x:Key="{x:Type ui:IconPattern}" TargetType="{x:Type ui:IconPattern}" BasedOn="{StaticResource DefaultIconPatternStyle}" />
+    <Style x:Key="{x:Type ui:ImageBrowser}" TargetType="{x:Type ui:ImageBrowser}" BasedOn="{StaticResource DefaultImageBrowserStyle}" />
+    <Style x:Key="{x:Type ui:MultiBorder}" TargetType="{x:Type ui:MultiBorder}" BasedOn="{StaticResource DefaultMultiBorderStyle}" />
+    <Style x:Key="{x:Type ui:NumericUpDown}" TargetType="{x:Type ui:NumericUpDown}" BasedOn="{StaticResource DefaultNumericUpDownStyle}" />
+    <Style x:Key="{x:Type ui:ProgressButton}" TargetType="{x:Type ui:ProgressButton}" BasedOn="{StaticResource DefaultProgressButtonStyle}" />
+    <Style x:Key="{x:Type ui:PropertyGrid}" TargetType="{x:Type ui:PropertyGrid}" BasedOn="{StaticResource DefaultPropertyGridStyle}" />
+    <Style x:Key="{x:Type ui:PopupMessage}" TargetType="{x:Type ui:PopupMessage}" BasedOn="{StaticResource DefaultPopupMessageStyle}" />
+    <Style x:Key="{x:Type ui:Ripple}" TargetType="{x:Type ui:Ripple}" BasedOn="{StaticResource DefaultRippleStyle}" />
+    <Style x:Key="{x:Type ui:SearchBar}" TargetType="{x:Type ui:SearchBar}" BasedOn="{StaticResource DefaultSearchBarStyle}" />
+    <Style x:Key="{x:Type ui:SideBar}" TargetType="{x:Type ui:SideBar}" BasedOn="{StaticResource DefaultSideBarStyle}" />
+    <Style x:Key="{x:Type ui:SideBarEx}" TargetType="{x:Type ui:SideBarEx}" BasedOn="{StaticResource DefaultSideBarExStyle}" />
+    <Style x:Key="{x:Type ui:SplitButton}" TargetType="{x:Type ui:SplitButton}" BasedOn="{StaticResource DefaultSplitButtonStyle}" />
+    <Style x:Key="{x:Type ui:Star}" TargetType="{x:Type ui:Star}" BasedOn="{StaticResource DefaultStarStyle}" />
+    <Style x:Key="{x:Type ui:StepBar}" TargetType="{x:Type ui:StepBar}" BasedOn="{StaticResource DefaultStepBarStyle}" />
+    <Style x:Key="{x:Type ui:Swiper}" TargetType="{x:Type ui:Swiper}" BasedOn="{StaticResource DefaultSwiperStyle}" />
+    <Style x:Key="{x:Type ui:SwitchButton}" TargetType="{x:Type ui:SwitchButton}" BasedOn="{StaticResource DefaultSwitchButtonStyle}" />
+    <Style x:Key="{x:Type ui:Tag}" TargetType="{x:Type ui:Tag}" BasedOn="{StaticResource DefaultTagStyle}" />
+    <Style x:Key="{x:Type ui:TextPath}" TargetType="{x:Type ui:TextPath}" BasedOn="{StaticResource DefaultTextPathStyle}" />
+    <Style x:Key="{x:Type ui:TimePicker}" TargetType="{x:Type ui:TimePicker}" BasedOn="{StaticResource DefaultTimePickerStyle}" />
+    <Style x:Key="{x:Type ui:TitleBar}" TargetType="{x:Type ui:TitleBar}" BasedOn="{StaticResource DefaultTitleBarStyle}" />
+    <Style x:Key="{x:Type ui:TitleBarEx}" TargetType="{x:Type ui:TitleBarEx}" BasedOn="{StaticResource DefaultTitleBarExStyle}" />
+    <Style x:Key="{x:Type ui:ToastMessage}" TargetType="{x:Type ui:ToastMessage}" BasedOn="{StaticResource DefaultToastMessageStyle}" />
+
+</ResourceDictionary>

@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>Define a lamda RoutedEvent</Title>
+            <Shortcut>propevents</Shortcut>
+            <Description>Code snippet for a event using RoutedEvent as the backing store</Description>
+            <Author>Microsoft Corporation</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Declarations>
+                <Literal>
+                    <ID>type</ID>
+                    <ToolTip>Event Type</ToolTip>
+                    <Default>RoutedPropertyChangedEventHandler</Default>
+                </Literal>
+				<Literal>
+                    <ID>T</ID>
+                    <ToolTip>Param Type</ToolTip>
+                    <Default>object</Default>
+                </Literal>
+                <Literal>
+                    <ID>eventname</ID>
+                    <ToolTip>Event Name</ToolTip>
+                    <Default>MyEvent</Default>
+                </Literal>
+                <Literal>
+                    <ID>ownerclass</ID>
+                    <ToolTip>The owning class of this Property.  Typically the class that it is declared in.</ToolTip>
+                    <Default>ownerclass</Default>
+                </Literal>
+                <Literal>
+                    <ID>eventarg</ID>
+                    <ToolTip>The default value for this property.</ToolTip>
+                    <Default>RoutedPropertyChangedEventArgs</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+                <![CDATA[
+
+/// <summary>
+/// 改变事件
+/// </summary>
+[Category("Behavior")]
+[Description("改变事件")]	
+public event $type$<$T$> $eventname$
+{
+	add => this.AddHandler($eventname$Event, value); 
+	remove => this.RemoveHandler($eventname$Event, value); 
+}
+public static readonly RoutedEvent $eventname$Event =
+	EventManager.RegisterRoutedEvent(nameof($eventname$), RoutingStrategy.Bubble, typeof($type$<$T$>), typeof($ownerclass$));
+
+protected virtual void On$eventname$($T$ oldValue, $T$ newValue)
+{
+	$eventarg$<$T$> arg = new $eventarg$<$T$>(oldValue, newValue, $eventname$Event);
+	this.RaiseEvent(arg);
+}
+
+$end$]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+</CodeSnippets>
