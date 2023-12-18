@@ -10,6 +10,7 @@
 
 using CookPopularToolkit;
 using CookPopularUI.WPF.Themes;
+using CookPopularUI.WPFDemo.Views;
 using Microsoft.Xaml.Behaviors;
 using Prism.Commands;
 using Prism.Ioc;
@@ -31,9 +32,10 @@ namespace CookPopularUI.WPFDemo.ViewModels
         public bool IsShowSideBar { get; set; }
         public ObservableCollection<string> DemoViewNames { get; set; }
         public ObservableCollection<FrameworkElement> DemoViews { get; set; }
-        public int SelectedViewIndex { get; set; }
+        public int SelectedViewIndex { get; set; } = -1;
 
 
+        public DelegateCommand GoToHomePageCommand => new Lazy<DelegateCommand>(() => new DelegateCommand(OnGoToHomePageAction)).Value;
         public DelegateCommand ThemeSwitchCommand => new Lazy<DelegateCommand>(() => new DelegateCommand(OnThemeSwitchAction)).Value;
         public DelegateCommand LanguageSwitchCommand => new Lazy<DelegateCommand>(() => new DelegateCommand(OnLanguageSwitchAction)).Value;
 
@@ -52,6 +54,12 @@ namespace CookPopularUI.WPFDemo.ViewModels
             CenterTitle = $"CookPopularUI.WPF({DemoViewNames[SelectedViewIndex].Replace("DemoView", "")})";
             App.UnityContainer.Resolve<IRegionManager>().RequestNavigate("MainWindowContent", DemoViewNames[SelectedViewIndex]);
             IsShowSideBar = false;
+        }
+
+        private void OnGoToHomePageAction()
+        {
+            CenterTitle = $"CookPopularUI.WPF(Home)";
+            App.UnityContainer.Resolve<IRegionManager>().RequestNavigate("MainWindowContent", nameof(HomeDemoView));
         }
 
         private void OnThemeSwitchAction()

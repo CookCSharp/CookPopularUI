@@ -61,7 +61,7 @@
                               ui:FrameworkElementBaseAttached.IconGeometry="{StaticResource CatalogGeometry}"
                               ui:FrameworkElementBaseAttached.IconHeight="16" ui:FrameworkElementBaseAttached.IconWidth="16"
                               Style="{StaticResource ToggleButtonTransparentIconStyle}" />
-                <Button ui:FrameworkElementBaseAttached.IconGeometry="{StaticResource HomePageGeometry}" Style="{StaticResource ButtonTransparentIconStyle}" />
+                <Button Command="{Binding GoToHomePageCommand}" ui:FrameworkElementBaseAttached.IconGeometry="{StaticResource HomePageGeometry}" Style="{StaticResource ButtonTransparentIconStyle}" />
                 <TextBlock Text="{Binding CenterTitle}"
                            FontSize="20" FontWeight="ExtraBold"
                            Margin="320,0,0,0"
