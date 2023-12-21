@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookPopularToolkit", "Tooki
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookPopularToolkit.Windows", "Tookit\CookPopularToolkit.Windows\CookPopularToolkit.Windows.csproj", "{948D6D74-E317-4D08-A912-5E10353CC1A0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookPopularUI.WPFDemo", "Demos\CookPopularControl.WPFDemo\CookPopularUI.WPFDemo.csproj", "{F70DE24A-BB32-4457-8169-6A52C4D54610}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookPopularUI.WPFDemo", "Demos\CookPopularUI.WPFDemo\CookPopularUI.WPFDemo.csproj", "{F70DE24A-BB32-4457-8169-6A52C4D54610}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookPopularToolkit.UnitTest", "UnitTests\CookPopularToolkit.UnitTest\CookPopularToolkit.UnitTest.csproj", "{BB1A1509-16CA-482B-8C01-67B2FA8BAC58}"
 EndProject

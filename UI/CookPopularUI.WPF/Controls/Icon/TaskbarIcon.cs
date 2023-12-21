@@ -124,9 +124,9 @@ namespace CookPopularUI.WPF.Controls
 
         private void TaskbarIcon_Loaded(object sender, RoutedEventArgs e)
         {
-            foreach (Window win in Application.Current.Windows)
+            foreach (Window? win in Application.Current.Windows)
             {
-                win.Closing += (s, e) =>
+                win!.Closing += (s, e) =>
                 {
                     if (Visibility == Visibility.Visible)
                     {
@@ -136,14 +136,14 @@ namespace CookPopularUI.WPF.Controls
                 };
             }
 
-            BitmapImage tranparentIcon = new BitmapImage(new Uri("pack://application:,,,/CookPopularUI.WPF;component/Resources/Images/CookPopularUI.ico", UriKind.Absolute));
+            BitmapImage transparentIcon = new BitmapImage(new Uri("pack://application:,,,/CookPopularUI.WPF;component/Resources/Images/logo-transparent.ico", UriKind.Absolute));
             originalIcon = IconSource;
             timer = new DispatcherTimer(DispatcherPriority.Normal);
             timer.Interval = TimeSpan.FromMilliseconds(500);
             timer.Tick += (s, e) =>
             {
                 if (IconSource.Equals(originalIcon))
-                    IconSource = tranparentIcon;
+                    IconSource = transparentIcon;
                 else
                     IconSource = originalIcon;
             };

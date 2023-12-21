@@ -1,4 +1,4 @@
-[![Fork me on Gitee](Demos/CookPopularControl.WPFDemo/Assets/CookCSharp.png)](https://gitee.com/cook-csharp/CookPopularControl)
+[![Fork me on Github](Demos/CookPopularUI.WPFDemo/Assets/CookCSharp.png)](https://github.com/CookCSharp/CookPopularUI)
 
 # Welcome to CookPopularUI 
 

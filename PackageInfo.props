@@ -9,14 +9,17 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="$(Configuration) == 'Release' And !$(MSBuildProjectName.Contains('Demo'))">
+    <PackageOutputPath>$(SolutionDir)Output\bin\$(Configuration)</PackageOutputPath>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PackageId>$(MSBuildProjectName)</PackageId>
-    <!--<PackageVersion>1.0.2.1</PackageVersion>-->
+    <PackageVersion>$(Version)</PackageVersion>
     <Title>$(MSBuildProjectName)</Title>
-    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-    <PackageOutputPath>$(SolutionDir)Output\bin\$(Configuration)</PackageOutputPath>
-    <!--<RepositoryUrl>https://gitee.com/cook-csharp/$(MSBuildProjectName)</RepositoryUrl>
-    <PackageProjectUrl>https://github.com/chancezheng/CookPopularControl</PackageProjectUrl>-->
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <!--<PackageLicenseFile>LICENSE</PackageLicenseFile>-->
+    <!--https://gitee.com/CookCSharp/CookPopularUI-->
+    <RepositoryUrl>https://github.com/CookCSharp/CookPopularUI</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/CookCSharp/CookPopularUI</PackageProjectUrl>
   </PropertyGroup>
 </Project>

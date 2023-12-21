@@ -7,8 +7,9 @@
     <DefineConstants>DESKTOP</DefineConstants>
 
     <Description>Windows平台工具包</Description>
+    <PackageIcon>logo.png</PackageIcon>
     <PackageTags>csharp,library,toolkit,toolbox,windows</PackageTags>
-    <PackageReleaseNotes>兼容.NETFramework4.6.2+、.NETCore、.NET6.0+的Windows平台工具包，目前处于发布的预览版，其它功能敬请期待</PackageReleaseNotes>
+    <PackageReleaseNotes>支持.NET462+、.NETCore3.1、.NET6.0+的Windows平台工具包，目前处于发布的预览版，其它功能敬请期待</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
@@ -25,6 +26,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CookPopularToolkit\CookPopularToolkit.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="logo.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </Resource>
   </ItemGroup>
 
 </Project>

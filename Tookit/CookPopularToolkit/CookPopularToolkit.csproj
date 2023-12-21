@@ -9,10 +9,9 @@
     <DefineConstants>SYSTEM_PRIVATE_CORELIB;</DefineConstants>
 
     <Description>跨平台工具包</Description>
-    <PackageIcon></PackageIcon>
+    <PackageIcon>logo.png</PackageIcon>
     <PackageTags>csharp,library,toolkit,toolbox,multi-platform</PackageTags>
-    <PackageReadmeFile></PackageReadmeFile>
-    <PackageReleaseNotes>发布的预览版，其它功能敬请期待</PackageReleaseNotes>
+    <PackageReleaseNotes>支持netstandard2.0+的跨平台工具包，发布的预览版，其它功能敬请期待</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
@@ -38,6 +37,13 @@
 
   <ItemGroup>
     <Reference Include="System.Net.Http" Condition="$(TargetFramework.StartsWith(net4))" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="logo.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </Resource>
   </ItemGroup>
 
 </Project>
