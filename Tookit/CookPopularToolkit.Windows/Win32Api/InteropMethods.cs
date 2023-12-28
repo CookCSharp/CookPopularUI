@@ -239,5 +239,11 @@ namespace CookPopularToolkit.Windows.Win32Api
         [DllImport(InteropValues.ExternDll.User32, SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool RemoveClipboardFormatListener(IntPtr hwnd);
+
+        [DllImport(InteropValues.ExternDll.Kernel32)]
+        public static extern void CopyMemory(IntPtr destination, IntPtr source, uint length);
+
+        [DllImport(InteropValues.ExternDll.Kernel32, EntryPoint = "RtlMoveMemory")]
+        public static extern void MoveMemory(IntPtr dest, IntPtr src, uint count);
     }
 }

@@ -10,6 +10,7 @@
     <PackageIcon>logo.png</PackageIcon>
     <PackageTags>csharp,library,toolkit,toolbox,windows</PackageTags>
     <PackageReleaseNotes>支持.NET462+、.NETCore3.1、.NET6.0+的Windows平台工具包，目前处于发布的预览版，其它功能敬请期待</PackageReleaseNotes>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <ItemGroup>

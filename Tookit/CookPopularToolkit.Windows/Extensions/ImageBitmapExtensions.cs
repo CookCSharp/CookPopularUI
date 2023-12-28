@@ -12,11 +12,14 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography;
 using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.Media3D;
 using System.Windows.Resources;
+using static System.Net.WebRequestMethods;
 
 namespace CookPopularToolkit.Windows
 {
@@ -51,7 +54,7 @@ namespace CookPopularToolkit.Windows
         /// </summary>
         /// <param name="bitmap">Bitmap 对象</param>
         /// <returns>转换后的 BitmapImage对象</returns>
-        public static BitmapImage? ToBitmapImage(Bitmap bitmap)
+        public static BitmapImage? ToBitmapImage(this Bitmap bitmap)
         {
             try
             {
@@ -83,16 +86,15 @@ namespace CookPopularToolkit.Windows
         /// </summary>
         /// <param name="imageSource">imageSource 对象</param>
         /// <returns>返回 Bitmap 对象</returns>
-        public static Bitmap? ToBitmap(ImageSource imageSource)
+        public static Bitmap? ToBitmap(this ImageSource imageSource)
         {
             try
             {
                 BitmapSource bitmapSource = (BitmapSource)imageSource;
                 Bitmap bitmap = new Bitmap(bitmapSource.PixelWidth, bitmapSource.PixelHeight, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-                BitmapData data = bitmap.LockBits(
-                    new Rectangle(System.Drawing.Point.Empty, bitmap.Size),
-                    ImageLockMode.WriteOnly,
-                    System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                BitmapData data = bitmap.LockBits(new Rectangle(System.Drawing.Point.Empty, bitmap.Size),
+                                                  ImageLockMode.WriteOnly,
+                                                  System.Drawing.Imaging.PixelFormat.Format32bppArgb);
                 bitmapSource.CopyPixels(Int32Rect.Empty, data.Scan0, data.Height * data.Stride, data.Stride);
                 bitmap.UnlockBits(data);
 
@@ -239,7 +241,7 @@ namespace CookPopularToolkit.Windows
         /// </summary>
         /// <param name="bitmapImage">BitmapImage 对象</param>
         /// <returns>byte[] 数组</returns>
-        public static byte[] ToByteArray(BitmapImage bitmapImage)
+        public static byte[] ToByteArray(this BitmapImage bitmapImage)
         {
             byte[] buffer = new byte[] { };
             try
@@ -268,7 +270,7 @@ namespace CookPopularToolkit.Windows
         /// <param name="height">要求的高</param>
         /// <param name="width">要求的宽</param>
         /// <returns></returns>
-        public static Bitmap GetPicThumbnail(Bitmap bitmap, int height, int width)
+        public static Bitmap Compress(this Bitmap bitmap, int height, int width)
         {
             try
             {
@@ -294,6 +296,100 @@ namespace CookPopularToolkit.Windows
                 System.Diagnostics.Debug.WriteLine(ex.Message);
             }
             return bitmap;
+        }
+
+        public static WriteableBitmap WriteTo(this Array data, int pixelWidth, int pixelHeight)
+        {
+            var writeableBitmap = new WriteableBitmap(pixelWidth, pixelHeight, 96.0, 96.0, PixelFormats.Bgra32, null);
+            //stride一般就是宽度*4，因为一个像素一般是4个byte
+            writeableBitmap.WritePixels(new Int32Rect(0, 0, pixelWidth, pixelHeight), data, pixelWidth * 4, 0);
+
+            return writeableBitmap;
+        }
+
+        public static WriteableBitmap? WriteToByUnsafe(this int[] data, int pixelWidth, int pixelHeight)
+        {
+            unsafe
+            {
+                fixed (int* ptr = data)
+                {
+                    try
+                    {
+                        var writeableBitmap = new WriteableBitmap(pixelWidth, pixelHeight, 96.0, 96.0, PixelFormats.Bgra32, null);
+
+                        //using Bitmap bitmap = new Bitmap(pixelWidth, pixelHeight, pixelWidth * 4, System.Drawing.Imaging.PixelFormat.Format16bppArgb1555, new IntPtr(ptr));
+                        //writeableBitmap.CopyTo(bitmap);
+
+                        writeableBitmap.Lock();
+
+                        //如果数据源是一个一次申请不断修改的数组
+                        var bytes = pixelWidth * pixelHeight * writeableBitmap.Format.BitsPerPixel / 8;
+                        unsafe
+                        {
+                            //性能依次排序 
+                            InteropMethods.MoveMemory(writeableBitmap.BackBuffer, new IntPtr(ptr), (uint)bytes);
+                            //InteropMethods.CopyMemory(writeableBitmap.BackBuffer, new IntPtr(ptr), (uint)bytes);
+                            //Buffer.MemoryCopy(ptr, writeableBitmap.BackBuffer.ToPointer(), bytes, bytes);
+                        }
+
+                        writeableBitmap.AddDirtyRect(new Int32Rect(0, 0, pixelWidth, pixelHeight));
+                        writeableBitmap.Unlock();
+
+                        return writeableBitmap;
+                    }
+                    catch (Exception)
+                    {
+                        return null;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 使用不安全代码将Bitmap位图转为WPF的ImageSource以获得高性能和持续小的内存占用
+        /// </summary>
+        /// <param name="bitmap"></param>
+        /// <param name="writeableBitmap"></param>
+        /// <remarks>
+        /// WPF官方提供了一种方法，使用 System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap()方法。
+        /// 官方解释称这是托管和非托管位图相互转换所用的方法。
+        /// 然而此方法有一个很严重的弊端——每次都会生成全新的位图，即便每次 DeleteObject 之后，内存依然不会即时释放。
+        /// </remarks>
+        /// <![CDATA[
+        /// [DllImport("gdi32")]
+        /// static extern int DeleteObject(IntPtr o);
+        /// ]]>
+        /// 见 https://blog.walterlv.com/post/convert-bitmap-to-imagesource-using-unsafe-method.html
+        public static void CopyTo(this Bitmap bitmap, WriteableBitmap writeableBitmap)
+        {
+            CheckHelper.ArgumentNullException(bitmap, nameof(bitmap));
+            CheckHelper.ArgumentNullException(writeableBitmap, nameof(writeableBitmap));
+
+            var bWidth = bitmap.Width;
+            var bHeight = bitmap.Height;
+            var wbWidth = writeableBitmap.PixelWidth;
+            var wbHeight = writeableBitmap.PixelHeight;
+
+            CheckHelper.ArgumentException(wbWidth != bWidth || wbHeight != bHeight, $"{nameof(writeableBitmap)} with {nameof(bitmap)} has not equal size");
+
+            var width = wbWidth;
+            var height = wbHeight;
+            var bytes = wbWidth * wbHeight * writeableBitmap.Format.BitsPerPixel / 8;
+
+            var bitmapData = bitmap.LockBits(new Rectangle(0, 0, width, height), ImageLockMode.ReadOnly, bitmap.PixelFormat);
+
+            writeableBitmap.Lock();
+            unsafe
+            {
+                //性能依次排序 
+                InteropMethods.MoveMemory(writeableBitmap.BackBuffer, bitmapData.Scan0, (uint)bytes);
+                //InteropMethods.CopyMemory(writeableBitmap.BackBuffer, bitmapData.Scan0, (uint)bytes);
+                //Buffer.MemoryCopy(bitmapData.Scan0.ToPointer(), writeableBitmap.BackBuffer.ToPointer(), bytes, bytes);
+            }
+            writeableBitmap.AddDirtyRect(new Int32Rect(0, 0, width, height));
+            writeableBitmap.Unlock();
+
+            bitmap.UnlockBits(bitmapData);
         }
     }
 }

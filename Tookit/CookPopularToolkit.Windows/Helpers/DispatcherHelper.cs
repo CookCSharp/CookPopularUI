@@ -19,10 +19,9 @@ namespace CookPopularToolkit.Windows
 {
     public sealed class DispatcherHelper
     {
-        public static async Task AppInvokeAsync(Action action)
+        public static DispatcherOperation AppInvokeAsync(Action action)
         {
-            if (System.Windows.Application.Current != null)
-                await System.Windows.Application.Current.Dispatcher.InvokeAsync(action, DispatcherPriority.Normal);
+            return System.Windows.Application.Current.Dispatcher.InvokeAsync(action, DispatcherPriority.Normal);
         }
 
         public static void AppInvoke(Action action)
