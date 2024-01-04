@@ -19,8 +19,8 @@
     <None Remove="Common\Effects\DirectionalBlurEffect.ps" />
     <None Remove="Common\Effects\DropShadowExEffect.ps" />
     <None Remove="Resources\Dropper.cur" />
-    <None Remove="Resources\Images\logo-transparent.ico" />
     <None Remove="Resources\Images\nuget-logo.png" />
+    <None Remove="Resources\Images\trayicon-transparent.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -53,7 +53,7 @@
     <Resource Include="Common\Effects\DirectionalBlurEffect.ps" />
     <Resource Include="Common\Effects\DropShadowExEffect.ps" />
     <Resource Include="Resources\Dropper.cur" />
-    <Resource Include="Resources\Images\logo-transparent.ico" />
+    <Resource Include="Resources\Images\trayicon-transparent.ico" />
     <Resource Include="Resources\Images\nuget-logo.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>

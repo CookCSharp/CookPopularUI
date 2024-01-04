@@ -136,7 +136,7 @@ namespace CookPopularUI.WPF.Controls
                 };
             }
 
-            BitmapImage transparentIcon = new BitmapImage(new Uri("pack://application:,,,/CookPopularUI.WPF;component/Resources/Images/logo-transparent.ico", UriKind.Absolute));
+            BitmapImage transparentIcon = new BitmapImage(new Uri("pack://application:,,,/CookPopularUI.WPF;component/Resources/Images/trayicon-transparent.ico", UriKind.Absolute));
             originalIcon = IconSource;
             timer = new DispatcherTimer(DispatcherPriority.Normal);
             timer.Interval = TimeSpan.FromMilliseconds(500);
