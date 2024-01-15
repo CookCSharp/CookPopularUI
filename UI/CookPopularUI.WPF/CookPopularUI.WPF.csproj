@@ -46,7 +46,6 @@
   <ItemGroup>
     <Folder Include="Controls\ControlBar\ProcessBar\" />
     <Folder Include="Controls\ControlGroup\" />
-    <Folder Include="Controls\Dragable\" />
   </ItemGroup>
 
   <ItemGroup>

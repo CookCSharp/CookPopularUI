@@ -83,6 +83,9 @@ dotnet_diagnostic.CS8767.severity = silent
 # CS8612: 约束类型不符合 CLS
 dotnet_diagnostic.CS8612.severity = silent
 
+# CS0618: 约束类型不符合 CLS
+dotnet_diagnostic.CS0618.severity = silent
+
 csharp_style_var_for_built_in_types = false:silent
 csharp_style_var_when_type_is_apparent = false:silent
 csharp_style_var_elsewhere = false:silent

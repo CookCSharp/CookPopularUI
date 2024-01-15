@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net462;net48;netcoreapp3.1;net6.0-windows</TargetFrameworks>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>false</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\MovePage.cur" />
+    <None Remove="Assets\MovePageNot.cur" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\MovePage.cur" />
+    <EmbeddedResource Include="Assets\MovePageNot.cur" />
+  </ItemGroup>
+
+</Project>
