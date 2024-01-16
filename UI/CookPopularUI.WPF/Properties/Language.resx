@@ -109,4 +109,7 @@
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>
   </data>
+  <data name="DragDropAreaHintText" xml:space="preserve">
+    <value>DragDropAreaHintText</value>
+  </data>
 </root>

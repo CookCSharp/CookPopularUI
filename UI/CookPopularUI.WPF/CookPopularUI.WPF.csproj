@@ -33,7 +33,7 @@
 
   <ItemGroup>
     <EmbeddedResource Update="Properties\Language.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
+      <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Language.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <Page Update="Properties\DesignTimeResources.xaml">

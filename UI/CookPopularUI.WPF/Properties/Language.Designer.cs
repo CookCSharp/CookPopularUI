@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CookPopularUI.WPF.Properties
+namespace CookPopularUI.WPF
 {
     using System;
 
@@ -23,20 +23,23 @@ namespace CookPopularUI.WPF.Properties
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Language
+    internal class Language
     {
+
         private static global::System.Resources.ResourceManager resourceMan;
 
         private static global::System.Globalization.CultureInfo resourceCulture;
 
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Language() { }
+        internal Language()
+        {
+        }
 
         /// <summary>
         ///   返回此类使用的缓存的 ResourceManager 实例。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager
+        internal static global::System.Resources.ResourceManager ResourceManager
         {
             get
             {
@@ -54,7 +57,7 @@ namespace CookPopularUI.WPF.Properties
         ///   使用此强类型资源类的所有资源查找执行重写。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture
+        internal static global::System.Globalization.CultureInfo Culture
         {
             get
             {
@@ -69,7 +72,7 @@ namespace CookPopularUI.WPF.Properties
         /// <summary>
         ///   查找类似 Cancel 的本地化字符串。
         /// </summary>
-        public static string Cancel
+        internal static string Cancel
         {
             get
             {
@@ -78,9 +81,20 @@ namespace CookPopularUI.WPF.Properties
         }
 
         /// <summary>
+        ///   查找类似 DragDropAreaHintText 的本地化字符串。
+        /// </summary>
+        internal static string DragDropAreaHintText
+        {
+            get
+            {
+                return ResourceManager.GetString("DragDropAreaHintText", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   查找类似 No 的本地化字符串。
         /// </summary>
-        public static string No
+        internal static string No
         {
             get
             {
@@ -91,7 +105,7 @@ namespace CookPopularUI.WPF.Properties
         /// <summary>
         ///   查找类似 Ok 的本地化字符串。
         /// </summary>
-        public static string Ok
+        internal static string Ok
         {
             get
             {
@@ -102,7 +116,7 @@ namespace CookPopularUI.WPF.Properties
         /// <summary>
         ///   查找类似 Yes 的本地化字符串。
         /// </summary>
-        public static string Yes
+        internal static string Yes
         {
             get
             {

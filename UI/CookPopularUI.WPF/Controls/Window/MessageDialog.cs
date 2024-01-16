@@ -360,7 +360,7 @@ namespace CookPopularUI.WPF.Windows
                     var btn_OK_1 = new Button()
                     {
                         IsDefault = true,
-                        Content = $"{Properties.Language.Ok}(_O)",
+                        Content = $"{LanguageService.Current.Ok}(_O)",
                         Command = ControlCommands.ConfirmCommand,
                         Style = ResourceHelper.GetResource<Style>("MessageDialogSelectedButtonStyle"),
                     };
@@ -370,14 +370,14 @@ namespace CookPopularUI.WPF.Windows
                     var btn_OK_2 = new Button()
                     {
                         IsDefault = true,
-                        Content = $"{Properties.Language.Ok}(_O)",
+                        Content = $"{LanguageService.Current.Ok}(_O)",
                         Command = ControlCommands.ConfirmCommand,
                         Style = ResourceHelper.GetResource<Style>("MessageDialogSelectedButtonStyle"),
                     };
                     var btn_Cancel_1 = new Button()
                     {
                         IsCancel = true,
-                        Content = $"{Properties.Language.Cancel}(_C)",
+                        Content = $"{LanguageService.Current.Cancel}(_C)",
                         Command = ControlCommands.CancelCommand,
                         Style = ResourceHelper.GetResource<Style>("MessageDialogUnSelectedButtonStyle"),
                     };
@@ -388,14 +388,14 @@ namespace CookPopularUI.WPF.Windows
                     var btn_Yes_1 = new Button()
                     {
                         IsDefault = true,
-                        Content = $"{Properties.Language.Yes}(_Y)",
+                        Content = $"{LanguageService.Current.Yes}(_Y)",
                         Command = ControlCommands.YesCommand,
                         Style = ResourceHelper.GetResource<Style>("MessageDialogSelectedButtonStyle"),
                     };
                     var btn_No_1 = new Button()
                     {
                         IsCancel = true,
-                        Content = $"{Properties.Language.No}(_N)",
+                        Content = $"{LanguageService.Current.No}(_N)",
                         Command = ControlCommands.NoCommand,
                         Style = ResourceHelper.GetResource<Style>("MessageDialogUnSelectedButtonStyle"),
                     };
@@ -406,20 +406,20 @@ namespace CookPopularUI.WPF.Windows
                     var btn_Yes_2 = new Button()
                     {
                         IsDefault = true,
-                        Content = $"{Properties.Language.Yes}(_Y)",
+                        Content = $"{LanguageService.Current.Yes}(_Y)",
                         Command = ControlCommands.YesCommand,
                         Style = ResourceHelper.GetResource<Style>("MessageDialogSelectedButtonStyle"),
                     };
                     var btn_No_2 = new Button()
                     {
-                        Content = $"{Properties.Language.No}(_N)",
+                        Content = $"{LanguageService.Current.No}(_N)",
                         Command = ControlCommands.NoCommand,
                         Style = ResourceHelper.GetResource<Style>("MessageDialogUnSelectedButtonStyle"),
                     };
                     var btn_Cancel_2 = new Button()
                     {
                         IsCancel = true,
-                        Content = $"{Properties.Language.Cancel}(_C)",
+                        Content = $"{LanguageService.Current.Cancel}(_C)",
                         Command = ControlCommands.CancelCommand,
                         Style = ResourceHelper.GetResource<Style>("MessageDialogUnSelectedButtonStyle"),
                     };

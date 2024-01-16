@@ -1,7 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:CookPopularUI.WPF"
-                    xmlns:prop="clr-namespace:CookPopularUI.WPF.Properties"
                     xmlns:pt="https://github.cookpopulartoolkit/2021/xaml"
                     xmlns:ui="clr-namespace:CookPopularUI.WPF.Controls"
                     xmlns:win="clr-namespace:CookPopularUI.WPF.Windows">
@@ -128,23 +127,19 @@
                                                 Orientation="Horizontal" UseLayoutRounding="True" WindowChrome.IsHitTestVisibleInChrome="True">
                                         <Button x:Name="MinimizedButton"
                                                 Command="{x:Static SystemCommands.MinimizeWindowCommand}"
-                                                ToolTip="最小化"
                                                 local:FrameworkElementBaseAttached.IconGeometry="{StaticResource MinimizeGeometry}"
                                                 Style="{StaticResource WindowIconButtonStyle}" />
                                         <Button x:Name="MaximizedButton"
                                                 Command="{x:Static SystemCommands.MaximizeWindowCommand}"
-                                                ToolTip="最大化"
                                                 local:FrameworkElementBaseAttached.IconGeometry="{StaticResource MaximizeGeometry}"
                                                 Style="{StaticResource WindowIconButtonStyle}" />
                                         <Button x:Name="NormalButton"
                                                 Command="{x:Static SystemCommands.RestoreWindowCommand}"
-                                                ToolTip="向下还原"
                                                 local:FrameworkElementBaseAttached.IconGeometry="{StaticResource RestoreGeometry}"
                                                 Visibility="Collapsed"
                                                 Style="{StaticResource WindowIconButtonStyle}" />
                                         <Button x:Name="CloseButton"
                                                 Command="{x:Static SystemCommands.CloseWindowCommand}"
-                                                ToolTip="关闭"
                                                 local:FrameworkElementBaseAttached.IconGeometry="{StaticResource CloseGeometry}"
                                                 Style="{StaticResource WindowIconButtonStyle}" />
                                     </StackPanel>
@@ -240,26 +235,22 @@
                                             <Button x:Name="MinimizedButton"
                                                     Background="{TemplateBinding Background}"
                                                     Command="{x:Static SystemCommands.MinimizeWindowCommand}"
-                                                    ToolTip="最小化"
                                                     local:FrameworkElementBaseAttached.IconGeometry="{StaticResource MinimizeGeometry}"
                                                     Style="{StaticResource WindowIconButtonStyle}" />
                                             <Button x:Name="MaximizedButton"
                                                     Background="{TemplateBinding Background}"
                                                     Command="{x:Static SystemCommands.MaximizeWindowCommand}"
-                                                    ToolTip="最大化"
                                                     local:FrameworkElementBaseAttached.IconGeometry="{StaticResource MaximizeGeometry}"
                                                     Style="{StaticResource WindowIconButtonStyle}" />
                                             <Button x:Name="NormalButton"
                                                     Background="{TemplateBinding Background}"
                                                     Command="{x:Static SystemCommands.RestoreWindowCommand}"
-                                                    ToolTip="向下还原"
                                                     local:FrameworkElementBaseAttached.IconGeometry="{StaticResource RestoreGeometry}"
                                                     Visibility="Collapsed"
                                                     Style="{StaticResource WindowIconButtonStyle}" />
                                             <Button x:Name="CloseButton"
                                                     Background="{TemplateBinding Background}"
                                                     Command="{x:Static SystemCommands.CloseWindowCommand}"
-                                                    ToolTip="关闭"
                                                     local:FrameworkElementBaseAttached.IconGeometry="{StaticResource CloseGeometry}"
                                                     Style="{StaticResource WindowIconButtonStyle}" />
                                         </StackPanel>
@@ -367,12 +358,12 @@
                             </AdornerDecorator>
                             <UniformGrid Grid.Row="2" Columns="2">
                                 <Button Width="60" Height="26"
-                                        Content="{Binding Source={x:Static prop:LanguageService.Current}, Path=Ok, ConverterCulture={x:Static prop:LanguageService.Culture}}"
+                                        Content="{Binding Source={x:Static local:LanguageService.Current}, Path=Ok, ConverterCulture={x:Static local:LanguageService.Culture}}"
                                         Command="{x:Static local:ControlCommands.ConfirmCommand}"
                                         HorizontalAlignment="Center"
                                         Style="{StaticResource DefaultButtonStyle}" />
                                 <Button Width="60" Height="26"
-                                        Content="{Binding Source={x:Static prop:LanguageService.Current}, Path=Cancel, ConverterCulture={x:Static prop:LanguageService.Culture}}"
+                                        Content="{Binding Source={x:Static local:LanguageService.Current}, Path=Cancel, ConverterCulture={x:Static local:LanguageService.Culture}}"
                                         Command="{x:Static local:ControlCommands.CancelCommand}"
                                         HorizontalAlignment="Center"
                                         Style="{StaticResource DefaultButtonStyle}" />

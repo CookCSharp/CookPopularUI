@@ -25,7 +25,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Xml.Linq;
 
-namespace CookPopularUI.WPF.Properties
+namespace CookPopularUI.WPF
 {
     internal class LanguageService : INotifyPropertyChanged
     {
@@ -52,6 +52,7 @@ namespace CookPopularUI.WPF.Properties
             RaisePropertyChanged(nameof(No));
             RaisePropertyChanged(nameof(Ok));
             RaisePropertyChanged(nameof(Yes));
+            RaisePropertyChanged(nameof(DragDropAreaHintText));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -65,6 +66,7 @@ namespace CookPopularUI.WPF.Properties
         public string No => Language.No;
         public string Ok => Language.Ok;
         public string Yes => Language.Yes;
+        public string DragDropAreaHintText => Language.DragDropAreaHintText;
 
         #endregion
     }

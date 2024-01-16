@@ -129,4 +129,7 @@
   <data name="Yes" xml:space="preserve">
     <value>是</value>
   </data>
+  <data name="DragDropAreaHintText" xml:space="preserve">
+    <value>将文件拖进来</value>
+  </data>
 </root>
