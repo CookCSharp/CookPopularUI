@@ -11,6 +11,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
@@ -185,6 +186,9 @@ namespace CookPopularToolkit.Windows.Win32Api
         }
 
         [DllImport(InteropValues.ExternDll.User32, CharSet = CharSet.Auto, SetLastError = true)]
+        public static extern IntPtr CallWindowProc(IntPtr lpPrevWndFunc, IntPtr hWnd, int msg, IntPtr wParam, IntPtr lParam);
+
+        [DllImport(InteropValues.ExternDll.User32, CharSet = CharSet.Auto, SetLastError = true)]
         public static extern int GetWindowLong(IntPtr hWnd, int nIndex);
 
         [DllImport(InteropValues.ExternDll.User32, SetLastError = true, CharSet = CharSet.Auto)]
@@ -240,10 +244,44 @@ namespace CookPopularToolkit.Windows.Win32Api
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool RemoveClipboardFormatListener(IntPtr hwnd);
 
-        [DllImport(InteropValues.ExternDll.Kernel32)]
+        [DllImport(InteropValues.ExternDll.Kernel32, EntryPoint = "RtlCopyMemory")]
         public static extern void CopyMemory(IntPtr destination, IntPtr source, uint length);
 
         [DllImport(InteropValues.ExternDll.Kernel32, EntryPoint = "RtlMoveMemory")]
         public static extern void MoveMemory(IntPtr dest, IntPtr src, uint count);
+
+        [DllImport(InteropValues.ExternDll.User32, EntryPoint = "DestroyIcon", CharSet = CharSet.Auto, SetLastError = true)]
+        public static extern int DestroyIcon(IntPtr hIcon);
+
+        [DllImport(InteropValues.ExternDll.Shell32, EntryPoint = "SHGetFileInfo", SetLastError = true, CharSet = CharSet.Auto)]
+        public static extern IntPtr SHGetFileInfo(string pszPath, uint dwFileAttributes, ref InteropValues.SHFILEINFO psfi, uint cbFileInfo, uint uFlags);
+
+        [DllImport(InteropValues.ExternDll.Shell32, EntryPoint = "ExtractAssociatedIcon", CharSet = CharSet.Auto, SetLastError = true)]
+        public static extern int ExtractAssociatedIconA(int hInst, string lpIconPath, ref int lpiIcon);
+
+
+        [DllImport(InteropValues.ExternDll.User32, SetLastError = true)]
+        public static extern bool ChangeWindowMessageFilterEx(IntPtr hWnd, uint msg, uint action, ref InteropValues.CHANGEFILTERSTRUCT pChangeFilterStruct);
+
+        [DllImport(InteropValues.ExternDll.User32, SetLastError = true)]
+        public static extern bool ChangeWindowMessageFilter(uint msg, uint flags);
+
+        [DllImport(InteropValues.ExternDll.Shell32)]
+        public static extern void DragAcceptFiles(IntPtr hWnd, bool fAccept);
+
+        [DllImport(InteropValues.ExternDll.Shell32, CharSet = CharSet.Unicode)]
+        public static extern uint DragQueryFile(IntPtr hWnd, uint iFile, StringBuilder lpszFile, int cch);
+
+        [DllImport(InteropValues.ExternDll.Shell32)]
+        public static extern bool DragQueryPoint(IntPtr hDrop, out InteropValues.POINT lppt);
+
+        [DllImport(InteropValues.ExternDll.Shell32)]
+        public static extern void DragFinish(IntPtr hDrop);
+
+        [DllImport(InteropValues.ExternDll.Ole32)]
+        public static extern int RevokeDragDrop(IntPtr hWnd);
+
+        [DllImport(InteropValues.ExternDll.Shell32)]
+        public static extern bool IsUserAnAdmin();
     }
 }
