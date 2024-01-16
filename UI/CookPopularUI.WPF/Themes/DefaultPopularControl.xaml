@@ -51,6 +51,7 @@
         <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/DateTimePickerStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/DialogBoxStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/DivideLineStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/DragDropAreaStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/IconPatternStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/ImageBrowserStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/MessageDialogStyle.xaml" />
@@ -128,6 +129,7 @@
     <Style x:Key="{x:Type ui:DateTimePicker}" TargetType="{x:Type ui:DateTimePicker}" BasedOn="{StaticResource DefaultDateTimePickerStyle}" />
     <Style x:Key="{x:Type ui:DialogBox}" TargetType="{x:Type ui:DialogBox}" BasedOn="{StaticResource DefaultDialogBoxStyle}" />
     <Style x:Key="{x:Type ui:DivideLine}" TargetType="{x:Type ui:DivideLine}" BasedOn="{StaticResource DefaultDivideLineStyle}" />
+    <Style x:Key="{x:Type ui:DragDropArea}" TargetType="{x:Type ui:DragDropArea}" BasedOn="{StaticResource DefaultDragDropAreaStyle}" />
     <Style x:Key="{x:Type ui:GroupLabel}" TargetType="{x:Type ui:GroupLabel}" BasedOn="{StaticResource DefaultGroupLabelStyle}" />
     <Style x:Key="{x:Type ui:IconPattern}" TargetType="{x:Type ui:IconPattern}" BasedOn="{StaticResource DefaultIconPatternStyle}" />
     <Style x:Key="{x:Type ui:ImageBrowser}" TargetType="{x:Type ui:ImageBrowser}" BasedOn="{StaticResource DefaultImageBrowserStyle}" />
