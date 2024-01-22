@@ -16,4 +16,12 @@
     <EmbeddedResource Include="Assets\MovePageNot.cur" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Utilities\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Tookit\CookPopularToolkit.Windows\CookPopularToolkit.Windows.csproj" />
+  </ItemGroup>
+
 </Project>
