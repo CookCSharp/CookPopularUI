@@ -45,5 +45,75 @@ namespace CookPopularToolkit
 #endif
             }
         }
+
+        /// <summary>  
+        /// byte数组转int数组  
+        /// </summary>  
+        /// <param name="src">源byte数组</param>  
+        /// <param name="offset">起始位置</param>  
+        /// <returns></returns>  
+        public static int[] ToIntArray(this byte[] src, int offset)
+        {
+            int[] values = new int[src.Length / 4];
+            for (int i = 0; i < src.Length / 4; i++)
+            {
+                int value = (src[offset] & 0xFF)
+                          | ((src[offset + 1] & 0xFF) << 8)
+                          | ((src[offset + 2] & 0xFF) << 16)
+                          | ((src[offset + 3] & 0xFF) << 24);
+                values[i] = value;
+
+                offset += 4;
+            }
+
+            return values;
+        }
+
+        /// <summary>  
+        /// byte数组转int二维数组  
+        /// </summary>  
+        /// <param name="src">源byte数组</param>  
+        /// <param name="offset">起始位置</param>  
+        /// <returns></returns>  
+        public static int[,] ToIntTwoArray(this byte[] src, int offset)
+        {
+            int[,] values = new int[src.Length / 8, 2];
+            for (int i = 0; i < src.Length / 8; i++)
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    int value = (src[offset] & 0xFF)
+                              | ((src[offset + 1] & 0xFF) << 8)
+                              | ((src[offset + 2] & 0xFF) << 16)
+                              | ((src[offset + 3] & 0xFF) << 24);
+                    values[i, j] = value;
+
+                    offset += 4;
+                }
+            }
+
+            return values;
+        }
+
+        /// <summary>  
+        /// int数组转byte数组  
+        /// </summary>  
+        /// <param name="src">源int数组</param> 
+        /// <param name="offset">起始位置,一般为0</param>  
+        /// <returns>values</returns>  
+        public static byte[] ToBytes(int[] src, int offset)
+        {
+            byte[] values = new byte[src.Length * 4];
+            for (int i = 0; i < src.Length; i++)
+            {
+                values[offset + 3] = (byte)((src[i] >> 24) & 0xFF);
+                values[offset + 2] = (byte)((src[i] >> 16) & 0xFF);
+                values[offset + 1] = (byte)((src[i] >> 8) & 0xFF);
+                values[offset] = (byte)(src[i] & 0xFF);
+                offset += 4;
+            }
+
+            return values;
+        }
     }
 }

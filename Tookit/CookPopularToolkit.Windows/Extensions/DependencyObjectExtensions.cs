@@ -12,6 +12,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Media3D;
 
@@ -24,6 +25,95 @@ namespace CookPopularToolkit.Windows
 
         public static bool IsDescendantOf(this DependencyObject leaf, DependencyObject? ancestor)
             => ancestor != null && leaf.GetVisualAncestors().Contains(ancestor);
+
+        public static DependencyObject FindVisualTreeRoot(this DependencyObject d)
+        {
+            var current = d;
+            var result = d;
+
+            while (current != null)
+            {
+                result = current;
+                if (current is Visual || current is Visual3D)
+                {
+                    break;
+                }
+                else
+                {
+                    // If we're in Logical Land then we must walk 
+                    // up the logical tree until we find a 
+                    // Visual/Visual3D to get us back to Visual Land.
+                    current = LogicalTreeHelper.GetParent(current);
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// find the visual ancestor by type and go through the visual tree until the given itemsControl will be found
+        /// </summary>
+        public static DependencyObject? GetVisualAncestor(this DependencyObject d, Type? itemSearchType, ItemsControl itemsControl)
+        {
+            if (itemsControl == null) throw new ArgumentNullException(nameof(itemsControl));
+
+            var visualTreeRoot = d.FindVisualTreeRoot();
+            var currentVisual = VisualTreeHelper.GetParent(visualTreeRoot);
+            DependencyObject? lastFoundItemByType = null;
+
+            while (currentVisual != null && itemSearchType != null)
+            {
+                if (currentVisual == itemsControl)
+                {
+                    return lastFoundItemByType;
+                }
+
+                var currentVisualType = currentVisual.GetType();
+                if ((currentVisualType == itemSearchType || currentVisualType.IsSubclassOf(itemSearchType))
+                    && (itemsControl.ItemContainerGenerator.IndexFromContainer(currentVisual) != -1))
+                {
+                    lastFoundItemByType = currentVisual;
+                }
+
+                currentVisual = VisualTreeHelper.GetParent(currentVisual);
+            }
+
+            return lastFoundItemByType;
+        }
+
+        /// <summary>
+        /// find the visual ancestor item by type
+        /// </summary>
+        public static DependencyObject? GetVisualAncestor(this DependencyObject d, Type? itemSearchType, ItemsControl itemsControl, Type itemContainerSearchType)
+        {
+            if (itemsControl == null) throw new ArgumentNullException(nameof(itemsControl));
+            if (itemContainerSearchType == null) throw new ArgumentNullException(nameof(itemContainerSearchType));
+
+            var visualTreeRoot = d.FindVisualTreeRoot();
+            var currentVisual = VisualTreeHelper.GetParent(visualTreeRoot);
+
+            while (currentVisual != null && itemSearchType != null)
+            {
+                var currentVisualType = currentVisual.GetType();
+                if (currentVisualType == itemSearchType || currentVisualType.IsSubclassOf(itemSearchType))
+                {
+                    if (currentVisual is TreeViewItem || itemsControl.ItemContainerGenerator.IndexFromContainer(currentVisual) != -1)
+                    {
+                        return currentVisual;
+                    }
+                }
+
+                if (itemContainerSearchType.IsAssignableFrom(currentVisualType))
+                {
+                    // ok, we found an ItemsControl (maybe an empty)
+                    return null;
+                }
+
+                currentVisual = VisualTreeHelper.GetParent(currentVisual);
+            }
+
+            return null;
+        }
 
         public static IEnumerable<DependencyObject> GetVisualAncestry(this DependencyObject? leaf)
         {
@@ -256,7 +346,6 @@ namespace CookPopularToolkit.Windows
             DependencyObject parent = VisualTreeHelper.GetParent(element);
             return parent == null ? Enumerable.Empty<DependencyObject>() : parent.GetVisualChildren();
         }
-
 
         /// <summary>
         /// Sets the value if different. Avoids setting a local value if possible.

@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net462;net48;netcoreapp3.1;net6.0-windows</TargetFrameworks>
-    <UseWPF>true</UseWPF>
+    <TargetFrameworks>net462;net48;netcoreapp3.1;net6.0-windows</TargetFrameworks>  
     <UseWindowsForms>true</UseWindowsForms>
+    <UseWPF>true</UseWPF>
     <DefineConstants>DESKTOP</DefineConstants>
 
     <Description>Windows平台工具包</Description>
