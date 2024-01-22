@@ -40,15 +40,6 @@ namespace CookPopularUI.WPF.Draggable
             DragOverOrDrop(true, sender, e);
         }
 
-        /// <summary>
-        /// First determine whether the drag data is supported.
-        /// Second determine what type the container is.
-        /// Third determine what operation to do (only copy is supported).
-        /// And finally handle the actual drop when <code>bDrop</code> is true.
-        /// </summary>
-        /// <param name="bDrop">True to perform an actual drop, otherwise just return e.Effects</param>
-        /// <param name="sender">DragDrop event <code>sender</code></param>
-        /// <param name="e">DragDrop event arguments</param>
         private void DragOverOrDrop(bool bDrop, object sender, System.Windows.DragEventArgs e)
         {
             string[]? files = GetData(e) as string[];
