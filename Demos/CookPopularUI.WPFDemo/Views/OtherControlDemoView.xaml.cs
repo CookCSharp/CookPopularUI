@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CookPopularUI.WPF.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,13 @@ namespace CookPopularUI.WPFDemo.Views
         public OtherControlDemoView()
         {
             InitializeComponent();
+
+            dragDropArea.DragDroped += DragDropArea_DragDroped;
+        }
+
+        private void DragDropArea_DragDroped(object sender, string[] files)
+        {
+            tbDropFiles.Text = string.Join(Environment.NewLine, files);
         }
     }
 }

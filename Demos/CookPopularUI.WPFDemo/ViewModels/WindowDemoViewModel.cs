@@ -10,7 +10,6 @@
 
 using CookPopularToolkit.Windows;
 using CookPopularUI.WPF.Controls;
-using CookPopularUI.WPF.Properties;
 using CookPopularUI.WPF.Windows;
 using CookPopularUI.WPFDemo.Views;
 using CookPopularUI.WPFDemo.Windows;
