@@ -15,6 +15,7 @@ CookPopularUI是支持.Net462+、.NetCore3.1、.Net6.0+的一款Xaml控件库。
 - ButtonGroup、ToggleButtonGroup、CheckBoxGroup、RadioButtonGroup
 - PageScroller
 - Extensions <br />
+  CookPopularUI.WPF.BarCode <br />
   CookPopularUI.WPF.QRCode <br />
   CookPopularUI.WPF.Animation <br />
   CookPopularUI.WPF.Draggable <br />
