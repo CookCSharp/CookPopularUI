@@ -31,7 +31,7 @@ namespace CookPopularUI.WPF.Draggable
         /// </summary>
         /// <param name="dropTarget">FrameworkElement monitored for drag events</param>
         /// <param name="dragDropConsumer">Supported data objects</param>
-        public DropManager(FrameworkElement dropTarget, IDataConsumer dragDropConsumer) : this(dropTarget, [dragDropConsumer])
+        public DropManager(FrameworkElement dropTarget, IDataConsumer dragDropConsumer) : this(dropTarget, new IDataConsumer[] { dragDropConsumer })
         {
         }
 
@@ -79,6 +79,11 @@ namespace CookPopularUI.WPF.Draggable
                 _dropTarget.Drop += new DragEventHandler(DropTarget_Drop);
             if (hookDragLeave == true)
                 _dropTarget.DragLeave += new DragEventHandler(DropTarget_DragLeave);
+        }
+
+        public void Unregister()
+        {
+            _dropTarget.AllowDrop = false;
         }
 
         /// <summary>

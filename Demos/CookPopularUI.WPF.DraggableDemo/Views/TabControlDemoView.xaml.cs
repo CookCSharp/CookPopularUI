@@ -21,7 +21,7 @@ namespace CookPopularUI.WPF.DraggableDemo.Views
     /// </summary>
     public partial class TabControlDemoView : UserControl
     {
-        private static readonly FileDropConsumer FileDropDataConsumer = new FileDropConsumer(["FileDrop", "FileNameW",]);
+        private static readonly FileDropConsumer FileDropDataConsumer = new FileDropConsumer(new string[] { "FileDrop", "FileNameW" });
 
 
         public TabControlDemoView()
@@ -29,21 +29,21 @@ namespace CookPopularUI.WPF.DraggableDemo.Views
             InitializeComponent();
 
             // Data Provider
-            TabControlDataProvider<TabControl, TabItem> tabControlDataProvider = new TabControlDataProvider<TabControl, TabItem>("TabItemObject");
+            //TabControlDataProvider<TabControl, TabItem> tabControlDataProvider = new TabControlDataProvider<TabControl, TabItem>("TabItemObject");
             // Data Consumer
-            TabControlDataConsumer<TabControl, TabItem> tabControlDataConsumer = new TabControlDataConsumer<TabControl, TabItem>(["TabItemObject"]);
+            //TabControlDataConsumer<TabControl, TabItem> tabControlDataConsumer = new TabControlDataConsumer<TabControl, TabItem>(new string[] { "TabItemObject" });
 
-            // Drag Managers
-            DragManager dragHelperTabControl1 = new DragManager(tab1, tabControlDataProvider);
-            DragManager dragHelperTabControl2 = new DragManager(tab2, tabControlDataProvider);
-            DragManager dragHelperTabControl3 = new DragManager(tab3, tabControlDataProvider);
-            DragManager dragHelperTabControl4 = new DragManager(tab4, tabControlDataProvider);
+            //// Drag Managers
+            //DragManager dragHelperTabControl1 = new DragManager(tab1, tabControlDataProvider);
+            //DragManager dragHelperTabControl2 = new DragManager(tab2, tabControlDataProvider);
+            //DragManager dragHelperTabControl3 = new DragManager(tab3, tabControlDataProvider);
+            //DragManager dragHelperTabControl4 = new DragManager(tab4, tabControlDataProvider);
 
-            // Drop Managers
-            DropManager dropHelperTabControl1 = new DropManager(tab1, [tabControlDataConsumer, FileDropDataConsumer]);
-            DropManager dropHelperTabControl2 = new DropManager(tab2, [tabControlDataConsumer, FileDropDataConsumer]);
-            DropManager dropHelperTabControl3 = new DropManager(tab3, [tabControlDataConsumer, FileDropDataConsumer]);
-            DropManager dropHelperTabControl4 = new DropManager(tab4, [tabControlDataConsumer, FileDropDataConsumer]);
+            //// Drop Managers
+            //DropManager dropHelperTabControl1 = new DropManager(tab1, new IDataConsumer[] { tabControlDataConsumer, FileDropDataConsumer });
+            //DropManager dropHelperTabControl2 = new DropManager(tab2, new IDataConsumer[] { tabControlDataConsumer, FileDropDataConsumer });
+            //DropManager dropHelperTabControl3 = new DropManager(tab3, new IDataConsumer[] { tabControlDataConsumer, FileDropDataConsumer });
+            //DropManager dropHelperTabControl4 = new DropManager(tab4, new IDataConsumer[] { tabControlDataConsumer, FileDropDataConsumer });
         }
     }
 }

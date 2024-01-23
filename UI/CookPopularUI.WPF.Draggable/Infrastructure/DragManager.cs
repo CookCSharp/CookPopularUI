@@ -61,6 +61,13 @@ namespace CookPopularUI.WPF.Draggable
         {
         }
 
+        public void Unregister()
+        {
+            _dragSource.PreviewMouseLeftButtonDown -= new MouseButtonEventHandler(DragSource_PreviewMouseLeftButtonDown);
+            _dragSource.PreviewMouseMove -= new MouseEventHandler(DragSource_PreviewMouseMove);
+            _dragSource.PreviewMouseLeftButtonUp -= new MouseButtonEventHandler(DragSource_PreviewMouseLeftButtonUp);
+        }
+
         /// <summary>
         /// Check for a supported SourceContainer/SourceObject.
         /// If found, get ready for a possible drag operation.

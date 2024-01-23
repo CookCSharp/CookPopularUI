@@ -72,7 +72,7 @@ namespace CookPopularToolkit.Windows
 
         private static bool TryGetDropInfo(int msg, IntPtr wParam, out string[] dropFilePaths, out InteropValues.POINT dropPoint)
         {
-            dropFilePaths = [];
+            dropFilePaths = new string[] { };
             dropPoint = new InteropValues.POINT();
             if (msg != InteropValues.WM_DROPFILES) return false;
 

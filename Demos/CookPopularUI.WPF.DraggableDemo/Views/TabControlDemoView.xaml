@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:CookPopularUI.WPF.DraggableDemo.Views"
+             xmlns:app="clr-namespace:CookPopularUI.WPF.DraggableDemo"
+             xmlns:ui="https://github.cookpopularui/2021/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              d:DesignHeight="450"
@@ -20,7 +22,11 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <TabControl x:Name="tab1" Grid.Row="0" Grid.Column="0"
-                    TabStripPlacement="Top">
+                    TabStripPlacement="Top"
+                    ui:DragDropData.IsDragSource="True"
+                    ui:DragDropData.IsDropTarget="True"
+                    ui:DragDropData.DataProvider="{x:Static app:Data.TabControlDataProvider}"
+                    ui:DragDropData.DataConsumer="{x:Static app:Data.TabControlDataConsumer}">
             <TabItem Header="TitleTop1">
                 <TextBlock>
                     First Document<LineBreak />
@@ -38,7 +44,11 @@
             </TabItem>
         </TabControl>
         <TabControl x:Name="tab2" Grid.Row="0" Grid.Column="2"
-                    TabStripPlacement="Bottom">
+                    TabStripPlacement="Bottom"
+                    ui:DragDropData.IsDragSource="True"
+                    ui:DragDropData.IsDropTarget="True"
+                    ui:DragDropData.DataProvider="{x:Static app:Data.TabControlDataProvider}"
+                    ui:DragDropData.DataConsumer="{x:Static app:Data.TabControlDataConsumer}">
             <TabItem Header="TitleBottom1">
                 <TextBlock>
                     First Document<LineBreak />
