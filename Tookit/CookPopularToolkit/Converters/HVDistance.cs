@@ -13,7 +13,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 
-namespace CookPopularToolkit.Windows
+namespace CookPopularToolkit
 {
     //[Localizability(LocalizationCategory.None, Readability = Readability.Unreadable)]
     [TypeConverter(typeof(HVDistanceConverter))]

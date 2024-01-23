@@ -22,7 +22,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace CookPopularToolkit.Windows
+namespace CookPopularToolkit
 {
     /// <summary>
     /// Converts instances of other types to and from instances of <see cref="HVDistance"/>
