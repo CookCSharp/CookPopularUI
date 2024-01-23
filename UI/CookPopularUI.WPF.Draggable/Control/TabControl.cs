@@ -148,6 +148,20 @@ namespace CookPopularUI.WPF.Draggable
                     e.Effects = DragDropEffects.Move;
                     e.Handled = true;
                 }
+                else if (dragSource != null && dropTarget == null && dragSourceContainer != null && dropTargetContainer != null && dragSourceContainer != dropTargetContainer)
+                {
+                    if (bDrop)
+                    {
+                        dataProvider.Unparent();
+
+                        dropTargetContainer.Items.Insert(0, dragSource);
+
+                        dragSource.IsSelected = true;
+                    }
+
+                    e.Effects = DragDropEffects.Move;
+                    e.Handled = true;
+                }
                 else
                 {
                     e.Effects = DragDropEffects.None;
