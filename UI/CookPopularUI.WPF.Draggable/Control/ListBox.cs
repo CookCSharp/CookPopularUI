@@ -71,15 +71,6 @@ namespace CookPopularUI.WPF.Draggable
 
         public override void DropTarget_Drop(object sender, System.Windows.DragEventArgs e) => DragOverOrDrop(true, sender, e);
 
-        /// <summary>
-        /// First determine whether the drag data is supported.
-        /// Finally handle the actual drop when <code>bDrop</code> is true.
-        /// Insert the item before the drop target.  When there is no drop
-        /// target (dropped on empty space), add to the end of the items.
-        /// </summary>
-        /// <param name="bDrop">True to perform an actual drop, otherwise just return e.Effects</param>
-        /// <param name="sender">DragDrop event <code>sender</code></param>
-        /// <param name="e">DragDrop event arguments</param>
         private void DragOverOrDrop(bool bDrop, object sender, System.Windows.DragEventArgs e)
         {
             ListBoxDataProvider<TContainer, TObject>? dataProvider = this.GetData(e) as ListBoxDataProvider<TContainer, TObject>;

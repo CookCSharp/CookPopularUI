@@ -39,19 +39,19 @@ namespace CookPopularUI.WPF.Draggable
             return new Point(position.X, position.Y);
         }
 
-        public static T? GetParent<T>(DependencyObject? element) where T : DependencyObject
+        public static T? GetParent<T>(DependencyObject? element, bool isIncludeSelf = true) where T : DependencyObject
         {
             while (element != null)
             {
+                if (isIncludeSelf && element is T)
+                    return element as T;
+
                 if (element is Visual)
                     element = VisualTreeHelper.GetParent(element);
                 else if (element is FrameworkContentElement)
                     element = ((FrameworkContentElement)element).Parent;
                 else
                     element = null;
-
-                if (element is T)
-                    return element as T;
             }
 
             return null;

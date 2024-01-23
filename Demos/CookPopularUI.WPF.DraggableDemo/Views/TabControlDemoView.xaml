@@ -67,7 +67,11 @@
         </TabControl>
 
         <TabControl x:Name="tab3" Grid.Row="2" Grid.Column="0"
-                    TabStripPlacement="Left">
+                    TabStripPlacement="Left"
+                    ui:DragDropData.IsDragSource="True"
+                    ui:DragDropData.IsDropTarget="True"
+                    ui:DragDropData.DataProvider="{x:Static app:Data.TabControlDataProvider}"
+                    ui:DragDropData.DataConsumer="{x:Static app:Data.TabControlDataConsumer}">
             <TabItem Header="TitleLeft1">
                 <TextBlock>
                     First Document<LineBreak />
@@ -85,7 +89,11 @@
             </TabItem>
         </TabControl>
         <TabControl x:Name="tab4" Grid.Row="2" Grid.Column="2"
-                    TabStripPlacement="Right">
+                    TabStripPlacement="Right"
+                    ui:DragDropData.IsDragSource="True"
+                    ui:DragDropData.IsDropTarget="True"
+                    ui:DragDropData.DataProvider="{x:Static app:Data.TabControlDataProvider}"
+                    ui:DragDropData.DataConsumer="{x:Static app:Data.TabControlDataConsumer}">
             <TabItem Header="TitleRight1">
                 <TextBlock>
                     First Document<LineBreak />

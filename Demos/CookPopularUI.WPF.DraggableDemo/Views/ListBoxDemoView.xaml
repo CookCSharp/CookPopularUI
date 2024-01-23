@@ -4,49 +4,121 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:CookPopularUI.WPF.DraggableDemo.Views"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ui="https://github.cookpopularui/2021/xaml"
+             xmlns:app="clr-namespace:CookPopularUI.WPF.DraggableDemo"
              mc:Ignorable="d"
              d:DesignHeight="450"
              d:DesignWidth="800">
 
     <Grid Margin="10,0">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="10" />
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
-            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="10" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <ListBox x:Name="listBox1" Grid.Column="0">
-            <ListBoxItem Content="List Item X1" />
-            <ListBoxItem Content="List Item X2" />
-            <ListBoxItem Content="List Item X3" />
-            <ListBoxItem Content="List Item X4" />
-            <ListBoxItem Content="List Item X5" />
-            <ListBoxItem Content="List Item X6" />
-            <ListBoxItem Content="List Item X7" />
-            <ListBoxItem Content="List Item X8" />
-            <ListBoxItem Content="List Item X9" />
-            <ListBoxItem Content="List Item X10" />
-            <ListBoxItem Content="List Item X11" />
-            <ListBoxItem Content="List Item X12" />
-            <ListBoxItem Content="List Item X13" />
-            <ListBoxItem Content="List Item X14" />
-            <ListBoxItem Content="List Item X15" />
+        <ListBox Grid.Column="0"
+                 ui:DragDropData.IsDragSource="True"
+                 ui:DragDropData.IsDropTarget="True"
+                 ui:DragDropData.DataProvider="{x:Static app:Data.ListBoxDataProvider}"
+                 ui:DragDropData.DataConsumer="{x:Static app:Data.ListBoxDataConsumer}">
+            <ListBoxItem Content="List Item HX1" />
+            <ListBoxItem Content="List Item HX2" />
+            <ListBoxItem Content="List Item HX3" />
+            <ListBoxItem Content="List Item HX4" />
+            <ListBoxItem Content="List Item HX5" />
+            <ListBoxItem Content="List Item HX6" />
+            <ListBoxItem Content="List Item HX7" />
+            <ListBoxItem Content="List Item HX8" />
+            <ListBoxItem Content="List Item HX9" />
+            <ListBoxItem Content="List Item HX10" />
+            <ListBoxItem Content="List Item HX11" />
+            <ListBoxItem Content="List Item HX12" />
+            <ListBoxItem Content="List Item HX13" />
+            <ListBoxItem Content="List Item HX14" />
+            <ListBoxItem Content="List Item HX15" />
         </ListBox>
-        <ListBox x:Name="listBox2" Grid.Column="2">
-            <ListBoxItem Content="List Item Y1" />
-            <ListBoxItem Content="List Item Y2" />
-            <ListBoxItem Content="List Item Y3" />
-            <ListBoxItem Content="List Item Y4" />
-            <ListBoxItem Content="List Item Y5" />
-            <ListBoxItem Content="List Item Y6" />
-            <ListBoxItem Content="List Item Y7" />
-            <ListBoxItem Content="List Item Y8" />
-            <ListBoxItem Content="List Item Y9" />
-            <ListBoxItem Content="List Item Y10" />
-            <ListBoxItem Content="List Item Y11" />
-            <ListBoxItem Content="List Item Y12" />
-            <ListBoxItem Content="List Item Y13" />
-            <ListBoxItem Content="List Item Y14" />
-            <ListBoxItem Content="List Item Y15" />
+        <ListBox Grid.Column="2"
+                 ui:DragDropData.IsDragSource="True"
+                 ui:DragDropData.IsDropTarget="True"
+                 ui:DragDropData.DataProvider="{x:Static app:Data.ListBoxDataProvider}"
+                 ui:DragDropData.DataConsumer="{x:Static app:Data.ListBoxDataConsumer}">
+            <ListBoxItem Content="List Item HY1" />
+            <ListBoxItem Content="List Item HY2" />
+            <ListBoxItem Content="List Item HY3" />
+            <ListBoxItem Content="List Item HY4" />
+            <ListBoxItem Content="List Item HY5" />
+            <ListBoxItem Content="List Item HY6" />
+            <ListBoxItem Content="List Item HY7" />
+            <ListBoxItem Content="List Item HY8" />
+            <ListBoxItem Content="List Item HY9" />
+            <ListBoxItem Content="List Item HY10" />
+            <ListBoxItem Content="List Item HY11" />
+            <ListBoxItem Content="List Item HY12" />
+            <ListBoxItem Content="List Item HY13" />
+            <ListBoxItem Content="List Item HY14" />
+            <ListBoxItem Content="List Item HY15" />
+        </ListBox>
+
+        <ListBox Grid.Row="2" Grid.ColumnSpan="3"
+                 ui:DragDropData.IsDragSource="True"
+                 ui:DragDropData.IsDropTarget="True"
+                 ui:DragDropData.DataProvider="{x:Static app:Data.ListBoxDataProvider}"
+                 ui:DragDropData.DataConsumer="{x:Static app:Data.ListBoxDataConsumer}"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBoxItem Content="List Item VX1" />
+            <ListBoxItem Content="List Item VX2" />
+            <ListBoxItem Content="List Item VX3" />
+            <ListBoxItem Content="List Item VX4" />
+            <ListBoxItem Content="List Item VX5" />
+            <ListBoxItem Content="List Item VX6" />
+            <ListBoxItem Content="List Item VX7" />
+            <ListBoxItem Content="List Item VX8" />
+            <ListBoxItem Content="List Item VX9" />
+            <ListBoxItem Content="List Item VX10" />
+            <ListBoxItem Content="List Item VX11" />
+            <ListBoxItem Content="List Item VX12" />
+            <ListBoxItem Content="List Item VX13" />
+            <ListBoxItem Content="List Item VX14" />
+            <ListBoxItem Content="List Item VX15" />
+        </ListBox>
+        <ListBox Grid.Row="4" Grid.ColumnSpan="3"
+                 ui:DragDropData.IsDragSource="True"
+                 ui:DragDropData.IsDropTarget="True"
+                 ui:DragDropData.DataProvider="{x:Static app:Data.ListBoxDataProvider}"
+                 ui:DragDropData.DataConsumer="{x:Static app:Data.ListBoxDataConsumer}"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBoxItem Content="List Item VY1" />
+            <ListBoxItem Content="List Item VY2" />
+            <ListBoxItem Content="List Item VY3" />
+            <ListBoxItem Content="List Item VY4" />
+            <ListBoxItem Content="List Item VY5" />
+            <ListBoxItem Content="List Item VY6" />
+            <ListBoxItem Content="List Item VY7" />
+            <ListBoxItem Content="List Item VY8" />
+            <ListBoxItem Content="List Item VY9" />
+            <ListBoxItem Content="List Item VY10" />
+            <ListBoxItem Content="List Item VY11" />
+            <ListBoxItem Content="List Item VY12" />
+            <ListBoxItem Content="List Item VY13" />
+            <ListBoxItem Content="List Item VY14" />
+            <ListBoxItem Content="List Item VY15" />
         </ListBox>
     </Grid>
 

@@ -10,7 +10,12 @@ namespace CookPopularUI.WPF.DraggableDemo
 {
     public class Data
     {
-        public static readonly TabControlDataProvider<TabControl, TabItem> TabControlDataProvider = new TabControlDataProvider<TabControl, TabItem>("TabItemObject");
-        public static readonly TabControlDataConsumer<TabControl, TabItem> TabControlDataConsumer = new TabControlDataConsumer<TabControl, TabItem>(new string[] { "TabItemObject" });
+        public static readonly FileDropConsumer FileDropDataConsumer = new FileDropConsumer(new string[] { "FileDrop", "FileNameW" });
+
+        public static readonly TabControlDataProvider<TabControl, TabItem> TabControlDataProvider = new TabControlDataProvider<TabControl, TabItem>("TabControlObject");
+        public static readonly TabControlDataConsumer<TabControl, TabItem> TabControlDataConsumer = new TabControlDataConsumer<TabControl, TabItem>(new string[] { "TabControlObject" });
+
+        public static readonly ListBoxDataProvider<ListBox, ListBoxItem> ListBoxDataProvider = new ListBoxDataProvider<ListBox, ListBoxItem>("ListBoxObject");
+        public static readonly ListBoxDataConsumer<ListBox, ListBoxItem> ListBoxDataConsumer = new ListBoxDataConsumer<ListBox, ListBoxItem>(new string[] { "ListBoxObject" });
     }
 }
