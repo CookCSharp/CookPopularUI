@@ -52,6 +52,9 @@ namespace CookPopularUI.WPF.Draggable
                     element = ((FrameworkContentElement)element).Parent;
                 else
                     element = null;
+
+                if (!isIncludeSelf && element is T)
+                    return element as T;
             }
 
             return null;

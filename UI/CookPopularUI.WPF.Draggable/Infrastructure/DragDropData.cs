@@ -65,7 +65,7 @@ namespace CookPopularUI.WPF.Draggable
 
             if (element != null && (!isDragSource || dataProvider == null))
             {
-                if (DragManagerCache.TryGetValue(element, out DragManager dragManager))
+                if (DragManagerCache.TryGetValue(element, out DragManager? dragManager))
                 {
                     dragManager.Unregister();
                     DragManagerCache.Remove(element);
@@ -74,7 +74,7 @@ namespace CookPopularUI.WPF.Draggable
 
             if (element != null && (!isDropTarget || dataConsumer == null))
             {
-                if (DropManagerCache.TryGetValue(element, out DropManager dropManager))
+                if (DropManagerCache.TryGetValue(element, out DropManager? dropManager))
                 {
                     dropManager.Unregister();
                     DropManagerCache.Remove(element);

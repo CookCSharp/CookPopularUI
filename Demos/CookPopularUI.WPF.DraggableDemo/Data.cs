@@ -17,5 +17,8 @@ namespace CookPopularUI.WPF.DraggableDemo
 
         public static readonly ListBoxDataProvider<ListBox, ListBoxItem> ListBoxDataProvider = new ListBoxDataProvider<ListBox, ListBoxItem>("ListBoxObject");
         public static readonly ListBoxDataConsumer<ListBox, ListBoxItem> ListBoxDataConsumer = new ListBoxDataConsumer<ListBox, ListBoxItem>(new string[] { "ListBoxObject" });
+
+        public static readonly TreeViewDataProvider<ItemsControl, TreeViewItem> TreeViewDataProvider = new TreeViewDataProvider<ItemsControl, TreeViewItem>("TreeViewObject");
+        public static readonly TreeViewDataConsumer<ItemsControl, TreeViewItem> TreeViewDataConsumer = new TreeViewDataConsumer<ItemsControl, TreeViewItem>(new string[] { "TreeViewObject" });
     }
 }
