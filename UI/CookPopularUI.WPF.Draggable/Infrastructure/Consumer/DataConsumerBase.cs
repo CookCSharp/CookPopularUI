@@ -29,7 +29,8 @@ namespace CookPopularUI.WPF.Draggable
         /// </summary>
         private string[] _dataFormats;
 
-        public abstract DataConsumerActions DataConsumerActions { get; }
+        public virtual DataConsumerActions DataConsumerActions
+            => DataConsumerActions.DragEnter | DataConsumerActions.DragOver | DataConsumerActions.Drop | DataConsumerActions.None;
 
         /// <summary>
         /// Create a Data Consumer that supports the specified data formats
@@ -74,22 +75,27 @@ namespace CookPopularUI.WPF.Draggable
 
         public virtual void DropTarget_DragEnter(object sender, System.Windows.DragEventArgs e)
         {
-            throw new NotImplementedException("DragEnter not implemented");
+            DragOverOrDrop(false, sender, e);
         }
 
         public virtual void DropTarget_DragOver(object sender, System.Windows.DragEventArgs e)
         {
-            throw new NotImplementedException("DragOver not implemented");
+            DragOverOrDrop(false, sender, e);
         }
 
         public virtual void DropTarget_Drop(object sender, System.Windows.DragEventArgs e)
         {
-            throw new NotImplementedException("Drop not implemented");
+            DragOverOrDrop(true, sender, e);
         }
 
         public virtual void DropTarget_DragLeave(object sender, System.Windows.DragEventArgs e)
         {
-            throw new NotImplementedException("DragLeave not implemented");
+            DragOverOrDrop(false, sender, e);
+        }
+
+        public virtual void DragOverOrDrop(bool bDrop, object sender, System.Windows.DragEventArgs e)
+        {
+            throw new NotImplementedException("DragOverOrDrop not implemented");
         }
     }
 }

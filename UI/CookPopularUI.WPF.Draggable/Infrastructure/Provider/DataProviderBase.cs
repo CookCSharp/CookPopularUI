@@ -15,6 +15,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Xml.Linq;
 
 namespace CookPopularUI.WPF.Draggable
 {
@@ -29,8 +31,8 @@ namespace CookPopularUI.WPF.Draggable
     {
         public virtual bool AddAdorner => false;
         public virtual bool NeedsCaptureMouse => false;
-        public abstract DragDropEffects AllowedEffects { get; }
-        public abstract DataProviderActions DataProviderActions { get; }
+        public virtual DragDropEffects AllowedEffects => DragDropEffects.Move | DragDropEffects.Link | DragDropEffects.None;
+        public virtual DataProviderActions DataProviderActions => DataProviderActions.QueryContinueDrag | DataProviderActions.GiveFeedback | DataProviderActions.None;
         public DefaultAdorner DragAdorner { get; set; }
         public Point StartPosition { get; set; }
         public object SourceContainer { get; set; }
@@ -116,7 +118,16 @@ namespace CookPopularUI.WPF.Draggable
 
         public virtual void DragSource_GiveFeedback(object sender, GiveFeedbackEventArgs e)
         {
-            throw new NotImplementedException("GiveFeedback not implemented");
+            if (e.Effects == DragDropEffects.Move)
+            {
+                e.UseDefaultCursors = true;
+                e.Handled = true;
+            }
+            else if (e.Effects == DragDropEffects.Link)
+            {
+                e.UseDefaultCursors = true;
+                e.Handled = true;
+            }
         }
 
         public virtual void DoDragDrop_Done(DragDropEffects resultEffects)
@@ -126,7 +137,14 @@ namespace CookPopularUI.WPF.Draggable
 
         public virtual void Unparent()
         {
-            throw new NotImplementedException("Unparent not implemented");
+            TSourceContainer? container = SourceContainer as TSourceContainer;
+            TSourceObject? item = SourceObject as TSourceObject;
+
+            Debug.Assert(item != null, "Unparent expects a non-null item");
+            Debug.Assert(container != null, "Unparent expects a non-null container");
+
+            if (container != null && item != null && container is ItemsControl itemsControl)
+                itemsControl.Items.Remove(item);
         }
     }
 }

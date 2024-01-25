@@ -21,17 +21,12 @@ using System.Windows.Input;
 
 namespace CookPopularUI.WPF.Draggable
 {
-    public class TabControlDataProvider<TContainer, TObject> : DataProviderBase<TContainer, TObject>, IDataProvider
-        where TContainer : ItemsControl
-        where TObject : TabItem
+    public class TabControlDataProvider<TContainer, TObject> : DataProviderBase<TContainer, TObject> where TContainer : ItemsControl where TObject : TabItem
     {
         private static Cursor MovePageCursor = new Cursor(System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("CookPopularUI.WPF.Draggable.Assets.MovePage.cur"));
         private static Cursor MovePageNotCursor = new Cursor(System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("CookPopularUI.WPF.Draggable.Assets.MovePageNot.cur"));
 
         public TabControlDataProvider(string dataFormatString) : base(dataFormatString) { }
-
-        public override DragDropEffects AllowedEffects => DragDropEffects.None | DragDropEffects.Move | DragDropEffects.Link;
-        public override DataProviderActions DataProviderActions => DataProviderActions.None | DataProviderActions.GiveFeedback;
 
         public override void DragSource_GiveFeedback(object sender, GiveFeedbackEventArgs e)
         {
@@ -54,37 +49,13 @@ namespace CookPopularUI.WPF.Draggable
                 e.Handled = true;
             }
         }
-
-        public override void Unparent()
-        {
-            TObject? item = SourceObject as TObject;
-            TContainer? container = SourceContainer as TContainer;
-
-            Debug.Assert(item != null, "Unparent expects a non-null item");
-            Debug.Assert(container != null, "Unparent expects a non-null container");
-
-            if ((container != null) && (item != null))
-                container.Items.Remove(item);
-        }
     }
 
-
-    public class TabControlDataConsumer<TContainer, TObject> : DataConsumerBase, IDataConsumer
-        where TContainer : ItemsControl
-        where TObject : TabItem
+    public class TabControlDataConsumer<TContainer, TObject> : DataConsumerBase where TContainer : ItemsControl where TObject : TabItem
     {
         public TabControlDataConsumer(string[] dataFormats) : base(dataFormats) { }
 
-        public override DataConsumerActions DataConsumerActions =>
-            DataConsumerActions.DragEnter | DataConsumerActions.DragOver | DataConsumerActions.Drop | DataConsumerActions.None;
-
-        public override void DropTarget_DragEnter(object sender, System.Windows.DragEventArgs e) => DragOverOrDrop(false, sender, e);
-
-        public override void DropTarget_DragOver(object sender, System.Windows.DragEventArgs e) => DragOverOrDrop(false, sender, e);
-
-        public override void DropTarget_Drop(object sender, System.Windows.DragEventArgs e) => DragOverOrDrop(true, sender, e);
-
-        private void DragOverOrDrop(bool bDrop, object sender, System.Windows.DragEventArgs e)
+        public override void DragOverOrDrop(bool bDrop, object sender, System.Windows.DragEventArgs e)
         {
             TabControlDataProvider<TContainer, TObject>? dataProvider = GetData(e) as TabControlDataProvider<TContainer, TObject>;
             if (dataProvider != null)

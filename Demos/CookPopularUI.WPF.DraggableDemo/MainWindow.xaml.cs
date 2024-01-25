@@ -33,8 +33,8 @@ namespace CookPopularUI.WPF.DraggableDemo
             InitializeComponent();
 
             this.DataContext = this;
-            DemoViewNames = new ObservableCollection<string>() { "TreeView" };
-            //DemoViewNames = new ObservableCollection<string>() { "ListBox", "TabControl", "TreeView" };
+            //DemoViewNames = new ObservableCollection<string>() { "TreeView" };
+            DemoViewNames = new ObservableCollection<string>() { "ListBox", "TabControl", "TreeView" };
 
 
             //dragDropPanelHost1.ItemsSource = panels1;

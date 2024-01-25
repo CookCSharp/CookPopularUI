@@ -19,30 +19,9 @@ using System.Windows.Controls;
 
 namespace CookPopularUI.WPF.Draggable
 {
-    public class TreeViewDataProvider<TContainer, TObject> : DataProviderBase<TContainer, TObject>, IDataProvider
-        where TContainer : ItemsControl
-        where TObject : ItemsControl
+    public class TreeViewDataProvider<TContainer, TObject> : DataProviderBase<TContainer, TObject> where TContainer : ItemsControl where TObject : ItemsControl
     {
-
         public TreeViewDataProvider(string dataFormatString) : base(dataFormatString) { }
-
-        public override DragDropEffects AllowedEffects => DragDropEffects.Move | DragDropEffects.Link | DragDropEffects.None;
-
-        public override DataProviderActions DataProviderActions => DataProviderActions.QueryContinueDrag | DataProviderActions.GiveFeedback | DataProviderActions.None;
-
-        public override void DragSource_GiveFeedback(object sender, GiveFeedbackEventArgs e)
-        {
-            if (e.Effects == DragDropEffects.Move)
-            {
-                e.UseDefaultCursors = true;
-                e.Handled = true;
-            }
-            else if (e.Effects == DragDropEffects.Link)
-            {
-                e.UseDefaultCursors = true;
-                e.Handled = true;
-            }
-        }
 
         public override void Unparent()
         {
@@ -57,22 +36,11 @@ namespace CookPopularUI.WPF.Draggable
         }
     }
 
-    public class TreeViewDataConsumer<TContainer, TObject> : DataConsumerBase, IDataConsumer
-        where TContainer : ItemsControl
-        where TObject : ItemsControl
+    public class TreeViewDataConsumer<TContainer, TObject> : DataConsumerBase where TContainer : ItemsControl where TObject : ItemsControl
     {
-
         public TreeViewDataConsumer(string[] dataFormats) : base(dataFormats) { }
 
-        public override DataConsumerActions DataConsumerActions => DataConsumerActions.DragEnter | DataConsumerActions.DragOver | DataConsumerActions.Drop | DataConsumerActions.None;
-
-        public override void DropTarget_DragEnter(object sender, System.Windows.DragEventArgs e) => DragOverOrDrop(false, sender, e);
-
-        public override void DropTarget_DragOver(object sender, System.Windows.DragEventArgs e) => DragOverOrDrop(false, sender, e);
-
-        public override void DropTarget_Drop(object sender, System.Windows.DragEventArgs e) => DragOverOrDrop(true, sender, e);
-
-        private void DragOverOrDrop(bool bDrop, object sender, DragEventArgs e)
+        public override void DragOverOrDrop(bool bDrop, object sender, DragEventArgs e)
         {
             TreeViewDataProvider<TContainer, TObject>? dataProvider = GetData(e) as TreeViewDataProvider<TContainer, TObject>;
             if (dataProvider != null)
@@ -82,23 +50,23 @@ namespace CookPopularUI.WPF.Draggable
                 Debug.Assert(dragSourceContainer != null);
                 Debug.Assert(dragSourceObject != null);
 
-                TContainer? dropContainer = Interop.GetParent<TContainer>(sender as DependencyObject);
-                Debug.Assert(dropContainer != null);
+                TContainer? dropTargetContainer = Interop.GetParent<TContainer>(sender as DependencyObject);
+                Debug.Assert(dropTargetContainer != null);
                 TObject? dropTarget = e.Source as TObject;
 
                 if (dropTarget == null)
                 {
-                    if (bDrop)
+                    if (bDrop && dropTargetContainer != null)
                     {
                         dataProvider.Unparent();
-                        dropContainer.Items.Add(dragSourceObject);
+                        dropTargetContainer.Items.Add(dragSourceObject);
                     }
                     e.Effects = DragDropEffects.Move;
                     e.Handled = true;
                 }
                 else
                 {
-                    bool IsAncestor = dragSourceObject.IsAncestorOf(dropTarget);
+                    bool IsAncestor = dragSourceObject!.IsAncestorOf(dropTarget);
                     if ((dataProvider.KeyStates & DragDropKeyStates.ShiftKey) != 0)
                     {
                         ItemsControl? shiftDropTarget = Interop.GetParent<ItemsControl>(dropTarget, false);
@@ -109,7 +77,7 @@ namespace CookPopularUI.WPF.Draggable
                             {
                                 dataProvider.Unparent();
                                 Debug.Assert(shiftDropTarget != null);
-                                shiftDropTarget.Items.Insert(shiftDropTarget.Items.IndexOf(dropTarget), dragSourceObject);
+                                shiftDropTarget!.Items.Insert(shiftDropTarget.Items.IndexOf(dropTarget), dragSourceObject);
                             }
                             e.Effects = DragDropEffects.Link;
                             e.Handled = true;
@@ -141,7 +109,7 @@ namespace CookPopularUI.WPF.Draggable
                 }
                 if (bDrop && e.Handled && (e.Effects != DragDropEffects.None))
                 {
-                    dragSourceObject.IsSelected = true;
+                    dragSourceObject!.IsSelected = true;
                     dragSourceObject.BringIntoView();
                 }
             }

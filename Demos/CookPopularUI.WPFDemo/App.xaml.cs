@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using CookPopularUI.WPF.Controls;
-using CookPopularUI.WPF.Properties;
 using CookPopularUI.WPF.Themes;
 using CookPopularUI.WPFDemo.Views;
 using Prism.DryIoc;
