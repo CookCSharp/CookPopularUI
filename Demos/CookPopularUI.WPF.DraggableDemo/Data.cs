@@ -25,15 +25,16 @@ namespace CookPopularUI.WPF.DraggableDemo
         public static readonly ToolBarDataProvider<ToolBar, Button> ToolBarButtonDataProvider = new ToolBarDataProvider<ToolBar, Button>("ToolbarObject");
         public static readonly ToolBarDataConsumer<ToolBar, Button> ToolBarButtonDataConsumer = new ToolBarDataConsumer<ToolBar, Button>(new string[] { "ToolbarObject" });
 
+        public static readonly PanelDataProvider<Panel, FrameworkElement> PanelDataProvider = new PanelDataProvider<Panel, FrameworkElement>("PanelObject");
+        public static readonly PanelDataConsumer<Panel, FrameworkElement> PanelDataConsumer = new PanelDataConsumer<Panel, FrameworkElement>(new string[] { "PanelObject" });
+
         public static readonly TrashConsumer TrashConsumer = new TrashConsumer(new string[]
         {
             "TabControlObject",
             "ListBoxObject",
             "TreeViewObject",
             "ToolbarObject",
-            "CanvasTextBlockObject",
-            "CanvasRectangleObject",
-            "CanvasButtonObject",
+            "PanelObject",
         });
     }
 }

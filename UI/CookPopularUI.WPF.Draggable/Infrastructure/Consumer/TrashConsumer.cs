@@ -18,6 +18,12 @@ using System.Windows.Controls;
 
 namespace CookPopularUI.WPF.Draggable
 {
+    /// <summary>
+    /// 垃圾回收器
+    /// </summary>
+    /// <remarks>
+    /// 针对于任意<see cref="FrameworkElement"/>的控件都可为垃圾容器
+    /// </remarks>
     public class TrashConsumer : DataConsumerBase
     {
         public TrashConsumer(string[] dataFormats) : base(dataFormats) { }

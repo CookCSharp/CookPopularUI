@@ -109,7 +109,7 @@ namespace CookPopularUI.WPF.Draggable
                         var position = e.GetPosition(dropTargetContainer);
                         var item = dropTargetContainer.GetItemContainerAt(position);
                         var currentPosion = e.GetPosition(item);
-                        GetIndex(dropTargetContainer, item, currentPosion, ref insertIndex);
+                        Interop.GetIndex(dropTargetContainer, item, currentPosion, ref insertIndex);
 
                         dropTargetContainer.Items.Insert(insertIndex, dragSource);
 
@@ -141,10 +141,10 @@ namespace CookPopularUI.WPF.Draggable
             }
         }
 
-        private int GetIndex(TContainer dropTargetContainer, UIElement? element, Point point, ref int index)
+        private void GetIndex(TContainer dropTargetContainer, UIElement? element, Point point, ref int index)
         {
             if (dropTargetContainer == null || element == null)
-                return index;
+                return;
 
             var currentXPos = point.X;
             var currentYPos = point.Y;
@@ -168,8 +168,6 @@ namespace CookPopularUI.WPF.Draggable
                     }
                 }
             }
-
-            return index;
         }
     }
 }

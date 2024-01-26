@@ -16,6 +16,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace CookPopularUI.WPF.Draggable
@@ -58,6 +59,75 @@ namespace CookPopularUI.WPF.Draggable
             }
 
             return null;
+        }
+
+        public static void GetIndex(FrameworkElement dropTargetContainer, UIElement? element, Point point, ref int index)
+        {
+            if (dropTargetContainer == null || element == null)
+                return;
+
+            var currentXPos = point.X;
+            var currentYPos = point.Y;
+            var targetWidth = element.RenderSize.Width;
+            var targetHeight = element.RenderSize.Height;
+
+            if (dropTargetContainer is TabControl tab)
+            {
+                if (tab.TabStripPlacement == Dock.Top || tab.TabStripPlacement == Dock.Bottom)
+                {
+                    Get(Orientation.Horizontal, ref index);
+                }
+                else
+                {
+                    Get(Orientation.Vertical, ref index);
+                }
+            }
+            else if (dropTargetContainer is StackPanel stackPanel)
+            {
+                Get(stackPanel.Orientation, ref index);
+            }
+            else if (dropTargetContainer is WrapPanel wrapPanel)
+            {
+                Get(wrapPanel.Orientation, ref index);
+            }
+            else if (dropTargetContainer is DockPanel dockPanel)
+            {
+                if (dockPanel.Children.Count <= 0)
+                {
+                    index = 0;
+                }
+                else
+                {
+                    var child = dockPanel.Children[0];
+                    var dock = DockPanel.GetDock(child);
+                    if (dock == Dock.Left || dock == Dock.Right)
+                    {
+                        Get(Orientation.Horizontal, ref index);
+                    }
+                    else
+                    {
+                        Get(Orientation.Vertical, ref index);
+                    }
+                }
+            }
+
+            void Get(Orientation orientation, ref int index)
+            {
+                if (orientation == Orientation.Horizontal)
+                {
+                    if (currentXPos > targetWidth / 2)
+                    {
+                        index += 1;
+                    }
+                }
+                else
+                {
+                    if (currentYPos > targetHeight / 2)
+                    {
+                        index += 1;
+                    }
+                }
+            }
         }
     }
 }

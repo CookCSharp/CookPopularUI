@@ -18,29 +18,13 @@ using System.Windows.Media;
 
 namespace CookPopularUI.WPF.Draggable
 {
-    /// <summary>
-    /// This data consumer creates an item for every entry in a string array.
-    /// It is meant to consume a FileDrop or a FileNameW.
-    /// 
-    /// It knows how to create items for a TabControl, ListBox or TreeView.
-    /// </summary>
     public class FileDropConsumer : DataConsumerBase
     {
         public FileDropConsumer(string[] dataFormats) : base(dataFormats) { }
 
         public override DataConsumerActions DataConsumerActions => DataConsumerActions.DragOver | DataConsumerActions.Drop | DataConsumerActions.None;
 
-        public override void DropTarget_DragOver(object sender, System.Windows.DragEventArgs e)
-        {
-            DragOverOrDrop(false, sender, e);
-        }
-
-        public override void DropTarget_Drop(object sender, System.Windows.DragEventArgs e)
-        {
-            DragOverOrDrop(true, sender, e);
-        }
-
-        private void DragOverOrDrop(bool bDrop, object sender, System.Windows.DragEventArgs e)
+        public override void DragOverOrDrop(bool bDrop, object sender, System.Windows.DragEventArgs e)
         {
             string[]? files = GetData(e) as string[];
             if (files != null)
@@ -102,8 +86,7 @@ namespace CookPopularUI.WPF.Draggable
                         }
                         // No need to loop through multiple
                         // files if we're not dropping them
-                        if (!bDrop)
-                            break;
+                        if (!bDrop) break;
                     }
                 }
                 e.Handled = true;

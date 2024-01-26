@@ -53,7 +53,7 @@ namespace CookPopularUI.WPF.Draggable
 
                         dataProvider.Unparent();
 
-                        if(dragSourceContainer != dropTargetContainer)
+                        if (dragSourceContainer != dropTargetContainer)
                         {
                             index = dropTargetContainer.Items.IndexOf(dropTarget);
                         }
