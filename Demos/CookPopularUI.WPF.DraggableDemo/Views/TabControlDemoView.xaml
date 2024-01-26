@@ -20,6 +20,8 @@
             <ColumnDefinition />
             <ColumnDefinition Width="20" />
             <ColumnDefinition />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <TabControl x:Name="tab1" Grid.Row="0" Grid.Column="0"
                     TabStripPlacement="Top"
@@ -110,6 +112,15 @@
                     Drag it</TextBlock>
             </TabItem>
         </TabControl>
+
+        <Border Grid.Column="4"
+                Grid.RowSpan="3"
+                BorderBrush="Red" BorderThickness="1"
+                Background="#FFF4F4"
+                ui:DragDropData.DataConsumer="{x:Static app:Data.TrashConsumer}"
+                ui:DragDropData.IsDropTarget="True">
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">TRASH!</TextBlock>
+        </Border>
     </Grid>
 
 </UserControl>

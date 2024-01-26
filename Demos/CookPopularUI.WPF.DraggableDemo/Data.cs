@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace CookPopularUI.WPF.DraggableDemo
@@ -23,5 +24,16 @@ namespace CookPopularUI.WPF.DraggableDemo
 
         public static readonly ToolBarDataProvider<ToolBar, Button> ToolBarButtonDataProvider = new ToolBarDataProvider<ToolBar, Button>("ToolbarObject");
         public static readonly ToolBarDataConsumer<ToolBar, Button> ToolBarButtonDataConsumer = new ToolBarDataConsumer<ToolBar, Button>(new string[] { "ToolbarObject" });
+
+        public static readonly TrashConsumer TrashConsumer = new TrashConsumer(new string[]
+        {
+            "TabControlObject",
+            "ListBoxObject",
+            "TreeViewObject",
+            "ToolbarObject",
+            "CanvasTextBlockObject",
+            "CanvasRectangleObject",
+            "CanvasButtonObject",
+        });
     }
 }

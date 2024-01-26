@@ -30,7 +30,7 @@ namespace CookPopularUI.WPF.Draggable
 
         public override void DragOverOrDrop(bool bDrop, object sender, System.Windows.DragEventArgs e)
         {
-            ListBoxDataProvider<TContainer, TObject>? dataProvider = this.GetData(e) as ListBoxDataProvider<TContainer, TObject>;
+            ListBoxDataProvider<TContainer, TObject>? dataProvider = GetData(e) as ListBoxDataProvider<TContainer, TObject>;
             if (dataProvider != null)
             {
                 TContainer? dragSourceContainer = dataProvider.SourceContainer as TContainer;

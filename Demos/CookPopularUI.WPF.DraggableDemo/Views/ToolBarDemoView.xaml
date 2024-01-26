@@ -10,6 +10,11 @@
              d:DesignHeight="450"
              d:DesignWidth="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
         <ToolBarTray>
             <ToolBar ui:DragDropData.DataConsumer="{x:Static app:Data.ToolBarButtonDataConsumer}"
                      ui:DragDropData.DataProvider="{x:Static app:Data.ToolBarButtonDataProvider}"
@@ -19,8 +24,21 @@
             <ToolBar ui:DragDropData.DataConsumer="{x:Static app:Data.ToolBarButtonDataConsumer}"
                      ui:DragDropData.DataProvider="{x:Static app:Data.ToolBarButtonDataProvider}"
                      ui:DragDropData.IsDragSource="True" ui:DragDropData.IsDropTarget="True">
-                <Button Content="No" ToolTip="Okay" />
+                <Button Content="No" ToolTip="No" />
+            </ToolBar>
+            <ToolBar ui:DragDropData.DataConsumer="{x:Static app:Data.ToolBarButtonDataConsumer}"
+                     ui:DragDropData.DataProvider="{x:Static app:Data.ToolBarButtonDataProvider}"
+                     ui:DragDropData.IsDragSource="True" ui:DragDropData.IsDropTarget="True">
+                <Button Content="Cancel" ToolTip="Cancel" />
             </ToolBar>
         </ToolBarTray>
+        
+        <Border Grid.Column="2"
+                BorderBrush="Red" BorderThickness="1"
+                Background="#FFF4F4"
+                ui:DragDropData.DataConsumer="{x:Static app:Data.TrashConsumer}"
+                ui:DragDropData.IsDropTarget="True">
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">TRASH!</TextBlock>
+        </Border>
     </Grid>
 </UserControl>

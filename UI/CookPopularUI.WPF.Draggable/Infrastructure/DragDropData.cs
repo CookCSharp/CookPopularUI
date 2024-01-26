@@ -54,7 +54,7 @@ namespace CookPopularUI.WPF.Draggable
 
         private static void Init(DependencyObject dependencyObject)
         {
-            if (dependencyObject is not ItemsControl) return;
+            if (dependencyObject is not FrameworkElement) return;
 
             var isDragSource = GetIsDragSource(dependencyObject);
             var isDropTarget = GetIsDropTarget(dependencyObject);

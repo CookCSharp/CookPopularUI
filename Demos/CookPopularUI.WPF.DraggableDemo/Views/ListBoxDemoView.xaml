@@ -22,6 +22,8 @@
             <ColumnDefinition />
             <ColumnDefinition Width="10" />
             <ColumnDefinition />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <ListBox Grid.Column="0"
                  ui:DragDropData.DataConsumer="{x:Static app:Data.ListBoxDataConsumer}"
@@ -38,10 +40,6 @@
             <ListBoxItem Content="List Item HX9" />
             <ListBoxItem Content="List Item HX10" />
             <ListBoxItem Content="List Item HX11" />
-            <ListBoxItem Content="List Item HX12" />
-            <ListBoxItem Content="List Item HX13" />
-            <ListBoxItem Content="List Item HX14" />
-            <ListBoxItem Content="List Item HX15" />
         </ListBox>
         <ListBox Grid.Column="2"
                  ui:DragDropData.DataConsumer="{x:Static app:Data.ListBoxDataConsumer}"
@@ -58,10 +56,6 @@
             <ListBoxItem Content="List Item HY9" />
             <ListBoxItem Content="List Item HY10" />
             <ListBoxItem Content="List Item HY11" />
-            <ListBoxItem Content="List Item HY12" />
-            <ListBoxItem Content="List Item HY13" />
-            <ListBoxItem Content="List Item HY14" />
-            <ListBoxItem Content="List Item HY15" />
         </ListBox>
 
         <ListBox Grid.Row="2"
@@ -86,10 +80,6 @@
             <ListBoxItem Content="List Item VX9" />
             <ListBoxItem Content="List Item VX10" />
             <ListBoxItem Content="List Item VX11" />
-            <ListBoxItem Content="List Item VX12" />
-            <ListBoxItem Content="List Item VX13" />
-            <ListBoxItem Content="List Item VX14" />
-            <ListBoxItem Content="List Item VX15" />
         </ListBox>
         <ListBox Grid.Row="4"
                  Grid.ColumnSpan="3"
@@ -113,11 +103,16 @@
             <ListBoxItem Content="List Item VY9" />
             <ListBoxItem Content="List Item VY10" />
             <ListBoxItem Content="List Item VY11" />
-            <ListBoxItem Content="List Item VY12" />
-            <ListBoxItem Content="List Item VY13" />
-            <ListBoxItem Content="List Item VY14" />
-            <ListBoxItem Content="List Item VY15" />
         </ListBox>
+
+        <Border Grid.Column="4"
+                Grid.RowSpan="5"
+                BorderBrush="Red" BorderThickness="1"
+                Background="#FFF4F4"
+                ui:DragDropData.DataConsumer="{x:Static app:Data.TrashConsumer}"
+                ui:DragDropData.IsDropTarget="True">
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">TRASH!</TextBlock>
+        </Border>
     </Grid>
 
 </UserControl>

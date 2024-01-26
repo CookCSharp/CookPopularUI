@@ -14,6 +14,8 @@
             <ColumnDefinition />
             <ColumnDefinition Width="20" />
             <ColumnDefinition />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <TreeView Grid.Column="0"
                   ui:DragDropData.DataConsumer="{x:Static app:Data.TreeViewDataConsumer}"
@@ -49,5 +51,13 @@
                 <TreeViewItem Header="Kid 6" />
             </TreeViewItem>
         </TreeView>
+
+        <Border Grid.Column="4"
+                BorderBrush="Red" BorderThickness="1"
+                Background="#FFF4F4"
+                ui:DragDropData.DataConsumer="{x:Static app:Data.TrashConsumer}"
+                ui:DragDropData.IsDropTarget="True">
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">TRASH!</TextBlock>
+        </Border>
     </Grid>
 </UserControl>
