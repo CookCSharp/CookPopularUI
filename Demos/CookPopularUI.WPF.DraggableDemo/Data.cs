@@ -20,5 +20,8 @@ namespace CookPopularUI.WPF.DraggableDemo
 
         public static readonly TreeViewDataProvider<ItemsControl, TreeViewItem> TreeViewDataProvider = new TreeViewDataProvider<ItemsControl, TreeViewItem>("TreeViewObject");
         public static readonly TreeViewDataConsumer<ItemsControl, TreeViewItem> TreeViewDataConsumer = new TreeViewDataConsumer<ItemsControl, TreeViewItem>(new string[] { "TreeViewObject" });
+
+        public static readonly ToolBarDataProvider<ToolBar, Button> ToolBarButtonDataProvider = new ToolBarDataProvider<ToolBar, Button>("ToolbarObject");
+        public static readonly ToolBarDataConsumer<ToolBar, Button> ToolBarButtonDataConsumer = new ToolBarDataConsumer<ToolBar, Button>(new string[] { "ToolbarObject" });
     }
 }
