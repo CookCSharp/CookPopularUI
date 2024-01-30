@@ -42,7 +42,22 @@ namespace CookPopularToolkit.Windows
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            return new SolidColorBrush((System.Windows.Media.Color)value);
+        }
+    }
+
+    [MarkupExtensionReturnType(typeof(System.Windows.Media.Brush))]
+    [Localizability(LocalizationCategory.NeverLocalize)]
+    public class ColorToBrushConverter : MarkupExtensionBase, IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return new SolidColorBrush((System.Windows.Media.Color)value);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return ((SolidColorBrush)value).Color;
         }
     }
 }

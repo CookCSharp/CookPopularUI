@@ -83,6 +83,7 @@ namespace CookPopularUI.WPFDemo
             containerRegistry.RegisterForNavigation<ToolBarDemoView>();
             containerRegistry.RegisterForNavigation<ToggleButtonDemoView>();
             containerRegistry.RegisterForNavigation<TreeViewDemoView>();
+            containerRegistry.RegisterForNavigation<VirtualizingWrapPanelDemoView>();
             containerRegistry.RegisterForNavigation<WindowDemoView>();
 
             containerRegistry.RegisterForNavigation<HomeDemoView>();
@@ -94,7 +95,7 @@ namespace CookPopularUI.WPFDemo
             UnityContainer = Container;
 
             var regionManager = Container.Resolve<IRegionManager>();
-            regionManager.RegisterViewWithRegion<HomeDemoView>("MainWindowContent");
+            regionManager.RegisterViewWithRegion<VirtualizingWrapPanelDemoView>("MainWindowContent");
         }
 
         protected override Window CreateShell()

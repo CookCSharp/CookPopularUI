@@ -1,5 +1,5 @@
 ﻿/*
- *Description: VirtualizingGrid
+ *Description: VirtualizingGridView
  *Author: Chance.zheng
  *Creat Time: 2023/12/7 15:08:13
  *.Net Version: 4.6
@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows;
+using System.Windows.Input;
 
 namespace CookPopularUI.WPF.Controls
 {
@@ -24,16 +25,18 @@ namespace CookPopularUI.WPF.Controls
     /// until the items are wrapped to the next row or column. The control is using virtualization to support large amount of items.
     /// <p class="note">In order to work properly all items must have the same size.</p>
     /// </summary>
-    public class VirtualizingGrid : ListView
+    public class VirtualizingGridView : ListView
     {
-        public static readonly DependencyProperty OrientationProperty = DependencyProperty.Register(nameof(Orientation), typeof(Orientation), typeof(GridView), new FrameworkPropertyMetadata(Orientation.Vertical));
+        public static readonly DependencyProperty OrientationProperty = DependencyProperty.Register(nameof(Orientation), typeof(Orientation), typeof(VirtualizingGridView), new FrameworkPropertyMetadata(Orientation.Horizontal));
 
-        public static readonly DependencyProperty SpacingModeProperty = DependencyProperty.Register(nameof(SpacingMode), typeof(SpacingMode), typeof(GridView), new FrameworkPropertyMetadata(SpacingMode.Uniform));
+        public static readonly DependencyProperty SpacingModeProperty = DependencyProperty.Register(nameof(SpacingMode), typeof(SpacingMode), typeof(VirtualizingGridView), new FrameworkPropertyMetadata(SpacingMode.Uniform));
 
-        public static readonly DependencyProperty StretchItemsProperty = DependencyProperty.Register(nameof(StretchItems), typeof(bool), typeof(GridView), new FrameworkPropertyMetadata(false));
+        public static readonly DependencyProperty StretchItemsProperty = DependencyProperty.Register(nameof(StretchItems), typeof(bool), typeof(VirtualizingGridView), new FrameworkPropertyMetadata(false));
+
+        public static readonly DependencyProperty IsWrappingKeyboardNavigationEnabledProperty = DependencyProperty.Register(nameof(IsWrappingKeyboardNavigationEnabled), typeof(bool), typeof(VirtualizingGridView), new FrameworkPropertyMetadata(false));
 
         /// <summary>
-        /// Gets or sets a value that specifies the orientation in which items are arranged. The default value is <see cref="Orientation.Vertical"/>.
+        /// Gets or sets a value that specifies the orientation in which items are arranged. The default value is <see cref="Orientation.Horizontal"/>.
         /// </summary>
         public Orientation Orientation { get => (Orientation)GetValue(OrientationProperty); set => SetValue(OrientationProperty, value); }
 
@@ -51,9 +54,14 @@ namespace CookPopularUI.WPF.Controls
         /// </remarks>
         public bool StretchItems { get => (bool)GetValue(StretchItemsProperty); set => SetValue(StretchItemsProperty, value); }
 
-        static VirtualizingGrid()
+        /// <summary>
+        /// Enables a improved wrapping keyboard navigation. The default value is false.
+        /// </summary>
+        public bool IsWrappingKeyboardNavigationEnabled { get => (bool)GetValue(IsWrappingKeyboardNavigationEnabledProperty); set => SetValue(IsWrappingKeyboardNavigationEnabledProperty, value); }
+
+        static VirtualizingGridView()
         {
-            ItemContainerStyleProperty.OverrideMetadata(typeof(GridView), new FrameworkPropertyMetadata(new Style
+            ItemContainerStyleProperty.OverrideMetadata(typeof(VirtualizingGridView), new FrameworkPropertyMetadata(new Style
             {
                 Setters = {
                     new Setter {
@@ -76,7 +84,7 @@ namespace CookPopularUI.WPF.Controls
             }));
         }
 
-        public VirtualizingGrid()
+        public VirtualizingGridView()
         {
             var factory = new FrameworkElementFactory(typeof(VirtualizingWrapPanel));
             factory.SetBinding(VirtualizingWrapPanel.OrientationProperty, new Binding
@@ -103,6 +111,54 @@ namespace CookPopularUI.WPF.Controls
             VirtualizingPanel.SetCacheLength(this, new VirtualizationCacheLength(1));
 
             VirtualizingPanel.SetIsVirtualizingWhenGrouping(this, true);
+
+            PreviewKeyDown += VirtualizingGridView_PreviewKeyDown;
+        }
+
+        private void VirtualizingGridView_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (!IsWrappingKeyboardNavigationEnabled) return;
+
+            var gridView = (VirtualizingGridView)sender;
+
+            var currentItem = gridView.ItemContainerGenerator.ItemFromContainer((DependencyObject)Keyboard.FocusedElement);
+
+            int targetIndex;
+            if (Orientation == Orientation.Horizontal)
+            {
+                switch (e.Key)
+                {
+                    case Key.Left:
+                        targetIndex = gridView.Items.IndexOf(currentItem) - 1;
+                        break;
+                    case Key.Right:
+                        targetIndex = gridView.Items.IndexOf(currentItem) + 1;
+                        break;
+                    default:
+                        return;
+                }
+            }
+            else
+            {
+                switch (e.Key)
+                {
+                    case Key.Up:
+                        targetIndex = gridView.Items.IndexOf(currentItem) - 1;
+                        break;
+                    case Key.Down:
+                        targetIndex = gridView.Items.IndexOf(currentItem) + 1;
+                        break;
+                    default:
+                        return;
+                }
+            }
+
+            if (targetIndex >= 0 && targetIndex < gridView.Items.Count)
+            {
+                ((UIElement)gridView.ItemContainerGenerator.ContainerFromIndex(targetIndex)).Focus();
+            }
+
+            e.Handled = true;
         }
     }
 }

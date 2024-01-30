@@ -21,11 +21,11 @@ namespace CookPopularUI.WPF.Controls
     /// If an item is clicked the item gots expanded until it is clicked again or an other item is clicked and gots expanded.
     /// <p class="note">In order to work properly all items must have the same size.</p>
     /// </summary>
-    public partial class VirtualizingGridDetailsVIew : VirtualizingGrid
+    public partial class VirtualizingGridDetailsView : VirtualizingGridView
     {
-        public static readonly DependencyProperty ExpandedItemTemplateProperty = DependencyProperty.Register(nameof(ExpandedItemTemplate), typeof(DataTemplate), typeof(VirtualizingGridDetailsVIew), new FrameworkPropertyMetadata(null));
+        public static readonly DependencyProperty ExpandedItemTemplateProperty = DependencyProperty.Register(nameof(ExpandedItemTemplate), typeof(DataTemplate), typeof(VirtualizingGridDetailsView), new FrameworkPropertyMetadata(null));
 
-        public static readonly DependencyProperty ExpandedItemProperty = DependencyProperty.Register(nameof(ExpandedItem), typeof(object), typeof(VirtualizingGridDetailsVIew), new FrameworkPropertyMetadata(null));
+        public static readonly DependencyProperty ExpandedItemProperty = DependencyProperty.Register(nameof(ExpandedItem), typeof(object), typeof(VirtualizingGridDetailsView), new FrameworkPropertyMetadata(null));
 
         /// <summary>Gets or sets the data template used for the item expansion.</summary>
         public DataTemplate? ExpandedItemTemplate { get => (DataTemplate?)GetValue(ExpandedItemTemplateProperty); set => SetValue(ExpandedItemTemplateProperty, value); }
@@ -38,7 +38,7 @@ namespace CookPopularUI.WPF.Controls
         private bool animateExpansion = false;
         private bool animateCloseExpansion = false;
 
-        public VirtualizingGridDetailsVIew()
+        public VirtualizingGridDetailsView()
         {
             InitializeComponent();
         }
@@ -71,13 +71,13 @@ namespace CookPopularUI.WPF.Controls
 
                     double sourceHeight = MaxContainerSize;
 
-                    for (int i = 20; i >= 0; i--)
+                    for (int i = 10; i >= 0; i--)
                     {
                         if (!animateCloseExpansion)
                         {
                             return;
                         }
-                        MaxContainerSize = (sourceHeight / 20) * i;
+                        MaxContainerSize = (sourceHeight / 10) * i;
                         if (i != 0)
                         {
                             await Task.Delay(15);
@@ -97,7 +97,6 @@ namespace CookPopularUI.WPF.Controls
 
             if (expandedItemContainerRoot == null)
             {
-
                 expandedItemContainerRoot = (FrameworkElement)sender;
                 MaxContainerSize = 0;
 
@@ -134,7 +133,7 @@ namespace CookPopularUI.WPF.Controls
                 {
                     throw new NullReferenceException($"{nameof(expandedItemContainerRoot)} is null");
                 }
-                if (Orientation == Orientation.Vertical)
+                if (Orientation == Orientation.Horizontal)
                 {
                     return expandedItemContainerRoot.DesiredSize.Height;
                 }
@@ -153,7 +152,7 @@ namespace CookPopularUI.WPF.Controls
                 {
                     throw new NullReferenceException($"{nameof(expandedItemContainerRoot)} is null");
                 }
-                if (Orientation == Orientation.Vertical)
+                if (Orientation == Orientation.Horizontal)
                 {
                     return expandedItemContainerRoot.MaxHeight;
                 }
@@ -168,7 +167,7 @@ namespace CookPopularUI.WPF.Controls
                 {
                     throw new NullReferenceException($"{nameof(expandedItemContainerRoot)} is null");
                 }
-                if (Orientation == Orientation.Vertical)
+                if (Orientation == Orientation.Horizontal)
                 {
                     expandedItemContainerRoot.MaxHeight = value;
                 }

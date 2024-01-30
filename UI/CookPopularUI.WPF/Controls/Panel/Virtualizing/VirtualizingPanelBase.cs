@@ -29,6 +29,40 @@ namespace CookPopularUI.WPF.Controls
         Horizontal
     }
 
+    /// <summary>
+    /// Specifies how remaining space is distributed.
+    /// </summary>
+    public enum SpacingMode
+    {
+        /// <summary>
+        /// Spacing is disabled and all items will be arranged as closely as possible.
+        /// </summary>
+        None,
+        /// <summary>
+        /// The remaining space is evenly distributed between the items on a layout row, as well as the start and end of each row.
+        /// </summary>
+        Uniform,
+        /// <summary>
+        /// The remaining space is evenly distributed between the items on a layout row, excluding the start and end of each row.
+        /// </summary>
+        BetweenItemsOnly,
+        /// <summary>
+		/// The remaining space is evenly distributed between start and end of each row.
+		/// </summary>
+        StartAndEndOnly
+    }
+
+    /// <summary>
+    /// Provides the size of items displayed in an VirtualizingPanel.
+    /// </summary>
+    public interface IItemSizeProvider
+    {
+        /// <summary>
+        /// Gets the size for the specified item.
+        /// </summary>
+        Size GetSizeForItem(object item);
+    }
+
     /****
      * 摘自 https://github.com/sbaeumlisberger/VirtualizingWrapPanel
      */
@@ -43,11 +77,9 @@ namespace CookPopularUI.WPF.Controls
         public static readonly DependencyProperty MouseWheelDeltaItemProperty = DependencyProperty.Register(nameof(MouseWheelDeltaItem), typeof(int), typeof(VirtualizingPanelBase), new FrameworkPropertyMetadata(3));
 
         public ScrollViewer? ScrollOwner { get; set; }
-        
+
         public bool CanVerticallyScroll { get; set; }
         public bool CanHorizontallyScroll { get; set; }
-
-        protected override bool CanHierarchicallyScrollAndVirtualizeCore => true;
 
         /// <summary>
         /// Scroll line delta for pixel based scrolling. The default value is 16 dp.
@@ -62,7 +94,7 @@ namespace CookPopularUI.WPF.Controls
         /// <summary>
         /// Scroll line delta for item based scrolling. The default value is 1 item.
         /// </summary>
-        public double ScrollLineDeltaItem { get => (int)GetValue(ScrollLineDeltaItemProperty); set => SetValue(ScrollLineDeltaItemProperty, value); }
+        public int ScrollLineDeltaItem { get => (int)GetValue(ScrollLineDeltaItemProperty); set => SetValue(ScrollLineDeltaItemProperty, value); }
 
         /// <summary>
         /// Mouse wheel delta for item based scrolling. The default value is 3 items.
@@ -76,7 +108,6 @@ namespace CookPopularUI.WPF.Controls
         /// </summary>
         protected ScrollDirection MouseWheelScrollDirection { get; set; } = ScrollDirection.Vertical;
 
-
         protected bool IsVirtualizing => GetIsVirtualizing(ItemsControl);
 
         protected VirtualizationMode VirtualizationMode => GetVirtualizationMode(ItemsControl);
@@ -87,21 +118,9 @@ namespace CookPopularUI.WPF.Controls
         protected bool IsRecycling => VirtualizationMode == VirtualizationMode.Recycling;
 
         /// <summary>
-        /// The cache length before and after the viewport. 
-        /// </summary>
-        protected VirtualizationCacheLength CacheLength { get; private set; }
-
-        /// <summary>
-        /// The Unit of the cache length. Can be Pixel, Item or Page. 
-        /// When the ItemsOwner is a group item it can only be pixel or item.
-        /// </summary>
-        protected VirtualizationCacheLengthUnit CacheLengthUnit { get; private set; }
-
-
-        /// <summary>
         /// The ItemsControl (e.g. ListView).
         /// </summary>
-        protected ItemsControl ItemsControl => ItemsControl.GetItemsOwner(this);
+        public ItemsControl ItemsControl => ItemsControl.GetItemsOwner(this);
 
         /// <summary>
         /// The ItemsControl (e.g. ListView) or if the ItemsControl is grouping a GroupItem.
@@ -129,325 +148,178 @@ namespace CookPopularUI.WPF.Controls
         }
         private DependencyObject? _itemsOwner;
 
-        protected ReadOnlyCollection<object?> Items => ((ItemContainerGenerator)ItemContainerGenerator).Items;
+        protected ReadOnlyCollection<object> Items => ItemContainerGenerator.Items;
 
-        protected new IRecyclingItemContainerGenerator ItemContainerGenerator
+        protected IRecyclingItemContainerGenerator RecyclingItemContainerGenerator => ItemContainerGenerator;
+
+        protected new ItemContainerGenerator ItemContainerGenerator
         {
             get
             {
                 if (_itemContainerGenerator is null)
                 {
-                    /* Because of a bug in the framework the ItemContainerGenerator 
-                     * is null until InternalChildren accessed at least one time. */
-                    var children = InternalChildren;
-                    _itemContainerGenerator = (IRecyclingItemContainerGenerator)base.ItemContainerGenerator;
+                    // The ItemContainerGenerator is null until InternalChildren is accessed at least one time.
+                    _ = InternalChildren;
+                    _itemContainerGenerator = base.ItemContainerGenerator.GetItemContainerGeneratorForPanel(this);
+
                 }
                 return _itemContainerGenerator;
             }
         }
-        private IRecyclingItemContainerGenerator? _itemContainerGenerator;
+        private ItemContainerGenerator? _itemContainerGenerator;
 
         public double ExtentWidth => Extent.Width;
         public double ExtentHeight => Extent.Height;
-        protected Size Extent { get; private set; } = new Size(0, 0);
 
-        public double HorizontalOffset => Offset.X;
-        public double VerticalOffset => Offset.Y;
-        protected Size Viewport { get; private set; } = new Size(0, 0);
+        public double HorizontalOffset => ScrollOffset.X;
+        public double VerticalOffset => ScrollOffset.Y;
 
-        public double ViewportWidth => Viewport.Width;
-        public double ViewportHeight => Viewport.Height;
-        protected Point Offset { get; private set; } = new Point(0, 0);
+        public double ViewportWidth => ViewportSize.Width;
+        public double ViewportHeight => ViewportSize.Height;
 
-        /// <summary>
-        /// The range of items that a realized in viewport or cache.
-        /// </summary>
-        protected ItemRange ItemRange { get; set; }
+        protected Size Extent { get; set; } = new Size(0, 0);
+        protected Size ViewportSize { get; set; } = new Size(0, 0);
+        protected Point ScrollOffset { get; set; } = new Point(0, 0);
 
         private Visibility previousVerticalScrollBarVisibility = Visibility.Collapsed;
         private Visibility previousHorizontalScrollBarVisibility = Visibility.Collapsed;
 
-        protected virtual void UpdateScrollInfo(Size availableSize, Size extent)
+        protected bool ShouldIgnoreMeasure()
         {
-            bool invalidateScrollInfo = false;
+            /* Sometimes when scrolling the scrollbar gets hidden without any reason. 
+             * To prevent a infinite circle the mesasure call has to be ignored. */
 
-            if (extent != Extent)
-            {
-                Extent = extent;
-                invalidateScrollInfo = true;
+            IScrollInfo scrollInfo = this;
+            ScrollViewer? scrollOwner = ScrollOwner;
 
-            }
-            if (availableSize != Viewport)
+            if (ItemsOwner is GroupItem groupItem
+                && VisualTreeHelper.GetParent(groupItem) is IScrollInfo parentScrollInfo
+                && parentScrollInfo.ScrollOwner is { } parentScrollOwner)
             {
-                Viewport = availableSize;
-                invalidateScrollInfo = true;
-            }
-
-            if (ViewportHeight != 0 && VerticalOffset != 0 && VerticalOffset + ViewportHeight + 1 >= ExtentHeight)
-            {
-                Offset = new Point(Offset.X, extent.Height - availableSize.Height);
-                invalidateScrollInfo = true;
-            }
-            if (ViewportWidth != 0 && HorizontalOffset != 0 && HorizontalOffset + ViewportWidth + 1 >= ExtentWidth)
-            {
-                Offset = new Point(extent.Width - availableSize.Width, Offset.Y);
-                invalidateScrollInfo = true;
+                scrollInfo = parentScrollInfo;
+                scrollOwner = parentScrollOwner;
             }
 
-            if (invalidateScrollInfo)
+            if (scrollOwner != null)
             {
-                ScrollOwner?.InvalidateScrollInfo();
+                bool verticalScrollBarGotHidden = scrollOwner.VerticalScrollBarVisibility == ScrollBarVisibility.Auto
+                    && scrollOwner.ComputedVerticalScrollBarVisibility != Visibility.Visible
+                    && scrollOwner.ComputedVerticalScrollBarVisibility != previousVerticalScrollBarVisibility;
+
+                bool horizontalScrollBarGotHidden = scrollOwner.HorizontalScrollBarVisibility == ScrollBarVisibility.Auto
+                   && scrollOwner.ComputedHorizontalScrollBarVisibility != Visibility.Visible
+                   && scrollOwner.ComputedHorizontalScrollBarVisibility != previousHorizontalScrollBarVisibility;
+
+                previousVerticalScrollBarVisibility = scrollOwner.ComputedVerticalScrollBarVisibility;
+                previousHorizontalScrollBarVisibility = scrollOwner.ComputedHorizontalScrollBarVisibility;
+
+                if ((verticalScrollBarGotHidden && scrollInfo.ExtentHeight > scrollInfo.ViewportHeight)
+                    || (horizontalScrollBarGotHidden && scrollInfo.ExtentWidth > scrollInfo.ViewportWidth))
+                {
+                    return true;
+                }
             }
+            return false;
         }
 
         public virtual Rect MakeVisible(Visual visual, Rect rectangle)
         {
             var transformedBounds = visual.TransformToAncestor(this).TransformBounds(rectangle);
 
-            double scrollAmountX = 0;
-            double scrollAmountY = 0;
+            double offsetX = 0;
+            double offsetY = 0;
+
+            double visibleX = 0;
+            double visibleY = 0;
+            double visibleWidth = Math.Min(rectangle.Width, ViewportWidth);
+            double visibleHeight = Math.Min(rectangle.Height, ViewportHeight);
 
             if (transformedBounds.Left < 0)
             {
-                scrollAmountX = transformedBounds.Left;
+                offsetX = transformedBounds.Left;
             }
             else if (transformedBounds.Right > ViewportWidth)
             {
-                scrollAmountX = Math.Min(transformedBounds.Right - ViewportWidth, transformedBounds.Left); ;
+                offsetX = Math.Min(transformedBounds.Right - ViewportWidth, transformedBounds.Left);
+
+                if (rectangle.Width > ViewportWidth)
+                {
+                    visibleX = rectangle.Width - ViewportWidth;
+                }
             }
 
             if (transformedBounds.Top < 0)
             {
-                scrollAmountY = transformedBounds.Top;
+                offsetY = transformedBounds.Top;
             }
             else if (transformedBounds.Bottom > ViewportHeight)
             {
-                scrollAmountY = Math.Min(transformedBounds.Bottom - ViewportHeight, transformedBounds.Top);
-            }
+                offsetY = Math.Min(transformedBounds.Bottom - ViewportHeight, transformedBounds.Top);
 
-            SetHorizontalOffset(HorizontalOffset + scrollAmountX);
-            SetVerticalOffset(VerticalOffset + scrollAmountY);
-
-            double visibleRectWidth = Math.Min(transformedBounds.Width, Viewport.Width);
-            double visibleRectHeight = Math.Min(transformedBounds.Height, Viewport.Height);
-
-            return new Rect(transformedBounds.X, transformedBounds.Y, visibleRectWidth, visibleRectHeight);
-        }
-
-        protected override void OnItemsChanged(object sender, ItemsChangedEventArgs args)
-        {
-            switch (args.Action)
-            {
-                case NotifyCollectionChangedAction.Remove:
-                case NotifyCollectionChangedAction.Replace:
-                    RemoveInternalChildRange(args.Position.Index, args.ItemUICount);
-                    break;
-                case NotifyCollectionChangedAction.Move:
-                    RemoveInternalChildRange(args.OldPosition.Index, args.ItemUICount);
-                    break;
-            }
-        }
-
-        protected int GetItemIndexFromChildIndex(int childIndex)
-        {
-            var generatorPosition = GetGeneratorPositionFromChildIndex(childIndex);
-            return ItemContainerGenerator.IndexFromGeneratorPosition(generatorPosition);
-        }
-
-        protected virtual GeneratorPosition GetGeneratorPositionFromChildIndex(int childIndex)
-        {
-            return new GeneratorPosition(childIndex, 0);
-        }
-
-        protected override Size MeasureOverride(Size availableSize)
-        {
-            /* Sometimes when scrolling the scrollbar gets hidden without any reason. In this case the "IsMeasureValid" 
-             * property of the ScrollOwner is false. To prevent a infinite circle the mesasure call is ignored. */
-            if (ScrollOwner != null)
-            {
-                bool verticalScrollBarGotHidden = ScrollOwner.VerticalScrollBarVisibility == ScrollBarVisibility.Auto
-                    && ScrollOwner.ComputedVerticalScrollBarVisibility != Visibility.Visible
-                    && ScrollOwner.ComputedVerticalScrollBarVisibility != previousVerticalScrollBarVisibility;
-
-                bool horizontalScrollBarGotHidden = ScrollOwner.HorizontalScrollBarVisibility == ScrollBarVisibility.Auto
-                   && ScrollOwner.ComputedHorizontalScrollBarVisibility != Visibility.Visible
-                   && ScrollOwner.ComputedHorizontalScrollBarVisibility != previousHorizontalScrollBarVisibility;
-
-                previousVerticalScrollBarVisibility = ScrollOwner.ComputedVerticalScrollBarVisibility;
-                previousHorizontalScrollBarVisibility = ScrollOwner.ComputedHorizontalScrollBarVisibility;
-
-                if (!ScrollOwner.IsMeasureValid && verticalScrollBarGotHidden || horizontalScrollBarGotHidden)
+                if (rectangle.Height > ViewportHeight)
                 {
-                    return availableSize;
+                    visibleY = rectangle.Height - ViewportHeight;
                 }
             }
 
-            var groupItem = ItemsOwner as IHierarchicalVirtualizationAndScrollInfo;
+            SetHorizontalOffset(HorizontalOffset + offsetX);
+            SetVerticalOffset(VerticalOffset + offsetY);
 
-            Size extent;
-            Size desiredSize;
-
-            if (groupItem != null)
-            {
-                /* If the ItemsOwner is a group item the availableSize is ifinity. 
-                 * Therfore the vieport size provided by the group item is used. */
-                var viewportSize = groupItem.Constraints.Viewport.Size;
-                var headerSize = groupItem.HeaderDesiredSizes.PixelSize;
-                double availableWidth = Math.Max(viewportSize.Width - 5, 0); // left margin of 5 dp
-                double availableHeight = Math.Max(viewportSize.Height - headerSize.Height, 0);
-                availableSize = new Size(availableWidth, availableHeight);
-
-                extent = CalculateExtent(availableSize);
-
-                desiredSize = new Size(extent.Width, extent.Height);
-
-                Extent = extent;
-                Offset = groupItem.Constraints.Viewport.Location;
-                Viewport = groupItem.Constraints.Viewport.Size;
-                CacheLength = groupItem.Constraints.CacheLength;
-                CacheLengthUnit = groupItem.Constraints.CacheLengthUnit; // can be Item or Pixel
-            }
-            else
-            {
-                extent = CalculateExtent(availableSize);
-                double desiredWidth = Math.Min(availableSize.Width, extent.Width);
-                double desiredHeight = Math.Min(availableSize.Height, extent.Height);
-                desiredSize = new Size(desiredWidth, desiredHeight);
-
-                UpdateScrollInfo(desiredSize, extent);
-                CacheLength = GetCacheLength(ItemsOwner);
-                CacheLengthUnit = GetCacheLengthUnit(ItemsOwner); // can be Page, Item or Pixel
-            }
-
-            ItemRange = UpdateItemRange();
-
-            RealizeItems();
-            VirtualizeItems();
-
-            return desiredSize;
+            return new Rect(visibleX, visibleY, visibleWidth, visibleHeight);
         }
-
-        /// <summary>
-        /// Realizes visible and cached items.
-        /// </summary>
-        protected virtual void RealizeItems()
-        {
-            var startPosition = ItemContainerGenerator.GeneratorPositionFromIndex(ItemRange.StartIndex);
-
-            int childIndex = startPosition.Offset == 0 ? startPosition.Index : startPosition.Index + 1;
-
-            using (ItemContainerGenerator.StartAt(startPosition, GeneratorDirection.Forward, true))
-            {
-                for (int i = ItemRange.StartIndex; i <= ItemRange.EndIndex; i++, childIndex++)
-                {
-                    UIElement child = (UIElement)ItemContainerGenerator.GenerateNext(out bool isNewlyRealized);
-                    if (isNewlyRealized || /*recycled*/!InternalChildren.Contains(child))
-                    {
-                        if (childIndex >= InternalChildren.Count)
-                        {
-                            AddInternalChild(child);
-                        }
-                        else
-                        {
-                            InsertInternalChild(childIndex, child);
-                        }
-                        ItemContainerGenerator.PrepareItemContainer(child);
-
-                        child.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
-                    }
-
-                    if (child is IHierarchicalVirtualizationAndScrollInfo groupItem)
-                    {
-                        groupItem.Constraints = new HierarchicalVirtualizationConstraints(
-                            new VirtualizationCacheLength(0),
-                            VirtualizationCacheLengthUnit.Item,
-                            new Rect(0, 0, ViewportWidth, ViewportHeight));
-                        child.Measure(new Size(ViewportWidth, ViewportHeight));
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Virtualizes (cleanups) no longer visible or cached items.
-        /// </summary>
-        protected virtual void VirtualizeItems()
-        {
-            for (int childIndex = InternalChildren.Count - 1; childIndex >= 0; childIndex--)
-            {
-                var generatorPosition = GetGeneratorPositionFromChildIndex(childIndex);
-
-                int itemIndex = ItemContainerGenerator.IndexFromGeneratorPosition(generatorPosition);
-
-                if (itemIndex != -1 && !ItemRange.Contains(itemIndex))
-                {
-                    if (VirtualizationMode == VirtualizationMode.Recycling)
-                    {
-                        ItemContainerGenerator.Recycle(generatorPosition, 1);
-                    }
-                    else
-                    {
-                        ItemContainerGenerator.Remove(generatorPosition, 1);
-                    }
-                    RemoveInternalChildRange(childIndex, 1);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Calculates the extent that would be needed to show all items.
-        /// </summary>
-        protected abstract Size CalculateExtent(Size availableSize);
-
-        /// <summary>
-        /// Calculates the item range that is visible in the viewport or cached.
-        /// </summary>
-        protected abstract ItemRange UpdateItemRange();
 
         public void SetVerticalOffset(double offset)
         {
-            if (offset < 0 || Viewport.Height >= Extent.Height)
+            if (offset < 0 || ViewportSize.Height >= Extent.Height)
             {
                 offset = 0;
             }
-            else if (offset + Viewport.Height >= Extent.Height)
+            else if (offset + ViewportSize.Height >= Extent.Height)
             {
-                offset = Extent.Height - Viewport.Height;
+                offset = Extent.Height - ViewportSize.Height;
             }
-            Offset = new Point(Offset.X, offset);
-            ScrollOwner?.InvalidateScrollInfo();
-            InvalidateMeasure();
+            if (offset != ScrollOffset.Y)
+            {
+                ScrollOffset = new Point(ScrollOffset.X, offset);
+                ScrollOwner?.InvalidateScrollInfo();
+                InvalidateMeasure();
+            }
         }
 
         public void SetHorizontalOffset(double offset)
         {
-            if (offset < 0 || Viewport.Width >= Extent.Width)
+            if (offset < 0 || ViewportSize.Width >= Extent.Width)
             {
                 offset = 0;
             }
-            else if (offset + Viewport.Width >= Extent.Width)
+            else if (offset + ViewportSize.Width >= Extent.Width)
             {
-                offset = Extent.Width - Viewport.Width;
+                offset = Extent.Width - ViewportSize.Width;
             }
-            Offset = new Point(offset, Offset.Y);
-            ScrollOwner?.InvalidateScrollInfo();
-            InvalidateMeasure();
+            if (offset != ScrollOffset.X)
+            {
+                ScrollOffset = new Point(offset, ScrollOffset.Y);
+                ScrollOwner?.InvalidateScrollInfo();
+                InvalidateMeasure();
+            }
         }
 
-        protected void ScrollVertical(double amount)
+        public void LineUp()
         {
-            SetVerticalOffset(VerticalOffset + amount);
+            ScrollVertical(ScrollUnit == ScrollUnit.Pixel ? -ScrollLineDelta : GetLineUpScrollAmount());
         }
-
-        protected void ScrollHorizontal(double amount)
+        public void LineDown()
         {
-            SetHorizontalOffset(HorizontalOffset + amount);
+            ScrollVertical(ScrollUnit == ScrollUnit.Pixel ? ScrollLineDelta : GetLineDownScrollAmount());
         }
-
-        public void LineUp() => ScrollVertical(ScrollUnit == ScrollUnit.Pixel ? -ScrollLineDelta : GetLineUpScrollAmount());
-        public void LineDown() => ScrollVertical(ScrollUnit == ScrollUnit.Pixel ? ScrollLineDelta : GetLineDownScrollAmount());
-        public void LineLeft() => ScrollHorizontal(ScrollUnit == ScrollUnit.Pixel ? -ScrollLineDelta : GetLineLeftScrollAmount());
-        public void LineRight() => ScrollHorizontal(ScrollUnit == ScrollUnit.Pixel ? ScrollLineDelta : GetLineRightScrollAmount());
+        public void LineLeft()
+        {
+            ScrollHorizontal(ScrollUnit == ScrollUnit.Pixel ? -ScrollLineDelta : GetLineLeftScrollAmount());
+        }
+        public void LineRight()
+        {
+            ScrollHorizontal(ScrollUnit == ScrollUnit.Pixel ? ScrollLineDelta : GetLineRightScrollAmount());
+        }
 
         public void MouseWheelUp()
         {
@@ -460,7 +332,6 @@ namespace CookPopularUI.WPF.Controls
                 MouseWheelLeft();
             }
         }
-
         public void MouseWheelDown()
         {
             if (MouseWheelScrollDirection == ScrollDirection.Vertical)
@@ -472,14 +343,31 @@ namespace CookPopularUI.WPF.Controls
                 MouseWheelRight();
             }
         }
+        public void MouseWheelLeft()
+        {
+            ScrollHorizontal(ScrollUnit == ScrollUnit.Pixel ? -MouseWheelDelta : GetMouseWheelLeftScrollAmount());
+        }
+        public void MouseWheelRight()
+        {
+            ScrollHorizontal(ScrollUnit == ScrollUnit.Pixel ? MouseWheelDelta : GetMouseWheelRightScrollAmount());
+        }
 
-        public void MouseWheelLeft() => ScrollHorizontal(ScrollUnit == ScrollUnit.Pixel ? -MouseWheelDelta : GetMouseWheelLeftScrollAmount());
-        public void MouseWheelRight() => ScrollHorizontal(ScrollUnit == ScrollUnit.Pixel ? MouseWheelDelta : GetMouseWheelRightScrollAmount());
-
-        public void PageUp() => ScrollVertical(ScrollUnit == ScrollUnit.Pixel ? -ViewportHeight : GetPageUpScrollAmount());
-        public void PageDown() => ScrollVertical(ScrollUnit == ScrollUnit.Pixel ? ViewportHeight : GetPageDownScrollAmount());
-        public void PageLeft() => ScrollHorizontal(ScrollUnit == ScrollUnit.Pixel ? -ViewportHeight : GetPageLeftScrollAmount());
-        public void PageRight() => ScrollHorizontal(ScrollUnit == ScrollUnit.Pixel ? ViewportHeight : GetPageRightScrollAmount());
+        public void PageUp()
+        {
+            ScrollVertical(ScrollUnit == ScrollUnit.Pixel ? -ViewportSize.Height : GetPageUpScrollAmount());
+        }
+        public void PageDown()
+        {
+            ScrollVertical(ScrollUnit == ScrollUnit.Pixel ? ViewportSize.Height : GetPageDownScrollAmount());
+        }
+        public void PageLeft()
+        {
+            ScrollHorizontal(ScrollUnit == ScrollUnit.Pixel ? -ViewportSize.Width : GetPageLeftScrollAmount());
+        }
+        public void PageRight()
+        {
+            ScrollHorizontal(ScrollUnit == ScrollUnit.Pixel ? ViewportSize.Width : GetPageRightScrollAmount());
+        }
 
         protected abstract double GetLineUpScrollAmount();
         protected abstract double GetLineDownScrollAmount();
@@ -495,5 +383,15 @@ namespace CookPopularUI.WPF.Controls
         protected abstract double GetPageDownScrollAmount();
         protected abstract double GetPageLeftScrollAmount();
         protected abstract double GetPageRightScrollAmount();
+
+        private void ScrollVertical(double amount)
+        {
+            SetVerticalOffset(ScrollOffset.Y + amount);
+        }
+
+        private void ScrollHorizontal(double amount)
+        {
+            SetHorizontalOffset(ScrollOffset.X + amount);
+        }
     }
 }

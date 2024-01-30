@@ -165,8 +165,8 @@ namespace CookPopularUI.WPF.Controls
             {
                 tabItems.AddRange(tab.ItemContainerGenerator.Items.OfType<TabItem>());
             }
-            var minTabItemWidth = tabItems.Min(t => t.ActualWidth);
-            var minTabItemHeight = tabItems.Min(t => t.ActualHeight);
+            var maxTabItemWidth = tabItems.Max(t => t.ActualWidth);
+            var maxTabItemHeight = tabItems.Max(t => t.ActualHeight);
 
             if (leftRepeatButton != null)
                 leftRepeatButton.Click -= LeftRepeatButton_Click;
@@ -189,25 +189,25 @@ namespace CookPopularUI.WPF.Controls
             void LeftRepeatButton_Click(object sender, RoutedEventArgs e)
             {
                 if (scrollViewer != null)
-                    scrollViewer.ScrollToHorizontalOffsetWithAnimation(Math.Max(scrollViewer.CurrentHorizontalOffset - minTabItemWidth, 0));
+                    scrollViewer.ScrollToHorizontalOffsetWithAnimation(Math.Max(scrollViewer.CurrentHorizontalOffset - maxTabItemWidth, 0));
             }
 
             void RightRepeatButton_Click(object sender, RoutedEventArgs e)
             {
                 if (scrollViewer != null)
-                    scrollViewer.ScrollToHorizontalOffsetWithAnimation(Math.Min(scrollViewer.CurrentHorizontalOffset + minTabItemWidth, scrollViewer.ScrollableWidth));
+                    scrollViewer.ScrollToHorizontalOffsetWithAnimation(Math.Min(scrollViewer.CurrentHorizontalOffset + maxTabItemWidth, scrollViewer.ScrollableWidth));
             }
 
             void TopRepeatButton_Click(object sender, RoutedEventArgs e)
             {
                 if (scrollViewer != null)
-                    scrollViewer.ScrollToVerticalOffsetWithAnimation(Math.Min(scrollViewer.CurrentVerticalOffset - minTabItemHeight, 0));
+                    scrollViewer.ScrollToVerticalOffsetWithAnimation(Math.Min(scrollViewer.CurrentVerticalOffset - maxTabItemHeight, 0));
             }
 
             void BottomRepeatButton_Click(object sender, RoutedEventArgs e)
             {
                 if (scrollViewer != null)
-                    scrollViewer.ScrollToVerticalOffsetWithAnimation(Math.Min(scrollViewer.CurrentVerticalOffset + minTabItemHeight, scrollViewer.ScrollableHeight));
+                    scrollViewer.ScrollToVerticalOffsetWithAnimation(Math.Min(scrollViewer.CurrentVerticalOffset + maxTabItemHeight, scrollViewer.ScrollableHeight));
             }
         }
 
