@@ -65,7 +65,7 @@
                     Content="Cancel"
                     ToolTip="Cancel" />
         </Canvas>
-        
+
         <StackPanel Grid.Column="2"
                     Background="Transparent"
                     ui:DragDropData.DataConsumer="{x:Static app:Data.PanelDataConsumer}"
@@ -109,6 +109,17 @@
               ui:DragDropData.IsDragSource="True" ui:DragDropData.IsDropTarget="True">
             <TextBlock Text="This is Grid" />
         </Grid>
+
+        <!--<RichTextBox Grid.Row="1" Grid.Column="2"
+                     Background="LightBlue"
+                     HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
+                     ui:DragDropData.DataConsumer="{x:Static app:Data.FrameworkElementDataConsumer}"
+                     ui:DragDropData.DataProvider="{x:Static app:Data.FrameworkElementDataProvider}"
+                     ui:DragDropData.IsDragSource="True" ui:DragDropData.IsDropTarget="True">
+            <FlowDocument>
+                <Paragraph>Rich Text Box</Paragraph>
+            </FlowDocument>
+        </RichTextBox>-->
 
         <Border Grid.Row="1" Grid.Column="4"
                 BorderBrush="Red" BorderThickness="1"
