@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace CookPopularUI.WPFDemo.Views
 {
     /// <summary>
-    /// ClippingBorderDemoView.xaml 的交互逻辑
+    /// BorderExDemoView.xaml 的交互逻辑
     /// </summary>
-    public partial class ClippingBorderDemoView : UserControl
+    public partial class BorderExDemoView : UserControl
     {
-        public ClippingBorderDemoView()
+        public BorderExDemoView()
         {
             InitializeComponent();
         }
