@@ -54,6 +54,7 @@
         <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/DivideLineStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/DragDropAreaStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/DropShadowBorderStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/GlassBorderStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/IconPatternStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/ImageBrowserStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/MessageDialogStyle.xaml" />
@@ -67,6 +68,7 @@
         <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/SplitButtonStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/StarStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/StepBarStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/StrokeTextBlockStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/SwiperStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/SwitchButtonStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/TagStyle.xaml" />
@@ -134,6 +136,7 @@
     <Style x:Key="{x:Type ui:DivideLine}" TargetType="{x:Type ui:DivideLine}" BasedOn="{StaticResource DefaultDivideLineStyle}" />
     <Style x:Key="{x:Type ui:DragDropArea}" TargetType="{x:Type ui:DragDropArea}" BasedOn="{StaticResource DefaultDragDropAreaStyle}" />
     <Style x:Key="{x:Type ui:DropShadowBorder}" TargetType="{x:Type ui:DropShadowBorder}" BasedOn="{StaticResource DefaultDropShadowBorderStyle}" />
+    <Style x:Key="{x:Type ui:GlassBorder}" TargetType="{x:Type ui:GlassBorder}" BasedOn="{StaticResource DefaultGlassBorderStyle}" />
     <Style x:Key="{x:Type ui:GroupLabel}" TargetType="{x:Type ui:GroupLabel}" BasedOn="{StaticResource DefaultGroupLabelStyle}" />
     <Style x:Key="{x:Type ui:IconPattern}" TargetType="{x:Type ui:IconPattern}" BasedOn="{StaticResource DefaultIconPatternStyle}" />
     <Style x:Key="{x:Type ui:ImageBrowser}" TargetType="{x:Type ui:ImageBrowser}" BasedOn="{StaticResource DefaultImageBrowserStyle}" />
@@ -149,6 +152,7 @@
     <Style x:Key="{x:Type ui:SplitButton}" TargetType="{x:Type ui:SplitButton}" BasedOn="{StaticResource DefaultSplitButtonStyle}" />
     <Style x:Key="{x:Type ui:Star}" TargetType="{x:Type ui:Star}" BasedOn="{StaticResource DefaultStarStyle}" />
     <Style x:Key="{x:Type ui:StepBar}" TargetType="{x:Type ui:StepBar}" BasedOn="{StaticResource DefaultStepBarStyle}" />
+    <Style x:Key="{x:Type ui:StrokeTextBlock}" TargetType="{x:Type ui:StrokeTextBlock}" BasedOn="{StaticResource DefaultStrokeTextBlockStyle}" />
     <Style x:Key="{x:Type ui:Swiper}" TargetType="{x:Type ui:Swiper}" BasedOn="{StaticResource DefaultSwiperStyle}" />
     <Style x:Key="{x:Type ui:SwitchButton}" TargetType="{x:Type ui:SwitchButton}" BasedOn="{StaticResource DefaultSwitchButtonStyle}" />
     <Style x:Key="{x:Type ui:Tag}" TargetType="{x:Type ui:Tag}" BasedOn="{StaticResource DefaultTagStyle}" />
