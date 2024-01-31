@@ -47,6 +47,7 @@
         <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/BlockBarStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/BubbleMessageStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/CarouselStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/ClippingBorderStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/ColorPickerStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/DateTimePickerStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/DialogBoxStyle.xaml" />
@@ -124,8 +125,9 @@
     <Style x:Key="{x:Type ui:BubbleMessage}" TargetType="{x:Type ui:BubbleMessage}" BasedOn="{StaticResource DefaultBubbleMessageStyle}" />
     <Style x:Key="{x:Type ui:CarouselItem}" TargetType="{x:Type ui:CarouselItem}" BasedOn="{StaticResource DefaultCarouselItemStyle}" />
     <Style x:Key="{x:Type ui:Carousel}" TargetType="{x:Type ui:Carousel}" BasedOn="{StaticResource DefaultCarouselStyle}" />
-    <Style x:Key="{x:Type ui:ColorPicker}" TargetType="{x:Type ui:ColorPicker}" BasedOn="{StaticResource DefaultColorPickerStyle}" />
+    <Style x:Key="{x:Type ui:ClippingBorder}" TargetType="{x:Type ui:ClippingBorder}" BasedOn="{StaticResource DefaultClippingBorderStyle}" />
     <Style x:Key="{x:Type ui:Clock}" TargetType="{x:Type ui:Clock}" BasedOn="{StaticResource DefaultClockStyle}" />
+    <Style x:Key="{x:Type ui:ColorPicker}" TargetType="{x:Type ui:ColorPicker}" BasedOn="{StaticResource DefaultColorPickerStyle}" />
     <Style x:Key="{x:Type ui:DateTimePicker}" TargetType="{x:Type ui:DateTimePicker}" BasedOn="{StaticResource DefaultDateTimePickerStyle}" />
     <Style x:Key="{x:Type ui:DialogBox}" TargetType="{x:Type ui:DialogBox}" BasedOn="{StaticResource DefaultDialogBoxStyle}" />
     <Style x:Key="{x:Type ui:DivideLine}" TargetType="{x:Type ui:DivideLine}" BasedOn="{StaticResource DefaultDivideLineStyle}" />

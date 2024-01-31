@@ -47,6 +47,7 @@ namespace CookPopularUI.WPFDemo
             containerRegistry.RegisterForNavigation<ButtonDemoView>();
             containerRegistry.RegisterForNavigation<CarouselDemoView>();
             containerRegistry.RegisterForNavigation<CheckBoxDemoView>();
+            containerRegistry.RegisterForNavigation<ClippingBorderDemoView>();
             containerRegistry.RegisterForNavigation<ColorPickerDemoView>();
             containerRegistry.RegisterForNavigation<ComboBoxDemoView>();
             containerRegistry.RegisterForNavigation<DataGridDemoView>();
