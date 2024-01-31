@@ -332,6 +332,7 @@
     </ControlTemplate>
 
     <Style x:Key="SliderBaseStyle" TargetType="{x:Type Slider}">
+        <Setter Property="Height" Value="{StaticResource DefaultControlHeight}" />
         <Setter Property="Foreground" Value="{DynamicResource PrimaryThemeBrush}" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="IsMoveToPointEnabled" Value="True" />

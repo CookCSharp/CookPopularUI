@@ -8,8 +8,8 @@
     </ResourceDictionary.MergedDictionaries>
 
     <Style x:Key="DefaultSliderStyle" TargetType="{x:Type Slider}" BasedOn="{StaticResource SliderBaseStyle}">
-        <Setter Property="local:ThumbAttached.ThumbWidth" Value="30" />
-        <Setter Property="local:ThumbAttached.ThumbHeight" Value="30" />
+        <Setter Property="local:ThumbAttached.ThumbWidth" Value="20" />
+        <Setter Property="local:ThumbAttached.ThumbHeight" Value="20" />
         <Setter Property="local:ThumbAttached.ThumbGeometryData" Value="{StaticResource CircleGeometry}" />
         <Setter Property="local:FrameworkElementBaseAttached.CornerRadius" Value="5" />
         <Setter Property="local:TextElementAttached.StringFormat" Value="#0.00" />
