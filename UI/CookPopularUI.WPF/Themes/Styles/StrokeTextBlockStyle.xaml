@@ -1,0 +1,40 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:CookPopularUI.WPF.Controls">
+
+    <Style x:Key="DefaultStrokeTextBlockStyle" TargetType="{x:Type local:StrokeTextBlock}">
+        <Setter Property="Text" Value="StrokeTextBlock" />
+        <Setter Property="StrokeOpacity" Value="1" />
+        <Setter Property="Stroke" Value="#FFFFFF" />
+        <Setter Property="StrokeThickness" Value="1" />
+        <Setter Property="Foreground" Value="#000000" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:StrokeTextBlock}">
+                    <Grid>
+                        <ItemsControl x:Name="PART_ItemsControl"
+                                      Opacity="{TemplateBinding StrokeOpacity}"
+                                      HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <Grid />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
+                        <TextBlock x:Name="PART_TextBlock"
+                                   Text="{TemplateBinding Text}"
+                                   Foreground="{TemplateBinding Foreground}"
+                                   FontSize="{TemplateBinding FontSize}"
+                                   FontWeight="{TemplateBinding FontWeight}"
+                                   HorizontalAlignment="Left" VerticalAlignment="Top"
+                                   FontFamily="{TemplateBinding FontFamily}"
+                                   LineHeight="{TemplateBinding LineHeight}"
+                                   TextWrapping="{TemplateBinding TextWrapping}"
+                                   UseLayoutRounding="False" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>
