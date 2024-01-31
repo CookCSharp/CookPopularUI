@@ -20,7 +20,7 @@ using System.Windows.Media;
 namespace CookPopularUI.WPF.Controls
 {
     /// <summary>
-    /// 可裁剪的Border
+    /// 可裁剪的内容控件
     /// </summary>
     public class ClippingBorder : ContentControl
     {

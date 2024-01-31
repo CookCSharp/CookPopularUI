@@ -57,6 +57,7 @@
         <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/GlassBorderStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/IconPatternStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/ImageBrowserStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/InnerGlowBorderStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/MessageDialogStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/NumericUpDownStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/ProgressButtonStyle.xaml" />
@@ -140,6 +141,7 @@
     <Style x:Key="{x:Type ui:GroupLabel}" TargetType="{x:Type ui:GroupLabel}" BasedOn="{StaticResource DefaultGroupLabelStyle}" />
     <Style x:Key="{x:Type ui:IconPattern}" TargetType="{x:Type ui:IconPattern}" BasedOn="{StaticResource DefaultIconPatternStyle}" />
     <Style x:Key="{x:Type ui:ImageBrowser}" TargetType="{x:Type ui:ImageBrowser}" BasedOn="{StaticResource DefaultImageBrowserStyle}" />
+    <Style x:Key="{x:Type ui:InnerGlowBorder}" TargetType="{x:Type ui:InnerGlowBorder}" BasedOn="{StaticResource DefaultInnerGlowBorderStyle}" />
     <Style x:Key="{x:Type ui:MultiBorder}" TargetType="{x:Type ui:MultiBorder}" BasedOn="{StaticResource DefaultMultiBorderStyle}" />
     <Style x:Key="{x:Type ui:NumericUpDown}" TargetType="{x:Type ui:NumericUpDown}" BasedOn="{StaticResource DefaultNumericUpDownStyle}" />
     <Style x:Key="{x:Type ui:ProgressButton}" TargetType="{x:Type ui:ProgressButton}" BasedOn="{StaticResource DefaultProgressButtonStyle}" />

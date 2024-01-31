@@ -21,6 +21,9 @@ using System.Windows.Media;
 
 namespace CookPopularUI.WPF.Controls
 {
+    /// <summary>
+    /// 带阴影的内容控件
+    /// </summary>
     public class DropShadowBorder : ContentControl
     {
         private GradientStop _shadowHorizontal1;

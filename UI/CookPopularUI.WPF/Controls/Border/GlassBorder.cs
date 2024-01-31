@@ -18,6 +18,9 @@ using System.Windows.Controls;
 
 namespace CookPopularUI.WPF.Controls
 {
+    /// <summary>
+    /// 带玻璃效果的内容控件
+    /// </summary>
     public class GlassBorder : ContentControl
     {
         [System.ComponentModel.Category("Appearance"), System.ComponentModel.Description("The inner glow opacity.")]
