@@ -1,5 +1,5 @@
 ﻿/*
- *Description: VirtualizingGridView
+ *Description: VirtualizingListView
  *Author: Chance.zheng
  *Creat Time: 2023/12/7 15:08:13
  *.Net Version: 4.6
@@ -25,15 +25,15 @@ namespace CookPopularUI.WPF.Controls
     /// until the items are wrapped to the next row or column. The control is using virtualization to support large amount of items.
     /// <p class="note">In order to work properly all items must have the same size.</p>
     /// </summary>
-    public class VirtualizingGridView : ListView
+    public class VirtualizingListView : ListView
     {
-        public static readonly DependencyProperty OrientationProperty = DependencyProperty.Register(nameof(Orientation), typeof(Orientation), typeof(VirtualizingGridView), new FrameworkPropertyMetadata(Orientation.Horizontal));
+        public static readonly DependencyProperty OrientationProperty = DependencyProperty.Register(nameof(Orientation), typeof(Orientation), typeof(VirtualizingListView), new FrameworkPropertyMetadata(Orientation.Horizontal));
 
-        public static readonly DependencyProperty SpacingModeProperty = DependencyProperty.Register(nameof(SpacingMode), typeof(SpacingMode), typeof(VirtualizingGridView), new FrameworkPropertyMetadata(SpacingMode.Uniform));
+        public static readonly DependencyProperty SpacingModeProperty = DependencyProperty.Register(nameof(SpacingMode), typeof(SpacingMode), typeof(VirtualizingListView), new FrameworkPropertyMetadata(SpacingMode.Uniform));
 
-        public static readonly DependencyProperty StretchItemsProperty = DependencyProperty.Register(nameof(StretchItems), typeof(bool), typeof(VirtualizingGridView), new FrameworkPropertyMetadata(false));
+        public static readonly DependencyProperty StretchItemsProperty = DependencyProperty.Register(nameof(StretchItems), typeof(bool), typeof(VirtualizingListView), new FrameworkPropertyMetadata(false));
 
-        public static readonly DependencyProperty IsWrappingKeyboardNavigationEnabledProperty = DependencyProperty.Register(nameof(IsWrappingKeyboardNavigationEnabled), typeof(bool), typeof(VirtualizingGridView), new FrameworkPropertyMetadata(false));
+        public static readonly DependencyProperty IsWrappingKeyboardNavigationEnabledProperty = DependencyProperty.Register(nameof(IsWrappingKeyboardNavigationEnabled), typeof(bool), typeof(VirtualizingListView), new FrameworkPropertyMetadata(false));
 
         /// <summary>
         /// Gets or sets a value that specifies the orientation in which items are arranged. The default value is <see cref="Orientation.Horizontal"/>.
@@ -59,9 +59,9 @@ namespace CookPopularUI.WPF.Controls
         /// </summary>
         public bool IsWrappingKeyboardNavigationEnabled { get => (bool)GetValue(IsWrappingKeyboardNavigationEnabledProperty); set => SetValue(IsWrappingKeyboardNavigationEnabledProperty, value); }
 
-        static VirtualizingGridView()
+        static VirtualizingListView()
         {
-            ItemContainerStyleProperty.OverrideMetadata(typeof(VirtualizingGridView), new FrameworkPropertyMetadata(new Style
+            ItemContainerStyleProperty.OverrideMetadata(typeof(VirtualizingListView), new FrameworkPropertyMetadata(new Style
             {
                 Setters = {
                     new Setter {
@@ -84,7 +84,7 @@ namespace CookPopularUI.WPF.Controls
             }));
         }
 
-        public VirtualizingGridView()
+        public VirtualizingListView()
         {
             var factory = new FrameworkElementFactory(typeof(VirtualizingWrapPanel));
             factory.SetBinding(VirtualizingWrapPanel.OrientationProperty, new Binding
@@ -112,14 +112,14 @@ namespace CookPopularUI.WPF.Controls
 
             VirtualizingPanel.SetIsVirtualizingWhenGrouping(this, true);
 
-            PreviewKeyDown += VirtualizingGridView_PreviewKeyDown;
+            PreviewKeyDown += VirtualizingListView_PreviewKeyDown;
         }
 
-        private void VirtualizingGridView_PreviewKeyDown(object sender, KeyEventArgs e)
+        private void VirtualizingListView_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (!IsWrappingKeyboardNavigationEnabled) return;
 
-            var gridView = (VirtualizingGridView)sender;
+            var gridView = (VirtualizingListView)sender;
 
             var currentItem = gridView.ItemContainerGenerator.ItemFromContainer((DependencyObject)Keyboard.FocusedElement);
 

@@ -21,11 +21,11 @@ namespace CookPopularUI.WPF.Controls
     /// If an item is clicked the item gots expanded until it is clicked again or an other item is clicked and gots expanded.
     /// <p class="note">In order to work properly all items must have the same size.</p>
     /// </summary>
-    public partial class VirtualizingGridDetailsView : VirtualizingGridView
+    public partial class VirtualizingListDetailView : VirtualizingListView
     {
-        public static readonly DependencyProperty ExpandedItemTemplateProperty = DependencyProperty.Register(nameof(ExpandedItemTemplate), typeof(DataTemplate), typeof(VirtualizingGridDetailsView), new FrameworkPropertyMetadata(null));
+        public static readonly DependencyProperty ExpandedItemTemplateProperty = DependencyProperty.Register(nameof(ExpandedItemTemplate), typeof(DataTemplate), typeof(VirtualizingListDetailView), new FrameworkPropertyMetadata(null));
 
-        public static readonly DependencyProperty ExpandedItemProperty = DependencyProperty.Register(nameof(ExpandedItem), typeof(object), typeof(VirtualizingGridDetailsView), new FrameworkPropertyMetadata(null));
+        public static readonly DependencyProperty ExpandedItemProperty = DependencyProperty.Register(nameof(ExpandedItem), typeof(object), typeof(VirtualizingListDetailView), new FrameworkPropertyMetadata(null));
 
         /// <summary>Gets or sets the data template used for the item expansion.</summary>
         public DataTemplate? ExpandedItemTemplate { get => (DataTemplate?)GetValue(ExpandedItemTemplateProperty); set => SetValue(ExpandedItemTemplateProperty, value); }
@@ -38,7 +38,7 @@ namespace CookPopularUI.WPF.Controls
         private bool animateExpansion = false;
         private bool animateCloseExpansion = false;
 
-        public VirtualizingGridDetailsView()
+        public VirtualizingListDetailView()
         {
             InitializeComponent();
         }

@@ -377,13 +377,13 @@
                 </DockPanel>
             </TabItem>
 
-            <TabItem Header="VirtualizingGridView">
+            <TabItem Header="VirtualizingListView">
                 <DockPanel>
                     <Grid DockPanel.Dock="Top">
-                        <TextBlock Text="The VirtualizingGridView control is a easy to use control displaying a grid of items using a VirtualizingWrapPanel." VerticalAlignment="Center" />
+                        <TextBlock Text="The VirtualizingListView control is a easy to use control displaying a grid of items using a VirtualizingWrapPanel." VerticalAlignment="Center" />
                         <CheckBox IsChecked="{Binding IsWrappingKeyboardNavigationEnabled, Mode=TwoWay}" HorizontalAlignment="Right">Enable wrapping keyboard navigation</CheckBox>
                     </Grid>
-                    <ui:VirtualizingGridView IsWrappingKeyboardNavigationEnabled="{Binding IsWrappingKeyboardNavigationEnabled, Mode=OneWay}"
+                    <ui:VirtualizingListView IsWrappingKeyboardNavigationEnabled="{Binding IsWrappingKeyboardNavigationEnabled, Mode=OneWay}"
                                              ItemContainerStyle="{StaticResource ItemContainerStyle}"
                                              ItemTemplate="{StaticResource ItemTemplate}"
                                              ItemsSource="{Binding CollectionView}"
@@ -400,10 +400,10 @@
                 </DockPanel>
             </TabItem>
 
-            <TabItem Header="VirtualizingGridDetailsView">
+            <TabItem Header="VirtualizingListDetailView">
                 <DockPanel>
-                    <TextBlock DockPanel.Dock="Top" Text="The VirtualizingGridDetailsView control is a easy to use control displaying a grid of items with the ability to expand items when clicked." Margin="0,5" />
-                    <ui:VirtualizingGridDetailsView ItemContainerStyle="{StaticResource ItemContainerStyle}"
+                    <TextBlock DockPanel.Dock="Top" Text="The VirtualizingListDetailView control is a easy to use control displaying a grid of items with the ability to expand items when clicked." Margin="0,5" />
+                    <ui:VirtualizingListDetailView ItemContainerStyle="{StaticResource ItemContainerStyle}"
                                                     ItemTemplate="{StaticResource ItemTemplate}"
                                                     ItemsSource="{Binding CollectionView}"
                                                     Orientation="{Binding Orientation, Mode=OneWay}"
@@ -416,15 +416,15 @@
                                                     VirtualizingPanel.ScrollUnit="{Binding ScrollUnit, Mode=OneWay}"
                                                     VirtualizingPanel.VirtualizationMode="{Binding VirtualizationMode, Mode=OneWay}"
                                                     Style="{StaticResource DefaultListViewStyle}">
-                        <ui:VirtualizingGridDetailsView.ExpandedItemTemplate>
+                        <ui:VirtualizingListDetailView.ExpandedItemTemplate>
                             <DataTemplate DataType="{x:Type model:VirtualizingWrapPanelDemoModel}">
                                 <TextBlock Text="{Binding Number}"
                                            Background="Gray"
                                            FontSize="64"
                                            Margin="8" Padding="16" />
                             </DataTemplate>
-                        </ui:VirtualizingGridDetailsView.ExpandedItemTemplate>
-                    </ui:VirtualizingGridDetailsView>
+                        </ui:VirtualizingListDetailView.ExpandedItemTemplate>
+                    </ui:VirtualizingListDetailView>
                 </DockPanel>
             </TabItem>
         </TabControl>

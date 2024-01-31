@@ -1,16 +1,16 @@
-﻿<local:VirtualizingGridView x:Name="uc"
-                            x:Class="CookPopularUI.WPF.Controls.VirtualizingGridDetailsView"
+﻿<local:VirtualizingListView x:Name="uc"
+                            x:Class="CookPopularUI.WPF.Controls.VirtualizingListDetailView"
                             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                             xmlns:local="clr-namespace:CookPopularUI.WPF.Controls"
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                             mc:Ignorable="d"
-                            d:DataContext="{Binding Source={d:DesignInstance Type={x:Type local:VirtualizingGridView}}}"
+                            d:DataContext="{Binding Source={d:DesignInstance Type={x:Type local:VirtualizingListView}}}"
                             d:DesignHeight="450"
                             d:DesignWidth="800">
 
-    <local:VirtualizingGridView.ItemsPanel>
+    <local:VirtualizingListView.ItemsPanel>
         <ItemsPanelTemplate>
             <local:VirtualizingWrapPanelWithItemExpansion ExpandedItem="{Binding ExpandedItem, ElementName=uc, Mode=OneWay}"
                                                           Orientation="{Binding Orientation, ElementName=uc, Mode=OneWay}"
@@ -25,6 +25,6 @@
                 </local:VirtualizingWrapPanelWithItemExpansion.ExpandedItemTemplate>
             </local:VirtualizingWrapPanelWithItemExpansion>
         </ItemsPanelTemplate>
-    </local:VirtualizingGridView.ItemsPanel>
+    </local:VirtualizingListView.ItemsPanel>
 
-</local:VirtualizingGridView>
+</local:VirtualizingListView>
