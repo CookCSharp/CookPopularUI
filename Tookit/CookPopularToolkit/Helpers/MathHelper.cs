@@ -17,6 +17,25 @@ namespace CookPopularToolkit
     /// </summary>
     public static class MathHelper
     {
+        public const double DBL_EPSILON = 2.2204460492503131e-016; /* smallest such that 1.0+DBL_EPSILON != 1.0 */
+
+        /// <summary>
+        /// The minimum distance to consider that two values are same.
+        /// Note: internal floating point in MIL/SL is float, not double.
+        /// </summary>
+        public const double Epsilon = 1E-06;
+
+        /// <summary>
+        /// The value of the angle of a full circle.
+        /// </summary>
+        public const double TwoPI = 6.283185307179586;
+
+        /// <summary>
+        /// The inner radius for a pentagram polygon shape, at precision of three digits in percentage.
+        /// (1 - Sin36 * Sin72 / Sin54) / (Cos36) ^ 2, which is 0.47210998990512996761913067272407
+        /// </summary>
+        public const double PentagramInnerRadius = 0.47211;
+
         /// <summary>
         /// Determines whether a <c>System.Double</c> value is small enough to be considered
         /// equivalent to zero.
@@ -122,24 +141,5 @@ namespace CookPopularToolkit
         {
             return !double.IsInfinity(x) && !double.IsNaN(x);
         }
-
-        internal const double DBL_EPSILON = 2.2204460492503131e-016;
-
-        /// <summary>
-        /// The minimum distance to consider that two values are same.
-        /// Note: internal floating point in MIL/SL is float, not double.
-        /// </summary>
-        public const double Epsilon = 1E-06;
-
-        /// <summary>
-        /// The value of the angle of a full circle.
-        /// </summary>
-        public const double TwoPI = 6.283185307179586;
-
-        /// <summary>
-        /// The inner radius for a pentagram polygon shape, at precision of three digits in percentage.
-        /// (1 - Sin36 * Sin72 / Sin54) / (Cos36) ^ 2, which is 0.47210998990512996761913067272407
-        /// </summary>
-        public const double PentagramInnerRadius = 0.47211;
     }
 }
