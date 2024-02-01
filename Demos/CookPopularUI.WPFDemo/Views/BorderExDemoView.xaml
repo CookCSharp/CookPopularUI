@@ -18,6 +18,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -47,11 +48,11 @@
                        VerticalAlignment="Center" />
             <StackPanel Grid.Row="1" Grid.Column="1">
                 <TextBlock Text="Drop Shadow Opacity" />
-                <Slider x:Name="opacitySlider"
+                <Slider x:Name="opacitySlider1"
                         Value="0.5"
                         Minimum="0" Maximum="1" />
                 <TextBlock Text="Drop Shadow Angle" />
-                <Slider x:Name="angleSlider"
+                <Slider x:Name="angleSlider1"
                         Value="45"
                         Minimum="0" Maximum="360" />
                 <TextBlock Text="Drop Shadow Distance" />
@@ -59,7 +60,7 @@
                         Value="25"
                         Minimum="0" Maximum="50" />
                 <TextBlock Text="Drop Shadow Spread" />
-                <Slider x:Name="spreadSlider"
+                <Slider x:Name="spreadSlider1"
                         Value="20"
                         Minimum="0" Maximum="50" />
             </StackPanel>
@@ -67,11 +68,11 @@
                                  Height="100"
                                  CornerRadius="5"
                                  Margin="20"
-                                 DropShadowAngle="{Binding ElementName=angleSlider, Path=Value}"
+                                 DropShadowAngle="{Binding ElementName=angleSlider1, Path=Value}"
                                  DropShadowBrush="{DynamicResource PrimaryThemeBrush}"
                                  DropShadowDistance="{Binding ElementName=distanceSlider, Path=Value}"
-                                 DropShadowOpacity="{Binding ElementName=opacitySlider, Path=Value}"
-                                 DropShadowSpread="{Binding ElementName=spreadSlider, Path=Value}" />
+                                 DropShadowOpacity="{Binding ElementName=opacitySlider1, Path=Value}"
+                                 DropShadowSpread="{Binding ElementName=spreadSlider1, Path=Value}" />
 
             <TextBlock Grid.Row="2" Grid.Column="0"
                        Text="GlassBorder:"
@@ -127,7 +128,7 @@
                         Minimum="0" Maximum="1" />
                 <TextBlock Text="Inner Glow Size" />
                 <Slider x:Name="sizeSlider1"
-                        Value="10"
+                        Value="20"
                         Minimum="0" Maximum="50" />
             </StackPanel>
             <ui:InnerGlowBorder Grid.Row="3" Grid.Column="2"
@@ -167,16 +168,16 @@
             <StackPanel Grid.Row="5" Grid.Column="1" VerticalAlignment="Center">
                 <TextBlock Text="Perspective Shadow Opacity" />
                 <Slider x:Name="opacitySlider5"
-                        Value="0.8"
+                        Value="0.5"
                         Minimum="0" Maximum="1" />
                 <TextBlock Text="Perspective Shadow Angle" />
-                <Slider x:Name="angleSlider2" Grid.Row="1"
-                        Value="15"
+                <Slider x:Name="angleSlider2"
+                        Value="-30"
                         Minimum="-89" Maximum="89" />
                 <TextBlock Text="Perspective Shadow Spread" />
-                <Slider x:Name="spreadSlider2" Grid.Row="1"
-                        Value="15"
-                        Minimum="-89" Maximum="89" />
+                <Slider x:Name="spreadSlider2"
+                        Value="0"
+                        Minimum="0" Maximum="50" />
             </StackPanel>
             <ui:PerspectiveShadowBorder Grid.Row="5" Grid.Column="2"
                                         MinHeight="100"
@@ -186,6 +187,38 @@
                                         PerspectiveShadowBrush="{DynamicResource PrimaryThemeBrush}"
                                         PerspectiveShadowOpacity="{Binding ElementName=opacitySlider5, Path=Value}"
                                         PerspectiveShadowSpread="{Binding ElementName=spreadSlider2, Path=Value}" />
+
+            <TextBlock Grid.Row="6" Grid.Column="0"
+                       Text="RadialShadowBorder:"
+                       FontSize="16" FontWeight="DemiBold"
+                       VerticalAlignment="Center" />
+            <StackPanel Grid.Row="6" Grid.Column="1" VerticalAlignment="Center">
+                <TextBlock Text="Radial Shadow Opacity" />
+                <Slider x:Name="opacitySlider6"
+                        Value="0.8"
+                        Minimum="0" Maximum="1" />
+                <TextBlock Text="Radial Shadow Width" />
+                <Slider x:Name="widthSlider"
+                        Value="1.25"
+                        Minimum="0" Maximum="2" />
+                <TextBlock Text="Radial Shadow Vertical Offset" />
+                <Slider x:Name="verticalOffsetSlider"
+                        Value="40"
+                        Minimum="0" Maximum="50" />
+                <TextBlock Text="Radial Shadow Spread" />
+                <Slider x:Name="spreadSlider3"
+                        Value="0"
+                        Minimum="0" Maximum="1" />
+            </StackPanel>
+            <ui:RadialShadowBorder Grid.Row="6" Grid.Column="2"
+                                   Height="100"
+                                   CornerRadius="5"
+                                   Margin="20"
+                                   RadialShadowBrush="{DynamicResource PrimaryThemeBrush}"
+                                   RadialShadowOpacity="{Binding ElementName=opacitySlider6, Path=Value}"
+                                   RadialShadowSpread="{Binding ElementName=spreadSlider3, Path=Value}"
+                                   RadialShadowVerticalOffset="{Binding ElementName=verticalOffsetSlider, Path=Value}"
+                                   RadialShadowWidth="{Binding ElementName=widthSlider, Path=Value}" />
         </Grid>
     </ScrollViewer>
 
