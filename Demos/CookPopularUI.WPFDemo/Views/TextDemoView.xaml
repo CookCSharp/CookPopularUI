@@ -40,16 +40,30 @@
                             StrokeOpacity="{Binding ElementName=opacitySlider1, Path=Value}"
                             StrokeThickness="{Binding ElementName=thicknessSlider, Path=Value}"
                             TextWrapping="Wrap" />
-        <!--<ui:DropShadowTextBlock x:Name="dropShadowTextBlock"
-                                          Text="Drop Shadow Text Block"
-                                          DropShadowColor="#ff000000"
-                                          DropShadowOpacity="0.5"
-                                          DropShadowAngle="45"
-                                          DropShadowDistance="4"
-                                          TextWrapping="Wrap"
-                                          FontFamily="Verdana"
-                                          FontSize="36"
-                                          />-->
+
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <TextBlock Text="Drop Shadow Opacity" />
+            <Slider x:Name="opacitySlider2"
+                    Value="1"
+                    Minimum="0" Maximum="1" />
+            <TextBlock Text="Drop Shadow Angle" />
+            <Slider x:Name="angleSlider"
+                    Value="45"
+                    Minimum="0" Maximum="360" />
+            <TextBlock Text="Drop Shadow Distance" />
+            <Slider x:Name="distanceSlider"
+                    Value="4"
+                    Minimum="0" Maximum="50" />
+        </StackPanel>
+        <ui:DropShadowTextBlock Grid.Row="1" Grid.Column="2"
+                                Text="Drop Shadow Text Block"
+                                FontSize="36"
+                                VerticalAlignment="Center"
+                                DropShadowAngle="{Binding ElementName=angleSlider, Path=Value}"
+                                DropShadowBrush="{DynamicResource PrimaryThemeBrush}"
+                                DropShadowDistance="{Binding ElementName=distanceSlider, Path=Value}"
+                                DropShadowOpacity="{Binding ElementName=opacitySlider2, Path=Value}"
+                                TextWrapping="Wrap" />
     </Grid>
 
 </UserControl>

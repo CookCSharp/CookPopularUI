@@ -20,6 +20,9 @@ using System.Windows;
 
 namespace CookPopularUI.WPF.Controls
 {
+    /// <summary>
+    /// 带有笔画的文本控件
+    /// </summary>
     public class StrokeTextBlock : Control
     {
         private ItemsControl _itemsControl;

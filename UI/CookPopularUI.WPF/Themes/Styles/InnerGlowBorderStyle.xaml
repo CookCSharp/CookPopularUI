@@ -17,7 +17,7 @@
                                           Background="{TemplateBinding Background}"
                                           CornerRadius="{TemplateBinding CornerRadius}"
                                           IsClipContent="{TemplateBinding IsClipContent}">
-                        <Grid>
+                        <local:SimpleGrid>
                             <ContentPresenter Margin="{TemplateBinding Padding}" Canvas.ZIndex="{TemplateBinding ContentZIndex}" />
                             <Border x:Name="PART_LeftGlow"
                                     Width="10"
@@ -67,7 +67,7 @@
                                     </LinearGradientBrush>
                                 </Border.Background>
                             </Border>
-                        </Grid>
+                        </local:SimpleGrid>
                     </local:ClippingBorder>
                 </ControlTemplate>
             </Setter.Value>
