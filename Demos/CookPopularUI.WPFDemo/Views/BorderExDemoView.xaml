@@ -17,6 +17,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -158,6 +159,33 @@
                                 OuterGlowBrush="{DynamicResource PrimaryThemeBrush}"
                                 OuterGlowOpacity="{Binding ElementName=opacitySlider4, Path=Value}"
                                 OuterGlowSize="{Binding ElementName=sizeSlider2, Path=Value}" />
+
+            <TextBlock Grid.Row="5" Grid.Column="0"
+                       Text="PerspectiveShadowBorder:"
+                       FontSize="16" FontWeight="DemiBold"
+                       VerticalAlignment="Center" />
+            <StackPanel Grid.Row="5" Grid.Column="1" VerticalAlignment="Center">
+                <TextBlock Text="Perspective Shadow Opacity" />
+                <Slider x:Name="opacitySlider5"
+                        Value="0.8"
+                        Minimum="0" Maximum="1" />
+                <TextBlock Text="Perspective Shadow Angle" />
+                <Slider x:Name="angleSlider2" Grid.Row="1"
+                        Value="15"
+                        Minimum="-89" Maximum="89" />
+                <TextBlock Text="Perspective Shadow Spread" />
+                <Slider x:Name="spreadSlider2" Grid.Row="1"
+                        Value="15"
+                        Minimum="-89" Maximum="89" />
+            </StackPanel>
+            <ui:PerspectiveShadowBorder Grid.Row="5" Grid.Column="2"
+                                        MinHeight="100"
+                                        CornerRadius="5"
+                                        Margin="20"
+                                        PerspectiveShadowAngle="{Binding ElementName=angleSlider2, Path=Value}"
+                                        PerspectiveShadowBrush="{DynamicResource PrimaryThemeBrush}"
+                                        PerspectiveShadowOpacity="{Binding ElementName=opacitySlider5, Path=Value}"
+                                        PerspectiveShadowSpread="{Binding ElementName=spreadSlider2, Path=Value}" />
         </Grid>
     </ScrollViewer>
 

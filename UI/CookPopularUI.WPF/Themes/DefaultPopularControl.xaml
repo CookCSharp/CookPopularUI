@@ -61,6 +61,7 @@
         <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/MessageDialogStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/NumericUpDownStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/OuterGlowBorderStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/PerspectiveShadowBorderStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/ProgressButtonStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/PropertyGridStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/PopupMessageStyle.xaml" />
@@ -146,6 +147,7 @@
     <Style x:Key="{x:Type ui:MultiBorder}" TargetType="{x:Type ui:MultiBorder}" BasedOn="{StaticResource DefaultMultiBorderStyle}" />
     <Style x:Key="{x:Type ui:NumericUpDown}" TargetType="{x:Type ui:NumericUpDown}" BasedOn="{StaticResource DefaultNumericUpDownStyle}" />
     <Style x:Key="{x:Type ui:OuterGlowBorder}" TargetType="{x:Type ui:OuterGlowBorder}" BasedOn="{StaticResource DefaultOuterGlowBorderStyle}" />
+    <Style x:Key="{x:Type ui:PerspectiveShadowBorder}" TargetType="{x:Type ui:PerspectiveShadowBorder}" BasedOn="{StaticResource DefaultPerspectiveShadowBorderStyle}" />
     <Style x:Key="{x:Type ui:ProgressButton}" TargetType="{x:Type ui:ProgressButton}" BasedOn="{StaticResource DefaultProgressButtonStyle}" />
     <Style x:Key="{x:Type ui:PropertyGrid}" TargetType="{x:Type ui:PropertyGrid}" BasedOn="{StaticResource DefaultPropertyGridStyle}" />
     <Style x:Key="{x:Type ui:PopupMessage}" TargetType="{x:Type ui:PopupMessage}" BasedOn="{StaticResource DefaultPopupMessageStyle}" />
