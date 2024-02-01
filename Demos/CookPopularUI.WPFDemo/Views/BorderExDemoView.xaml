@@ -27,8 +27,7 @@
             <TextBlock Grid.Row="0" Grid.Column="0"
                        Text="ClippingBorder:"
                        FontSize="16" FontWeight="DemiBold"
-                       VerticalAlignment="Center"
-                       FontFamily="Verdana" />
+                       VerticalAlignment="Center" />
             <CheckBox x:Name="chk" Grid.Row="0" Grid.Column="1"
                       Content="IsClip"
                       IsChecked="True" />
@@ -38,7 +37,7 @@
                                CornerRadius="20"
                                Margin="10,0"
                                IsClipContent="{Binding ElementName=chk, Path=IsChecked}">
-                <Rectangle Fill="{StaticResource PrimaryThemeBrush}" />
+                <Rectangle Fill="{DynamicResource PrimaryThemeBrush}" />
             </ui:ClippingBorder>
 
             <TextBlock Grid.Row="1" Grid.Column="0"
@@ -65,11 +64,10 @@
             </StackPanel>
             <ui:DropShadowBorder Grid.Row="1" Grid.Column="2"
                                  Height="100"
-                                 BorderBrush="#000000" BorderThickness="1"
-                                 Background="White" CornerRadius="5"
+                                 CornerRadius="5"
                                  Margin="20"
                                  DropShadowAngle="{Binding ElementName=angleSlider, Path=Value}"
-                                 DropShadowColor="#000000"
+                                 DropShadowBrush="{DynamicResource PrimaryThemeBrush}"
                                  DropShadowDistance="{Binding ElementName=distanceSlider, Path=Value}"
                                  DropShadowOpacity="{Binding ElementName=opacitySlider, Path=Value}"
                                  DropShadowSpread="{Binding ElementName=spreadSlider, Path=Value}" />
@@ -90,7 +88,7 @@
             </StackPanel>
             <ui:GlassBorder Grid.Row="2" Grid.Column="2"
                             Height="100"
-                            Background="Black" CornerRadius="5"
+                            CornerRadius="5"
                             Margin="20"
                             ContentZIndex="{Binding ElementName=contentZIndex, Path=Text, Converter={ui:StringToIntConverter}}"
                             GlassOpacity="{Binding ElementName=opacitySlider2, Path=Value}">
@@ -110,7 +108,7 @@
                         </RadialGradientBrush>
                     </Grid.Background>
                     <ui:StrokeTextBlock Text="C O N T E N T"
-                                        Foreground="#ff000000"
+                                        Foreground="#000000"
                                         FontSize="48"
                                         HorizontalAlignment="Center" VerticalAlignment="Center"
                                         FontFamily="Verdana" Stroke="#FFFFFF" StrokeThickness="1" />
@@ -124,19 +122,18 @@
             <StackPanel Grid.Row="3" Grid.Column="1" VerticalAlignment="Center">
                 <TextBlock Text="Inner Glow Opacity" />
                 <Slider x:Name="opacitySlider3"
-                        Value="0.5"
+                        Value="0.8"
                         Minimum="0" Maximum="1" />
                 <TextBlock Text="Inner Glow Size" />
                 <Slider x:Name="sizeSlider1"
-                        Value="25"
+                        Value="10"
                         Minimum="0" Maximum="50" />
             </StackPanel>
             <ui:InnerGlowBorder Grid.Row="3" Grid.Column="2"
                                 Height="100"
-                                BorderBrush="#000000" BorderThickness="1"
-                                Background="White" CornerRadius="5"
+                                CornerRadius="5"
                                 Margin="20"
-                                InnerGlowColor="#000000"
+                                InnerGlowBrush="{DynamicResource PrimaryThemeBrush}"
                                 InnerGlowOpacity="{Binding ElementName=opacitySlider3, Path=Value}"
                                 InnerGlowSize="{Binding ElementName=sizeSlider1, Path=Value, Converter={ui:DoubleToThicknessConverter}}" />
 
@@ -153,11 +150,10 @@
                 <Slider x:Name="sizeSlider2"
                         Value="10"
                         Minimum="0" Maximum="50" />
-                <Button Content="获取" Click="Button_Click" />
             </StackPanel>
             <ui:OuterGlowBorder Grid.Row="4" Grid.Column="2"
                                 Height="100"
-                                CornerRadius="10"
+                                CornerRadius="5"
                                 Margin="20"
                                 OuterGlowBrush="{DynamicResource PrimaryThemeBrush}"
                                 OuterGlowOpacity="{Binding ElementName=opacitySlider4, Path=Value}"

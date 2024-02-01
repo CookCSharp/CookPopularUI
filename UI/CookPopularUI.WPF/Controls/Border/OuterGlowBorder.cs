@@ -105,7 +105,7 @@ namespace CookPopularUI.WPF.Controls
         public bool IsClipContent
         {
             get => (bool)GetValue(IsClipContentProperty);
-            set => SetValue(IsClipContentProperty, value);
+            set => SetValue(IsClipContentProperty, value.BooleanBox());
         }
         public static readonly DependencyProperty IsClipContentProperty =
             DependencyProperty.Register(nameof(IsClipContent), typeof(bool), typeof(OuterGlowBorder), new PropertyMetadata(ValueBoxes.FalseBox));

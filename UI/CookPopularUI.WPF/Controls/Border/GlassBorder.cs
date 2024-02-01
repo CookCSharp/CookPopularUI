@@ -8,6 +8,7 @@
  */
 
 
+using CookPopularToolkit;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,27 +31,26 @@ namespace CookPopularUI.WPF.Controls
             set => SetValue(GlassOpacityProperty, value);
         }
         public static readonly DependencyProperty GlassOpacityProperty =
-            DependencyProperty.Register(nameof(GlassOpacity), typeof(double), typeof(GlassBorder), null);
+            DependencyProperty.Register(nameof(GlassOpacity), typeof(double), typeof(GlassBorder), new PropertyMetadata(ValueBoxes.Double1Box));
 
 
         [System.ComponentModel.Category("Appearance"), System.ComponentModel.Description("Sets the corner radius on the border.")]
         public CornerRadius CornerRadius
         {
             get => (CornerRadius)GetValue(CornerRadiusProperty);
-            set
-            {
-                SetValue(CornerRadiusProperty, value);
-
-                CornerRadius glassCornerRadius = new CornerRadius(
-                        Math.Max(0, value.TopLeft - 1),
-                        Math.Max(0, value.TopRight - 1),
-                        0,
-                        0);
-                SetValue(GlassCornerRadiusProperty, glassCornerRadius);
-            }
+            set => SetValue(CornerRadiusProperty, value);
         }
         public static readonly DependencyProperty CornerRadiusProperty =
-            DependencyProperty.Register(nameof(CornerRadius), typeof(CornerRadius), typeof(GlassBorder), null);
+            DependencyProperty.Register(nameof(CornerRadius), typeof(CornerRadius), typeof(GlassBorder), new PropertyMetadata(OnCornerRadiusChanged));
+        private static void OnCornerRadiusChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is GlassBorder glassBorder)
+            {
+                var cornerRadius = (CornerRadius)e.NewValue;
+                CornerRadius glassCornerRadius = new CornerRadius(Math.Max(0, cornerRadius.TopLeft - 1), Math.Max(0, cornerRadius.TopRight - 1), 0, 0);
+                glassBorder.SetValue(GlassCornerRadiusProperty, glassCornerRadius);
+            }
+        }
 
 
         public double GlassCornerRadius => (double)GetValue(GlassCornerRadiusProperty);
@@ -65,7 +65,7 @@ namespace CookPopularUI.WPF.Controls
             set => SetValue(IsClipContentProperty, value);
         }
         public static readonly DependencyProperty IsClipContentProperty =
-            DependencyProperty.Register(nameof(IsClipContent), typeof(bool), typeof(GlassBorder), null);
+            DependencyProperty.Register(nameof(IsClipContent), typeof(bool), typeof(GlassBorder), new PropertyMetadata(ValueBoxes.FalseBox));
 
 
         [System.ComponentModel.Category("Appearance"), System.ComponentModel.Description("Set 0 for behind the shadow, 1 for in front.")]
@@ -75,7 +75,7 @@ namespace CookPopularUI.WPF.Controls
             set => SetValue(ContentZIndexProperty, value);
         }
         public static readonly DependencyProperty ContentZIndexProperty =
-            DependencyProperty.Register(nameof(ContentZIndex), typeof(int), typeof(GlassBorder), null);
+            DependencyProperty.Register(nameof(ContentZIndex), typeof(int), typeof(GlassBorder), new PropertyMetadata(ValueBoxes.Integer0Box));
 
 
         public GlassBorder()

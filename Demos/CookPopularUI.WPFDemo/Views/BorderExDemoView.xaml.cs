@@ -24,10 +24,5 @@ namespace CookPopularUI.WPFDemo.Views
         {
             InitializeComponent();
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            //var s1 = bb1.ShadowCornerRadius;
-        }
     }
 }

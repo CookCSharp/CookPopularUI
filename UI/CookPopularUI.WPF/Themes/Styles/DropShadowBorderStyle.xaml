@@ -3,15 +3,15 @@
                     xmlns:local="clr-namespace:CookPopularUI.WPF.Controls">
 
     <Style x:Key="DefaultDropShadowBorderStyle" TargetType="{x:Type local:DropShadowBorder}">
+        <Setter Property="Background" Value="{DynamicResource SystemBackgroundBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
         <Setter Property="DropShadowOpacity" Value="0.5" />
-        <Setter Property="DropShadowColor" Value="#000000" />
+        <Setter Property="DropShadowBrush" Value="{DynamicResource PrimaryThemeBrush}" />
         <Setter Property="DropShadowAngle" Value="45" />
         <Setter Property="DropShadowDistance" Value="20" />
         <Setter Property="DropShadowSpread" Value="0" />
         <Setter Property="IsClipContent" Value="True" />
-        <Setter Property="Background" Value="#FFFFFF" />
-        <Setter Property="BorderBrush" Value="#000000" />
-        <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:DropShadowBorder}">

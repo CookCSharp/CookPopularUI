@@ -3,11 +3,11 @@
                     xmlns:local="clr-namespace:CookPopularUI.WPF.Controls">
 
     <Style x:Key="DefaultOuterGlowBorderStyle" TargetType="{x:Type local:OuterGlowBorder}">
+        <Setter Property="Background" Value="{DynamicResource SystemBackgroundBrush}" />
         <Setter Property="OuterGlowSize" Value="10" />
         <Setter Property="OuterGlowOpacity" Value="0.8" />
         <Setter Property="OuterGlowBrush" Value="{DynamicResource PrimaryThemeBrush}" />
         <Setter Property="IsClipContent" Value="True" />
-        <Setter Property="Background" Value="{DynamicResource SystemBackgroundBrush}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:OuterGlowBorder}">

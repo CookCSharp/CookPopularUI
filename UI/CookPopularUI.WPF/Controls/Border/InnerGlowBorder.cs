@@ -8,6 +8,7 @@
  */
 
 
+using CookPopularToolkit;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,11 +53,7 @@ namespace CookPopularUI.WPF.Controls
         public Thickness InnerGlowSize
         {
             get => (Thickness)GetValue(InnerGlowSizeProperty);
-            set
-            {
-                SetValue(InnerGlowSizeProperty, value);
-                UpdateGlowSize(value);
-            }
+            set => SetValue(InnerGlowSizeProperty, value);
         }
         public static readonly DependencyProperty InnerGlowSizeProperty =
             DependencyProperty.Register(nameof(InnerGlowSize), typeof(Thickness), typeof(InnerGlowBorder), new PropertyMetadata(new PropertyChangedCallback(OnInnerGlowSizeChanged)));
@@ -78,17 +75,17 @@ namespace CookPopularUI.WPF.Controls
 
 
         [System.ComponentModel.Category("Appearance"), System.ComponentModel.Description("The inner glow color.")]
-        public Color InnerGlowColor
+        public Brush InnerGlowBrush
         {
-            get => (Color)GetValue(InnerGlowColorProperty);
-            set => SetValue(InnerGlowColorProperty, value);
+            get => (Brush)GetValue(InnerGlowBrushProperty);
+            set => SetValue(InnerGlowBrushProperty, value);
         }
-        public static readonly DependencyProperty InnerGlowColorProperty =
-            DependencyProperty.Register(nameof(InnerGlowColor), typeof(Color), typeof(InnerGlowBorder), new PropertyMetadata(new PropertyChangedCallback(OnInnerGlowColorChanged)));
-        private static void OnInnerGlowColorChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs eventArgs)
+        public static readonly DependencyProperty InnerGlowBrushProperty =
+            DependencyProperty.Register(nameof(InnerGlowBrush), typeof(Brush), typeof(InnerGlowBorder), new PropertyMetadata(new PropertyChangedCallback(OnInnerGlowBrushChanged)));
+        private static void OnInnerGlowBrushChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs eventArgs)
         {
             if (dependencyObject is InnerGlowBorder innerGlowBorder)
-                innerGlowBorder.UpdateGlowColor((Color)eventArgs.NewValue);
+                innerGlowBorder.UpdateGlowBrush((Brush)eventArgs.NewValue);
         }
 
 
@@ -96,10 +93,10 @@ namespace CookPopularUI.WPF.Controls
         public bool IsClipContent
         {
             get { return (bool)GetValue(IsClipContentProperty); }
-            set { SetValue(IsClipContentProperty, value); }
+            set { SetValue(IsClipContentProperty, value.BooleanBox()); }
         }
         public static readonly DependencyProperty IsClipContentProperty =
-            DependencyProperty.Register(nameof(IsClipContent), typeof(bool), typeof(InnerGlowBorder), null);
+            DependencyProperty.Register(nameof(IsClipContent), typeof(bool), typeof(InnerGlowBorder), new PropertyMetadata(ValueBoxes.FalseBox));
 
 
         [System.ComponentModel.Category("Appearance"), System.ComponentModel.Description("Set 0 for behind the shadow, 1 for in front.")]
@@ -109,7 +106,7 @@ namespace CookPopularUI.WPF.Controls
             set { SetValue(ContentZIndexProperty, value); }
         }
         public static readonly DependencyProperty ContentZIndexProperty =
-            DependencyProperty.Register(nameof(ContentZIndex), typeof(int), typeof(InnerGlowBorder), null);
+            DependencyProperty.Register(nameof(ContentZIndex), typeof(int), typeof(InnerGlowBorder), new PropertyMetadata(ValueBoxes.Integer0Box));
 
 
         public InnerGlowBorder()
@@ -135,12 +132,17 @@ namespace CookPopularUI.WPF.Controls
             _bottomGlowStop0 = GetTemplateChild("PART_BottomGlowStop0") as GradientStop;
             _bottomGlowStop1 = GetTemplateChild("PART_BottomGlowStop1") as GradientStop;
 
-            UpdateGlowColor(InnerGlowColor);
+            UpdateGlowBrush(InnerGlowBrush);
             UpdateGlowSize(InnerGlowSize);
         }
 
-        private void UpdateGlowColor(Color color)
+        private void UpdateGlowBrush(Brush brush)
         {
+            if (brush == null)
+                return;
+
+            var color = ((SolidColorBrush)brush).Color;
+
             if (_leftGlowStop0 != null)
             {
                 _leftGlowStop0.Color = color;

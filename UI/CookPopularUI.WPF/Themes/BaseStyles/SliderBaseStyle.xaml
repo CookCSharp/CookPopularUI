@@ -207,7 +207,7 @@
                 <Border Grid.Row="1"
                         Height="{TemplateBinding local:ThumbAttached.ThumbHeight, Converter={pt:ValueTranslateToDoubleConverter}, ConverterParameter=0.25}"
                         Background="{TemplateBinding Foreground}"
-                        CornerRadius="4"
+                        CornerRadius="2"
                         Opacity="0.5" />
                 <Border x:Name="ValueBorder" Grid.Row="1"
                         Width="{Binding ElementName=PART_Track, Path=DecreaseRepeatButton.ActualWidth}"
@@ -283,7 +283,7 @@
                 <Border Grid.Column="1"
                         Width="{TemplateBinding local:ThumbAttached.ThumbWidth, Converter={pt:ValueTranslateToDoubleConverter}, ConverterParameter=0.25}"
                         Background="{TemplateBinding Foreground}"
-                        CornerRadius="4"
+                        CornerRadius="2"
                         Opacity="0.4" />
                 <Border x:Name="ValueBorder" Grid.Column="1"
                         Width="{TemplateBinding local:ThumbAttached.ThumbWidth, Converter={pt:ValueTranslateToDoubleConverter}, ConverterParameter=0.25}"

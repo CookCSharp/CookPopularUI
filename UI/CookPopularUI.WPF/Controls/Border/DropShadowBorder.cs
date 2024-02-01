@@ -36,26 +36,25 @@ namespace CookPopularUI.WPF.Controls
 
 
         [System.ComponentModel.Category("Appearance"), System.ComponentModel.Description("the drop shadow color.")]
-        public Color DropShadowColor
+        public Brush DropShadowBrush
         {
-            get => (Color)GetValue(DropShadowColorProperty);
-            set => SetValue(DropShadowColorProperty, value);
+            get => (Brush)GetValue(DropShadowBrushProperty);
+            set => SetValue(DropShadowBrushProperty, value);
         }
-        public static readonly DependencyProperty DropShadowColorProperty =
-            DependencyProperty.Register(nameof(DropShadowColor), typeof(Color), typeof(DropShadowBorder), new PropertyMetadata(new PropertyChangedCallback(OnDropShadowColorChanged)));
-
-        private static void OnDropShadowColorChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs eventArgs)
+        public static readonly DependencyProperty DropShadowBrushProperty =
+            DependencyProperty.Register(nameof(DropShadowBrush), typeof(Brush), typeof(DropShadowBorder), new PropertyMetadata(new PropertyChangedCallback(OnDropShadowBrushChanged)));
+        private static void OnDropShadowBrushChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs eventArgs)
         {
             if (dependencyObject is DropShadowBorder dropShadowBorder)
-                dropShadowBorder.UpdateDropShadowColor((Color)eventArgs.NewValue);
+                dropShadowBorder.UpdateDropShadowBrush((Brush)eventArgs.NewValue);
         }
 
 
         [System.ComponentModel.Category("Appearance"), System.ComponentModel.Description("The drop shadow opacity.")]
         public double DropShadowOpacity
         {
-            get { return (double)GetValue(DropShadowOpacityProperty); }
-            set { SetValue(DropShadowOpacityProperty, value); }
+            get => (double)GetValue(DropShadowOpacityProperty);
+            set => SetValue(DropShadowOpacityProperty, value);
         }
         public static readonly DependencyProperty DropShadowOpacityProperty =
             DependencyProperty.Register(nameof(DropShadowOpacity), typeof(double), typeof(DropShadowBorder), null);
@@ -67,12 +66,11 @@ namespace CookPopularUI.WPF.Controls
         [System.ComponentModel.Category("Appearance"), System.ComponentModel.Description("The drop shadow distance.")]
         public double DropShadowDistance
         {
-            get { return (double)GetValue(DropShadowDistanceProperty); }
-            set { SetValue(DropShadowDistanceProperty, value); }
+            get => (double)GetValue(DropShadowDistanceProperty);
+            set => SetValue(DropShadowDistanceProperty, value);
         }
         public static readonly DependencyProperty DropShadowDistanceProperty =
             DependencyProperty.Register(nameof(DropShadowDistance), typeof(double), typeof(DropShadowBorder), new PropertyMetadata(new PropertyChangedCallback(OnDropShadowDistanceChanged)));
-
         private static void OnDropShadowDistanceChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs eventArgs)
         {
             if (dependencyObject is DropShadowBorder dropShadowBorder)
@@ -86,12 +84,11 @@ namespace CookPopularUI.WPF.Controls
         [System.ComponentModel.Category("Appearance"), System.ComponentModel.Description("The drop shadow angle.")]
         public double DropShadowAngle
         {
-            get { return (double)GetValue(DropShadowAngleProperty); }
-            set { SetValue(DropShadowAngleProperty, value); }
+            get => (double)GetValue(DropShadowAngleProperty);
+            set => SetValue(DropShadowAngleProperty, value);
         }
         public static readonly DependencyProperty DropShadowAngleProperty =
             DependencyProperty.Register(nameof(DropShadowAngle), typeof(double), typeof(DropShadowBorder), new PropertyMetadata(new PropertyChangedCallback(OnDropShadowAngleChanged)));
-
         private static void OnDropShadowAngleChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs eventArgs)
         {
             if (dependencyObject is DropShadowBorder dropShadowBorder)
@@ -105,12 +102,11 @@ namespace CookPopularUI.WPF.Controls
         [System.ComponentModel.Category("Appearance"), System.ComponentModel.Description("The drop shadow spread.")]
         public double DropShadowSpread
         {
-            get { return (double)GetValue(DropShadowSpreadProperty); }
-            set { SetValue(DropShadowSpreadProperty, value); }
+            get => (double)GetValue(DropShadowSpreadProperty);
+            set => SetValue(DropShadowSpreadProperty, value);
         }
         public static readonly DependencyProperty DropShadowSpreadProperty =
             DependencyProperty.Register(nameof(DropShadowSpread), typeof(double), typeof(DropShadowBorder), new PropertyMetadata(new PropertyChangedCallback(OnDropShadowSpreadChanged)));
-
         private static void OnDropShadowSpreadChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs eventArgs)
         {
             if (dependencyObject is DropShadowBorder dropShadowBorder)
@@ -118,31 +114,30 @@ namespace CookPopularUI.WPF.Controls
         }
 
 
-
         [System.ComponentModel.Category("Appearance"), System.ComponentModel.Description("Sets the corner radius on the border.")]
         public CornerRadius CornerRadius
         {
             get => (CornerRadius)GetValue(CornerRadiusProperty);
-
-            set
-            {
-                SetValue(CornerRadiusProperty, value);
-
-                CornerRadius shadowCornerRadius = new CornerRadius(Math.Abs(value.TopLeft * 1.5),
-                                                                   Math.Abs(value.TopRight * 1.5),
-                                                                   Math.Abs(value.BottomRight * 1.5),
-                                                                   Math.Abs(value.BottomLeft * 1.5));
-                SetValue(ShadowCornerRadiusProperty, shadowCornerRadius);
-            }
+            set => SetValue(CornerRadiusProperty, value);
         }
         public static readonly DependencyProperty CornerRadiusProperty =
-            DependencyProperty.Register(nameof(CornerRadius), typeof(CornerRadius), typeof(DropShadowBorder), null);
-
-
-        public double ShadowCornerRadius
+            DependencyProperty.Register(nameof(CornerRadius), typeof(CornerRadius), typeof(DropShadowBorder), new PropertyMetadata(OnCornerRadiusChanged));
+        private static void OnCornerRadiusChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            get { return (double)GetValue(ShadowCornerRadiusProperty); }
+            if (d is DropShadowBorder dropShadowBorder)
+            {
+                var cornerRadius = (CornerRadius)e.NewValue;
+                CornerRadius shadowCornerRadius = new CornerRadius(
+                    Math.Abs(cornerRadius.TopLeft * 1.5),
+                    Math.Abs(cornerRadius.TopRight * 1.5),
+                    Math.Abs(cornerRadius.BottomRight * 1.5),
+                    Math.Abs(cornerRadius.BottomLeft * 1.5));
+                dropShadowBorder.SetValue(ShadowCornerRadiusProperty, shadowCornerRadius);
+            }
         }
+
+
+        public double ShadowCornerRadius => (double)GetValue(ShadowCornerRadiusProperty);
         public static readonly DependencyProperty ShadowCornerRadiusProperty =
             DependencyProperty.Register(nameof(ShadowCornerRadius), typeof(CornerRadius), typeof(DropShadowBorder), null);
 
@@ -150,11 +145,11 @@ namespace CookPopularUI.WPF.Controls
         [System.ComponentModel.Category("Appearance"), System.ComponentModel.Description("Sets whether the content is clipped or not.")]
         public bool IsClipContent
         {
-            get { return (bool)GetValue(IsClipContentProperty); }
-            set { SetValue(IsClipContentProperty, value); }
+            get => (bool)GetValue(IsClipContentProperty);
+            set => SetValue(IsClipContentProperty, value.BooleanBox());
         }
         public static readonly DependencyProperty IsClipContentProperty =
-            DependencyProperty.Register(nameof(IsClipContent), typeof(bool), typeof(DropShadowBorder), null);
+            DependencyProperty.Register(nameof(IsClipContent), typeof(bool), typeof(DropShadowBorder), new PropertyMetadata(ValueBoxes.FalseBox));
 
 
         public DropShadowBorder()
@@ -218,8 +213,13 @@ namespace CookPopularUI.WPF.Controls
             }
         }
 
-        private void UpdateDropShadowColor(Color color)
+        private void UpdateDropShadowBrush(Brush brush)
         {
+            if (brush == null)
+                return;
+
+            var color = ((SolidColorBrush)brush).Color;
+
             if (_shadowVertical1 != null)
             {
                 _shadowVertical1.Color = color;
