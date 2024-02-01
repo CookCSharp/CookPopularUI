@@ -8,13 +8,13 @@
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="PerspectiveShadowOpacity" Value="0.5" />
         <Setter Property="PerspectiveShadowBrush" Value="{DynamicResource PrimaryThemeBrush}" />
-        <Setter Property="PerspectiveShadowAngle" Value="-15" />
+        <Setter Property="PerspectiveShadowAngle" Value="0" />
         <Setter Property="PerspectiveShadowSpread" Value="0" />
         <Setter Property="IsClipContent" Value="True" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:PerspectiveShadowBorder}">
-                    <Grid>
+                    <local:SimpleGrid>
                         <Border CornerRadius="{TemplateBinding ShadowCornerRadius}"
                                 Opacity="{TemplateBinding PerspectiveShadowOpacity}"
                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
@@ -28,16 +28,16 @@
                             <Border.Background>
                                 <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1" MappingMode="RelativeToBoundingBox">
                                     <GradientStop x:Name="PART_ShadowOuterStop1" Offset="0" Color="#00000000" />
-                                    <GradientStop x:Name="PART_ShadowVertical1" Offset="0.1" Color="#FF000000" />
-                                    <GradientStop x:Name="PART_ShadowVertical2" Offset="0.9" Color="#FF000000" />
+                                    <GradientStop x:Name="PART_ShadowVertical1" Offset="0.1" Color="{DynamicResource PrimaryThemeColor}" />
+                                    <GradientStop x:Name="PART_ShadowVertical2" Offset="0.9" Color="{DynamicResource PrimaryThemeColor}" />
                                     <GradientStop x:Name="PART_ShadowOuterStop2" Offset="1" Color="#00000000" />
                                 </LinearGradientBrush>
                             </Border.Background>
                             <Border.OpacityMask>
                                 <LinearGradientBrush StartPoint="0.0,0.5" EndPoint="1.0,0.5" MappingMode="RelativeToBoundingBox">
                                     <GradientStop Offset="0" Color="#00000000" />
-                                    <GradientStop x:Name="PART_ShadowHorizontal1" Offset="0.1" Color="#FF000000" />
-                                    <GradientStop x:Name="PART_ShadowHorizontal2" Offset="0.9" Color="#FF000000" />
+                                    <GradientStop x:Name="PART_ShadowHorizontal1" Offset="0.1" Color="{DynamicResource PrimaryThemeColor}" />
+                                    <GradientStop x:Name="PART_ShadowHorizontal2" Offset="0.9" Color="{DynamicResource PrimaryThemeColor}" />
                                     <GradientStop Offset="1" Color="#00000000" />
                                 </LinearGradientBrush>
                             </Border.OpacityMask>
@@ -50,7 +50,7 @@
                                               IsClipContent="{TemplateBinding IsClipContent}">
                             <ContentPresenter />
                         </local:ClippingBorder>
-                    </Grid>
+                    </local:SimpleGrid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

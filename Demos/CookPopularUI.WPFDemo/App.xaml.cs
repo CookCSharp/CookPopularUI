@@ -80,6 +80,7 @@ namespace CookPopularUI.WPFDemo
             containerRegistry.RegisterForNavigation<StepBarDemoView>();
             containerRegistry.RegisterForNavigation<SwiperDemoView>();
             containerRegistry.RegisterForNavigation<TabControlDemoView>();
+            containerRegistry.RegisterForNavigation<TextDemoView>();
             containerRegistry.RegisterForNavigation<TitleBarDemoView>();
             containerRegistry.RegisterForNavigation<ToolBarDemoView>();
             containerRegistry.RegisterForNavigation<ToggleButtonDemoView>();

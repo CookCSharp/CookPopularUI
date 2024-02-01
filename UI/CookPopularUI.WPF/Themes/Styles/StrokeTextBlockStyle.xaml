@@ -3,11 +3,10 @@
                     xmlns:local="clr-namespace:CookPopularUI.WPF.Controls">
 
     <Style x:Key="DefaultStrokeTextBlockStyle" TargetType="{x:Type local:StrokeTextBlock}">
-        <Setter Property="Text" Value="StrokeTextBlock" />
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryForegroundBrush}" />
         <Setter Property="StrokeOpacity" Value="1" />
-        <Setter Property="Stroke" Value="#FFFFFF" />
+        <Setter Property="Stroke" Value="{DynamicResource PrimaryThemeBrush}" />
         <Setter Property="StrokeThickness" Value="1" />
-        <Setter Property="Foreground" Value="#000000" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:StrokeTextBlock}">

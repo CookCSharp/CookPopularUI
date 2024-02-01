@@ -20,7 +20,7 @@ using System.Windows;
 namespace CookPopularUI.WPF.Controls
 {
     /// <summary>
-    /// 带有透视阴影的内容控件
+    /// 带有投影的内容控件
     /// </summary>
     public class PerspectiveShadowBorder : ContentControl
     {
@@ -59,6 +59,9 @@ namespace CookPopularUI.WPF.Controls
             DependencyProperty.Register(nameof(PerspectiveShadowOpacity), typeof(double), typeof(PerspectiveShadowBorder), null);
 
 
+        /// <summary>
+        /// 取值范围-89~89
+        /// </summary>
         [System.ComponentModel.Category("Appearance"), System.ComponentModel.Description("The Perspective shadow angle.")]
         public double PerspectiveShadowAngle
         {
@@ -148,6 +151,7 @@ namespace CookPopularUI.WPF.Controls
 
             UpdateStops(new Size(ActualWidth, ActualHeight));
             UpdateShadowAngle(PerspectiveShadowAngle);
+            UpdatePerspectiveShadowBrush(PerspectiveShadowBrush);
         }
 
         private void UpdateStops(Size size)
