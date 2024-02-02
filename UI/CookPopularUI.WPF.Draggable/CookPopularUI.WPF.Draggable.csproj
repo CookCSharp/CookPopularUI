@@ -6,18 +6,30 @@
     <UseWindowsForms>false</UseWindowsForms>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="Assets\MovePage.cur" />
-    <None Remove="Assets\MovePageNot.cur" />
-  </ItemGroup>
+  <PropertyGroup>
+    <Copyright>Copyright © CookCSharp 2023 All rights reserved.</Copyright>
+    <Description>拖拽控件</Description>
+    <PackageIcon>draggable.png</PackageIcon>
+    <PackageReadmeFile>readme.md</PackageReadmeFile>
+    <PackageTags>xaml,wpf,ui,draggable,drop,windows,desktop,cookpopularui,library</PackageTags>
+    <PackageReleaseNotes>支持.NET462+、.NETCore3.1、.NET6.0+的拖拽控件</PackageReleaseNotes>
+    <!--<PackAsTool>True</PackAsTool>-->
+  </PropertyGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Assets\MovePage.cur" />
     <EmbeddedResource Include="Assets\MovePageNot.cur" />
+    <Resource Include="Assets\draggable.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Utilities\" />
+    <None Include="readme.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>

@@ -1,7 +1,7 @@
 <Project>
   <PropertyGroup>
-    <Version>1.0.0.1-preview1</Version>
-    <!--<Version>1.0.0.1-alpha1</Version>-->
+    <Version>1.0.1-preview2</Version>
+    <!--<Version>1.0.1-alpha2</Version>-->
     <Product>$(MSBuildProjectName)</Product>
     <Company>CookCSharp</Company>
     <Authors>Chance;写代码的厨子</Authors>
