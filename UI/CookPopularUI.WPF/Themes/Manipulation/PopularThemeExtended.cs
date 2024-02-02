@@ -25,8 +25,9 @@ namespace CookPopularUI.WPF.Themes
     /// </summary>
     public static class PopularThemeExtended
     {
-        private const string DefaultPattern = @"^pack:\/\/application:,,,\/CookPopularUI.WPF;component\/Themes\/([A-Za-z]*)Color.xaml$";
-        private const string CustomPattern = @"^pack:\/\/application:,,,\/CookPopularUI.WPF;component\/Themes\/Colors\/([A-Za-z]*)Color.xaml$";
+        private const string DefaultControlPattern = @"pack://application:,,,/CookPopularUI.WPF;component/Themes/DefaultPopularControl.xaml";
+        private const string DefaultColorPattern = @"^pack:\/\/application:,,,\/CookPopularUI.WPF;component\/Themes\/([A-Za-z]*)Color.xaml$";
+        private const string CustomColorPattern = @"^pack:\/\/application:,,,\/CookPopularUI.WPF;component\/Themes\/Colors\/([A-Za-z]*)Color.xaml$";
 
         //private static readonly PopularThemeExtended _instance = new PopularThemeExtended();
         //public static PopularThemeExtended Instance => _instance;
@@ -56,12 +57,36 @@ namespace CookPopularUI.WPF.Themes
 
         public static void SetTheme(this ThemeType theme)
         {
-            var defaultColorResourceDictionary = Application.Current.Resources.MergedDictionaries.FirstOrDefault(r => Regex.IsMatch(r.Source.OriginalString, DefaultPattern));
-            var customColorResourceDictionaries = Application.Current.Resources.MergedDictionaries.Where(r => Regex.IsMatch(r.Source.OriginalString, CustomPattern));
+            var defaultColorResourceDictionary = Application.Current.Resources.MergedDictionaries.FirstOrDefault(r =>
+            {
+                if (r is PopularTheme popularTheme)
+                {
+                    return popularTheme.Theme == ThemeType.Light;
+                }
+                else
+                {
+                    return Regex.IsMatch(r.Source.OriginalString, DefaultColorPattern);
+                }
+            });
+            var customColorResourceDictionaries = Application.Current.Resources.MergedDictionaries.Where(r =>
+            {
+                if (r is PopularTheme popularTheme)
+                {
+                    return popularTheme.Theme != ThemeType.Light;
+                }
+                else
+                {
+                    return Regex.IsMatch(r.Source.OriginalString, CustomColorPattern);
+                }
+            });
             Application.Current.Resources.MergedDictionaries.Remove(defaultColorResourceDictionary);
-            customColorResourceDictionaries.ForEach(r => Application.Current.Resources.MergedDictionaries.Remove(r));
+            customColorResourceDictionaries.ForEach(r =>
+            {
+                Application.Current.Resources.MergedDictionaries.Remove(r);
+            });
             Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri($"pack://application:,,,/CookPopularUI.WPF;component/Themes/Colors/{theme}Color.xaml", UriKind.Absolute) });
-            //Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri("pack://application:,,,/CookPopularUI.WPF;component/Themes/DefaultPopularControl.xaml", UriKind.Absolute) });
+            if (!Application.Current.Resources.MergedDictionaries.Contains(r => r.Source.OriginalString.Equals(DefaultControlPattern)))
+                Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri("pack://application:,,,/CookPopularUI.WPF;component/Themes/DefaultPopularControl.xaml", UriKind.Absolute) });
         }
 
         public static ThemeType GetCurrentTheme()

@@ -12,6 +12,7 @@ using CookPopularToolkit;
 using CookPopularUI.WPF.Themes;
 using CookPopularUI.WPFDemo.Views;
 using Microsoft.Xaml.Behaviors;
+using PropertyChanged;
 using Prism.Commands;
 using Prism.Ioc;
 using Prism.Regions;
@@ -27,7 +28,9 @@ namespace CookPopularUI.WPFDemo.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
+        [DoNotNotify]
         public ThemeType Theme { get; set; }
+        [DoNotNotify]
         public LanguageType Language { get; set; }
         public bool IsShowSideBar { get; set; }
         public ObservableCollection<string> DemoViewNames { get; set; }
@@ -64,6 +67,7 @@ namespace CookPopularUI.WPFDemo.ViewModels
 
         private void OnThemeSwitchAction()
         {
+            Theme = PopularThemeExtended.GetCurrentTheme();
             if (Theme == ThemeType.Dark)
                 Theme = ThemeType.Light;
             else if (Theme == ThemeType.Light)

@@ -149,7 +149,7 @@ namespace CookPopularUI.WPF.Controls
 
         private void UpdateDropShadowBrush()
         {
-            if (_dropShadowBrush != null)
+            if (_dropShadowBrush != null && DropShadowBrush != null)
             {
                 _dropShadowBrush.Color = ((SolidColorBrush)DropShadowBrush).Color;
                 _dropShadowBrush.Opacity = DropShadowOpacity;

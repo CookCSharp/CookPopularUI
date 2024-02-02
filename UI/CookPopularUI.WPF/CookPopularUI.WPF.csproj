@@ -5,7 +5,9 @@
     <UseWPF>true</UseWPF>
     <UseWindowsForms>false</UseWindowsForms>
     <!--<DefineConstants>USE_ORIGIN_WPF_XMLNAMESPACE</DefineConstants>-->
+  </PropertyGroup>
 
+  <PropertyGroup>
     <Copyright>Copyright © CookCSharp 2021 All rights reserved.</Copyright>
     <Description>提供了70多款常用控件</Description>
     <PackageIcon>nuget-logo.png</PackageIcon>
@@ -39,7 +41,7 @@
     <Page Update="Properties\DesignTimeResources.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-      <ContainsDesignTimeResources>true</ContainsDesignTimeResources>  
+      <ContainsDesignTimeResources>true</ContainsDesignTimeResources>
     </Page>
   </ItemGroup>
 
