@@ -233,23 +233,19 @@
                                                     HorizontalAlignment="Right" VerticalAlignment="Top"
                                                     Orientation="Horizontal" WindowChrome.IsHitTestVisibleInChrome="True">
                                             <Button x:Name="MinimizedButton"
-                                                    Background="{TemplateBinding Background}"
                                                     Command="{x:Static SystemCommands.MinimizeWindowCommand}"
                                                     local:FrameworkElementBaseAttached.IconGeometry="{StaticResource MinimizeGeometry}"
                                                     Style="{StaticResource WindowIconButtonStyle}" />
                                             <Button x:Name="MaximizedButton"
-                                                    Background="{TemplateBinding Background}"
                                                     Command="{x:Static SystemCommands.MaximizeWindowCommand}"
                                                     local:FrameworkElementBaseAttached.IconGeometry="{StaticResource MaximizeGeometry}"
                                                     Style="{StaticResource WindowIconButtonStyle}" />
                                             <Button x:Name="NormalButton"
-                                                    Background="{TemplateBinding Background}"
                                                     Command="{x:Static SystemCommands.RestoreWindowCommand}"
                                                     local:FrameworkElementBaseAttached.IconGeometry="{StaticResource RestoreGeometry}"
                                                     Visibility="Collapsed"
                                                     Style="{StaticResource WindowIconButtonStyle}" />
                                             <Button x:Name="CloseButton"
-                                                    Background="{TemplateBinding Background}"
                                                     Command="{x:Static SystemCommands.CloseWindowCommand}"
                                                     local:FrameworkElementBaseAttached.IconGeometry="{StaticResource CloseGeometry}"
                                                     Style="{StaticResource WindowIconButtonStyle}" />
@@ -386,7 +382,7 @@
             </Setter.Value>
         </Setter>
         <Setter Property="Effect" Value="{StaticResource ShadowEffectDepth2}" />
-        <Setter Property="local:FrameworkElementBaseAttached.CornerRadius" Value="5" />
+        <Setter Property="local:FrameworkElementBaseAttached.CornerRadius" Value="0" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Window}">
@@ -400,7 +396,9 @@
                                 <AdornerDecorator KeyboardNavigation.IsTabStop="False">
                                     <ContentPresenter ClipToBounds="True" />
                                 </AdornerDecorator>
-                                <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Horizontal">
+                                <StackPanel Margin="0,0,-1,0"
+                                            HorizontalAlignment="Right" VerticalAlignment="Top"
+                                            Orientation="Horizontal">
                                     <Button Width="45" Height="30"
                                             Command="{x:Static SystemCommands.CloseWindowCommand}"
                                             Cursor="Arrow" WindowChrome.IsHitTestVisibleInChrome="True"
