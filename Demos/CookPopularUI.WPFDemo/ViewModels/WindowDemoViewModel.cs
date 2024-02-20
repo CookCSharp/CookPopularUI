@@ -59,12 +59,12 @@ namespace CookPopularUI.WPFDemo.ViewModels
                 "ShowDialogWindow" => DialogWindowShow(),
                 "ShowFixedSizeWindow" => Show<FixedSizeDemoWindow>(),
                 _ => throw new NotImplementedException(),
-            };       
+            };
         }
 
         private async Task<string> DialogWindowShow()
         {
-            Text = await DialogWindow.Show<IconDemoView>()
+            Text = await DialogWindow.Show<IconDemoView>(null, true, true)
                                      .Initialize<IconDemoViewModel>(vm => { vm.NotifyText = Text; vm.Result = Text; })
                                      .GetResultAsync<string>();
 

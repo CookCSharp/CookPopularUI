@@ -49,6 +49,21 @@ namespace CookPopularUI.WPF.Windows
             DependencyProperty.Register(nameof(IsShowIcon), typeof(bool), typeof(DialogWindow), new PropertyMetadata(ValueBoxes.TrueBox));
 
 
+        /// <summary>
+        /// 是否显示Button按钮
+        /// </summary>
+        public bool IsShowButton
+        {
+            get => (bool)GetValue(IsShowButtonProperty);
+            set => SetValue(IsShowButtonProperty, value);
+        }
+        /// <summary>
+        /// 提供<see cref="IsShowButton"/>的依赖属性
+        /// </summary>
+        public static readonly DependencyProperty IsShowButtonProperty =
+            DependencyProperty.Register(nameof(IsShowButton), typeof(bool), typeof(DialogWindow), new PropertyMetadata(ValueBoxes.TrueBox));
+
+
         static DialogWindow()
         {
             StyleProperty.OverrideMetadata(typeof(DialogWindow), new FrameworkPropertyMetadata(ResourceHelper.GetResource<Style>("DialogWindowStyle")));
@@ -82,33 +97,35 @@ namespace CookPopularUI.WPF.Windows
             IsClosed = true;
         }
 
-        public static DialogWindow Show<T>(string? caption = default, bool isShowIcon = true) where T : new()
+        public static DialogWindow Show<T>(string? caption = default, bool isShowIcon = true, bool isShowButton = true) where T : new()
         {
-            return Show(new T(), caption, isShowIcon);
+            return Show(new T(), caption, isShowIcon, isShowButton);
         }
 
-        public static DialogWindow Show(object content, string? caption = default, bool isShowIcon = true)
+        public static DialogWindow Show(object content, string? caption = default, bool isShowIcon = true, bool isShowButton = true)
         {
             var win = new DialogWindow();
             win.Title = caption ?? string.Empty;
             win.Content = content;
             win.IsShowIcon = isShowIcon;
+            win.IsShowButton = isShowButton;
             win.Show();
 
             return win;
         }
 
-        public static DialogWindow ShowDialog<T>(string? caption = default, bool isShowIcon = true) where T : new()
+        public static DialogWindow ShowDialog<T>(string? caption = default, bool isShowIcon = true, bool isShowButton = true) where T : new()
         {
-            return ShowDialog(new T(), caption, isShowIcon);
+            return ShowDialog(new T(), caption, isShowIcon, isShowButton);
         }
 
-        public static DialogWindow ShowDialog(object content, string? caption = default, bool isShowIcon = true)
+        public static DialogWindow ShowDialog(object content, string? caption = default, bool isShowIcon = true, bool isShowButton = true)
         {
             var win = new DialogWindow();
             win.Title = caption ?? string.Empty;
             win.Content = content;
             win.IsShowIcon = isShowIcon;
+            win.IsShowButton = isShowButton;
             win.ShowDialog();
 
             return win;

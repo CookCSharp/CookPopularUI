@@ -307,6 +307,7 @@
         <Setter Property="MinWidth" Value="335" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="IsShowIcon" Value="True" />
+        <Setter Property="IsShowButton" Value="True" />
         <Setter Property="ResizeMode" Value="NoResize" />
         <Setter Property="ShowInTaskbar" Value="False" />
         <Setter Property="SizeToContent" Value="WidthAndHeight" />
@@ -352,7 +353,7 @@
                             <AdornerDecorator Grid.Row="1" ClipToBounds="True" KeyboardNavigation.IsTabStop="False">
                                 <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" ClipToBounds="True" />
                             </AdornerDecorator>
-                            <UniformGrid Grid.Row="2" Columns="2">
+                            <UniformGrid Grid.Row="2" Columns="2" Visibility="{TemplateBinding IsShowButton, Converter={pt:BooleanToVisibilityConverter}}">
                                 <Button Width="60" Height="26"
                                         Content="{Binding Source={x:Static local:LanguageService.Current}, Path=Ok, ConverterCulture={x:Static local:LanguageService.Culture}}"
                                         Command="{x:Static local:ControlCommands.ConfirmCommand}"
