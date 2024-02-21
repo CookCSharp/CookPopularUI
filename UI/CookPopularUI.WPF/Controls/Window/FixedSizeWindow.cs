@@ -22,7 +22,7 @@ namespace CookPopularUI.WPF.Windows
     /// <summary>
     /// 表示固定大小窗体
     /// </summary>
-    public class FixedSizeWindow : Window
+    public class FixedSizeWindow : NormalWindow
     {
         static FixedSizeWindow()
         {

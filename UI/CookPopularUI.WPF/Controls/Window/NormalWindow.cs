@@ -170,7 +170,7 @@ namespace CookPopularUI.WPF.Windows
         public bool IsFullScreen
         {
             get { return (bool)GetValue(IsFullScreenProperty); }
-            set { SetValue(IsFullScreenProperty, value); }
+            set { SetValue(IsFullScreenProperty, value.BooleanBox()); }
         }
         /// <summary>
         /// 标识<see cref="IsFullScreen"/>的依赖属性
@@ -236,6 +236,21 @@ namespace CookPopularUI.WPF.Windows
 
             return IntPtr.Zero;
         }
+
+
+        /// <summary>
+        /// 是否显示窗体Icon图标
+        /// </summary>
+        public bool IsShowIcon
+        {
+            get => (bool)GetValue(IsShowIconProperty);
+            set => SetValue(IsShowIconProperty, value.BooleanBox());
+        }
+        /// <summary>
+        /// 提供<see cref="IsShowIcon"/>的依赖属性
+        /// </summary>
+        public static readonly DependencyProperty IsShowIconProperty =
+            DependencyProperty.Register(nameof(IsShowIcon), typeof(bool), typeof(NormalWindow), new PropertyMetadata(ValueBoxes.TrueBox));
 
 
         /// <summary>

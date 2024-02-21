@@ -84,7 +84,7 @@ namespace CookPopularUI.WPF.Windows
 
         static MessageDialog()
         {
-            StyleProperty.OverrideMetadata(typeof(MessageDialog), new FrameworkPropertyMetadata(ResourceHelper.GetResource<Style>(typeof(MessageDialog))));
+            //StyleProperty.OverrideMetadata(typeof(MessageDialog), new FrameworkPropertyMetadata(ResourceHelper.GetResource<Style>(typeof(MessageDialog))));
         }
 
         protected MessageDialog()

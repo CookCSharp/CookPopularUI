@@ -92,9 +92,9 @@ namespace CookPopularToolkit.Windows
                 object th = param switch
                 {
                     "TopLeft" => new CornerRadius(cornerRadius.TopLeft, 0, 0, 0),
-                    "TopRight" => new CornerRadius(cornerRadius.TopRight, 0, 0, 0),
-                    "BottomRight" => new CornerRadius(cornerRadius.BottomRight, 0, 0, 0),
-                    "BottomLeft" => new CornerRadius(cornerRadius.BottomLeft, 0, 0, 0),
+                    "TopRight" => new CornerRadius(0, cornerRadius.TopRight, 0, 0),
+                    "BottomRight" => new CornerRadius(0, 0, cornerRadius.BottomRight, 0),
+                    "BottomLeft" => new CornerRadius(0, 0, 0, cornerRadius.BottomLeft),
                     "Left" => new CornerRadius(cornerRadius.TopLeft, 0, 0, cornerRadius.BottomLeft),
                     "Right" => new CornerRadius(0, cornerRadius.TopRight, cornerRadius.BottomRight, 0),
                     "Top" => new CornerRadius(cornerRadius.TopLeft, cornerRadius.TopRight, 0, 0),

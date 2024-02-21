@@ -8,7 +8,9 @@
 
 using CookPopularToolkit.Windows;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Shell;
 
 namespace CookPopularUI.WPF.Windows
 {
@@ -19,13 +21,24 @@ namespace CookPopularUI.WPF.Windows
     {
         static NoneTitleBarWindow()
         {
-            StyleProperty.OverrideMetadata(typeof(NoneTitleBarWindow), new FrameworkPropertyMetadata(ResourceHelper.GetResource<Style>(typeof(NoneTitleBarWindow))));
+            //StyleProperty.OverrideMetadata(typeof(NoneTitleBarWindow), new FrameworkPropertyMetadata(ResourceHelper.GetResource<Style>(typeof(NoneTitleBarWindow))));
+        }
+
+        public NoneTitleBarWindow()
+        {
+            var windowChrome = new WindowChrome
+            {
+                CornerRadius = default,
+                GlassFrameThickness = new Thickness(-1),
+                ResizeBorderThickness = new Thickness(2),
+                UseAeroCaptionButtons = false,
+                CaptionHeight = 0,
+            };
+            WindowChrome.SetWindowChrome(this, windowChrome);
         }
 
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
-            base.OnMouseLeftButtonDown(e);
-
             if (e.GetPosition(this).Y <= ClientTitleBarHeight && e.ButtonState == MouseButtonState.Pressed)
             {
                 this.DragMove();

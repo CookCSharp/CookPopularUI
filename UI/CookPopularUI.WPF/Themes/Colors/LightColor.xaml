@@ -5,13 +5,13 @@
         <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Colors/BaseColor.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <Color x:Key="PrimaryThemeColor">#C3C3C3</Color>
+    <Color x:Key="PrimaryThemeColor">#D3D3D3</Color>
     <Color x:Key="AssistantThemeColor">#3A3A3A</Color>
     <SolidColorBrush x:Key="PrimaryThemeBrush" Color="{StaticResource PrimaryThemeColor}" />
     <SolidColorBrush x:Key="AssistantThemeBrush" Color="{StaticResource AssistantThemeColor}" />
     <SolidColorBrush x:Key="{ComponentResourceKey ResourceId=PrimaryThemeBrush, TypeInTargetAssembly={x:Type Brush}}" Color="{StaticResource PrimaryThemeColor}" />
 
-    <Color x:Key="ControlMouseOverColor">#B3B3B3</Color>
+    <Color x:Key="ControlMouseOverColor">#C3C3C3</Color>
     <Color x:Key="ControlPressColor">#A3A3A3</Color>
     <SolidColorBrush x:Key="ControlMouseOverBrush" Color="{StaticResource ControlMouseOverColor}" />
     <SolidColorBrush x:Key="ControlPressBrush" Color="{StaticResource ControlPressColor}" />

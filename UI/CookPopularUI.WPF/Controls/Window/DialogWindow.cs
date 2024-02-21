@@ -34,20 +34,6 @@ namespace CookPopularUI.WPF.Windows
         /// </summary>
         public bool IsConfirm { get; private set; }
 
-        /// <summary>
-        /// 是否显示窗体Icon图标
-        /// </summary>
-        public bool IsShowIcon
-        {
-            get => (bool)GetValue(IsShowIconProperty);
-            set => SetValue(IsShowIconProperty, ValueBoxes.BooleanBox(value));
-        }
-        /// <summary>
-        /// 提供<see cref="IsShowIcon"/>的依赖属性
-        /// </summary>
-        public static readonly DependencyProperty IsShowIconProperty =
-            DependencyProperty.Register(nameof(IsShowIcon), typeof(bool), typeof(DialogWindow), new PropertyMetadata(ValueBoxes.TrueBox));
-
 
         /// <summary>
         /// 是否显示Button按钮
@@ -66,7 +52,7 @@ namespace CookPopularUI.WPF.Windows
 
         static DialogWindow()
         {
-            StyleProperty.OverrideMetadata(typeof(DialogWindow), new FrameworkPropertyMetadata(ResourceHelper.GetResource<Style>(typeof(DialogWindow))));
+            //StyleProperty.OverrideMetadata(typeof(DialogWindow), new FrameworkPropertyMetadata(ResourceHelper.GetResource<Style>(typeof(DialogWindow))));
         }
 
         private DialogWindow()

@@ -54,29 +54,30 @@ namespace CookPopularUI.WPFDemo.ViewModels
         {
             object d = content switch
             {
-                "ShowNormalWindow" => Show<NormalWindow>(),
-                "ShowNoneTitleWindow" => Show<NoneTitleBarWindow>(),
-                "ShowDialogWindow" => DialogWindowShow(),
-                "ShowFixedSizeWindow" => Show<FixedSizeDemoWindow>(),
+                "ShowNormalWindow" => Show<NormalWindow>("NormalWindow"),
+                "ShowNoneTitleWindow" => Show<NoneTitleBarWindow>("NoneTitleBarWindow"),
+                "ShowDialogWindow" => ShowDialogWindow(),
+                "ShowFixedSizeWindow" => Show<FixedSizeDemoWindow>("FixedSizeDemoWindow"),
                 _ => throw new NotImplementedException(),
             };
         }
 
-        private async Task<string> DialogWindowShow()
+        private async Task<string> ShowDialogWindow()
         {
-            Text = await DialogWindow.Show<IconDemoView>(null, true, true)
+            Text = await DialogWindow.Show<IconDemoView>("DialogWindow", true, true)
                                      .Initialize<IconDemoViewModel>(vm => { vm.NotifyText = Text; vm.Result = Text; })
                                      .GetResultAsync<string>();
 
             return Text;
         }
 
-        private object Show<T>() where T : Window, new()
+        private object Show<T>(string title = null) where T : Window, new()
         {
             var win = new T();
             //win.Icon = new Uri("pack://application:,,,/CookPopularUI.WPFDemo;component/Assets/Media/cookcsharp.ico", UriKind.Absolute).ToImageSource();
             win.Owner = Application.Current.MainWindow;
             win.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            win.Title = title;
             win.Show();
             return this;
         }

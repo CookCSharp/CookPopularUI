@@ -65,6 +65,7 @@
         <Setter Property="WindowState" Value="Normal" />
         <Setter Property="UseLayoutRounding" Value="True" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="IsShowIcon" Value="True" />
         <Setter Property="IsShowTitle" Value="True" />
         <Setter Property="IsShowClientTitleBar" Value="True" />
         <Setter Property="IsFullScreen" Value="False" />
@@ -305,8 +306,6 @@
     <Style x:Key="DialogWindowStyle" TargetType="{x:Type win:DialogWindow}" BasedOn="{StaticResource NormalWindowStyle}">
         <Setter Property="MinHeight" Value="172" />
         <Setter Property="MinWidth" Value="335" />
-        <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="IsShowIcon" Value="True" />
         <Setter Property="IsShowButton" Value="True" />
         <Setter Property="ResizeMode" Value="NoResize" />
         <Setter Property="ShowInTaskbar" Value="False" />
@@ -375,7 +374,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="FixedSizeWindowStyle" TargetType="{x:Type win:FixedSizeWindow}" BasedOn="{StaticResource FixedControlBaseStyle}">
+    <Style x:Key="FixedSizeWindowStyle" TargetType="{x:Type win:FixedSizeWindow}" BasedOn="{StaticResource NormalWindowStyle}">
         <!--  或 ResizeMode="NoResize"  -->
         <Setter Property="ResizeMode" Value="CanMinimize" />
         <Setter Property="WindowStyle" Value="None" />
@@ -386,41 +385,74 @@
             </Setter.Value>
         </Setter>
         <Setter Property="Effect" Value="{StaticResource ShadowEffectDepth2}" />
-        <Setter Property="local:FrameworkElementBaseAttached.CornerRadius" Value="0" />
+        <Setter Property="local:FrameworkElementBaseAttached.CornerRadius" Value="5" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Window}">
-                    <Border Background="Transparent" CornerRadius="{TemplateBinding local:FrameworkElementBaseAttached.CornerRadius}">
+                <ControlTemplate TargetType="{x:Type win:FixedSizeWindow}">
+                    <Border CornerRadius="{TemplateBinding local:FrameworkElementBaseAttached.CornerRadius}">
                         <Border BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 Background="{TemplateBinding Background}"
                                 CornerRadius="{TemplateBinding local:FrameworkElementBaseAttached.CornerRadius}"
-                                Margin="8">
-                            <ui:SimpleGrid>
-                                <AdornerDecorator KeyboardNavigation.IsTabStop="False">
+                                Margin="5">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Border Background="{TemplateBinding ClientTitleBarBackground}" CornerRadius="{TemplateBinding local:FrameworkElementBaseAttached.CornerRadius, Converter={pt:CornerRadiusToOrientationCornerRadiusConverter}, ConverterParameter=Top}">
+                                    <Grid x:Name="PART_TitleBarArea" TextElement.Foreground="{TemplateBinding ClientTitleBarForeground}" Visibility="{TemplateBinding IsShowClientTitleBar, Converter={pt:BooleanToVisibilityConverter}}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <DockPanel Grid.Column="0">
+                                            <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
+                                                <Button x:Name="PART_WindowIcon"
+                                                        Command="{x:Static SystemCommands.ShowSystemMenuCommand}"
+                                                        Cursor="Arrow" WindowChrome.IsHitTestVisibleInChrome="True"
+                                                        Visibility="{TemplateBinding IsShowIcon, Converter={pt:BooleanToVisibilityConverter}}"
+                                                        Style="{StaticResource ButtonTransparentStyle}">
+                                                    <Image Width="20" Height="20"
+                                                           Source="{TemplateBinding Icon}"
+                                                           Stretch="Uniform"
+                                                           Margin="5,0"
+                                                           IsHitTestVisible="False" />
+                                                </Button>
+                                                <TextBlock Text="{TemplateBinding Title}"
+                                                           Foreground="{TemplateBinding ClientTitleBarForeground}"
+                                                           FontSize="{TemplateBinding ClientTitleBarFontsize}"
+                                                           VerticalAlignment="Center"
+                                                           IsHitTestVisible="False"
+                                                           Visibility="{TemplateBinding IsShowTitle, Converter={pt:BooleanToVisibilityConverter}}" />
+                                            </StackPanel>
+                                            <ContentPresenter x:Name="NonClientContentPresenter" Content="{TemplateBinding ClientTitleBarAdditionalContent}" WindowChrome.IsHitTestVisibleInChrome="False" />
+                                        </DockPanel>
+                                        <StackPanel Grid.Column="1"
+                                                    HorizontalAlignment="Right" VerticalAlignment="Top"
+                                                    Orientation="Horizontal" WindowChrome.IsHitTestVisibleInChrome="True">
+                                            <Button x:Name="minimizeButton"
+                                                    Command="{x:Static SystemCommands.MinimizeWindowCommand}"
+                                                    local:FrameworkElementBaseAttached.IconGeometry="{StaticResource MinimizeGeometry}"
+                                                    Style="{StaticResource WindowIconButtonStyle}" />
+                                            <Button Command="{x:Static SystemCommands.CloseWindowCommand}"
+                                                    local:FrameworkElementBaseAttached.CornerRadius="{TemplateBinding local:FrameworkElementBaseAttached.CornerRadius, Converter={pt:CornerRadiusToOrientationCornerRadiusConverter}, ConverterParameter=TopRight}"
+                                                    local:FrameworkElementBaseAttached.IconGeometry="{StaticResource CloseGeometry}"
+                                                    Style="{StaticResource WindowIconButtonStyle}" />
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                                <AdornerDecorator Grid.Row="1" KeyboardNavigation.IsTabStop="False">
                                     <ContentPresenter ClipToBounds="True" />
                                 </AdornerDecorator>
-                                <StackPanel Margin="0,0,-1,0"
-                                            HorizontalAlignment="Right" VerticalAlignment="Top"
-                                            Orientation="Horizontal">
-                                    <Button Width="45" Height="30"
-                                            Command="{x:Static SystemCommands.CloseWindowCommand}"
-                                            Cursor="Arrow" WindowChrome.IsHitTestVisibleInChrome="True"
-                                            local:FrameworkElementBaseAttached.CornerRadius="{TemplateBinding local:FrameworkElementBaseAttached.CornerRadius}"
-                                            local:FrameworkElementBaseAttached.IconGeometry="{StaticResource MinimizeGeometry}"
-                                            local:FrameworkElementBaseAttached.IconHeight="10" local:FrameworkElementBaseAttached.IconWidth="10"
-                                            Style="{StaticResource ButtonNoMouseOverTransparentIconStyle}" />
-                                    <Button Width="45" Height="30"
-                                            Command="{x:Static SystemCommands.CloseWindowCommand}"
-                                            Cursor="Arrow" WindowChrome.IsHitTestVisibleInChrome="True"
-                                            local:FrameworkElementBaseAttached.CornerRadius="{TemplateBinding local:FrameworkElementBaseAttached.CornerRadius}"
-                                            local:FrameworkElementBaseAttached.IconGeometry="{StaticResource CloseGeometry}"
-                                            local:FrameworkElementBaseAttached.IconHeight="10" local:FrameworkElementBaseAttached.IconWidth="10"
-                                            Style="{StaticResource ButtonNoMouseOverTransparentIconStyle}" />
-                                </StackPanel>
-                            </ui:SimpleGrid>
+                            </Grid>
                         </Border>
                     </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="ResizeMode" Value="NoResize">
+                            <Setter Property="Visibility" Value="Collapsed" TargetName="minimizeButton" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

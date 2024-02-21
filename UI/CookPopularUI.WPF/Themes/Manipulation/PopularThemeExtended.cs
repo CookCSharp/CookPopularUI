@@ -93,10 +93,17 @@ namespace CookPopularUI.WPF.Themes
         {
             foreach (var dic in Application.Current.Resources.MergedDictionaries.Reverse())
             {
-                var themeString = dic.Source.OriginalString.Split('/').IndexValue(-1).Replace("Color.xaml", "");
-                if (Enum.TryParse(themeString, out ThemeType theme))
+                if (dic is PopularTheme)
                 {
-                    return theme;
+                    return ((PopularTheme)dic).Theme;
+                }
+                else
+                {
+                    var themeString = dic.Source.OriginalString.Split('/').IndexValue(-1).Replace("Color.xaml", "");
+                    if (Enum.TryParse(themeString, out ThemeType theme))
+                    {
+                        return theme;
+                    }
                 }
             }
 
