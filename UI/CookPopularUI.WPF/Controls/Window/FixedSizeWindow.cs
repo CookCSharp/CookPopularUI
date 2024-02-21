@@ -26,7 +26,7 @@ namespace CookPopularUI.WPF.Windows
     {
         static FixedSizeWindow()
         {
-            StyleProperty.OverrideMetadata(typeof(FixedSizeWindow), new FrameworkPropertyMetadata(ResourceHelper.GetResource<Style>("FixedSizeWindowStyle")));
+            StyleProperty.OverrideMetadata(typeof(FixedSizeWindow), new FrameworkPropertyMetadata(ResourceHelper.GetResource<Style>(typeof(FixedSizeWindow))));
             CommandManager.RegisterClassCommandBinding(typeof(FixedSizeWindow), new CommandBinding(SystemCommands.CloseWindowCommand, (s, e) => SystemCommands.CloseWindow(s as Window), (s, e) => e.CanExecute = true));
         }
     }

@@ -329,7 +329,7 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=ClientTitleBarHeight}" />
                                 <RowDefinition />
-                                <RowDefinition Height="40" />
+                                <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <ui:SimpleGrid Grid.Row="0" Background="{TemplateBinding ClientTitleBarBackground}" TextElement.Foreground="{TemplateBinding ClientTitleBarForeground}">
                                 <DockPanel HorizontalAlignment="Left">
@@ -353,7 +353,10 @@
                             <AdornerDecorator Grid.Row="1" ClipToBounds="True" KeyboardNavigation.IsTabStop="False">
                                 <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" ClipToBounds="True" />
                             </AdornerDecorator>
-                            <UniformGrid Grid.Row="2" Columns="2" Visibility="{TemplateBinding IsShowButton, Converter={pt:BooleanToVisibilityConverter}}">
+                            <UniformGrid Grid.Row="2"
+                                         Columns="2"
+                                         Height="40"
+                                         Visibility="{TemplateBinding IsShowButton, Converter={pt:BooleanToVisibilityConverter}}">
                                 <Button Width="60" Height="26"
                                         Content="{Binding Source={x:Static local:LanguageService.Current}, Path=Ok, ConverterCulture={x:Static local:LanguageService.Culture}}"
                                         Command="{x:Static local:ControlCommands.ConfirmCommand}"

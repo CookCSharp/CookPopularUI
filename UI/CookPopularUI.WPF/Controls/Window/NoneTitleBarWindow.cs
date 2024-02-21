@@ -19,7 +19,7 @@ namespace CookPopularUI.WPF.Windows
     {
         static NoneTitleBarWindow()
         {
-            StyleProperty.OverrideMetadata(typeof(NoneTitleBarWindow), new FrameworkPropertyMetadata(ResourceHelper.GetResource<Style>("NoneTitleBarWindowStyle")));
+            StyleProperty.OverrideMetadata(typeof(NoneTitleBarWindow), new FrameworkPropertyMetadata(ResourceHelper.GetResource<Style>(typeof(NoneTitleBarWindow))));
         }
 
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)

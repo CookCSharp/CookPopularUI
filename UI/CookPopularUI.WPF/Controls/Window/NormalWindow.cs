@@ -272,7 +272,7 @@ namespace CookPopularUI.WPF.Windows
 
         static NormalWindow()
         {
-            StyleProperty.OverrideMetadata(typeof(NormalWindow), new FrameworkPropertyMetadata(ResourceHelper.GetResource<Style>("NormalWindowStyle")));
+            StyleProperty.OverrideMetadata(typeof(NormalWindow), new FrameworkPropertyMetadata(ResourceHelper.GetResource<Style>(typeof(NormalWindow))));
         }
 
         public NormalWindow()

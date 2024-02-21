@@ -66,7 +66,7 @@ namespace CookPopularUI.WPF.Windows
 
         static DialogWindow()
         {
-            StyleProperty.OverrideMetadata(typeof(DialogWindow), new FrameworkPropertyMetadata(ResourceHelper.GetResource<Style>("DialogWindowStyle")));
+            StyleProperty.OverrideMetadata(typeof(DialogWindow), new FrameworkPropertyMetadata(ResourceHelper.GetResource<Style>(typeof(DialogWindow))));
         }
 
         private DialogWindow()
