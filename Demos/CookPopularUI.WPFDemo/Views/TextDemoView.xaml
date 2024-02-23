@@ -19,6 +19,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Grid.Column="0">
@@ -64,6 +65,28 @@
                                 DropShadowDistance="{Binding ElementName=distanceSlider, Path=Value}"
                                 DropShadowOpacity="{Binding ElementName=opacitySlider2, Path=Value}"
                                 TextWrapping="Wrap" />
+
+        <ui:Watermark Grid.Row="2" Grid.Column="2"
+                      Height="200"
+                      Mark="{StaticResource StarGeometry}"
+                      MarkHeight="40" MarkMargin="5" MarkWidth="40">
+            <ui:Watermark.Content>
+                <Border BorderBrush="Red" BorderThickness="3">
+                    <TextBlock Text="写代码的厨子"
+                               FontSize="20" FontWeight="DemiBold"
+                               HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </Border>
+            </ui:Watermark.Content>
+            <!--<ui:Watermark.Mark>
+                <TextBlock Text="Watermarked Text" />
+            </ui:Watermark.Mark>-->
+            <!--<ui:Watermark.Mark>
+                <Path Width="30" Height="30" Margin="10"
+                      Data="{StaticResource FileGeometry}"
+                      Fill="{StaticResource PrimaryForegroundBrush}"
+                      Stretch="Uniform" />
+            </ui:Watermark.Mark>-->
+        </ui:Watermark>
     </Grid>
 
 </UserControl>

@@ -10,10 +10,14 @@
             <ResourceDictionary.MergedDictionaries>
                 <!--<ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/DefaultPopularColor.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/DefaultPopularControl.xaml" />-->
-                <ui:PopularTheme Language="English" Theme="Dark" />
+                <ui:PopularTheme Language="English" Theme="Light" />
             </ResourceDictionary.MergedDictionaries>
 
             <sys:Double x:Key="DemoViewWidth">1000</sys:Double>
+
+            <Style TargetType="{x:Type ui:DialogWindow}" BasedOn="{StaticResource DialogWindowStyle}">
+                <Setter Property="Background" Value="Green" />
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 

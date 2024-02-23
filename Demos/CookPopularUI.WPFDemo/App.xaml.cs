@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using PropertyChanged;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace CookPopularUI.WPFDemo
 {
@@ -30,6 +31,7 @@ namespace CookPopularUI.WPFDemo
             var color3 = SystemColors.ControlLightLightColor;
             var color4 = SystemColors.ControlDarkColor;
             var brush = SystemColors.ActiveBorderColor;
+            var brush1 = Brushes.LightGray;
 
             var geo = new System.Windows.Media.RectangleGeometry(new Rect(new Point(0, 0), new Point(10, 30)));
             var ss = geo.GetOutlinedPathGeometry().Figures;

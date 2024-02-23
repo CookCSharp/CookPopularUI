@@ -81,6 +81,7 @@
         <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/TimePickerStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/TitleBarStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/ToastMessageStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/WatermarkStyle.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
 
@@ -171,5 +172,6 @@
     <Style x:Key="{x:Type ui:TitleBar}" TargetType="{x:Type ui:TitleBar}" BasedOn="{StaticResource DefaultTitleBarStyle}" />
     <Style x:Key="{x:Type ui:TitleBarEx}" TargetType="{x:Type ui:TitleBarEx}" BasedOn="{StaticResource DefaultTitleBarExStyle}" />
     <Style x:Key="{x:Type ui:ToastMessage}" TargetType="{x:Type ui:ToastMessage}" BasedOn="{StaticResource DefaultToastMessageStyle}" />
+    <Style x:Key="{x:Type ui:Watermark}" TargetType="{x:Type ui:Watermark}" BasedOn="{StaticResource DefaultWatermarkStyle}" />
 
 </ResourceDictionary>
