@@ -132,7 +132,6 @@ namespace CookPopularUI.WPF.Controls
 
         public PerspectiveShadowBorder()
         {
-            DefaultStyleKey = typeof(PerspectiveShadowBorder);
             SizeChanged += (s, e) => UpdateStops(e.NewSize);
         }
 

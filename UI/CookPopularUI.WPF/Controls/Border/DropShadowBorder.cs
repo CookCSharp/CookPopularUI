@@ -154,7 +154,6 @@ namespace CookPopularUI.WPF.Controls
 
         public DropShadowBorder()
         {
-            DefaultStyleKey = typeof(DropShadowBorder);
             SizeChanged += (s, e) => UpdateStops(e.NewSize);
         }
 

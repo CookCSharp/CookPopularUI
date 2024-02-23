@@ -70,7 +70,6 @@ namespace CookPopularUI.WPF.Controls
 
         public ClippingBorder()
         {
-            DefaultStyleKey = typeof(ClippingBorder);
             SizeChanged += new SizeChangedEventHandler(ClippingBorder_SizeChanged);
         }
 

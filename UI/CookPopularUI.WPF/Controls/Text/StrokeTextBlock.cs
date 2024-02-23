@@ -109,11 +109,6 @@ namespace CookPopularUI.WPF.Controls
         }
 
 
-        public StrokeTextBlock()
-        {
-            DefaultStyleKey = typeof(StrokeTextBlock);
-        }
-
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();

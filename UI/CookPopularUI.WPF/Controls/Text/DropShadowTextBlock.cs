@@ -118,11 +118,6 @@ namespace CookPopularUI.WPF.Controls
         }
 
 
-        public DropShadowTextBlock()
-        {
-            DefaultStyleKey = typeof(DropShadowTextBlock);
-        }
-
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();

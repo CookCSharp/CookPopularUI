@@ -113,7 +113,6 @@ namespace CookPopularUI.WPF.Controls
 
         public OuterGlowBorder()
         {
-            DefaultStyleKey = typeof(OuterGlowBorder);
             SizeChanged += (s, e) => UpdateStops(e.NewSize);
         }
 

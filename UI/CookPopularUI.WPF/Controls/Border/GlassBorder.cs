@@ -76,11 +76,5 @@ namespace CookPopularUI.WPF.Controls
         }
         public static readonly DependencyProperty ContentZIndexProperty =
             DependencyProperty.Register(nameof(ContentZIndex), typeof(int), typeof(GlassBorder), new PropertyMetadata(ValueBoxes.Integer0Box));
-
-
-        public GlassBorder()
-        {
-            DefaultStyleKey = typeof(GlassBorder);
-        }
     }
 }

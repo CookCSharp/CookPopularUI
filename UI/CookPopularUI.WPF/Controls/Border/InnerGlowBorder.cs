@@ -109,11 +109,6 @@ namespace CookPopularUI.WPF.Controls
             DependencyProperty.Register(nameof(ContentZIndex), typeof(int), typeof(InnerGlowBorder), new PropertyMetadata(ValueBoxes.Integer0Box));
 
 
-        public InnerGlowBorder()
-        {
-            DefaultStyleKey = typeof(InnerGlowBorder);
-        }
-
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();

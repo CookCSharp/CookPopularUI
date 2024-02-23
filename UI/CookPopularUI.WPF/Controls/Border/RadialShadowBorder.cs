@@ -124,7 +124,6 @@ namespace CookPopularUI.WPF.Controls
 
         public RadialShadowBorder()
         {
-            DefaultStyleKey = typeof(RadialShadowBorder);
             SizeChanged += (s, e) => UpdateShadowSize(e.NewSize);
         }
 
