@@ -14,7 +14,7 @@
 
     <Color x:Key="BorderBrushColor">#A0A0A0</Color>
     <Color x:Key="BlockColor">#884A4A4A</Color>
-    <Color x:Key="UnEnabledColor">#D0D0D0</Color>
+    <Color x:Key="UnEnabledColor">#C0C0C0</Color>
     <SolidColorBrush x:Key="BorderBrush" Color="{x:Static SystemColors.ControlDarkColor}" />
     <SolidColorBrush x:Key="BlockBrush" Color="{StaticResource BlockColor}" />
     <SolidColorBrush x:Key="UnEnabledBrush" Color="{StaticResource UnEnabledColor}" />

@@ -1,20 +1,20 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:CookPopularUI.WPF.Controls">
+                    xmlns:ui="clr-namespace:CookPopularUI.WPF.Controls">
 
-    <Style x:Key="DefaultGlassBorderStyle" TargetType="{x:Type local:GlassBorder}">
+    <Style x:Key="DefaultGlassBorderStyle" TargetType="{x:Type ui:GlassBorder}">
         <Setter Property="Background" Value="{DynamicResource PrimaryThemeBrush}" />
         <Setter Property="GlassOpacity" Value="1" />
         <Setter Property="IsClipContent" Value="True" />
         <Setter Property="ContentZIndex" Value="0" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:GlassBorder}">
-                    <local:ClippingBorder BorderBrush="{TemplateBinding BorderBrush}"
-                                          BorderThickness="{TemplateBinding BorderThickness}"
-                                          Background="{TemplateBinding Background}"
-                                          CornerRadius="{TemplateBinding CornerRadius}"
-                                          IsClipContent="{TemplateBinding IsClipContent}">
+                <ControlTemplate TargetType="{x:Type ui:GlassBorder}">
+                    <ui:ClippingBorder BorderBrush="{TemplateBinding BorderBrush}"
+                                       BorderThickness="{TemplateBinding BorderThickness}"
+                                       Background="{TemplateBinding Background}"
+                                       CornerRadius="{TemplateBinding CornerRadius}"
+                                       IsClipContent="{TemplateBinding IsClipContent}">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*" />
@@ -34,7 +34,7 @@
                                 </Border.Background>
                             </Border>
                         </Grid>
-                    </local:ClippingBorder>
+                    </ui:ClippingBorder>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
