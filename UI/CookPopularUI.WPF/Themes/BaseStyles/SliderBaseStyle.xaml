@@ -208,7 +208,7 @@
                         Height="{TemplateBinding local:ThumbAttached.ThumbHeight, Converter={pt:ValueTranslateToDoubleConverter}, ConverterParameter=0.25}"
                         Background="{TemplateBinding Foreground}"
                         CornerRadius="2"
-                        Opacity="0.5" />
+                        Opacity="0.6" />
                 <Border x:Name="ValueBorder" Grid.Row="1"
                         Width="{Binding ElementName=PART_Track, Path=DecreaseRepeatButton.ActualWidth}"
                         Height="{TemplateBinding local:ThumbAttached.ThumbHeight, Converter={pt:ValueTranslateToDoubleConverter}, ConverterParameter=0.25}"
@@ -284,7 +284,7 @@
                         Width="{TemplateBinding local:ThumbAttached.ThumbWidth, Converter={pt:ValueTranslateToDoubleConverter}, ConverterParameter=0.25}"
                         Background="{TemplateBinding Foreground}"
                         CornerRadius="2"
-                        Opacity="0.4" />
+                        Opacity="0.6" />
                 <Border x:Name="ValueBorder" Grid.Column="1"
                         Width="{TemplateBinding local:ThumbAttached.ThumbWidth, Converter={pt:ValueTranslateToDoubleConverter}, ConverterParameter=0.25}"
                         Height="{Binding ElementName=PART_Track, Path=DecreaseRepeatButton.ActualHeight}"

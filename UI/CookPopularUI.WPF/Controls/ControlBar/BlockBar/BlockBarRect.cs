@@ -24,7 +24,7 @@ namespace CookPopularUI.WPF.Controls
 
             Contract.Requires(!RenderSize.IsEmpty, "RenderSize");
             Contract.Requires(BlockCount > 0, "BlockCount");
-
+            
             double width = (RenderSize.Width - (BlockCount - 1) * BlockDistance - BorderBen.Thickness) / BlockCount;
             double height = RenderSize.Height - BorderBen.Thickness;
             if (width <= 0 || height <= 0) return;

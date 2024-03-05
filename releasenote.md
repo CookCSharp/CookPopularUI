@@ -1,4 +1,4 @@
-v1.0.0.1-preview2 (2024.1.18)
+v1.0.1-preview2 (2024.1.18)
 
 - 更新VirtualizingWrapPanel
 - 更新VirtualizingItemsControl

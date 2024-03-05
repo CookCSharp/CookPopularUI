@@ -6,7 +6,7 @@
  */
 
 
-using CookPopularToolkit;
+using CookPopularToolkit.Windows;
 using System;
 using System.Data;
 using System.Windows;
@@ -20,8 +20,9 @@ namespace CookPopularUI.WPF.Controls
     /// </summary>
     public abstract class BlockBarBase : FrameworkElement
     {
-        private static readonly Brush BlockBarForegroundBrush = CookPopularToolkit.Windows.ResourceHelper.GetResource<Brush>("PrimaryThemeBrush")!;
-        protected static readonly Brush BlockBarBackgroundBrush = CookPopularToolkit.Windows.ResourceHelper.GetResource<Brush>("UnEnabledBrush")!;
+        private static readonly Brush BlockBarForegroundBrush = ResourceHelper.GetResource<Brush>("PrimaryThemeBrush")!;
+        private static readonly Brush BlockBarUnEnabledBackgroundBrush = ResourceHelper.GetResource<Brush>("UnEnabledBrush")!;
+        protected static readonly Brush BlockBarDefaultBackgroundBrush = "#66AAAAAA".ToBrush();
 
         protected Pen BorderBen { get; private set; }
 
@@ -39,7 +40,7 @@ namespace CookPopularUI.WPF.Controls
         /// </summary>
         public static readonly DependencyProperty BlockCountProperty =
             DependencyProperty.Register(nameof(BlockCount), typeof(int), typeof(BlockBarBase),
-                new FrameworkPropertyMetadata(ValueBoxes.Integer5Box, FrameworkPropertyMetadataOptions.AffectsRender, null, new CoerceValueCallback(CoerceBlockCount)));
+                new FrameworkPropertyMetadata(CookPopularToolkit.ValueBoxes.Integer5Box, FrameworkPropertyMetadataOptions.AffectsRender, null, new CoerceValueCallback(CoerceBlockCount)));
 
         private static object CoerceBlockCount(DependencyObject d, object baseValue)
         {
@@ -69,7 +70,7 @@ namespace CookPopularUI.WPF.Controls
         /// </summary>
         public static readonly DependencyProperty ValueProperty =
             DependencyProperty.Register(nameof(Value), typeof(int), typeof(BlockBarBase),
-                new FrameworkPropertyMetadata(ValueBoxes.Integer0Box, FrameworkPropertyMetadataOptions.AffectsRender, null, new CoerceValueCallback(CoerceValue)));
+                new FrameworkPropertyMetadata(CookPopularToolkit.ValueBoxes.Integer0Box, FrameworkPropertyMetadataOptions.AffectsRender, null, new CoerceValueCallback(CoerceValue)));
 
         private static object CoerceValue(DependencyObject d, object baseValue)
         {
@@ -126,7 +127,7 @@ namespace CookPopularUI.WPF.Controls
             get { return (Brush)GetValue(BackgroundProperty); }
             set { SetValue(BackgroundProperty, value); }
         }
-        public static readonly DependencyProperty BackgroundProperty = Control.BackgroundProperty.AddOwner(typeof(BlockBarBase), new FrameworkPropertyMetadata(BlockBarBackgroundBrush, FrameworkPropertyMetadataOptions.AffectsRender));
+        public static readonly DependencyProperty BackgroundProperty = Control.BackgroundProperty.AddOwner(typeof(BlockBarBase), new FrameworkPropertyMetadata(BlockBarDefaultBackgroundBrush, FrameworkPropertyMetadataOptions.AffectsRender));
 
 
         static BlockBarBase()
@@ -143,7 +144,7 @@ namespace CookPopularUI.WPF.Controls
 
         private void UpdateBorderPen()
         {
-            BorderBen = new Pen(BlockBarBackgroundBrush, 0);
+            BorderBen = new Pen(BlockBarDefaultBackgroundBrush, 0);
             BorderBen.Freeze();
         }
 

@@ -20,7 +20,7 @@ namespace CookPopularUI.WPF.Controls
         {
             base.OnRender(drawingContext);
 
-            Size effectiveRenderSize = new Size(this.RenderSize.Width - BorderBen.Thickness, this.RenderSize.Height - BorderBen.Thickness);
+            Size effectiveRenderSize = new Size(RenderSize.Width - BorderBen.Thickness, RenderSize.Height - BorderBen.Thickness);
 
             double circleDiameter = (effectiveRenderSize.Width - (BlockCount - 1) * BlockDistance) / BlockCount;
             if (circleDiameter > effectiveRenderSize.Height)
@@ -31,9 +31,9 @@ namespace CookPopularUI.WPF.Controls
             double circleRadius = circleDiameter / 2;
             Point center = new Point();
 
-            int threshHold = GetThreshold(this.Value, this.BlockCount);
+            int threshHold = GetThreshold(Value, BlockCount);
 
-            for (int i = 0; i < this.BlockCount; i++)
+            for (int i = 0; i < BlockCount; i++)
             {
                 double startLeft = BorderBen.Thickness / 2 + (circleDiameter + BlockDistance) * i;
                 double startTop = BorderBen.Thickness / 2 + (effectiveRenderSize.Height - circleDiameter) / 2;
