@@ -344,6 +344,7 @@
         <Setter Property="SnapsToDevicePixels" Value="False" />
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
         <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
+        <Setter Property="Stylus.IsPressAndHoldEnabled" Value="False" />
         <Style.Triggers>
             <Trigger Property="Orientation" Value="Horizontal">
                 <Setter Property="Template" Value="{StaticResource SliderHorizontal}" />
