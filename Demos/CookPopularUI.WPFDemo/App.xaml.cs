@@ -74,6 +74,7 @@ namespace CookPopularUI.WPFDemo
             containerRegistry.RegisterForNavigation<ProgressButtonDemoView>();
             containerRegistry.RegisterForNavigation<PropertyGridDemoView>();
             containerRegistry.RegisterForNavigation<RadioButtonDemoView>();
+            containerRegistry.RegisterForNavigation<RangeSliderDemoView>();
             containerRegistry.RegisterForNavigation<ScrollViewerDemoView>();
             containerRegistry.RegisterForNavigation<ShapeDemoView>();
             containerRegistry.RegisterForNavigation<SliderDemoView>();

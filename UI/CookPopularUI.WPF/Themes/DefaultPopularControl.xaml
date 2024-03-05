@@ -67,6 +67,7 @@
         <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/PropertyGridStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/PopupMessageStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/RadialShadowBorderStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/RangeSliderStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/RippleStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/SearchBarStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/Styles/SideBarStyle.xaml" />
@@ -156,6 +157,7 @@
     <Style x:Key="{x:Type ui:PropertyGrid}" TargetType="{x:Type ui:PropertyGrid}" BasedOn="{StaticResource DefaultPropertyGridStyle}" />
     <Style x:Key="{x:Type ui:PopupMessage}" TargetType="{x:Type ui:PopupMessage}" BasedOn="{StaticResource DefaultPopupMessageStyle}" />
     <Style x:Key="{x:Type ui:RadialShadowBorder}" TargetType="{x:Type ui:RadialShadowBorder}" BasedOn="{StaticResource DefaultRadialShadowBorderStyle}" />
+    <Style x:Key="{x:Type ui:RangeSlider}" TargetType="{x:Type ui:RangeSlider}" BasedOn="{StaticResource DefaultRangeSliderStyle}" />
     <Style x:Key="{x:Type ui:Ripple}" TargetType="{x:Type ui:Ripple}" BasedOn="{StaticResource DefaultRippleStyle}" />
     <Style x:Key="{x:Type ui:SearchBar}" TargetType="{x:Type ui:SearchBar}" BasedOn="{StaticResource DefaultSearchBarStyle}" />
     <Style x:Key="{x:Type ui:SideBar}" TargetType="{x:Type ui:SideBar}" BasedOn="{StaticResource DefaultSideBarStyle}" />

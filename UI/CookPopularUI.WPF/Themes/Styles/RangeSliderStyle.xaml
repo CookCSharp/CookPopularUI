@@ -1,0 +1,204 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:ui="clr-namespace:CookPopularUI.WPF.Controls">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/CookPopularUI.WPF;component/Themes/BaseStyles/ControlBaseStyle.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <ControlTemplate x:Key="RangeSliderHorizontal" TargetType="{x:Type ui:RangeSlider}">
+        <ControlTemplate.Resources>
+            <Style x:Key="RangeSliderHorizontalThumbStyle" TargetType="{x:Type Thumb}">
+                <Setter Property="Width" Value="10" />
+                <Setter Property="Background" Value="{DynamicResource PrimaryThemeBrush}" />
+                <Setter Property="Cursor" Value="SizeWE" />
+                <Setter Property="IsTabStop" Value="False" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Thumb}">
+                            <ui:SimpleGrid>
+                                <Border x:Name="RootBorder"
+                                        Background="{TemplateBinding Background}"
+                                        CornerRadius="2"
+                                        Margin="0,5" />
+                                <StackPanel MaxHeight="10" HorizontalAlignment="Center" Orientation="Horizontal">
+                                    <Rectangle Width="2" Fill="{DynamicResource ControlForegroundBrush}" />
+                                    <Rectangle Width="2" Fill="{DynamicResource ControlForegroundBrush}" Margin="2,0,0,0" />
+                                </StackPanel>
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Normal" />
+                                        <!--  会导致切换主题时无法生效  -->
+                                        <!--<VisualState x:Name="MouseOver">
+                                            <Storyboard>
+                                                <ColorAnimationUsingKeyFrames Storyboard.TargetName="RootBorder" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
+                                                    <SplineColorKeyFrame Value="{DynamicResource ControlMouseOverColor}" KeyTime="0" />
+                                                </ColorAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Pressed">
+                                            <Storyboard>
+                                                <ColorAnimationUsingKeyFrames Storyboard.TargetName="RootBorder" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
+                                                    <SplineColorKeyFrame Value="{DynamicResource ControlPressColor}" KeyTime="0" />
+                                                </ColorAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Disabled">
+                                            <Storyboard>
+                                                <ColorAnimationUsingKeyFrames Storyboard.TargetName="RootBorder" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
+                                                    <SplineColorKeyFrame Value="{DynamicResource UnEnabledColor}" KeyTime="0" />
+                                                </ColorAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>-->
+                                    </VisualStateGroup>
+                                    <VisualStateGroup x:Name="FocusStates">
+                                        <VisualState x:Name="Focused" />
+                                        <VisualState x:Name="Unfocused" />
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                            </ui:SimpleGrid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="{DynamicResource ControlMouseOverBrush}" TargetName="RootBorder" />
+                                </Trigger>
+                                <Trigger Property="IsDragging" Value="True">
+                                    <Setter Property="Background" Value="{DynamicResource ControlPressBrush}" TargetName="RootBorder" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ControlTemplate.Resources>
+        <Border Padding="{TemplateBinding Padding}">
+            <ui:SimpleGrid>
+                <Rectangle Height="5" Fill="{TemplateBinding Foreground}" />
+                <Border x:Name="SelectedRangeBorder">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Thumb x:Name="RangeCenterThumb" Grid.Column="1"
+                               BorderBrush="{TemplateBinding BorderBrush}"
+                               BorderThickness="{TemplateBinding BorderThickness}"
+                               Background="{TemplateBinding Background}"
+                               Margin="-5,0"
+                               Cursor="Hand">
+                            <Thumb.Style>
+                                <Style TargetType="Thumb">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="Thumb">
+                                                <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                                        Background="{TemplateBinding Background}"
+                                                        CornerRadius="3" />
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </Thumb.Style>
+                        </Thumb>
+                        <Thumb x:Name="RangeStartThumb" Style="{StaticResource RangeSliderHorizontalThumbStyle}" />
+                        <Thumb x:Name="RangeEndThumb" Grid.Column="2" Style="{StaticResource RangeSliderHorizontalThumbStyle}" />
+                    </Grid>
+                </Border>
+            </ui:SimpleGrid>
+        </Border>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="RangeSliderVertical" TargetType="{x:Type ui:RangeSlider}">
+        <ControlTemplate.Resources>
+            <Style x:Key="RangeSliderVerticalThumbStyle" TargetType="{x:Type Thumb}">
+                <Setter Property="Height" Value="10" />
+                <Setter Property="Background" Value="{DynamicResource PrimaryThemeBrush}" />
+                <Setter Property="Cursor" Value="SizeNS" />
+                <Setter Property="IsTabStop" Value="False" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Thumb}">
+                            <ui:SimpleGrid>
+                                <Border x:Name="RootBorder"
+                                        Background="{TemplateBinding Background}"
+                                        CornerRadius="2"
+                                        Margin="5,0" />
+                                <StackPanel MaxWidth="10" VerticalAlignment="Center">
+                                    <Rectangle Height="2" Fill="{DynamicResource ControlForegroundBrush}" />
+                                    <Rectangle Height="2" Fill="{DynamicResource ControlForegroundBrush}" Margin="0,2,0,0" />
+                                </StackPanel>
+                            </ui:SimpleGrid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="{DynamicResource ControlMouseOverBrush}" TargetName="RootBorder" />
+                                </Trigger>
+                                <Trigger Property="IsDragging" Value="True">
+                                    <Setter Property="Background" Value="{DynamicResource ControlPressBrush}" TargetName="RootBorder" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ControlTemplate.Resources>
+        <Border Padding="{TemplateBinding Padding}">
+            <ui:SimpleGrid>
+                <Rectangle Width="5" Fill="{TemplateBinding Foreground}" />
+                <Border x:Name="SelectedRangeBorder">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Thumb x:Name="RangeCenterThumb" Grid.Row="1"
+                               BorderBrush="{TemplateBinding BorderBrush}"
+                               BorderThickness="{TemplateBinding BorderThickness}"
+                               Background="{TemplateBinding Background}"
+                               Margin="0,-5"
+                               Cursor="Hand">
+                            <Thumb.Style>
+                                <Style TargetType="Thumb">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="Thumb">
+                                                <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                                        Background="{TemplateBinding Background}"
+                                                        CornerRadius="2" />
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </Thumb.Style>
+                        </Thumb>
+                        <Thumb x:Name="RangeEndThumb" Style="{StaticResource RangeSliderVerticalThumbStyle}" />
+                        <Thumb x:Name="RangeStartThumb" Grid.Row="2" Style="{StaticResource RangeSliderVerticalThumbStyle}" />
+                    </Grid>
+                </Border>
+            </ui:SimpleGrid>
+        </Border>
+    </ControlTemplate>
+
+    <Style x:Key="DefaultRangeSliderStyle" TargetType="{x:Type ui:RangeSlider}">
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryThemeBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="{DynamicResource PrimaryThemeBrush}" />
+        <Setter Property="Background" Value="#66FFFFFF" />
+        <Style.Triggers>
+            <Trigger Property="Orientation" Value="Horizontal">
+                <Setter Property="Height" Value="{StaticResource DefaultControlHeight}" />
+                <Setter Property="Template" Value="{StaticResource RangeSliderHorizontal}" />
+            </Trigger>
+            <Trigger Property="Orientation" Value="Vertical">
+                <Setter Property="Width" Value="{StaticResource DefaultControlHeight}" />
+                <Setter Property="Template" Value="{StaticResource RangeSliderVertical}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="0.6" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+</ResourceDictionary>
