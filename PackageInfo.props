@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="$(Configuration) == 'Release' And !$(MSBuildProjectName.Contains('Demo'))">
+    <Description>创建流行的UI控件库，包括WPF、Avalonia、WinUI等</Description>
     <PackageOutputPath>$(SolutionDir)Output\bin\$(Configuration)</PackageOutputPath>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -21,5 +22,11 @@
     <!--https://gitee.com/CookCSharp/CookPopularUI-->
     <RepositoryUrl>https://github.com/CookCSharp/CookPopularUI</RepositoryUrl>
     <PackageProjectUrl>https://github.com/CookCSharp/CookPopularUI</PackageProjectUrl>
+  </PropertyGroup>
+
+  <!--创建snupkg文件-->
+  <PropertyGroup>
+    <IncludeSymbols>true</IncludeSymbols>   
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 </Project>

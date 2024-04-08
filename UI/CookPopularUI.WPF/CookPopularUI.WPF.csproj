@@ -8,12 +8,14 @@
   </PropertyGroup>
 
   <PropertyGroup>
+    <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);PackFiles</TargetsForTfmSpecificBuildOutput>
+    <BuildOutputInPackage>true</BuildOutputInPackage>
     <Copyright>Copyright © CookCSharp 2021 All rights reserved.</Copyright>
-    <Description>提供了70多款常用控件</Description>
     <PackageIcon>nuget-logo.png</PackageIcon>
     <PackageReadmeFile>readme.md</PackageReadmeFile>
     <PackageTags>xaml,wpf,ui,controls,windows,desktop,cookpopularui,library</PackageTags>
-    <PackageReleaseNotes>支持.NET462+、.NETCore3.1、.NET6.0+的WPF控件库，目前处于发布的预览版，其它更多控件敬请期待</PackageReleaseNotes>
+    <PackageDescription>支持.NET462+、.NETCore3.1、.NET6.0+的WPF控件库，目前含有100多款常用控件</PackageDescription>
+    <PackageReleaseNotes>提供了100多款常用控件</PackageReleaseNotes>
     <!--<PackAsTool>True</PackAsTool>-->
   </PropertyGroup>
 
@@ -55,21 +57,27 @@
     <Resource Include="Common\Effects\DropShadowExEffect.ps" />
     <Resource Include="Resources\Dropper.cur" />
     <Resource Include="Resources\Images\trayicon-transparent.ico" />
-    <Resource Include="Resources\Images\nuget-logo.png">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </Resource>
+    <Resource Include="Resources\Images\nuget-logo.png" Pack="true" PackagePath="" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="..\..\readme.md">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
+      <Pack>true</Pack>
+      <PackagePath></PackagePath>
     </None>
+    <!--将资源打包到nuget包中-->
+    <!--<None Include="$(ProjectDir)Assets\*.*" Pack="true" PackagePath="Assets" />-->
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\Tookit\CookPopularToolkit.Windows\CookPopularToolkit.Windows.csproj" />
   </ItemGroup>
+
+  <!--只能将dll,xml打包到nuget包的lib中-->
+  <Target Name="PackFiles">
+    <!--<ItemGroup>
+      <BuildOutputInPackage Include="$(OutputPath)*.xml" />
+    </ItemGroup>-->
+  </Target>
 
 </Project>

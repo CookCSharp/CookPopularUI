@@ -22,6 +22,10 @@
     <SatelliteResourceLanguages>zh-Hans</SatelliteResourceLanguages>
     <!--不生成ReferenceAssembly，即ref文件夹-->
     <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
+    <!--生成引用程序集，默认false-->
+    <ProduceReferenceAssemblies>true</ProduceReferenceAssemblies>
+    <!--默认false，构建默认目标及自定义目标，以分号隔开-->
+    <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);</TargetsForTfmSpecificBuildOutput>
     <Platforms>AnyCPU;x64;x86</Platforms>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <LangVersion>latest</LangVersion>

@@ -8,11 +8,11 @@
 
   <PropertyGroup>
     <Copyright>Copyright © CookCSharp 2023 All rights reserved.</Copyright>
-    <Description>拖拽控件</Description>
     <PackageIcon>draggable.png</PackageIcon>
     <PackageReadmeFile>readme.md</PackageReadmeFile>
     <PackageTags>xaml,wpf,ui,draggable,drop,windows,desktop,cookpopularui,library</PackageTags>
-    <PackageReleaseNotes>支持.NET462+、.NETCore3.1、.NET6.0+的拖拽控件</PackageReleaseNotes>
+    <PackageDescription>支持.NET462+、.NETCore3.1、.NET6.0+的拖拽控件</PackageDescription>
+    <PackageReleaseNotes>拖拽控件</PackageReleaseNotes>
     <!--<PackAsTool>True</PackAsTool>-->
   </PropertyGroup>
 
