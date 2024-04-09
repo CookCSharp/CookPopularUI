@@ -6,15 +6,19 @@
     <UseWPF>true</UseWPF>
     <DefineConstants>DESKTOP</DefineConstants>
 
-    <Description>Windows平台工具包</Description>
-    <PackageIcon>logo.png</PackageIcon>
+    <PackageIcon>Assets\logo.png</PackageIcon>
     <PackageTags>csharp,library,toolkit,toolbox,windows</PackageTags>
+    <PackageDescription>支持.NET462+、.NETCore3.1、.NET6.0+的Windows平台工具包</PackageDescription>
     <PackageReleaseNotes>支持.NET462+、.NETCore3.1、.NET6.0+的Windows平台工具包，目前处于发布的预览版，其它功能敬请期待</PackageReleaseNotes>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Include="..\CookPopularToolkit\Rules\RegularPatterns.cs" Link="Rules\RegularPatterns.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="logo.png" Pack="true" PackagePath="Assets\logo.png" Visible="false"/>
   </ItemGroup>
 
   <ItemGroup>
@@ -27,13 +31,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CookPopularToolkit\CookPopularToolkit.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="logo.png">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </Resource>
   </ItemGroup>
 
 </Project>
