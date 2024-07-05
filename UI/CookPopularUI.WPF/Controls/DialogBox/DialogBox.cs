@@ -99,7 +99,7 @@ namespace CookPopularUI.WPF.Controls
             {
                 element = DialogInstances.SingleOrDefault(d => GetMark(d) == mark);
                 adorner = element is Window ? element.GetVisualDescendants().OfType<AdornerDecorator>().FirstOrDefault()
-                                            : element.GetVisualDescendants().OfType<DialogBoxContainer>().FirstOrDefault();
+                                            : element?.GetVisualDescendants().OfType<DialogBoxContainer>().FirstOrDefault();
             }
 
             if (adorner is not null)

@@ -256,8 +256,8 @@ namespace CookPopularUI.WPF.Windows
         {
             DispatcherHelper.AppInvoke(() =>
             {
-                CurrentMessageDialog = CreateMessageDialog(null, messageBoxText, caption, MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.None, MessageBoxOptions.None);
-                CurrentMessageDialog.currentMessageBoxButton = MessageBoxButton.OKCancel;
+                CurrentMessageDialog = CreateMessageDialog(null, messageBoxText, caption, MessageBoxButton.YesNoCancel, MessageBoxImage.Question, MessageBoxResult.None, MessageBoxOptions.None);
+                CurrentMessageDialog.currentMessageBoxButton = MessageBoxButton.YesNoCancel;
                 CreateImage(MessageBoxImage.Question);
                 SystemSounds.Question.Play();
                 CurrentMessageDialog.ShowDialog();
@@ -360,7 +360,7 @@ namespace CookPopularUI.WPF.Windows
                     var btn_OK_1 = new Button()
                     {
                         IsDefault = true,
-                        Content = $"{LanguageService.Current.Ok}(_O)",
+                        Content = $"{LanguageService.Current.Ok}(_S)",
                         Command = ControlCommands.ConfirmCommand,
                         Style = ResourceHelper.GetResource<Style>("MessageDialogSelectedButtonStyle"),
                     };
@@ -370,7 +370,7 @@ namespace CookPopularUI.WPF.Windows
                     var btn_OK_2 = new Button()
                     {
                         IsDefault = true,
-                        Content = $"{LanguageService.Current.Ok}(_O)",
+                        Content = $"{LanguageService.Current.Ok}(_S)",
                         Command = ControlCommands.ConfirmCommand,
                         Style = ResourceHelper.GetResource<Style>("MessageDialogSelectedButtonStyle"),
                     };

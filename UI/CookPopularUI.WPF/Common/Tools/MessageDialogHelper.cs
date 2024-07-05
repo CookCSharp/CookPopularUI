@@ -22,25 +22,25 @@ namespace CookPopularUI.WPF.Tools
 {
     public class MessageDialogHelper
     {
-        public static bool ShowFileError(string fileFullPath)
+        public static void ShowFileError(string fileFullPath, bool isShow = true)
         {
             try
             {
                 CheckHelper.FileNotFoundException(fileFullPath);
-
-                return false;
             }
             catch (FileNotFoundException fe)
             {
-                MessageDialog.ShowError(fe.Message, fe.FileName);
-
-                return true;
+                if (isShow)
+                    MessageDialog.ShowError(fe.Message, fe.FileName);
+                else
+                    throw new FileNotFoundException(fe.Message);
             }
             catch (Exception ex)
             {
-                MessageDialog.ShowError(ex.Message);
-
-                return true;
+                if (isShow)
+                    MessageDialog.ShowError(ex.Message);
+                else
+                    throw new Exception(ex.Message);
             }
         }
     }
