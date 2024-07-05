@@ -29,14 +29,14 @@
             <StackPanel DockPanel.Dock="Right" HorizontalAlignment="Right" Orientation="Horizontal">
                 <Button Command="{Binding LanguageSwitchCommand}"
                         ToolTip="语言"
-                        ui:FrameworkElementBaseAttached.IconGeometry="{StaticResource LanguageGeometry}"
+                        ui:FrameworkElementBaseAttached.IconGeometry="{DynamicResource LanguageGeometry}"
                         ui:FrameworkElementBaseAttached.IconHeight="16" ui:FrameworkElementBaseAttached.IconWidth="16"
-                        Style="{StaticResource WindowIconButtonStyle}" />
+                        Style="{DynamicResource WindowIconButtonStyle}" />
                 <Button Command="{Binding ThemeSwitchCommand}"
                         ToolTip="主题"
-                        ui:FrameworkElementBaseAttached.IconGeometry="{StaticResource ThemeGeometry}"
+                        ui:FrameworkElementBaseAttached.IconGeometry="{DynamicResource ThemeGeometry}"
                         ui:FrameworkElementBaseAttached.IconHeight="16" ui:FrameworkElementBaseAttached.IconWidth="16"
-                        Style="{StaticResource WindowIconButtonStyle}" />
+                        Style="{DynamicResource WindowIconButtonStyle}" />
             </StackPanel>
         </DockPanel>
     </ui:NormalWindow.ClientTitleBarAdditionalContent>
@@ -58,10 +58,10 @@
                               Width="50" Height="50"
                               IsChecked="{Binding IsShowSideBar, Mode=TwoWay}"
                               HorizontalAlignment="Left"
-                              ui:FrameworkElementBaseAttached.IconGeometry="{StaticResource CatalogGeometry}"
+                              ui:FrameworkElementBaseAttached.IconGeometry="{DynamicResource CatalogGeometry}"
                               ui:FrameworkElementBaseAttached.IconHeight="16" ui:FrameworkElementBaseAttached.IconWidth="16"
-                              Style="{StaticResource ToggleButtonTransparentIconStyle}" />
-                <Button Command="{Binding GoToHomePageCommand}" ui:FrameworkElementBaseAttached.IconGeometry="{StaticResource HomePageGeometry}" Style="{StaticResource ButtonTransparentIconStyle}" />
+                              Style="{DynamicResource ToggleButtonTransparentIconStyle}" />
+                <Button Command="{Binding GoToHomePageCommand}" ui:FrameworkElementBaseAttached.IconGeometry="{DynamicResource HomePageGeometry}" Style="{DynamicResource ButtonTransparentIconStyle}" />
                 <TextBlock Text="{Binding CenterTitle}"
                            FontSize="20" FontWeight="ExtraBold"
                            Margin="320,0,0,0"

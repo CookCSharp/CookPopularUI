@@ -53,7 +53,7 @@ namespace CookPopularUI.WPFDemo.ViewModels
         }
 
         private void OnSelectedViewIndexChanged()
-        {           
+        {
             CenterTitle = $"CookPopularUI.WPF({DemoViewNames[SelectedViewIndex].Replace("DemoView", "")})";
             App.UnityContainer.Resolve<IRegionManager>().RequestNavigate("MainWindowContent", DemoViewNames[SelectedViewIndex]);
             IsShowSideBar = false;
@@ -78,6 +78,7 @@ namespace CookPopularUI.WPFDemo.ViewModels
 
         private void OnLanguageSwitchAction()
         {
+            Language = PopularThemeExtended.GetLanguage();
             if (Language == LanguageType.Chinese)
                 Language = LanguageType.English;
             else if (Language == LanguageType.English)

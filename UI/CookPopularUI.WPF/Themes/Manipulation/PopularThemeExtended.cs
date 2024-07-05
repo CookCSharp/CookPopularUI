@@ -51,6 +51,13 @@ namespace CookPopularUI.WPF.Themes
             }
         }
 
+        public static LanguageType GetLanguage() => GetCurrentCulture().Name switch
+        {
+            "es" => LanguageType.English,
+            "zh-Hans" => LanguageType.Chinese,
+            _ => throw new NotImplementedException(),
+        };
+
         public static CultureInfo GetCurrentCulture() => Language.Culture ?? CultureInfo.CurrentUICulture;
 
         public static string GetLanguageKeyValue(string key) => Language.ResourceManager.GetString(key, Language.Culture) ?? throw new ArgumentException("not valid param of key's value", nameof(key));
