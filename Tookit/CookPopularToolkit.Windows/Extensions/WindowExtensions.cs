@@ -39,8 +39,6 @@ namespace CookPopularToolkit.Windows
 
         public static void SwitchToThisWindow(this Window window) => InteropMethods.SwitchToThisWindow(window.EnsureHandle(), true);
 
-        public static Window GetActiveWindow() => System.Windows.Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive);
-
         /// <summary>
         /// 获取当前窗口是否已创建句柄但从未显示。
         /// </summary>

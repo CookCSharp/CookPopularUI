@@ -283,5 +283,34 @@ namespace CookPopularToolkit.Windows.Win32Api
 
         [DllImport(InteropValues.ExternDll.Shell32)]
         public static extern bool IsUserAnAdmin();
+
+        /// <summary>
+        /// 打开服务控制管理器数据库
+        /// </summary>
+        /// <param name="lpMachineName"></param>
+        /// <param name="lpDatabaseName"></param>
+        /// <param name="dwDesiredAccess"></param>
+        /// <returns></returns>
+        [DllImport(InteropValues.ExternDll.Advapi32, SetLastError = true, CharSet = CharSet.Auto)]
+        public static extern IntPtr OpenSCManager(string? lpMachineName, string? lpDatabaseName, uint dwDesiredAccess);
+
+        [DllImport(InteropValues.ExternDll.Advapi32, SetLastError = true, CharSet = CharSet.Auto)]
+        public static extern IntPtr OpenService(IntPtr hSCManager, string lpServiceName, uint dwDesiredAccess);
+
+        [DllImport(InteropValues.ExternDll.Advapi32, SetLastError = true, CharSet = CharSet.Auto)]
+        public static extern bool QueryServiceConfig(IntPtr hService, IntPtr lpServiceConfig, uint cbBufSize, out uint pcbBytesNeeded);
+
+        [DllImport(InteropValues.ExternDll.Advapi32, SetLastError = true)]
+        public static extern bool CloseServiceHandle(IntPtr hSCObject);
+
+
+        [DllImport(InteropValues.ExternDll.Kernel32, SetLastError = true)]
+        private static extern IntPtr OpenProcess(uint dwDesiredAccess, bool bInheritHandle, int dwProcessId);
+
+        [DllImport(InteropValues.ExternDll.Advapi32, SetLastError = true)]
+        private static extern bool QueryServiceStatusEx(IntPtr hService, int infoLevel, IntPtr lpBuffer, uint cbBufSize, out uint pcbBytesNeeded);
+
+        [DllImport(InteropValues.ExternDll.Kernel32, SetLastError = true)]
+        private static extern bool CloseHandle(IntPtr hObject);
     }
 }

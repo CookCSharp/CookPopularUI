@@ -34,7 +34,8 @@ namespace CookPopularToolkit.Windows.Win32Api
                                 MsImg = "msimg32.dll",
                                 NTdll = "ntdll.dll",
                                 Dwmapi = "dwmapi.dll",
-                                Ole32 = "ole32.dll";
+                                Ole32 = "ole32.dll",
+                                Advapi32 = "advapi32.dll";
         }
 
         public const int BITSPIXEL = 12,
@@ -102,14 +103,18 @@ namespace CookPopularToolkit.Windows.Win32Api
                          SC_MAXIMIZE = 0xF030,
                          SC_RESTORE = 0xF120,
                          SRCCOPY = 0x00CC0020,
-                         MONITOR_DEFAULTTONEAREST = 0x00000002;
+                         MONITOR_DEFAULTTONEAREST = 0x00000002,
+                         SC_STATUS_PROCESS_INFO = 0;
 
         public const uint WM_COPYGLOBALDATA = 0x0049,
                           WM_COPYDATA = 0x004A,
                           WM_DROPFILES = 0x0233,
                           MSGFLT_ALLOW = 1,
                           MSGFLT_ADD = 1,
-                          MAX_PATH = 260;
+                          MAX_PATH = 260,        
+                          SC_MANAGER_CONNECT = 0x0001,
+                          SERVICE_QUERY_CONFIG = 0x0001,
+                          ERROR_INSUFFICIENT_BUFFER = 0x7a;
 
         #endregion
 
@@ -884,6 +889,34 @@ namespace CookPopularToolkit.Windows.Win32Api
         {
             public uint cbSize;
             public uint ExtStatus;
+        }
+
+        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
+        public struct QUERY_SERVICE_CONFIG
+        {
+            public uint dwServiceType;
+            public uint dwStartType;
+            public uint dwErrorControl;
+            public IntPtr lpBinaryPathName; //服务的可执行文件路径
+            public IntPtr lpLoadOrderGroup;
+            public uint dwTagId;
+            public IntPtr lpDependencies;
+            public IntPtr lpServiceStartName;
+            public IntPtr lpDisplayName;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        private struct SERVICE_STATUS_PROCESS
+        {
+            public uint dwServiceType;
+            public uint dwCurrentState;
+            public uint dwControlsAccepted;
+            public uint dwWin32ExitCode;
+            public uint dwServiceSpecificExitCode;
+            public uint dwCheckPoint;
+            public uint dwWaitHint;
+            public uint dwProcessId;
+            public uint dwServiceFlags;
         }
 
         #endregion

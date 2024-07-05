@@ -115,7 +115,7 @@ namespace CookPopularToolkit.Windows
             get
             {
                 var dpiXProperty = typeof(SystemParameters).GetProperty("DpiX", BindingFlags.NonPublic | BindingFlags.Static);
-                var dpiX = (int)dpiXProperty.GetValue(null, null);
+                var dpiX = (int)dpiXProperty?.GetValue(null, null)!;
                 return dpiX;
             }
         }
@@ -128,7 +128,7 @@ namespace CookPopularToolkit.Windows
             get
             {
                 var dpiProperty = typeof(SystemParameters).GetProperty("Dpi", BindingFlags.NonPublic | BindingFlags.Static);
-                var dpi = (int)dpiProperty.GetValue(null, null);
+                var dpi = (int)dpiProperty?.GetValue(null, null)!;
                 return dpi;
             }
         }
@@ -159,7 +159,7 @@ namespace CookPopularToolkit.Windows
             }
         }
 
-        public static Window? GetActiveWindow() => System.Windows.Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive);
+        public static Window? GetActiveWindow() => System.Windows.Application.Current.Windows.OfType<Window>().FirstOrDefault(w => w.IsActive);
 
         public static Window? GetActiveWindowWithWin32Api()
         {
